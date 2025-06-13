@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारतातील धर्मांतरण: एक परस्परसंवादी विश्लेषणात्मक वेबपेज</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .section-title {
+             font-family: 'Tiro Devanagari Marathi', serif;
+             color: #991b1b; /* Dark Red */
+             border-bottom: 4px solid #fca5a5; /* Light Red */
+             padding-bottom: 0.75rem;
+             margin-bottom: 2rem;
+             font-weight: 700;
+        }
+        .stat-card {
+            background: #fff;
+            border-left: 6px solid #b91c1c; /* Red */
+        }
+        .flow-step {
+            border: 2px solid #fdba74; /* Orange */
+            background-color: #fff7ed; /* Light Orange */
+            color: #7c2d12; /* Dark Orange */
+        }
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 50;
+        }
+        .modal-content {
+            max-height: 90vh;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+            border-bottom: 4px solid transparent;
+        }
+        .nav-button.active {
+            border-bottom-color: #b91c1c;
+            color: #b91c1c;
+            font-weight: 700;
+        }
+        .nav-button:hover {
+            background-color: #f1f5f9;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <nav class="sticky top-0 bg-white/80 backdrop-blur-md shadow-md z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-center flex-wrap">
+                <a href="#human-cost" class="nav-button p-4 text-sm md:text-base">मानवी शोकांतिका</a>
+                <a href="#national-pattern" class="nav-button p-4 text-sm md:text-base">राष्ट्रीय नमुना</a>
+                <a href="#modus-operandi" class="nav-button p-4 text-sm md:text-base">कार्यपद्धती</a>
+                <a href="#punjab-case-study" class="nav-button p-4 text-sm md:text-base">पंजाब केस स्टडी</a>
+                <a href="#national-security" class="nav-button p-4 text-sm md:text-base">सुरक्षेला धोका</a>
+                <a href="#conclusion" class="nav-button p-4 text-sm md:text-base">निष्कर्ष</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
+
+        <header class="text-center my-16">
+            <h1 class="text-4xl md:text-6xl font-black text-slate-900 mb-4" style="font-family: 'Tiro Devanagari Marathi', serif;">धर्मांतरण: एक राष्ट्रीय चिंता</h1>
+            <p class="text-lg text-slate-600 max-w-4xl mx-auto">भारतातील सक्तीच्या धर्मांतरणाच्या वाढत्या घटना, त्याच्या कार्यपद्धती आणि राष्ट्रीय सुरक्षेवरील गंभीर परिणामांचे एक सखोल, परस्परसंवादी विश्लेषण.</p>
+        </header>
+
+        <main class="space-y-20">
+
+            <section id="human-cost">
+                <h2 class="text-3xl md:text-4xl section-title">१. मानवी शोकांतिका: सांगलीची घटना</h2>
+                <div class="bg-white p-8 rounded-2xl shadow-2xl border border-red-100 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+                    <div class="lg:col-span-2 text-center">
+                         <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 transform hover:scale-105 transition-transform duration-300">
+                             <div class="text-7xl font-black text-red-700">२७</div>
+                             <div class="text-2xl font-bold text-red-800 mt-2">वर्षीय गर्भवती</div>
+                             <div class="text-slate-600 mt-1 text-lg">उच्चशिक्षित (M.Sc.)</div>
+                         </div>
+                    </div>
+                    <div class="lg:col-span-3">
+                        <p class="text-lg text-slate-700 mb-4 leading-relaxed">ही घटना धर्मांतरणाच्या दबावाचे एक भयावह स्वरूप समोर आणते. लग्नानंतर पती आणि सासरच्या लोकांनी ऋतुजा राजगे यांच्यावर ख्रिस्ती धर्म स्वीकारण्यासाठी सतत दबाव टाकला. हिंदू देवतांची पूजा करण्यास मनाई केली आणि चर्चमध्ये जाण्यास भाग पाडले. हा छळ असह्य झाल्याने त्यांनी गरोदरपणातच आपले जीवन संपवले.</p>
+                        <blockquote class="border-l-4 border-red-300 pl-4 py-2 my-4 bg-red-50 text-red-800 italic">
+                            "कौटुंबिक स्तरावरील धर्मांतरणाचा दबाव हा कौटुंबिक हिंसाचाराचाच एक प्रकार आहे, जो व्यक्तीचे मानसिक खच्चीकरण करून तिला टोकाच्या निर्णयापर्यंत पोहोचवू शकतो."
+                        </blockquote>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="national-pattern">
+                <h2 class="text-3xl md:text-4xl section-title">२. राष्ट्रीय नमुना: घटनांचे विश्लेषण</h2>
+                <p class="text-lg text-slate-600 max-w-4xl mx-auto mb-8 text-center">सांगलीची घटना एकमेव नाही. देशभरातील घटना एका विशिष्ट कार्यपद्धतीकडे निर्देश करतात. खालील आलेखावर क्लिक करून राज्यवार घटनांची माहिती मिळवा.</p>
+                <div class="bg-white p-8 rounded-2xl shadow-2xl border border-slate-200">
+                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800">राज्यवार कथित सक्तीच्या धर्मांतरण घटना</h3>
+                    <p class="text-sm text-center text-slate-500 mb-6">(अहवालातील तक्ता २.१ वर आधारित | आलेखावर क्लिक करा)</p>
+                    <div class="chart-container">
+                        <canvas id="incidentsByStateChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="modus-operandi">
+                <h2 class="text-3xl md:text-4xl section-title">३. धर्मांतरणाची कार्यपद्धती</h2>
+                 <p class="text-lg text-slate-600 max-w-4xl mx-auto mb-12 text-center">धर्मांतरणासाठी एक विशिष्ट, चार-टप्प्यांची पद्धत वापरली जाते. यात व्यक्तीच्या कमकुवतपणाचा फायदा घेऊन तिला हळूहळू मूळ समाजापासून तोडले जाते.</p>
+                <div class="relative flex flex-col md:flex-row justify-around items-center space-y-8 md:space-y-0">
+                    <div class="text-center w-52 flex flex-col items-center">
+                        <div class="w-32 h-32 rounded-full flex items-center justify-center p-4 flow-step shadow-md text-4xl font-bold">🎯</div>
+                        <h4 class="text-xl font-bold mt-3 text-amber-900">१. लक्ष्य</h4>
+                        <p class="text-md mt-1 text-slate-600">गरीब, आजारी, दलित किंवा कौटुंबिक कलह असलेले लोक.</p>
+                    </div>
+                    <div class="hidden md:block text-5xl text-orange-300">→</div>
+                    <div class="block md:hidden text-5xl text-orange-300 transform rotate-90">↓</div>
+                    <div class="text-center w-52 flex flex-col items-center">
+                        <div class="w-32 h-32 rounded-full flex items-center justify-center p-4 flow-step shadow-md text-4xl font-bold">🎁</div>
+                        <h4 class="text-xl font-bold mt-3 text-amber-900">२. आमिष</h4>
+                        <p class="text-md mt-1 text-slate-600">पैसा, शिक्षण, उपचार किंवा 'चमत्कारा'चे आश्वासन.</p>
+                    </div>
+                     <div class="hidden md:block text-5xl text-orange-300">→</div>
+                     <div class="block md:hidden text-5xl text-orange-300 transform rotate-90">↓</div>
+                    <div class="text-center w-52 flex flex-col items-center">
+                        <div class="w-32 h-32 rounded-full flex items-center justify-center p-4 flow-step shadow-md text-4xl font-bold">🔗</div>
+                        <h4 class="text-xl font-bold mt-3 text-amber-900">३. वेगळे करणे</h4>
+                        <p class="text-md mt-1 text-slate-600">मूळ श्रद्धा, परंपरा आणि कुटुंबापासून मानसिकरित्या तोडणे.</p>
+                    </div>
+                     <div class="hidden md:block text-5xl text-orange-300">→</div>
+                     <div class="block md:hidden text-5xl text-orange-300 transform rotate-90">↓</div>
+                    <div class="text-center w-52 flex flex-col items-center">
+                        <div class="w-32 h-32 rounded-full flex items-center justify-center p-4 bg-red-600 text-white shadow-lg text-4xl font-bold">✝️</div>
+                        <h4 class="text-xl font-bold mt-3 text-red-800">४. धर्मांतरण</h4>
+                        <p class="text-md mt-1 text-slate-600">बाप्तिस्मा किंवा इतर धार्मिक विधींद्वारे औपचारिक धर्मांतरण.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="punjab-case-study">
+                <h2 class="text-3xl md:text-4xl section-title">४. केस स्टडी: पंजाबमधील शीख समाज</h2>
+                <p class="text-lg text-slate-600 max-w-4xl mx-auto mb-8 text-center">ख्रिस्ती धर्मांतरणाच्या लाटेने केवळ हिंदू समाजालाच नाही, तर शीख समाजालाही मोठ्या प्रमाणात लक्ष्य केले आहे. पंजाबमधील परिस्थिती विशेषतः चिंताजनक आहे.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-2xl border border-slate-200">
+                        <h3 class="font-bold text-xl mb-4 text-slate-800">धोक्याची व्याप्ती: आकडेवारी</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
+                            <div class="stat-card p-4 rounded-lg shadow-md">
+                                <p class="text-5xl font-black text-red-700">१०२%</p>
+                                <p class="font-semibold text-slate-800 mt-2">ख्रिस्ती लोकसंख्या वाढ</p>
+                                <p class="text-sm text-slate-500">(तरणतारण जिल्हा)</p>
+                            </div>
+                            <div class="stat-card p-4 rounded-lg shadow-md">
+                                 <p class="text-5xl font-black text-red-700">३.५ लाख+</p>
+                                 <p class="font-semibold text-slate-800 mt-2">दोन वर्षांत धर्मांतरित</p>
+                                 <p class="text-sm text-slate-500">(अहवालानुसार दावा)</p>
+                            </div>
+                        </div>
+                        <p class="mt-6 text-slate-600">ही वाढ 'चंगाई सभा' आणि सोशल मीडियाच्या आक्रमक प्रचारातून साधली जात आहे, ज्यामुळे शीख समाजात अस्वस्थता आहे.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-2xl shadow-2xl border border-slate-200">
+                        <h3 class="font-bold text-xl mb-4 text-slate-800">लक्ष्य: दलित आणि मजहबी शीख</h3>
+                         <div class="chart-container h-64">
+                            <canvas id="punjabTargetChart"></canvas>
+                        </div>
+                         <p class="mt-4 text-slate-600 text-center">जातीय भेदभावातून मुक्तीच्या आशेने अनेक दलित शीख धर्मांतर करतात, पण तिथेही त्यांना भेदभावाला सामोरे जावे लागते, ज्यामुळे एक 'दुहेरी उपेक्षित' समाज निर्माण होतो.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="national-security">
+                <h2 class="text-3xl md:text-4xl section-title">५. राष्ट्रीय सुरक्षेला धोका</h2>
+                 <p class="text-lg text-slate-600 max-w-4xl mx-auto mb-8 text-center">सर्वोच्च न्यायालयाने सक्तीच्या धर्मांतरणाला "अत्यंत गंभीर" आणि "राष्ट्रीय सुरक्षेसाठी धोका" म्हटले आहे. हा धोका अनेक स्तरांवर निर्माण होतो.</p>
+                 <div class="bg-white p-8 rounded-2xl shadow-2xl border border-slate-200">
+                     <h3 class="font-bold text-2xl mb-6 text-slate-800 text-center">धोक्यांचे अभिसरण: एक धोकादायक साखळी</h3>
+                     <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 text-center">
+                        <div class="w-full md:w-1/4">
+                           <div class="text-4xl mb-2">🤝</div>
+                           <h4 class="font-bold">धर्मप्रसारक</h4>
+                           <p class="text-sm">आमिष व दबाव टाकून धर्मांतरण.</p>
+                        </div>
+                        <div class="text-4xl font-bold text-slate-300">→</div>
+                         <div class="w-full md:w-1/4">
+                           <div class="text-4xl mb-2">😠</div>
+                           <h4 class="font-bold">सामाजिक तणाव</h4>
+                           <p class="text-sm">मूळ समाजापासून दुरावा व असंतोष.</p>
+                        </div>
+                         <div class="text-4xl font-bold text-slate-300">→</div>
+                         <div class="w-full md:w-1/4">
+                           <div class="text-4xl mb-2">💥</div>
+                           <h4 class="font-bold">फुटीरतावादी गट</h4>
+                           <p class="text-sm">असंतोष भडकवून भरती.</p>
+                        </div>
+                         <div class="text-4xl font-bold text-slate-300">→</div>
+                         <div class="w-full md:w-1/4">
+                           <div class="text-4xl mb-2">🛡️</div>
+                           <h4 class="font-bold">राष्ट्रीय धोका</h4>
+                           <p class="text-sm">विदेशी हस्तक्षेपाला संधी.</p>
+                        </div>
+                     </div>
+                 </div>
+            </section>
+        </main>
+        
+        <footer id="conclusion" class="text-center mt-20 pt-10 border-t border-slate-300">
+            <h2 class="text-3xl md:text-4xl section-title inline-block">६. निष्कर्ष आणि शिफारसी</h2>
+            <p class="text-lg text-slate-600 max-w-4xl mx-auto mb-10">या गंभीर समस्येवर मात करण्यासाठी एकात्मिक आणि कठोर बहुआयामी उपाययोजना करणे आवश्यक आहे.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500">
+                    <h3 class="font-bold text-red-800 mb-2">⚖️ राष्ट्रीय कायदा</h3>
+                    <p class="text-sm text-slate-600">सक्ती, प्रलोभन आणि फसवणूक रोखण्यासाठी एक मजबूत देशव्यापी कायदा तयार करणे.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500">
+                    <h3 class="font-bold text-red-800 mb-2">🔍 आर्थिक तपासणी</h3>
+                    <p class="text-sm text-slate-600">FCRA कायद्यांतर्गत परदेशी निधीची कठोर तपासणी करणे आणि गैरवापर थांबवणे.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500">
+                    <h3 class="font-bold text-red-800 mb-2">🤝 सामाजिक सुधारणा</h3>
+                    <p class="text-sm text-slate-600">जातीय भेदभावासारख्या अंतर्गत समस्यांवर मात करून समाजाला आतून मजबूत करणे.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500">
+                    <h3 class="font-bold text-red-800 mb-2">🛡️ सुरक्षा प्रतिसाद</h3>
+                    <p class="text-sm text-slate-600">धर्मप्रसारक संस्था आणि फुटीरतावादी गटांमधील संबंधांवर लक्ष ठेवून कारवाई करणे.</p>
+                </div>
+            </div>
+             <p class="text-xs text-slate-400 mt-12">हा वेबपेज ११ जून २०२५ रोजीच्या संशोधन अहवालावर आधारित आहे. सर्व डेटा आणि माहिती त्या अहवालातून घेतली आहे.</p>
+        </footer>
+
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="caseModal" class="fixed inset-0 hidden items-center justify-center modal-backdrop">
+        <div class="bg-white rounded-lg shadow-2xl w-11/12 md:w-1/2 lg:w-1/3 p-6 modal-content overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modalTitle" class="text-2xl font-bold text-slate-800"></h3>
+                <button id="closeModalBtn" class="text-3xl font-bold text-slate-500 hover:text-slate-800">&times;</button>
+            </div>
+            <div id="modalBody" class="space-y-4">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const caseData = {
+                'उत्तर प्रदेश': [
+                    { title: 'वाराणसी: विवाहित महिलेवर दबाव', details: 'खोलीत डांबून पाद्री बोलावून धर्मांतरणाचा प्रयत्न. एफआयआर दाखल.' },
+                    { title: 'पिलीभीत: शीख कुटुंबाचा छळ', details: 'पतीचे जबरदस्तीने धर्मांतरण, मुलांना मारहाण. ३००० शीख धर्मांतरित झाल्याचा दावा.' },
+                    { title: 'गाझियाबाद: पैशाचे आमिष', details: 'कुटुंबाला दरमहा ३,५०० रुपयांचे आमिष देऊन धर्मांतरण. आरोपींना अटक.' }
+                ],
+                'महाराष्ट्र': [
+                    { title: 'सांगली: गर्भवतीची आत्महत्या', details: 'कौटुंबिक छळ आणि धर्मांतरणाच्या दबावामुळे आत्महत्या. एफआयआर दाखल.' },
+                    { title: 'अहमदनगर: शीख विद्यार्थ्यावर सक्ती', details: 'पगडी आणि कडा काढण्यास दबाव, धर्मांतरणाची सक्ती. गुन्हा दाखल.' },
+                    { title: 'पुणे: अनाथाश्रमात छळ', details: 'अल्पवयीन मुलींचा शारीरिक व मानसिक छळ, जबरदस्तीने बाप्तिस्मा.' }
+                ],
+                'मध्य प्रदेश': [
+                     { title: 'इंदूर: हिंदू कुटुंबाचा छळ', details: 'घरासमोर मांस फेकणे, छळ; मुलीचा नैराश्याने मृत्यू. तक्रार दाखल.' },
+                     { title: 'खरगोन: आदिवासी विद्यार्थिनीवर सक्ती', details: 'वसतिगृहात बायबल पठणाची सक्ती. वॉर्डन निलंबित.' },
+                ],
+                 'पंजाब': [
+                     { title: 'गुरुदासपूर: तरुणीचे अपहरण', details: '२२ वर्षीय तरुणीचे अपहरण, बलात्कार आणि सक्तीचे धर्मांतरण. पाद्रीसह १२ जणांवर गुन्हा दाखल.' },
+                ],
+                 'छत्तीसगड': [
+                     { title: 'बालोद: पतीची आत्महत्या', details: 'पत्नीकडून धर्मांतरणासाठी दबाव आल्याने पतीने आत्महत्या केली.' },
+                ]
+            };
+
+            const modal = document.getElementById('caseModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                if (!item) return '';
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                  return label.join(' ');
+                }
+                return label;
+            };
+            
+            const sharedChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { family: "'Inter', sans-serif", size: 14 },
+                            color: '#334155'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        titleColor: '#f1f5f9',
+                        bodyColor: '#cbd5e1',
+                        callbacks: { title: tooltipTitleCallback },
+                        titleFont: { family: "'Inter', sans-serif", weight: 'bold' },
+                        bodyFont: { family: "'Inter', sans-serif" }
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: { color: '#475569', font: { family: "'Inter', sans-serif" } },
+                        grid: { color: '#e2e8f0' }
+                    },
+                    x: {
+                        ticks: { color: '#475569', font: { family: "'Inter', sans-serif" } },
+                        grid: { display: false }
+                    }
+                }
+            };
+            
+            const incidentsByStateCtx = document.getElementById('incidentsByStateChart').getContext('2d');
+            const stateChart = new Chart(incidentsByStateCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['उत्तर प्रदेश', 'महाराष्ट्र', 'मध्य प्रदेश', 'पंजाब', 'छत्तीसगड'],
+                    datasets: [{
+                        label: 'नोंदवलेल्या घटना (प्रातिनिधिक)',
+                        data: [8, 5, 4, 4, 3], 
+                        backgroundColor: 'rgba(220, 38, 38, 0.6)',
+                        borderColor: 'rgba(185, 28, 28, 1)',
+                        borderWidth: 2,
+                        borderRadius: 5,
+                        hoverBackgroundColor: 'rgba(185, 28, 28, 1)',
+                        cursor: 'pointer',
+                    }]
+                },
+                options: { 
+                    ...sharedChartOptions, 
+                    plugins: { ...sharedChartOptions.plugins, legend: { display: false } },
+                    onClick: (event, elements) => {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const state = stateChart.data.labels[index];
+                            const cases = caseData[state];
+                            if (cases) {
+                                modalTitle.textContent = `${state} मधील घटना`;
+                                modalBody.innerHTML = cases.map(c => 
+                                    `<div class="border-b pb-2 mb-2"><h4 class="font-bold text-lg">${c.title}</h4><p>${c.details}</p></div>`
+                                ).join('');
+                                modal.classList.remove('hidden');
+                                modal.classList.add('flex');
+                            }
+                        }
+                    },
+                    onHover: (event, chartElement) => {
+                        event.native.target.style.cursor = chartElement[0] ? 'pointer' : 'default';
+                    }
+                }
+            });
+
+            closeModalBtn.onclick = () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            };
+
+            window.onclick = (event) => {
+                if (event.target == modal) {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }
+            };
+            
+            const punjabTargetCtx = document.getElementById('punjabTargetChart').getContext('2d');
+            new Chart(punjabTargetCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['दलित व मजहबी शीख', 'इतर आर्थिक दुर्बळ', 'इतर'],
+                    datasets: [{
+                        label: 'लक्ष्य गट',
+                        data: [65, 25, 10],
+                        backgroundColor: ['#dc2626', '#fb923c', '#fecaca'],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: { ...sharedChartOptions, cutout: '60%' }
+            });
+
+            const navButtons = document.querySelectorAll('.nav-button');
+            const sections = document.querySelectorAll('main section, footer#conclusion');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navButtons.forEach(button => {
+                            if (button.getAttribute('href').substring(1) === entry.target.id) {
+                                button.classList.add('active');
+                            } else {
+                                button.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-50% 0px -50% 0px" });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
+  
