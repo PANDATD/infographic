@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Dashboard: A Decade of India's Industrial Renaissance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: A thematic, single-page dashboard designed as an interactive narrative. The structure guides the user through the report's core arguments, starting with high-level macro-economic indicators, moving to foundational pillars like infrastructure and policy, then highlighting grassroots impact via startups and innovation, and concluding with India's global standing. A sticky navigation bar allows both guided scrolling and direct access to these themes. This structure was chosen to transform the dense report into a digestible, persuasive story, making the key comparisons and achievements immediately apparent and explorable. -->
+    <!-- Visualization & Content Choices: 
+        - Manufacturing GVA Growth: Goal: Compare. Viz: Bar Chart (Chart.js). Justification: Direct comparison of absolute values for UPA vs NDA start/end points.
+        - Unemployment Rate: Goal: Change. Viz: Line Chart (Chart.js). Justification: Ideal for showing a continuous trend over several years under the NDA.
+        - EoDB Rank: Goal: Inform. Viz: Large Number Infographic (HTML/CSS). Justification: The dramatic rank jump is more impactful as a typographic visual than a chart.
+        - FDI Inflow: Goal: Compare. Viz: Bar Chart (Chart.js). Justification: Clear, simple comparison of total inflow in two distinct decades.
+        - Infrastructure Stats (Highways, Ports): Goal: Inform/Compare. Viz: Animated Stat Counters (JS/HTML). Justification: Creates a dynamic and engaging way to showcase massive scale and growth.
+        - Flagship Programs: Goal: Organize. Viz: Interactive Diagram (HTML/CSS/JS). Justification: Shows the synergistic relationship between policies, which is a key argument in the report. An interactive click-to-reveal mechanism enhances engagement.
+        - Defence Exports: Goal: Compare. Viz: Bar Chart (Chart.js). Justification: Effectively highlights the exponential growth from a low base, a key success story in the report.
+        - Patent Filings: Goal: Inform. Viz: Icon & Number Combo (HTML/CSS). Justification: Visually represents the concept of innovation and makes the "17x" statistic memorable.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            background-color: #F4F1DE;
+            font-family: 'Roboto', sans-serif;
+        }
+        .font-display {
+            font-family: 'Teko', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            color: #E07A5F;
+            border-bottom: 2px solid #E07A5F;
+        }
+        .policy-btn {
+            transition: all 0.3s ease;
+        }
+        .policy-btn.active {
+            background-color: #3D5A80;
+            color: #F4F1DE;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-[#293241] text-white py-4 px-6 text-center shadow-lg">
+        <h1 class="font-display text-4xl md:text-5xl tracking-wide">A DECADE OF INDUSTRIAL RENAISSANCE</h1>
+        <p class="text-lg text-gray-300">An Interactive Analysis of India's Transformation (2014-2024)</p>
+    </header>
+
+    <nav id="navbar" class="sticky top-0 bg-[#3D5A80]/95 backdrop-blur-sm z-50 shadow-md">
+        <div class="container mx-auto">
+            <ul class="flex justify-center items-center space-x-4 md:space-x-8 p-3 text-white font-display text-lg md:text-xl">
+                <li><a href="#macro" class="nav-link py-1">MACRO VIEW</a></li>
+                <li><a href="#infra" class="nav-link py-1">INFRASTRUCTURE</a></li>
+                <li><a href="#policy" class="nav-link py-1">POLICY SHIFT</a></li>
+                <li><a href="#innovation" class="nav-link py-1">INNOVATION</a></li>
+                <li><a href="#global" class="nav-link py-1">GLOBAL STAGE</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="macro" class="py-12 scroll-mt-20">
+            <h2 class="font-display text-4xl text-center text-[#293241] mb-2">The Macro-Economic Turnaround</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">A robust analysis of key indicators reveals a significant shift in India's industrial trajectory under the NDA government, distinguished by its focus on stable, resilient, and qualitatively superior industrial development, driven by deep structural reforms.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="font-display text-3xl text-[#3D5A80]">Manufacturing GVA Soars</h3>
+                    <p class="text-gray-700 mb-4">The NDA era witnessed a monumental leap in manufacturing Gross Value Added, nearly doubling in a decade. This remarkable growth is a direct testament to the success of flagship initiatives like 'Make in India' and the PLI schemes.</p>
+                    <div class="chart-container">
+                        <canvas id="gvaChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="font-display text-3xl text-[#3D5A80]">Unemployment Declines Sharply</h3>
+                    <p class="text-gray-700 mb-4">Demonstrating positive trends in employment generation and formalization, the overall unemployment rate witnessed a substantial decline from 2017 to a historic low in 2024, countering the narrative of "jobless growth."</p>
+                    <div class="chart-container">
+                        <canvas id="unemploymentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="infra" class="py-12 scroll-mt-20 bg-gray-100 -mx-4 md:-mx-8 px-4 md:px-8">
+            <h2 class="font-display text-4xl text-center text-[#293241] mb-2">Building the Foundations: An Infrastructure Revolution</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">Recognizing infrastructure as the bedrock of industrial advancement, the 2014-2024 decade saw an unparalleled commitment to development, transforming the nation's physical landscape and creating a powerful springboard for industrial growth.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-[#3D5A80] text-white p-6 rounded-lg shadow-xl">
+                    <div class="font-display text-6xl text-[#F4F1DE]" data-target="143" id="highwayPace">0</div>
+                    <div class="font-display text-2xl">% INCREASE</div>
+                    <p class="mt-2">in daily National Highway construction pace, from 12.1 km/day (2014) to 28.3 km/day.</p>
+                </div>
+                <div class="bg-[#3D5A80] text-white p-6 rounded-lg shadow-xl">
+                    <div class="font-display text-6xl text-[#F4F1DE]" data-target="9" id="topPorts">0</div>
+                    <div class="font-display text-2xl">INDIAN PORTS</div>
+                    <p class="mt-2">now feature among the world's top 100 as a result of the Sagarmala Programme's modernization efforts.</p>
+                </div>
+                <div class="bg-[#3D5A80] text-white p-6 rounded-lg shadow-xl">
+                    <div class="font-display text-6xl text-[#F4F1DE]" data-target="280" id="metroGrowth">0</div>
+                    <div class="font-display text-2xl">% EXPANSION</div>
+                    <p class="mt-2">in the Metro Rail network, growing from 248 km in 5 cities to 945 km in 21 cities.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="policy" class="py-12 scroll-mt-20">
+            <h2 class="font-display text-4xl text-center text-[#293241] mb-2">A Paradigm Shift in Policy</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">The NDA government's relentless focus on creating a transparent, predictable, and business-friendly ecosystem has been a game-changer for investors, both domestic and global.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-center">
+                    <h3 class="font-display text-3xl text-[#3D5A80]">Ease of Doing Business</h3>
+                    <p class="text-gray-700 my-4">Through targeted reforms, India achieved a historic jump in its World Bank ranking, sending a powerful message to global investors.</p>
+                    <div class="flex items-center justify-around">
+                        <div class="font-display">
+                            <p class="text-xl text-gray-500">2014 RANK</p>
+                            <p class="text-7xl text-[#E07A5F]">142</p>
+                        </div>
+                        <div class="font-display text-5xl text-[#3D5A80] mx-4">&rarr;</div>
+                        <div class="font-display">
+                            <p class="text-xl text-gray-500">2019 RANK</p>
+                            <p class="text-7xl text-[#81B29A]">63</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-3 bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="font-display text-3xl text-[#3D5A80]">Attracting Global Capital</h3>
+                    <p class="text-gray-700 mb-4">Aggressive FDI liberalization led to a 69% surge in equity inflow into the manufacturing sector during the NDA decade compared to the UPA decade.</p>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="fdiChart"></canvas>
+                    </div>
+                </div>
+            </div>
+             <div class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="font-display text-3xl text-center text-[#3D5A80] mb-2">NDA's Integrated Policy Ecosystem</h3>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-6">Unlike standalone policies of the past, the NDA's flagship programs were designed to work in synergy, creating a powerful, multi-faceted push for industrial growth and self-reliance.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                    <button class="policy-btn active w-full md:w-auto text-center bg-gray-200 text-[#293241] py-2 px-4 rounded-md font-semibold" onclick="showPolicy('mii')">'Make in India'</button>
+                    <button class="policy-btn w-full md:w-auto text-center bg-gray-200 text-[#293241] py-2 px-4 rounded-md font-semibold" onclick="showPolicy('pli')">PLI Schemes</button>
+                    <button class="policy-btn w-full md:w-auto text-center bg-gray-200 text-[#293241] py-2 px-4 rounded-md font-semibold" onclick="showPolicy('digital')">Digital India</button>
+                    <button class="policy-btn w-full md:w-auto text-center bg-gray-200 text-[#293241] py-2 px-4 rounded-md font-semibold" onclick="showPolicy('atmanirbhar')">Atmanirbhar Bharat</button>
+                </div>
+                <div id="policy-display" class="bg-gray-50 p-4 rounded-md border border-gray-200 min-h-[120px] transition-opacity duration-300">
+                </div>
+            </div>
+        </section>
+
+        <section id="innovation" class="py-12 scroll-mt-20 bg-gray-100 -mx-4 md:-mx-8 px-4 md:px-8">
+            <h2 class="font-display text-4xl text-center text-[#293241] mb-2">Unleashing Innovation & Entrepreneurship</h2>
+             <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">The NDA government ignited a startup revolution and empowered MSMEs through digital platforms, democratizing economic opportunity and creating millions of jobs.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="font-display text-6xl text-[#E07A5F]">1.6 M+</div>
+                    <h3 class="font-display text-2xl text-[#293241] mt-2">DIRECT JOBS</h3>
+                    <p class="text-gray-700 mt-1">Created by startups recognized under the 'Startup India' initiative, transforming job seekers into job creators.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="font-display text-6xl text-[#E07A5F]">17x</div>
+                     <h3 class="font-display text-2xl text-[#293241] mt-2">INCREASE</h3>
+                    <p class="text-gray-700 mt-1">In patent filings since 2014-15, reflecting a blossoming culture of innovation and intellectual property creation.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="font-display text-6xl text-[#E07A5F]">₹5 L Cr+</div>
+                    <h3 class="font-display text-2xl text-[#293241] mt-2">ORDER VALUE</h3>
+                    <p class="text-gray-700 mt-1">On the Government e-Marketplace (GeM) in FY 2023-24 alone, providing unprecedented market access for MSMEs.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="global" class="py-12 scroll-mt-20">
+            <h2 class="font-display text-4xl text-center text-[#293241] mb-2">India Ascendant on the World Stage</h2>
+             <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">Through strategic trade policies and boosting high-value manufacturing, India's stature as a reliable global supplier has grown immensely, exemplified by a monumental shift in strategic sectors like Defence.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="font-display text-3xl text-[#3D5A80]">Defence Exports Skyrocket</h3>
+                <p class="text-gray-700 mb-4">A key success of 'Atmanirbhar Bharat', India has transformed from a major arms importer to a significant exporter. Defence exports surged over thirty-four-fold during the NDA decade, with products now shipped to nearly 100 countries.</p>
+                <div class="chart-container">
+                    <canvas id="defenceChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="bg-[#293241] text-center py-4 mt-8">
+        <p class="text-gray-300">An Interactive Application based on the research article "A Decade of Industrial Renaissance: India's Transformative Journey (2014-2024)".</p>
+    </footer>
+
+    <script>
+        const chartColors = {
+            base: '#F4F1DE',
+            primary: '#3D5A80',
+            secondary: '#E07A5F',
+            dark: '#293241',
+            accent: '#81B29A'
+        };
+
+        const policyData = {
+            mii: {
+                title: "'Make in India' - The Visionary Blueprint",
+                text: "Launched in 2014, this was not merely a slogan but a comprehensive strategy to transform India into a global manufacturing hub. It focused on attracting investment, fostering innovation, enhancing skill development, and building world-class manufacturing infrastructure across 25 key sectors."
+            },
+            pli: {
+                title: "Production-Linked Incentive (PLI) Schemes - The Game-Changer",
+                text: "Announced for 14 key sectors, these schemes offer performance-based incentives to companies, reducing cost disadvantages and encouraging economies of scale. They have already attracted massive investments, boosted domestic production and exports, and generated significant employment."
+            },
+            digital: {
+                title: "Digital India - The Technological Backbone",
+                text: "This ambitious program has had a profound impact on industry by creating robust digital infrastructure, promoting digital literacy, and enabling platforms like the Government e-Marketplace (GeM), which has revolutionized public procurement and provided a massive, transparent market for MSMEs."
+            },
+            atmanirbhar: {
+                title: "Atmanirbhar Bharat - The Philosophy of Self-Reliance",
+                text: "Launched in 2020, this is a comprehensive vision to make India self-reliant by strengthening its economy, infrastructure, and systems. It encompasses policy reforms across sectors, promotes local production, and aims to build resilience against global supply chain disruptions."
+            }
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) return label.join(' ');
+            return label;
+        };
+
+        const defaultChartOptions = (isBar = true) => ({
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: { title: tooltipTitleCallback },
+                    backgroundColor: 'rgba(41, 50, 65, 0.9)',
+                    titleFont: { size: 14, family: "'Roboto', sans-serif" },
+                    bodyFont: { size: 12, family: "'Roboto', sans-serif" },
+                    padding: 10,
+                    cornerRadius: 5,
+                    displayColors: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                    ticks: { color: chartColors.dark, font: { family: "'Roboto', sans-serif" } }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { color: chartColors.dark, font: { family: "'Roboto', sans-serif", size: 14 } }
+                }
+            },
+            ...(isBar && { indexAxis: 'x' })
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const gvaCtx = document.getElementById('gvaChart').getContext('2d');
+            new Chart(gvaCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Start of NDA (2013-14)', 'End of NDA (2023-24)'],
+                    datasets: [{
+                        label: 'Manufacturing GVA (in ₹ Lakh Crore)',
+                        data: [15.6, 27.5],
+                        backgroundColor: [chartColors.secondary, chartColors.primary],
+                        borderRadius: 5
+                    }]
+                },
+                options: defaultChartOptions()
+            });
+
+            const unemploymentCtx = document.getElementById('unemploymentChart').getContext('2d');
+            new Chart(unemploymentCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2017-18', '2019-20', '2021-22', '2023-24'],
+                    datasets: [{
+                        label: 'Unemployment Rate (%)',
+                        data: [6.0, 5.8, 4.1, 3.2],
+                        borderColor: chartColors.primary,
+                        backgroundColor: 'rgba(61, 90, 128, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: chartColors.dark,
+                        pointRadius: 5,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: defaultChartOptions(false)
+            });
+
+            const fdiCtx = document.getElementById('fdiChart').getContext('2d');
+            new Chart(fdiCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['UPA Decade (2004-14)', 'NDA Decade (2014-24)'],
+                    datasets: [{
+                        label: 'FDI Equity Inflow in Mfg (US$ Billion)',
+                        data: [98, 165],
+                        backgroundColor: [chartColors.accent, chartColors.primary],
+                        borderRadius: 5
+                    }]
+                },
+                options: defaultChartOptions()
+            });
+
+            const defenceCtx = document.getElementById('defenceChart').getContext('2d');
+            new Chart(defenceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['UPA (2013-14)', 'NDA (2024-25)'],
+                    datasets: [{
+                        label: 'Defence Exports (in ₹ Crore)',
+                        data: [686, 23622],
+                        backgroundColor: [chartColors.accent, chartColors.primary],
+                        borderRadius: 5
+                    }]
+                },
+                options: {...defaultChartOptions(), indexAxis: 'y' }
+            });
+
+            const animateCounter = (element) => {
+                const target = +element.getAttribute('data-target');
+                const duration = 2000;
+                const stepTime = Math.abs(Math.floor(duration / target));
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += 1;
+                    element.innerText = current;
+                    if (current === target) {
+                        clearInterval(timer);
+                    }
+                }, stepTime);
+            };
+
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.8 });
+
+            document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px' });
+            
+            document.querySelectorAll('section').forEach(section => sectionObserver.observe(section));
+
+            showPolicy('mii');
+        });
+
+        function showPolicy(policyKey) {
+            const display = document.getElementById('policy-display');
+            document.querySelectorAll('.policy-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`button[onclick="showPolicy('${policyKey}')"]`).classList.add('active');
+            
+            display.style.opacity = '0';
+            setTimeout(() => {
+                const data = policyData[policyKey];
+                display.innerHTML = `<h4 class="font-display text-2xl text-[#293241] mb-2">${data.title}</h4><p class="text-gray-700">${data.text}</p>`;
+                display.style.opacity = '1';
+            }, 300);
+        }
+    </script>
+</body>
+</html>
