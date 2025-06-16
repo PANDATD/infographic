@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>पंढरपूर वारी: श्रद्धा, समता आणि परंपरेचा महासोहळा</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #fdfcfa;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #073B4C, #118AB2);
+            color: white;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #073B4C;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            padding: 1.5rem 2rem;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid #f0f0f0;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+        .nav-link {
+             position: relative;
+             transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #EF476F;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .animated-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animated-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+            padding-left: 2.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            bottom: 0;
+            width: 2px;
+            background-color: #d1d5db;
+        }
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            height: 24px;
+            width: 24px;
+            border-radius: 9999px;
+            border: 4px solid white;
+            background-color: #118AB2;
+        }
+    </style>
+</head>
+<body class="text-gray-700">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[#073B4C]">।। पंढरीची वारी ।।</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link">वारीबद्दल</a>
+                <a href="#management" class="nav-link">व्यवस्थापन</a>
+                <a href="#journey" class="nav-link">प्रवास</a>
+                <a href="#impact" class="nav-link">प्रभाव</a>
+                <a href="#data" class="nav-link">आकडेवारी</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section py-24 px-4 text-center">
+            <div class="animated-element is-visible">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">श्रद्धा, समता आणि परंपरेचा महासोहळा</h2>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-200">
+                    ८०० वर्षांपासून अव्याहतपणे सुरू असलेली, लाखो लोकांना एका भक्तीच्या धाग्यात गुंफणारी महाराष्ट्राची अध्यात्मिक ओळख.
+                </p>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 px-4">
+            <div class="container mx-auto">
+                <h3 class="section-title animated-element">वारी: एक कालातीत परंपरा</h3>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="animated-element">
+                        <p class="text-lg mb-4 leading-relaxed">
+                            पंढरपूरची वारी ही केवळ एक पदयात्रा नसून, ती वारकरी संप्रदायाचा आत्मा आहे. संत ज्ञानेश्वरांनी रचलेला तिचा तात्त्विक पाया आणि संत तुकारामांनी चढवलेला भक्तीचा कळस, यावर ही परंपरा उभी आहे. 'विष्णुमय जग वैष्णवांचा धर्म । भेदाभेद भ्रम अमंगळ ॥' हे संत तुकारामांचे शब्द वारीचे सार सांगतात.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            यात जात, पंथ, लिंग किंवा सामाजिक दर्जाचा कोणताही भेद मानला जात नाही. सर्वजण एकमेकांना 'माऊली' म्हणून संबोधतात आणि एकात्म भावनेने पंढरपूरच्या विठोबाच्या दर्शनासाठी २१ दिवसांचा पायी प्रवास करतात.
+                        </p>
+                    </div>
+                    <div class="animated-element">
+                        <div class="card p-8 grid grid-cols-2 gap-6 text-center">
+                             <div class="flex flex-col items-center p-3 rounded-lg bg-green-50">
+                                 <span class="text-3xl mb-2">🙏</span>
+                                 <h4 class="font-bold text-green-800">स्वयं-शिस्त</h4>
+                             </div>
+                              <div class="flex flex-col items-center p-3 rounded-lg bg-blue-50">
+                                 <span class="text-3xl mb-2">🤝</span>
+                                 <h4 class="font-bold text-blue-800">सामाजिक समता</h4>
+                             </div>
+                              <div class="flex flex-col items-center p-3 rounded-lg bg-yellow-50">
+                                 <span class="text-3xl mb-2">🎶</span>
+                                 <h4 class="font-bold text-yellow-800">अखंड नामस्मरण</h4>
+                             </div>
+                              <div class="flex flex-col items-center p-3 rounded-lg bg-red-50">
+                                 <span class="text-3xl mb-2">🏃‍♂️</span>
+                                 <h4 class="font-bold text-red-800">रिंगण सोहळा</h4>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="management" class="py-20 px-4 bg-gray-100">
+            <div class="container mx-auto">
+                <h3 class="section-title animated-element">व्यवस्थापनाचे त्रिस्तरीय मॉडेल</h3>
+                <p class="text-center max-w-3xl mx-auto text-lg mb-16 animated-element">
+                   कोणत्याही एका संस्थेच्या नियंत्रणाशिवाय, लाखो लोकांचा हा सोहळा स्वयं-शिस्त आणि सहभागात्मक नियोजनाच्या एका अद्वितीय मॉडेलवर यशस्वीपणे पार पडतो.
+                </p>
+                <div class="relative grid md:grid-cols-3 gap-8 text-center items-stretch">
+                    <div class="absolute hidden md:block w-2/3 h-1 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-t-2 border-dashed border-gray-400"></div>
+                     <div class="card animated-element z-10">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-[#06D6A0]/20 text-3xl mb-4">👥</div>
+                        <h4 class="text-2xl font-bold text-[#06D6A0] mb-3">दिंडी (विकेंद्रित)</h4>
+                        <p>प्रत्येक दिंडी एक स्वयं-शासित गट आहे. भोजन, निवास आणि शिस्तीची संपूर्ण जबाबदारी दिंडीप्रमुख घेतात. ही वारीच्या व्यवस्थापनाची मूळ चौकट आहे.</p>
+                    </div>
+                     <div class="card animated-element z-10">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-[#FFD166]/20 text-3xl mb-4">🏛️</div>
+                        <h4 class="text-2xl font-bold text-[#FFD166] mb-3">देवस्थान (पारंपरिक)</h4>
+                        <p>आळंदी आणि देहू येथील देवस्थान समित्या वारीचे वेळापत्रक, मार्ग आणि परंपरा जपतात. त्या शासन आणि दिंड्यांमध्ये समन्वयाचा दुवा म्हणून काम करतात.</p>
+                    </div>
+                     <div class="card animated-element z-10">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-[#EF476F]/20 text-3xl mb-4">🛡️</div>
+                        <h4 class="text-2xl font-bold text-[#EF476F] mb-3">शासन (सहाय्यक)</h4>
+                        <p>महाराष्ट्र शासन सुरक्षा, आरोग्य ('आरोग्याची वारी'), स्वच्छता आणि पाणीपुरवठा यांसारख्या पायाभूत सुविधा पुरवून सहाय्यकाची भूमिका बजावते.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="journey" class="py-20 px-4">
+             <div class="container mx-auto">
+                <h3 class="section-title animated-element">वारीचा प्रवास: ऊर्जेचे सोहळे</h3>
+                <div class="max-w-3xl mx-auto">
+                    <div class="timeline-item animated-element">
+                        <div class="timeline-dot"></div>
+                        <h4 class="text-xl font-bold text-[#118AB2]">प्रस्थान</h4>
+                        <p>देहू आणि आळंदी येथून संतांच्या पालख्यांचे पंढरपूरकडे प्रस्थान. लाखो वारकरी या प्रवासात सामील होतात.</p>
+                    </div>
+                    <div class="timeline-item animated-element">
+                        <div class="timeline-dot"></div>
+                        <h4 class="text-xl font-bold text-[#118AB2]">रिंगण</h4>
+                        <p>वारीतील एक अत्यंत नेत्रदीपक सोहळा. वारकरी गोलाकार उभे राहतात आणि मध्यभागी 'माऊलींचा अश्व' धावतो. हा भक्ती, ऊर्जा आणि शिस्तीचा अद्भुत संगम आहे.</p>
+                    </div>
+                    <div class="timeline-item animated-element">
+                        <div class="timeline-dot"></div>
+                        <h4 class="text-xl font-bold text-[#118AB2]">धावा</h4>
+                        <p>संत तुकारामांना मंदिराचा कळस दिसल्यावर झालेल्या आनंदाचे प्रतीक म्हणून वारकरी पंढरपूरजवळ 'धावा' घेतात.</p>
+                    </div>
+                     <div class="timeline-item animated-element">
+                        <div class="timeline-dot"></div>
+                        <h4 class="text-xl font-bold text-[#118AB2]">चंद्रभागा स्नान आणि दर्शन</h4>
+                        <p>आषाढी एकादशीला चंद्रभागा नदीत पवित्र स्नान करून वारकरी विठ्ठलाच्या पदस्पर्श दर्शनासाठी जातात. हाच त्यांच्या साधनेचा परमोच्च क्षण असतो.</p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section id="impact" class="py-20 px-4 bg-gray-100">
+            <div class="container mx-auto">
+                <h3 class="section-title animated-element">सामाजिक आणि आर्थिक प्रभाव</h3>
+                 <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card animated-element">
+                        <h4 class="text-2xl font-bold text-[#118AB2] mb-4">अध्यात्मिक लोकशाही</h4>
+                        <p class="leading-relaxed">वारीतील 'माऊली' ही हाक सर्व सामाजिक भेद नाहीसे करते. येथे प्रत्येकाचा दर्जा त्याच्या भक्तीवरून ठरतो, जन्मावरून नाही. संत चोखामेळा, संत सावता माळी यांसारख्या विविध जातींतील संतांना समान आदर देऊन वारकरी संप्रदायाने खऱ्या अर्थाने 'अध्यात्मिक लोकशाही' स्थापन केली आहे.</p>
+                    </div>
+                     <div class="card animated-element">
+                        <h4 class="text-2xl font-bold text-[#118AB2] mb-4">एक फिरता बाजार</h4>
+                        <p class="leading-relaxed">वारी ही केवळ भक्तीची यात्रा नसून, एक मोठी आर्थिक उलाढाल आहे. या २१ दिवसांच्या प्रवासात एक 'फिरता बाजार' तयार होतो, जो स्थानिक अर्थव्यवस्थेला चालना देतो आणि हजारो लोकांना तात्पुरता रोजगार पुरवतो. अनेक कंपन्यांसाठी ग्रामीण ग्राहकांपर्यंत पोहोचण्याचे हे एक मोठे माध्यम आहे.</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="data" class="py-20 px-4">
+            <div class="container mx-auto">
+                <h3 class="section-title animated-element">वारी आकडेवारीतून</h3>
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="card animated-element">
+                        <h4 class="text-xl font-bold text-center mb-4">आषाढी वारीतील भाविकांची वाढ (लाखात)</h4>
+                        <div class="chart-container">
+                            <canvas id="pilgrimsChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm mt-4 text-gray-500">वारीतील सहभाग सातत्याने वाढत असून, ही परंपरा अधिकच दृढ होत असल्याचे हे द्योतक आहे.</p>
+                    </div>
+                    <div class="card animated-element">
+                        <h4 class="text-xl font-bold text-center mb-4">वारी काळातील अंदाजित रोजगार (%)</h4>
+                        <div class="chart-container">
+                            <canvas id="employmentChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm mt-4 text-gray-500">वारीमुळे तात्पुरत्या स्वरूपात वस्तू विक्री आणि भोजन सेवा या क्षेत्रात सर्वाधिक रोजगार निर्माण होतो.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#073B4C] text-white py-10 px-4">
+        <div class="container mx-auto text-center">
+            <p class="text-lg">।। पुंडलिक वरदे हरी विठ्ठल, श्री ज्ञानदेव तुकाराम ।।</p>
+            <p class="mt-2 text-gray-400">पंढरीची वारी: महाराष्ट्राचा अमूल्य सांस्कृतिक आणि अध्यात्मिक ठेवा.</p>
+        </div>
+    </footer>
+
+    <script>
+        function wrapLabel(str, max_width) {
+            if (typeof str !== 'string' || str.length <= max_width) return str;
+            const words = str.split(' ');
+            let lines = [];
+            let current_line = '';
+            for (let i = 0; i < words.length; i++) {
+                const word = words[i];
+                if ((current_line + ' ' + word).trim().length > max_width && current_line.length > 0) {
+                    lines.push(current_line);
+                    current_line = word;
+                } else {
+                    current_line = (current_line + ' ' + word).trim();
+                }
+            }
+            if (current_line.length > 0) lines.push(current_line);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+        
+        const colorPalette = {
+            red: '#EF476F',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C'
+        };
+
+        if (document.getElementById('pilgrimsChart')) {
+            const pilgrimsCtx = document.getElementById('pilgrimsChart').getContext('2d');
+            new Chart(pilgrimsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2015', '2017', '2019', '2022', '2024'],
+                    datasets: [{
+                        label: 'भाविक संख्या (लाखात)',
+                        data: [15, 14, 16, 10, 18],
+                        borderColor: colorPalette.blue,
+                        backgroundColor: 'rgba(17, 138, 178, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: 'white',
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: tooltipTitleCallback } } }, scales: { y: { beginAtZero: false, title: { display: true, text: 'संख्या (लाखात)' } } } }
+            });
+        }
+        
+        if (document.getElementById('employmentChart')) {
+            const employmentCtx = document.getElementById('employmentChart').getContext('2d');
+            new Chart(employmentCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['वस्तू उत्पादक', wrapLabel('दुकानदार', 16), wrapLabel('निवास सेवा', 16), 'भोजन सेवा', 'इतर सेवा'],
+                    datasets: [{
+                        label: 'रोजगार टक्केवारी',
+                        data: [4.98, 46.02, 8.38, 29.50, 11.12],
+                        backgroundColor: [colorPalette.red, colorPalette.yellow, colorPalette.green, colorPalette.blue, colorPalette.darkBlue],
+                        borderColor: '#fdfcfa',
+                        borderWidth: 4,
+                        hoverOffset: 12
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '65%', plugins: { legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true, pointStyle: 'rectRounded' } }, tooltip: { callbacks: { title: tooltipTitleCallback } } } }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animated-element');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            animatedElements.forEach(el => observer.observe(el));
+        });
+
+    </script>
+
+</body>
+</html>
