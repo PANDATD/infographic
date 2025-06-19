@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India's Welfare Journey: UPA vs. NDA</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light background */
+            color: #334155; /* Dark slate gray for text */
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem; /* Rounded corners */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Soft shadow */
+            padding: 1.5rem;
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .gradient-bg {
+            background: linear-gradient(to right, #6366f1, #8b5cf6); /* Purple to Indigo */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-heading {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .sub-heading {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 1rem;
+            color: #475569; /* Slate gray */
+        }
+        .statistic-value {
+            font-size: 2.5rem; /* text-5xl */
+            font-weight: 700; /* font-bold */
+            color: #4c1d95; /* Deep purple */
+        }
+        .statistic-label {
+            font-size: 1rem; /* text-base */
+            color: #64748b; /* Blue gray */
+        }
+        .icon {
+            font-size: 3rem; /* Larger icons */
+            margin-bottom: 1rem;
+            color: #6d28d9; /* Violet */
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="container mx-auto">
+        <h1 class="section-heading gradient-bg">India's Welfare Journey: UPA (2004-2014) vs. NDA (2014-Present)</h1>
+        <p class="text-center text-lg mb-12 text-gray-700 max-w-3xl mx-auto">
+            A look at the transformative shift in India's social welfare approach over the past two decades.
+        </p>
+        <section id="comparison" class="mb-12">
+            <h2 class="section-heading gradient-bg" style="margin-bottom: 10px;">A Tale of Two Models: Intent vs. Outcome</h2>
+            <p class="India's Welfare Journey: UPA (2004-2014) vs. NDA (2014-Present)" style="margin-bottom: 10px;">The fundamental difference between the two eras lies in their core philosophy. The NDA's approach focuses on structural reforms for empowerment, a clear departure from the previous model of symptomatic relief.</p>
+            <div class="overflow-x-auto bg-white rounded-lg shadow-lg p-4">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr>
+                            <th class="p-4 text-lg font-bold border-b-2 border-gray-200">Principle</th>
+                            <th class="p-4 text-lg font-bold border-b-2 border-gray-200 bg-red-50 text-red-800 rounded-t-lg">UPA (2004-2014)</th>
+                            <th class="p-4 text-lg font-bold border-b-2 border-gray-200 bg-green-50 text-green-800 rounded-t-lg">NDA (2014-Present)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-4 font-semibold border-b border-gray-200">Approach</td>
+                            <td class="p-4 border-b border-gray-200">Opaque systems, prone to leakages and corruption.</td>
+                            <td class="p-4 border-b border-gray-200">Transparent, technology-driven direct delivery (DBT).</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-4 font-semibold border-b border-gray-200">Goal</td>
+                            <td class="p-4 border-b border-gray-200">Entitlement-based, often fostering dependency.</td>
+                            <td class="p-4 border-b border-gray-200">Empowerment-focused, fostering self-reliance and dignity.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-4 font-semibold border-b border-gray-200">Outcomes</td>
+                            <td class="p-4 border-b border-gray-200">Limited impact, missed targets, and squandered resources.</td>
+                            <td class="p-4 border-b border-gray-200">Tangible, measurable results at an unprecedented scale.</td>
+                        </tr>
+                         <tr class="hover:bg-gray-50">
+                            <td class="p-4 font-semibold">Vision</td>
+                            <td class="p-4">Incremental, reactive, and often populist measures.</td>
+                            <td class="p-4">Visionary, integrated into a larger national development agenda.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!-- Section 1: Leakages and Transparency -->
+        <div class="mb-16">
+            <h2 class="sub-heading text-center mb-8">Systemic Inefficiencies to Direct Delivery</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- UPA Era -->
+                <div class="card flex flex-col items-center p-6 bg-red-50 border border-red-200">
+                    <div class="icon text-red-600">📉</div>
+                    <h3 class="text-xl font-semibold text-red-700 mb-4">UPA Era: Leakages & Inefficiencies</h3>
+                    <p class="text-center text-gray-600 mb-4">
+                        "Only 15 paise of every rupee spent by the government actually reached the poor."
+                        <span class="text-sm italic block mt-1">- Rajiv Gandhi (1985)</span>
+                    </p>
+                    <div class="bg-red-100 rounded-lg p-4 w-full">
+                        <p class="font-medium text-red-800 text-center mb-2">TPDS (2005 Study):</p>
+                        <div class="flex flex-col sm:flex-row justify-around items-center text-center">
+                            <div>
+                                <span class="statistic-value text-red-600">58%</span>
+                                <p class="statistic-label">Subsidised Food Grains <br> Never Reached Intended Families</p>
+                            </div>
+                            <div class="mt-4 sm:mt-0">
+                                <span class="statistic-value text-red-600">36%</span>
+                                <p class="statistic-label">Diverted to Black Market</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">Corruption, middlemen, and fragile delivery chains hindered genuine welfare access.</p>
+                </div>
+
+                <!-- NDA Era -->
+                <div class="card flex flex-col items-center p-6 bg-green-50 border border-green-200">
+                    <div class="icon text-green-600">✅</div>
+                    <h3 class="text-xl font-semibold text-green-700 mb-4">NDA Era: Transparency & Direct Benefits</h3>
+                    <p class="text-center text-gray-600 mb-4">
+                        Targeted interventions to plug leakages and ensure direct fund transfers.
+                    </p>
+                    <div class="bg-green-100 rounded-lg p-4 w-full">
+                        <p class="font-medium text-green-800 text-center mb-2">JAM Trinity Enabled:</p>
+                        <ul class="list-disc list-inside text-gray-700 text-left mx-auto max-w-xs">
+                            <li><strong>J</strong>an Dhan Bank Accounts</li>
+                            <li><strong>A</strong>adhaar</li>
+                            <li><strong>M</strong>obile Connectivity</li>
+                        </ul>
+                        <div class="mt-4 text-center">
+                            <span class="statistic-value text-green-600">₹3.48 Lakh Crore</span>
+                            <p class="statistic-label">Saved through DBT System</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">Eliminated fake beneficiaries and restored public trust.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Financial Inclusion -->
+        <div class="mb-16">
+            <h2 class="sub-heading text-center mb-8">Financial Inclusion: Empowerment vs. Waivers</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- UPA Loan Waivers -->
+                <div class="card col-span-1 md:col-span-1 bg-yellow-50 border border-yellow-200">
+                    <div class="icon text-yellow-600">💸</div>
+                    <h3 class="text-xl font-semibold text-yellow-700 mb-4 text-center">UPA: Loan Waivers</h3>
+                    <p class="text-center text-gray-600">
+                        Focused on short-term loan waivers, offering limited long-term economic benefits or inclusion.
+                    </p>
+                </div>
+
+                <!-- NDA Empowerment Schemes -->
+                <div class="card col-span-1 md:col-span-2 bg-blue-50 border border-blue-200">
+                    <div class="icon text-blue-600">🤝</div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-4 text-center">NDA: Empowerment & Self-Reliance</h3>
+                    <p class="text-center text-gray-600 mb-4">
+                        Building systems to help the vulnerable thrive independently, moving from Antyodaya to Atmanirbhar Bharat.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-center">
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <p class="font-semibold text-blue-800">MUDRA Yojana</p>
+                            <span class="statistic-value text-blue-600 text-2xl">₹25L Cr</span>
+                            <p class="statistic-label">Disbursed (45 Cr Loans)</p>
+                            <p class="text-xs text-gray-500">70% to Women, SCs, STs, OBCs</p>
+                        </div>
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <p class="font-semibold text-blue-800">Jan Dhan Yojana</p>
+                            <span class="statistic-value text-blue-600 text-2xl">55.17 Cr</span>
+                            <p class="statistic-label">Bank Accounts</p>
+                        </div>
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <p class="font-semibold text-blue-800">PMSBY (Accident Ins.)</p>
+                            <span class="statistic-value text-blue-600 text-2xl">51.06 Cr</span>
+                            <p class="statistic-label">Enrolled</p>
+                        </div>
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <p class="font-semibold text-blue-800">PMJJBY (Life Ins.)</p>
+                            <span class="statistic-value text-blue-600 text-2xl">23.64 Cr</span>
+                            <p class="statistic-label">Enrolled</p>
+                        </div>
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <p class="font-semibold text-blue-800">PM Shram Yogi Maandhan</p>
+                            <span class="statistic-value text-blue-600 text-2xl">51.35 L</span>
+                            <p class="statistic-label">Informal Workers Enrolled</p>
+                        </div>
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <p class="font-semibold text-blue-800">PM SVANidhi</p>
+                            <span class="statistic-value text-blue-600 text-2xl">68 L</span>
+                            <p class="statistic-label">Street Vendors Supported</p>
+                        </div>
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <p class="font-semibold text-blue-800">PM Vishwakarma Yojana</p>
+                            <span class="statistic-value text-blue-600 text-2xl">2.37 M</span>
+                            <p class="statistic-label">Craftsmen Registered</p>
+                        </div>
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <p class="font-semibold text-blue-800">Startup India</p>
+                            <span class="statistic-value text-blue-600 text-2xl">3rd Largest</span>
+                            <p class="statistic-label">Startup Ecosystem</p>
+                            <p class="text-xs text-gray-500">1.57L startups, 118 unicorns</p>
+                        </div>
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <p class="font-semibold text-blue-800">eShram Portal</p>
+                            <span class="statistic-value text-blue-600 text-2xl">30.86 Cr</span>
+                            <p class="statistic-label">Workers Registered</p>
+                            <p class="text-xs text-gray-500">53.75% Women Participation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Health Security -->
+        <div class="mb-16">
+            <h2 class="sub-heading text-center mb-8">Health Security: Bridging Gaps to Universal Coverage</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- UPA NRHM -->
+                <div class="card flex flex-col items-center p-6 bg-red-50 border border-red-200">
+                    <div class="icon text-red-600">🏥</div>
+                    <h3 class="text-xl font-semibold text-red-700 mb-4 text-center">UPA: National Rural Health Mission (NRHM)</h3>
+                    <div class="bg-red-100 rounded-lg p-4 w-full">
+                        <p class="font-medium text-red-800 text-center mb-2">Systemic Shortcomings:</p>
+                        <div class="flex flex-col sm:flex-row justify-around items-center text-center">
+                            <div>
+                                <span class="statistic-value text-red-600">3%</span>
+                                <p class="statistic-label">PHCs Met Public Health Standards (UP)</p>
+                            </div>
+                            <div class="mt-4 sm:mt-0">
+                                <span class="statistic-value text-red-600">60%</span>
+                                <p class="statistic-label">Shortfall of Specialists at CHCs</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">Struggled with service delivery and infrastructure gaps.</p>
+                </div>
+
+                <!-- NDA Ayushman Bharat -->
+                <div class="card flex flex-col items-center p-6 bg-green-50 border border-green-200">
+                    <div class="icon text-green-600">🩺</div>
+                    <h3 class="text-xl font-semibold text-green-700 mb-4 text-center">NDA: Ayushman Bharat</h3>
+                    <p class="text-center text-gray-600 mb-4">
+                        Comprehensive approach targeting over 55 crore beneficiaries.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center w-full">
+                        <div class="p-3 bg-green-100 rounded-lg">
+                            <span class="statistic-value text-green-600 text-2xl">41.06 Cr</span>
+                            <p class="statistic-label">Ayushman Cards Issued</p>
+                        </div>
+                        <div class="p-3 bg-green-100 rounded-lg">
+                            <span class="statistic-value text-green-600 text-2xl">₹5 Lakh</span>
+                            <p class="statistic-label">Health Cover/Family/Year</p>
+                        </div>
+                        <div class="p-3 bg-green-100 rounded-lg">
+                            <span class="statistic-value text-green-600 text-2xl">8.59 Cr</span>
+                            <p class="statistic-label">Hospital Admissions</p>
+                        </div>
+                        <div class="p-3 bg-green-100 rounded-lg">
+                            <span class="statistic-value text-green-600 text-2xl">₹1.2L Cr</span>
+                            <p class="statistic-label">Treatments Delivered (approx)</p>
+                        </div>
+                        <div class="p-3 bg-green-100 rounded-lg col-span-full">
+                            <span class="statistic-value text-green-600 text-2xl">31,958</span>
+                            <p class="statistic-label">Empanelled Hospitals</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">Significantly reduces out-of-pocket expenditure and moves towards Universal Health Coverage.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Toilets, Taps, and Tenements (Infrastructure) -->
+        <div class="mb-16">
+            <h2 class="sub-heading text-center mb-8">Infrastructure of Welfare: Housing, Toilets & Taps</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Housing -->
+                <div class="card bg-purple-50 border border-purple-200">
+                    <div class="icon text-purple-600">🏡</div>
+                    <h3 class="text-xl font-semibold text-purple-700 mb-4 text-center">Housing: From IAY to PMAY</h3>
+                    <div class="mb-4">
+                        <p class="font-medium text-purple-800 mb-2">UPA (Indira Awas Yojana):</p>
+                        <ul class="list-disc list-inside text-gray-700 mx-auto max-w-xs">
+                            <li><strong>3.34 Cr</strong> Houses (30 years)</li>
+                            <li><strong>₹1.17 L Cr</strong> Spent</li>
+                            <li>Challenges: Poor quality, insufficient support, delays.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-medium text-purple-800 mb-2">NDA (Pradhan Mantri Awas Yojana):</p>
+                        <ul class="list-disc list-inside text-gray-700 mx-auto max-w-xs">
+                            <li><strong>92.72 L</strong> Urban Homes Completed</li>
+                            <li><strong>2.77 Cr</strong> Rural Homes Completed</li>
+                            <li><strong>>₹2 L Cr</strong> Financial Commitment</li>
+                            <li>Better technology, quality, streamlined subsidies.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Toilets -->
+                <div class="card bg-teal-50 border border-teal-200">
+                    <div class="icon text-teal-600">🚽</div>
+                    <h3 class="text-xl font-semibold text-teal-700 mb-4 text-center">Toilets: Swachh Bharat Abhiyan</h3>
+                    <div class="text-center">
+                        <span class="statistic-value text-teal-600">12 Cr+</span>
+                        <p class="statistic-label">Toilets Built</p>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="statistic-value text-teal-600">5.64 L+</span>
+                        <p class="statistic-label">Villages Declared ODF Plus</p>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">Significantly reduced spread of diseases, especially among women and children.</p>
+                </div>
+
+                <!-- Taps -->
+                <div class="card bg-cyan-50 border border-cyan-200">
+                    <div class="icon text-cyan-600">💧</div>
+                    <h3 class="text-xl font-semibold text-cyan-700 mb-4 text-center">Taps: Jal Jeevan Mission (Har Ghar Jal)</h3>
+                    <div class="text-center">
+                        <span class="statistic-value text-cyan-600">15.59 Cr+</span>
+                        <p class="statistic-label">Rural Homes with Tap Water Connections</p>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="statistic-value text-cyan-600">12 Cr+</span>
+                        <p class="statistic-label">New Connections (Last 5 Years)</p>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="statistic-value text-cyan-600">9.35 L+</span>
+                        <p class="statistic-label">Schools with Tap Water Access</p>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">Transformed access to clean water and restored dignity to rural households.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Women-Centric Welfare -->
+        <div class="mb-16">
+            <h2 class="sub-heading text-center mb-8">Women-Centric Welfare: Beyond Laws to Empowerment</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- UPA Context -->
+                <div class="card bg-pink-50 border border-pink-200">
+                    <div class="icon text-pink-600">⚖️</div>
+                    <h3 class="text-xl font-semibold text-pink-700 mb-4 text-center">UPA: Legal Frameworks</h3>
+                    <p class="text-center text-gray-600">
+                        Passed key laws like Protection of Women from Domestic Violence Act, but actual empowerment remained slow.
+                    </p>
+                </div>
+
+                <!-- NDA Ujjwala Yojana -->
+                <div class="card bg-rose-50 border border-rose-200">
+                    <div class="icon text-rose-600">🔥</div>
+                    <h3 class="text-xl font-semibold text-rose-700 mb-4 text-center">NDA: Ujjwala Yojana</h3>
+                    <div class="text-center">
+                        <span class="statistic-value text-rose-600">10.33 Cr+</span>
+                        <p class="statistic-label">LPG Connections Provided</p>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">Ensuring clean cooking fuel and better health for women.</p>
+                </div>
+
+                <!-- NDA Lakhpati Didi & Others -->
+                <div class="card bg-fuchsia-50 border border-fuchsia-200">
+                    <div class="icon text-fuchsia-600">💰</div>
+                    <h3 class="text-xl font-semibold text-fuchsia-700 mb-4 text-center">NDA: Lakhpati Didi & Others</h3>
+                    <div class="text-center mb-4">
+                        <span class="statistic-value text-fuchsia-600">10 Cr+</span>
+                        <p class="statistic-label">Women in Self-Help Groups</p>
+                        <p class="text-xs text-gray-500">Goal: 3 Cr Lakhpati Didis</p>
+                    </div>
+                    <p class="text-center text-gray-600">
+                        Also includes Sukanya Samriddhi Yojana, Beti Bachao, Beti Padhao for education and financial security.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-lg mt-12 text-gray-700 max-w-4xl mx-auto">
+            The NDA government's welfare reforms represent a paradigm shift towards transparency, direct benefits, and citizen empowerment, fostering self-reliance and sustainable development.
+        </p>
+
+    </div>
+</body>
+</html>
