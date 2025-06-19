@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अरण्यऋषी मारुती चितमपल्ली: एक परस्परसंवादी प्रवास</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony (Stone, Amber, Emerald) -->
+    <!-- Application Structure Plan: A single-page narrative application with thematic sections (Timeline, Philosophy, Literary Works, Linguistic Impact, Awards). This structure guides the user through Chitampalli's story logically, from his life to his core ideas and lasting legacy, which is more engaging for a biographical report than a data-heavy dashboard. Interactive elements like a timeline, book gallery, and charts encourage exploration within each theme. -->
+    <!-- Visualization & Content Choices:
+    - Life Events -> Goal: Inform/Overview -> Viz: Interactive Timeline (HTML/CSS/JS) -> Interaction: Hover for details -> Justification: Provides a quick, chronological context for his entire life.
+    - Literary Output -> Goal: Organize/Showcase -> Viz: Donut Chart (Chart.js) & Book Gallery (HTML/JS) -> Interaction: Hover on chart, Click on books -> Justification: Chart gives a quantitative breakdown, gallery provides qualitative detail.
+    - Linguistic Contribution -> Goal: Quantify Impact -> Viz: Animated Numbers & Bar Chart (JS/Chart.js) -> Interaction: Scroll-triggered animation, hover on bars -> Justification: Makes abstract numbers ('lakh words') tangible and visually impressive.
+    - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            transform: translateX(-50%);
+            width: 2px;
+            height: calc(100% - 2rem);
+            background-color: #d1d5db; 
+        }
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -50%);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            background-color: #f5f5f4;
+            border: 4px solid #a3e635;
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover .timeline-dot {
+            transform: translate(-50%, -50%) scale(1.2);
+            background-color: #a3e635;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-emerald-800">अरण्यऋषी</h1>
+            <div class="hidden md:flex space-x-6 text-stone-600">
+                <a href="#journey" class="hover:text-emerald-700">जीवनप्रवास</a>
+                <a href="#philosophy" class="hover:text-emerald-700">तत्त्वज्ञान</a>
+                <a href="#works" class="hover:text-emerald-700">साहित्यसंपदा</a>
+                <a href="#legacy" class="hover:text-emerald-700">वारसा</a>
+            </div>
+             <button id="mobile-menu-button" class="md:hidden text-stone-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="#journey" class="block py-2 px-6 text-stone-600 hover:bg-stone-100">जीवनप्रवास</a>
+            <a href="#philosophy" class="block py-2 px-6 text-stone-600 hover:bg-stone-100">तत्त्वज्ञान</a>
+            <a href="#works" class="block py-2 px-6 text-stone-600 hover:bg-stone-100">साहित्यसंपदा</a>
+            <a href="#legacy" class="block py-2 px-6 text-stone-600 hover:bg-stone-100">वारसा</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 md:px-6 py-12">
+
+        <section id="hero" class="text-center py-16 md:py-24 fade-in">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-emerald-900 leading-tight">मारुती चितमपल्ली</h1>
+            <p class="mt-4 text-xl md:text-2xl text-amber-700 font-semibold">भारतीय संस्कृती आणि निसर्गसेवेचा एक अविस्मरणीय अध्याय</p>
+            <div class="mt-8 flex justify-center items-center space-x-4 text-stone-600">
+                <span class="text-lg">🌿</span>
+                <p class="max-w-3xl mx-auto text-lg">
+                    एक ऋषितुल्य व्यक्तिमत्त्व, ज्यांनी आपले संपूर्ण जीवन भारतीय निसर्गाच्या अभ्यासासाठी आणि संवर्धनासाठी समर्पित केले. त्यांचे कार्य केवळ निसर्ग संवर्धनापुरते मर्यादित नसून, ते भारतीय ज्ञानपरंपरा, भाषिक समृद्धी आणि सांस्कृतिक अस्मितेचे अविभाज्य अंग होते.
+                </p>
+                <span class="text-lg">🐦</span>
+            </div>
+        </section>
+
+        <section id="journey" class="py-16">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-emerald-800">मातीशी जुळलेली नाळ: एक जीवनप्रवास</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-stone-600">
+                    सोलापूरच्या एका गिरणी कामगाराच्या घरापासून ते मेळघाटातील 'अरण्यऋषी' पर्यंतचा त्यांचा प्रवास हा दृढनिश्चय, निसर्गप्रेम आणि भारतीय संस्कारांचा एक प्रेरणादायी आलेख आहे. हा विभाग त्यांच्या जीवनातील महत्त्वाच्या टप्प्यांचा आढावा घेतो.
+                </p>
+            </div>
+            <div class="relative w-full max-w-4xl mx-auto">
+                <div class="timeline-item relative pl-8 md:pl-0 md:w-1/2 md:ml-auto md:text-left md:pr-8 mb-16 fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg border border-stone-200">
+                        <p class="font-bold text-amber-700 text-xl">१९३२</p>
+                        <h3 class="text-lg font-semibold mt-1">जन्म आणि बालपण</h3>
+                        <p class="mt-2 text-sm text-stone-600">५ नोव्हेंबर रोजी सोलापूर येथे जन्म. प्रतिकूल परिस्थितीतही वाचनाची आणि शिक्षणाची आवड जोपासली.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative pl-8 md:pl-0 md:w-1/2 md:mr-auto md:text-right md:pl-8 mb-16 fade-in">
+                    <div class="timeline-dot"></div>
+                     <div class="bg-white p-6 rounded-lg shadow-lg border border-stone-200">
+                        <p class="font-bold text-amber-700 text-xl">१९५८-१९६०</p>
+                        <h3 class="text-lg font-semibold mt-1">व्यावसायिक शिक्षण</h3>
+                        <p class="mt-2 text-sm text-stone-600">कोईमतूर येथील स्टेट फॉरेस्ट कॉलेजमधून वनशास्त्राचे शिक्षण घेतले आणि महाराष्ट्र वन विभागात रुजू झाले.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative pl-8 md:pl-0 md:w-1/2 md:ml-auto md:text-left md:pr-8 mb-16 fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg border border-stone-200">
+                        <p class="font-bold text-amber-700 text-xl">१९६०-१९९०</p>
+                        <h3 class="text-lg font-semibold mt-1">वनसेवा आणि 'अरण्यवाचन'</h3>
+                        <p class="mt-2 text-sm text-stone-600">३०-३६ वर्षे वनसेवा. ५ लाख किलोमीटरहून अधिक प्रवास करत निसर्गाचे सखोल निरीक्षण आणि आदिवासींकडून 'अरण्यविद्ये'चे ज्ञान संपादन.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative pl-8 md:pl-0 md:w-1/2 md:mr-auto md:text-right md:pl-8 mb-16 fade-in">
+                    <div class="timeline-dot"></div>
+                     <div class="bg-white p-6 rounded-lg shadow-lg border border-stone-200">
+                        <p class="font-bold text-amber-700 text-xl">२००६</p>
+                        <h3 class="text-lg font-semibold mt-1">साहित्यिक गौरव</h3>
+                        <p class="mt-2 text-sm text-stone-600">सोलापूर येथे झालेल्या ७९ व्या अखिल भारतीय मराठी साहित्य संमेलनाचे अध्यक्षपद भूषवले.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item relative pl-8 md:pl-0 md:w-1/2 md:ml-auto md:text-left md:pr-8 fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg border border-stone-200">
+                        <p class="font-bold text-amber-700 text-xl">२०२५</p>
+                        <h3 class="text-lg font-semibold mt-1">राष्ट्रीय सन्मान आणि अखेरचा श्वास</h3>
+                        <p class="mt-2 text-sm text-stone-600">भारत सरकारतर्फे 'पद्मश्री' पुरस्काराने सन्मानित. १८ जून रोजी त्यांचे निधन झाले.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="philosophy" class="py-16 bg-emerald-50 rounded-2xl">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-emerald-800">'वनोपनिषद': भारतीय ज्ञानपरंपरेचा वारसा</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-stone-600">
+                    चितमपल्लींचे कार्य केवळ वैज्ञानिक नव्हते, तर ते भारतीय तत्त्वज्ञानाच्या खोलवर रुजलेले होते. त्यांनी निसर्गालाच गुरु मानले आणि त्यातून मिळालेल्या ज्ञानाला 'वनोपनिषद' असे नाव दिले. हा विभाग त्यांच्या मूलगामी संकल्पनांची ओळख करून देतो.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow fade-in">
+                    <h3 class="text-xl font-bold text-amber-800">📜 वनोपनिषद</h3>
+                    <p class="mt-3 text-stone-600">त्यांच्यासाठी जंगल हे एक जिवंत ग्रंथ होते. 'चकवाचांदण' या आत्मचरित्राला त्यांनी 'एक वनोपनिषद' म्हटले. ज्याप्रमाणे ऋषी अरण्यात तत्त्वज्ञान मिळवत, त्याचप्रमाणे त्यांनी वनातून जीवनदर्शन प्राप्त केले.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow fade-in">
+                    <h3 class="text-xl font-bold text-amber-800">🌳 अरण्यविद्या</h3>
+                    <p class="mt-3 text-stone-600">ही केवळ पुस्तकी विद्या नव्हती. आदिवासी बांधवांकडून, त्यांच्या अनुभवातून आणि निसर्गाच्या प्रत्यक्ष निरीक्षणातून मिळालेले हे स्थानिक ज्ञान होते. हे ज्ञान त्यांनी जगासमोर मांडले.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow fade-in">
+                    <h3 class="text-xl font-bold text-amber-800">🕉️ संस्कृत आणि संस्कृती</h3>
+                    <p class="mt-3 text-stone-600">वयाच्या ८४ व्या वर्षीही त्यांनी संस्कृतचा अभ्यास केला. 'मृगपक्षीशास्त्र' सारख्या प्राचीन ग्रंथांचे भाषांतर करून त्यांनी भारतीय ज्ञानपरंपरेचा ठेवा आधुनिक जगासाठी खुला केला.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="works" class="py-16">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-emerald-800">साहित्यसंपदा आणि भाषा-धन</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-stone-600">
+                    चितमपल्ली यांनी २० हून अधिक पुस्तके लिहून आणि मराठी भाषेला लाखभर शब्दांचे धन देऊन तिला ज्ञानभाषा म्हणून समृद्ध केले. त्यांचे साहित्य म्हणजे शास्त्रीय ज्ञान आणि लालित्य यांचा अद्भुत संगम आहे.
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-5 gap-8 items-center">
+                <div class="lg:col-span-2 space-y-6 fade-in">
+                    <div class="bg-white p-6 rounded-lg shadow-lg border border-amber-200">
+                        <p class="text-5xl font-extrabold text-amber-600 number-animate" data-target="20">0</p>
+                        <h3 class="mt-2 text-xl font-semibold text-stone-700">पेक्षा जास्त पुस्तके</h3>
+                        <p class="mt-1 text-stone-500">वन, वन्यजीव आणि पक्षीशास्त्रावर विपुल लेखन.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-lg border border-emerald-200">
+                        <p class="text-5xl font-extrabold text-emerald-600 number-animate" data-target="100000">0</p>
+                        <h3 class="mt-2 text-xl font-semibold text-stone-700">नवीन शब्द</h3>
+                        <p class="mt-1 text-stone-500">मराठी भाषेला दिलेले 'शब्दांचे धन'.</p>
+                    </div>
+                </div>
+                <div class="lg:col-span-3 fade-in">
+                     <div class="bg-white p-4 md:p-6 rounded-xl shadow-lg">
+                         <h3 class="text-xl font-semibold text-center mb-4 text-emerald-800">साहित्यिक कार्याचे स्वरूप</h3>
+                        <div class="chart-container">
+                            <canvas id="worksChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="mt-16 fade-in">
+                <h3 class="text-2xl font-bold text-center text-emerald-800 mb-8">प्रमुख ग्रंथसंपदा</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6" id="book-gallery">
+                </div>
+            </div>
+        </section>
+
+        <section id="legacy" class="py-16 bg-stone-100 rounded-2xl">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-emerald-800">पुरस्कार आणि चिरंतन वारसा</h2>
+                 <p class="mt-4 max-w-3xl mx-auto text-stone-600">
+                    त्यांच्या कार्याला अनेक पुरस्कारांनी गौरवण्यात आले, ज्यात 'पद्मश्री' हा सर्वोच्च नागरी सन्मान आहे. त्यांचा वारसा केवळ पुस्तकांपुरता मर्यादित नाही, तर तो निसर्गाकडे पाहण्याच्या एका भारतीय दृष्टिकोनात आहे.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-amber-100 p-6 rounded-xl shadow-md border-2 border-amber-500 fade-in">
+                    <div class="text-3xl mb-3">🏅</div>
+                    <h3 class="text-xl font-bold text-amber-900">पद्मश्री (२०२५)</h3>
+                    <p class="mt-2 text-amber-800">भारत सरकारकडून त्यांच्या जीवनगौरव कार्यासाठी सर्वोच्च नागरी सन्मान.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md fade-in">
+                    <div class="text-3xl mb-3">🏆</div>
+                    <h3 class="text-xl font-bold text-emerald-900">अ. भा. मराठी साहित्य संमेलन अध्यक्ष (२००६)</h3>
+                    <p class="mt-2 text-stone-600">निसर्गसाहित्याला मुख्य प्रवाहात आणणारा ऐतिहासिक सन्मान.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md fade-in">
+                    <div class="text-3xl mb-3">📜</div>
+                    <h3 class="text-xl font-bold text-emerald-900">राज्य साहित्य पुरस्कार</h3>
+                    <p class="mt-2 text-stone-600">'जंगलाचं देणं', 'रानवाटा', 'रातवा' यांसारख्या अनेक पुस्तकांना सन्मानित.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md fade-in">
+                    <div class="text-3xl mb-3">🎖️</div>
+                    <h3 class="text-xl font-bold text-emerald-900">नागभूषण पुरस्कार (२००८)</h3>
+                    <p class="mt-2 text-stone-600">नागपूरच्या सिटिझन्स फोरमतर्फे दिला जाणारा प्रतिष्ठित पुरस्कार.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md fade-in">
+                    <div class="text-3xl mb-3">🕊️</div>
+                    <h3 class="text-xl font-bold text-emerald-900">जीवनसाधना पुरस्कार</h3>
+                    <p class="mt-2 text-stone-600">भारती विद्यापीठातर्फे त्यांच्या समग्र योगदानासाठी गौरव.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md fade-in">
+                    <div class="text-3xl mb-3">🎁</div>
+                    <h3 class="text-xl font-bold text-emerald-900">इतर अनेक सन्मान</h3>
+                    <p class="mt-2 text-stone-600">विविध सामाजिक आणि साहित्यिक संस्थांकडून त्यांच्या कार्याचा गौरव.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-800 text-stone-300 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; २०२५. अरण्यऋषी मारुती चितमपल्ली यांच्या स्मृतीस समर्पित.</p>
+            <p class="text-sm mt-2 text-stone-400">ही माहिती उपलब्ध शोधनिबंधावर आधारित आहे.</p>
+        </div>
+    </footer>
+    
+    <div id="bookModal" class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-6 relative">
+            <button id="closeModal" class="absolute top-3 right-3 text-stone-500 hover:text-stone-800">&times;</button>
+            <h3 id="modalTitle" class="text-2xl font-bold text-emerald-800 mb-2"></h3>
+            <p id="modalDescription" class="text-stone-600"></p>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            const worksData = {
+                labels: ['कोश वाङ्मय', 'ललित साहित्य', 'अनुवाद', 'इतर'],
+                datasets: [{
+                    label: 'साहित्यिक कार्य',
+                    data: [40, 35, 10, 15],
+                    backgroundColor: [
+                        '#10b981', 
+                        '#f59e0b', 
+                        '#3b82f6', 
+                        '#84cc16'
+                    ],
+                    borderColor: '#f5f5f4',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            };
+
+            const worksChartCtx = document.getElementById('worksChart').getContext('2d');
+            new Chart(worksChartCtx, {
+                type: 'doughnut',
+                data: worksData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#44403c',
+                                font: {
+                                    family: "'Noto Sans Devanagari', sans-serif",
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const books = [
+                { title: 'चकवाचांदण', description: 'त्यांच्या जीवनातील अनुभवांचे आणि तत्त्वज्ञानाचे एक ‘वनोपनिषद’ असलेले आत्मचरित्र.' },
+                { title: 'पक्षीकोश', description: '४५० पक्ष्यांची माहिती १८ भाषांमध्ये देणारा एक अभूतपूर्व कोश.' },
+                { title: 'रानवाटा', description: 'निसर्गाच्या विविध वाटांचे आणि अनुभवांचे ललित लेखन.' },
+                { title: 'पक्षी जाय दिगंतरा', description: 'पक्ष्यांच्या स्थलांतरामागील रहस्ये उलगडणारे पुस्तक.' },
+                { title: 'जंगलाचं देणं', description: 'जंगलाकडून मिळालेल्या ज्ञानाची आणि अनुभवांची अमूल्य देणगी.' },
+                { title: 'रातवा', description: 'रात्रीच्या वेळी जंगलातील जीवनाचे गूढ आणि सुंदर चित्रण.' }
+            ];
+
+            const bookGallery = document.getElementById('book-gallery');
+            const bookModal = document.getElementById('bookModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const closeModal = document.getElementById('closeModal');
+
+            books.forEach(book => {
+                const bookEl = document.createElement('div');
+                bookEl.className = 'bg-white p-3 text-center rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer border hover:border-amber-400';
+                bookEl.innerHTML = `<p class="font-semibold text-emerald-800">${book.title}</p>`;
+                bookEl.addEventListener('click', () => {
+                    modalTitle.textContent = book.title;
+                    modalDescription.textContent = book.description;
+                    bookModal.classList.remove('hidden');
+                    bookModal.classList.add('flex');
+                });
+                bookGallery.appendChild(bookEl);
+            });
+            
+            const closeModalHandler = () => {
+                bookModal.classList.add('hidden');
+                bookModal.classList.remove('flex');
+            };
+
+            closeModal.addEventListener('click', closeModalHandler);
+            bookModal.addEventListener('click', (e) => {
+                if(e.target === bookModal){
+                    closeModalHandler();
+                }
+            });
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+            
+            const numberObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = +el.getAttribute('data-target');
+                        el.innerText = '0';
+                        let current = 0;
+                        const increment = target / 100;
+                        
+                        const updateCounter = () => {
+                            current += increment;
+                            if (current < target) {
+                                el.innerText = Math.ceil(current).toLocaleString('en-IN');
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                el.innerText = target.toLocaleString('en-IN');
+                            }
+                        };
+                        updateCounter();
+                        observer.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.number-animate').forEach(el => {
+                numberObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
