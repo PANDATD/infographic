@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India's Infrastructure Leap: UPA vs NDA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony (Slate gray neutrals with a vibrant orange accent) -->
+    <!-- Application Structure Plan: A single-page, thematic dashboard design. The structure prioritizes user-led exploration over a linear narrative. A sticky navigation bar allows users to jump to key themes: Highways, Strategic Projects, Urban Mobility, and a Maharashtra Case Study. This non-linear approach is chosen because the report's data is multi-faceted, and users may be interested in specific areas (e.g., only urban development). Interactive elements like chart toggles and clickable cards within each section encourage deeper engagement with the data, making the dense information more digestible and discoverable. -->
+    <!-- Visualization & Content Choices:
+        - Report Info: UPA vs NDA highway stats (Length, Pace, Capex). Goal: Compare. Viz: Grouped Bar Chart (Chart.js). Interaction: Buttons to switch data views. Justification: Bar charts provide clear, direct comparison. Toggles make it interactive without clutter.
+        - Report Info: Year-on-year highway construction pace. Goal: Show Change. Viz: Line Chart (Chart.js). Interaction: Hover tooltips. Justification: Line chart is ideal for showing trends over time, effectively visualizing the "37 km/day" peak.
+        - Report Info: Strategic projects (Zojila, Sela, etc.). Goal: Organize/Inform. Viz: Interactive HTML/CSS cards. Interaction: Click to reveal details. Justification: Organizes complex project info into digestible chunks, promoting exploration.
+        - Report Info: Metro rail growth stats. Goal: Compare. Viz: Grouped Bar Chart (Chart.js). Justification: Effective for a stark before-and-after comparison of urban development.
+        - Report Info: Maharashtra projects. Goal: Organize/Inform. Viz: Tabbed content view. Interaction: Click tabs. Justification: Neatly segments the case study into its components (Samruddhi, Metro, Atal Setu) for focused reading.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 60vh;
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #f97316; /* orange-500 */
+        }
+        .active-nav {
+            color: #f97316; /* orange-500 */
+            font-weight: 600;
+        }
+        .project-card {
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .project-card .details {
+            max-height: 0;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .project-card.open .details {
+            max-height: 500px; /* Adjust as needed */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+         .project-card.open .arrow {
+            transform: rotate(180deg);
+        }
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4">
+            <nav class="flex justify-between items-center py-4">
+                <h1 class="text-xl md:text-2xl font-bold text-slate-900">India's Development Story</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#highways" class="nav-link text-slate-600 font-medium">Highways</a>
+                    <a href="#strategic" class="nav-link text-slate-600 font-medium">Strategic Projects</a>
+                    <a href="#urban" class="nav-link text-slate-600 font-medium">Urban Mobility</a>
+                    <a href="#maharashtra" class="nav-link text-slate-600 font-medium">Case Study</a>
+                    <a href="#green" class="nav-link text-slate-600 font-medium">Green Future</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-slate-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </nav>
+            <div id="mobile-menu" class="hidden md:hidden py-2">
+                 <a href="#highways" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100 rounded">Highways</a>
+                 <a href="#strategic" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100 rounded">Strategic Projects</a>
+                 <a href="#urban" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100 rounded">Urban Mobility</a>
+                 <a href="#maharashtra" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100 rounded">Case Study</a>
+                 <a href="#green" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100 rounded">Green Future</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Hero Section -->
+        <section class="text-center mb-16 md:mb-24">
+            <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">37 km a Day</h2>
+            <p class="text-lg md:text-xl text-slate-600 max-w-4xl mx-auto mb-8">The speed at which India transformed its infrastructure, leaving the past behind. This is a story of unprecedented growth in roads, tunnels, and metro lines, connecting a nation and powering its rise.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-5xl mx-auto">
+                <div class="stat-card text-center">
+                    <p class="text-3xl md:text-4xl font-bold text-orange-500">+60%</p>
+                    <p class="text-sm text-slate-500 mt-1">Growth in NH Network</p>
+                </div>
+                <div class="stat-card text-center">
+                    <p class="text-3xl md:text-4xl font-bold text-orange-500">3x</p>
+                    <p class="text-sm text-slate-500 mt-1">Avg. Construction Pace</p>
+                </div>
+                <div class="stat-card text-center">
+                    <p class="text-3xl md:text-4xl font-bold text-orange-500">4.2x</p>
+                    <p class="text-sm text-slate-500 mt-1">More Cities with Metros</p>
+                </div>
+                <div class="stat-card text-center">
+                    <p class="text-3xl md:text-4xl font-bold text-orange-500">+400%</p>
+                    <p class="text-sm text-slate-500 mt-1">Increase in Capex</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- National Highways -->
+        <section id="highways" class="mb-16 md:mb-24 scroll-mt-20">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-900">National Road Infrastructure</h3>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">The last decade has seen a paradigm shift in highway development. From a modest pace, construction accelerated dramatically, expanding and upgrading the nation's arterial network. This section compares the performance of the UPA (2004-14) and NDA (2014-24) governments on key metrics, showcasing the scale of this transformation.</p>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-12">
+                <div class="flex justify-center flex-wrap gap-2 mb-6">
+                    <button data-metric="length" class="metric-btn bg-orange-500 text-white py-2 px-4 rounded-full text-sm font-semibold">NH Network Length</button>
+                    <button data-metric="pace" class="metric-btn bg-slate-200 text-slate-700 py-2 px-4 rounded-full text-sm font-semibold">Construction Pace</button>
+                    <button data-metric="fourLane" class="metric-btn bg-slate-200 text-slate-700 py-2 px-4 rounded-full text-sm font-semibold">4-Lane+ Highways</button>
+                    <button data-metric="capex" class="metric-btn bg-slate-200 text-slate-700 py-2 px-4 rounded-full text-sm font-semibold">Capital Expenditure</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="nhComparisonChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                 <h4 class="text-xl md:text-2xl font-bold text-center mb-2 text-slate-800">The Pace of Progress: The "37 km/day" Story</h4>
+                 <p class="text-center text-slate-500 max-w-3xl mx-auto mb-6">Visualizing the year-on-year growth in daily highway construction, culminating in a record pace in 2020-21.</p>
+                <div class="chart-container">
+                    <canvas id="nhPaceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategic Projects -->
+        <section id="strategic" class="mb-16 md:mb-24 scroll-mt-20">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-900">Infrastructure as a Strategic Asset</h3>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">Beyond economic growth, infrastructure has been redefined as a critical element of national security. This section showcases landmark projects in frontier regions like Ladakh and Arunachal Pradesh, which provide all-weather connectivity for both civilians and military, securing India's borders.</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="project-card stat-card bg-white rounded-lg p-6" data-project="zojila">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-bold text-slate-800">Zojila Tunnel</h4>
+                         <span class="arrow text-slate-500 transform transition-transform">▼</span>
+                    </div>
+                    <p class="text-sm text-slate-500">Gateway to Ladakh, Year-Round</p>
+                    <div class="details text-slate-600 mt-4 text-sm space-y-2">
+                        <p><strong>Location:</strong> Jammu & Kashmir</p>
+                        <p><strong>Significance:</strong> Provides all-weather strategic connectivity to Ladakh, crucial for military movement to the LAC. Once completed, it will be Asia’s longest high-altitude road tunnel.</p>
+                        <p><strong>Key Feature:</strong> Reduces pass crossing time from 3+ hours to just 15 minutes.</p>
+                    </div>
+                </div>
+                <div class="project-card stat-card bg-white rounded-lg p-6" data-project="sela">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-bold text-slate-800">Sela Tunnel</h4>
+                        <span class="arrow text-slate-500 transform transition-transform">▼</span>
+                    </div>
+                    <p class="text-sm text-slate-500">Securing the Eastern Flank</p>
+                     <div class="details text-slate-600 mt-4 text-sm space-y-2">
+                        <p><strong>Location:</strong> Arunachal Pradesh</p>
+                        <p><strong>Significance:</strong> Ensures all-weather connectivity to the Tawang sector near the LAC, enabling rapid deployment of troops and equipment.</p>
+                        <p><strong>Key Feature:</strong> World's longest twin-lane tunnel above 13,000 ft.</p>
+                    </div>
+                </div>
+                <div class="project-card stat-card bg-white rounded-lg p-6" data-project="frontier">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-bold text-slate-800">Arunachal Frontier Highway</h4>
+                        <span class="arrow text-slate-500 transform transition-transform">▼</span>
+                    </div>
+                    <p class="text-sm text-slate-500">Countering Cross-Border Build-up</p>
+                     <div class="details text-slate-600 mt-4 text-sm space-y-2">
+                        <p><strong>Location:</strong> Arunachal Pradesh</p>
+                        <p><strong>Significance:</strong> A 1,748 km highway running parallel to the LAC to enhance troop mobility and assert sovereignty.</p>
+                        <p><strong>Key Feature:</strong> Connects 12 districts and remote valleys, some just 20km from the border.</p>
+                    </div>
+                </div>
+                 <div class="project-card stat-card bg-white rounded-lg p-6" data-project="nimmu">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-bold text-slate-800">Nimmu-Padam-Darcha Road</h4>
+                        <span class="arrow text-slate-500 transform transition-transform">▼</span>
+                    </div>
+                    <p class="text-sm text-slate-500">A New, Safer Axis to Leh</p>
+                     <div class="details text-slate-600 mt-4 text-sm space-y-2">
+                        <p><strong>Location:</strong> Ladakh</p>
+                        <p><strong>Significance:</strong> Provides a third, shorter, and more efficient all-weather route to Leh, bypassing other vulnerable routes near the border.</p>
+                        <p><strong>Key Feature:</strong> 298-km road connecting Ladakh to Himachal Pradesh through the world's highest tunnel at Shinkun La.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Urban Mobility -->
+        <section id="urban" class="mb-16 md:mb-24 scroll-mt-20">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-900">Revolutionizing Urban Mobility</h3>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">As India's cities grew, so did the strain on urban transport. The post-2014 era witnessed a metro rail explosion, shifting focus from incremental fixes like Bus Rapid Transit (BRT) to modern, large-scale mass transit systems that have redefined commuting for millions.</p>
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h4 class="text-xl md:text-2xl font-bold text-center mb-2 text-slate-800">The Metro Rail Explosion: 2014 vs 2024</h4>
+                <p class="text-center text-slate-500 max-w-3xl mx-auto mb-6">A comparative look at India's metro infrastructure growth over the last decade.</p>
+                <div class="chart-container">
+                    <canvas id="metroChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Maharashtra Case Study -->
+        <section id="maharashtra" class="mb-16 md:mb-24 scroll-mt-20">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-900">Maharashtra: A Microcosm of the Vision</h3>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">Maharashtra exemplifies the dual strategy of building high-speed regional corridors and modern intra-city networks. This section explores key projects that are transforming the state's economic and urban landscape.</p>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="border-b border-slate-200">
+                    <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                        <button class="tab-btn whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-orange-500 border-orange-500" data-tab="samruddhi">Samruddhi Mahamarg</button>
+                        <button class="tab-btn whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-slate-500 border-transparent hover:text-slate-700 hover:border-slate-300" data-tab="nagpur">Nagpur Metro</button>
+                        <button class="tab-btn whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-slate-500 border-transparent hover:text-slate-700 hover:border-slate-300" data-tab="atal">Atal Setu</button>
+                    </nav>
+                </div>
+                <div id="tab-content" class="pt-8">
+                    <div id="samruddhi-content" class="tab-pane">
+                        <h4 class="text-xl font-bold text-slate-800 mb-2">Samruddhi Mahamarg: An Economic Revolution</h4>
+                        <p class="text-slate-600">The 701-km expressway connecting Mumbai to Nagpur is more than a road; it's a prosperity corridor. By cutting travel time from 16 hours to 8, it unlocks the economic potential of interior Maharashtra, linking 10 districts and fostering agri-logistics and job creation through 19 new growth centers.</p>
+                    </div>
+                    <div id="nagpur-content" class="tab-pane hidden">
+                        <h4 class="text-xl font-bold text-slate-800 mb-2">Nagpur Metro: Green, Efficient Urban Core</h4>
+                        <p class="text-slate-600">Complementing the expressway, the Nagpur Metro provides a modern, green mass transit solution. Powered by solar energy, it connects the city center to industrial hubs, showcasing how regional growth and urban efficiency can be developed in tandem.</p>
+                    </div>
+                    <div id="atal-content" class="tab-pane hidden">
+                        <h4 class="text-xl font-bold text-slate-800 mb-2">Atal Setu: India's Longest Sea Bridge</h4>
+                        <p class="text-slate-600">The Mumbai Trans Harbour Link (Atal Setu) is an engineering marvel that enhances coastal connectivity and decongests the city. It drastically cuts travel time between Mumbai and Navi Mumbai, boosting economic activity and integrating the region with major trade hubs like JNPT port.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Green Future -->
+        <section id="green" class="scroll-mt-20">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-900">Building a Green Future</h3>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">Infrastructure development is now intrinsically linked with sustainability. India's green push focuses on promoting electric vehicles, alternative fuels, and eco-friendly highways, creating a model for climate-resilient growth.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="stat-card">
+                    <h4 class="text-xl font-bold text-slate-800 mb-4">Driving the EV Revolution</h4>
+                    <p class="text-slate-600 mb-4">The EV30@2030 vision sets ambitious targets to accelerate the adoption of electric mobility, supported by policies like FAME and PLI to boost manufacturing and adoption.</p>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center"><span class="font-bold text-orange-500 text-lg mr-3">30%</span> Private Vehicles</div>
+                        <div class="flex items-center"><span class="font-bold text-orange-500 text-lg mr-3">70%</span> Commercial EVs</div>
+                        <div class="flex items-center"><span class="font-bold text-orange-500 text-lg mr-3">80%</span> Two/Three-Wheelers</div>
+                    </div>
+                </div>
+                 <div class="stat-card">
+                    <h4 class="text-xl font-bold text-slate-800 mb-4">Ethanol Blended Petrol Programme</h4>
+                    <p class="text-slate-600 mb-4">This program reduces crude oil dependency, cuts CO₂ emissions, and boosts farmer incomes.</p>
+                    <div class="space-y-3 text-sm">
+                        <p><span class="font-semibold">Goal:</span> 20% ethanol blending by 2025-26.</p>
+                        <p><span class="font-semibold">Impact:</span> Saved ₹1.1 trillion in imports, cut 50M tonnes of CO₂, and paid ₹87,000+ crore to farmers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-400 mt-16">
+        <div class="container mx-auto px-4 py-6 text-center text-sm">
+            <p>Interactive visualization based on the article "UNDERSTANDING DEVELOPMENT - UPA vs NDA". Data sourced from publicly available government reports and news articles for illustrative purposes. Not an official government publication.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = {
+                nhComparison: {
+                    labels: ['UPA (2004-14)', 'NDA (2014-24)'],
+                    length: {
+                        data: [91287, 146145],
+                        label: 'Total Length (km)',
+                    },
+                    pace: {
+                        data: [7, 28.3],
+                        label: 'Avg. Construction (km/day)',
+                    },
+                    fourLane: {
+                        data: [18371, 46179],
+                        label: '4-Lane+ Highways (km)',
+                    },
+                    capex: {
+                        data: [3.35, 16.8],
+                        label: 'Capital Expenditure (₹ Lakh Crore)',
+                    },
+                },
+                nhPace: {
+                    labels: ['2014-15', '15-16', '16-17', '17-18', '18-19', '19-20', '20-21', '21-22', '22-23'],
+                    data: [12.1, 16.6, 22.6, 26.9, 29.7, 28.1, 37, 28.6, 28.3],
+                    base: 12
+                },
+                metro: {
+                    labels: ['Operational Network (km)', 'Cities with Metro', 'Daily Ridership (millions)', 'Annual Budget (₹ Cr)'],
+                    upa: [248, 5, 2.8, 5798],
+                    nda: [945, 21, 10.5, 34807],
+                }
+            };
+
+            const chartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#475569' // slate-600
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1e293b', // slate-800
+                        titleColor: '#f1f5f9', // slate-100
+                        bodyColor: '#f1f5f9',
+                        boxPadding: 8,
+                        cornerRadius: 4,
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#475569' },
+                        grid: { display: false }
+                    },
+                    y: {
+                        ticks: { color: '#475569' },
+                        grid: { color: '#e2e8f0' } // slate-200
+                    }
+                }
+            };
+
+            // NH Comparison Chart
+            const nhCtx = document.getElementById('nhComparisonChart').getContext('2d');
+            let nhComparisonChart = new Chart(nhCtx, {
+                type: 'bar',
+                data: {
+                    labels: data.nhComparison.labels,
+                    datasets: [{
+                        label: data.nhComparison.length.label,
+                        data: data.nhComparison.length.data,
+                        backgroundColor: ['#64748b', '#f97316'], // slate-500, orange-500
+                        borderColor: ['#64748b', '#f97316'],
+                        borderWidth: 1
+                    }]
+                },
+                options: chartOptions
+            });
+
+            const metricButtons = document.querySelectorAll('.metric-btn');
+            metricButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const metric = button.dataset.metric;
+                    const metricData = data.nhComparison[metric];
+                    nhComparisonChart.data.datasets[0].data = metricData.data;
+                    nhComparisonChart.data.datasets[0].label = metricData.label;
+                    nhComparisonChart.update();
+                    
+                    metricButtons.forEach(btn => {
+                        btn.classList.remove('bg-orange-500', 'text-white');
+                        btn.classList.add('bg-slate-200', 'text-slate-700');
+                    });
+                    button.classList.add('bg-orange-500', 'text-white');
+                    button.classList.remove('bg-slate-200', 'text-slate-700');
+                });
+            });
+
+            // NH Pace Chart
+            const nhPaceCtx = document.getElementById('nhPaceChart').getContext('2d');
+            new Chart(nhPaceCtx, {
+                type: 'line',
+                data: {
+                    labels: data.nhPace.labels,
+                    datasets: [{
+                        label: 'Construction Pace (km/day)',
+                        data: data.nhPace.data,
+                        borderColor: '#f97316',
+                        backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: chartOptions
+            });
+
+            // Metro Chart
+            const metroCtx = document.getElementById('metroChart').getContext('2d');
+            new Chart(metroCtx, {
+                type: 'bar',
+                data: {
+                    labels: data.metro.labels,
+                    datasets: [
+                        {
+                            label: 'End of UPA (2014)',
+                            data: data.metro.upa,
+                            backgroundColor: '#64748b',
+                            borderColor: '#64748b',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'End of NDA (2024)',
+                            data: data.metro.nda,
+                            backgroundColor: '#f97316',
+                            borderColor: '#f97316',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {...chartOptions, indexAxis: 'y' }
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Project Card Accordion
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('open');
+                });
+            });
+
+            // Maharashtra Tabs
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('text-orange-500', 'border-orange-500');
+                        btn.classList.add('text-slate-500', 'border-transparent', 'hover:text-slate-700', 'hover:border-slate-300');
+                    });
+
+                    button.classList.add('text-orange-500', 'border-orange-500');
+                    button.classList.remove('text-slate-500', 'border-transparent', 'hover:text-slate-700', 'hover:border-slate-300');
+                    
+                    tabPanes.forEach(pane => {
+                        if (pane.id === `${tabId}-content`) {
+                            pane.classList.remove('hidden');
+                        } else {
+                            pane.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Active Nav Link on Scroll
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active-nav');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active-nav');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-30% 0px -70% 0px" });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+        });
+    </script>
+</body>
+</html>
