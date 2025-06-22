@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ग्रामीण गृहनिर्माण: युपीए आणि मोदी सरकार यांची तुलना | एक इन्फोग्राफिक</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            line-height: 1;
+            color: #DB1F48;
+            margin: 0 1rem;
+        }
+        .flow-item {
+            border: 2px solid #01949A;
+        }
+    </style>
+</head>
+<body class="bg-[#E5DDC8]">
+    
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#004369] mb-2">ग्रामीण गृहनिर्माण: एक तुलनात्मक विश्लेषण</h1>
+            <p class="text-lg md:text-xl text-[#01949A] font-bold">दोन सरकारे, एक ध्येय: घरांचे स्वप्न साकार करणे</p>
+        </header>
+
+        <section class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                <div class="bg-white p-8 rounded-2xl shadow-xl border-4 border-[#004369]">
+                    <h3 class="text-2xl font-bold text-[#004369] mb-2">यूपीए सरकार (IAY)</h3>
+                    <p class="text-sm text-gray-500">(२००४ - २०१४)</p>
+                    <p class="text-6xl md:text-7xl font-black text-[#01949A] my-4">२.१ कोटी</p>
+                    <p class="text-xl font-bold text-gray-700">घरे बांधण्यात आली</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-xl border-4 border-[#DB1F48]">
+                    <h3 class="text-2xl font-bold text-[#DB1F48] mb-2">मोदी सरकार (PMAY-G)</h3>
+                    <p class="text-sm text-gray-500">(२०१४ - २०२५)</p>
+                    <p class="text-6xl md:text-7xl font-black text-[#004369] my-4">३.५ कोटी+</p>
+                    <p class="text-xl font-bold text-gray-700">घरे पूर्ण झाली</p>
+                </div>
+            </div>
+            <p class="text-center mt-6 text-gray-600">हा इन्फोग्राफिक, संशोधन अहवालावर आधारित, दोन्ही सरकारांच्या कामगिरीचे आणि धोरणात्मक बदलांचे विश्लेषण करतो. PMAY-G अंतर्गत पूर्ण झालेल्या घरांमध्ये IAY ची प्रलंबित घरे देखील समाविष्ट आहेत.</p>
+        </section>
+
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <div class="bg-white p-6 rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold text-[#004369] mb-4 text-center">इंदिरा आवास योजना (IAY)</h2>
+                <p class="text-gray-600 mb-6 text-center">ही योजना ग्रामीण गरिबांना घरे देण्याच्या उद्देशाने सुरू झाली, परंतु अंमलबजावणीत अनेक आव्हानांना सामोरे जावे लागले.</p>
+                
+                <h3 class="text-xl font-bold text-[#01949A] mb-3">प्रमुख आव्हाने</h3>
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="p-4 rounded-lg bg-red-50 border border-red-200 text-center w-full flow-item">
+                        <h4 class="font-bold text-red-800">अस्पष्ट लाभार्थी निवड</h4>
+                        <p class="text-sm text-red-700">दारिद्र्यरेषेखालील यादी आणि राजकीय हस्तक्षेपावर अवलंबित्व.</p>
+                    </div>
+                    <span class="text-4xl text-[#DB1F48]">↓</span>
+                    <div class="p-4 rounded-lg bg-red-50 border border-red-200 text-center w-full flow-item">
+                        <h4 class="font-bold text-red-800">निधी वितरणात विलंब</h4>
+                        <p class="text-sm text-red-700">हप्ते मिळण्यास उशीर आणि माहितीचा अभाव.</p>
+                    </div>
+                    <span class="text-4xl text-[#DB1F48]">↓</span>
+                    <div class="p-4 rounded-lg bg-red-50 border border-red-200 text-center w-full flow-item">
+                        <h4 class="font-bold text-red-800">निकृष्ट दर्जा आणि अपुऱ्या सुविधा</h4>
+                        <p class="text-sm text-red-700">देखरेखीचा अभाव, कमी अनुदान आणि शौचालयासारख्या सुविधांची कमतरता.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold text-[#DB1F48] mb-4 text-center">प्रधानमंत्री आवास योजना-ग्रामीण (PMAY-G)</h2>
+                <p class="text-gray-600 mb-6 text-center">IAY च्या त्रुटी दूर करण्यासाठी तंत्रज्ञानाचा वापर करून आणि इतर योजनांशी समन्वय साधून ही योजना सुरू करण्यात आली.</p>
+                
+                <h3 class="text-xl font-bold text-[#01949A] mb-3">तंत्रज्ञानावर आधारित उपाय</h3>
+                <div class="flex flex-col items-center space-y-4">
+                     <div class="p-4 rounded-lg bg-teal-50 border border-teal-200 text-center w-full flow-item">
+                        <h4 class="font-bold text-teal-800">डेटा-आधारित निवड (SECC 2011)</h4>
+                        <p class="text-sm text-teal-700">सामाजिक-आर्थिक जात जनगणना आणि ग्रामसभेमार्फत पडताळणी.</p>
+                    </div>
+                    <span class="text-4xl text-[#004369]">↓</span>
+                    <div class="p-4 rounded-lg bg-teal-50 border border-teal-200 text-center w-full flow-item">
+                        <h4 class="font-bold text-teal-800">थेट लाभ हस्तांतरण (DBT)</h4>
+                        <p class="text-sm text-teal-700">निधी थेट लाभार्थ्याच्या आधार-लिंक्ड बँक खात्यात.</p>
+                    </div>
+                    <span class="text-4xl text-[#004369]">↓</span>
+                    <div class="p-4 rounded-lg bg-teal-50 border border-teal-200 text-center w-full flow-item">
+                        <h4 class="font-bold text-teal-800">रिअल-टाइम मॉनिटरिंग</h4>
+                        <p class="text-sm text-teal-700">जिओ-टॅगिंग आणि AwaasSoft मोबाईल ॲपद्वारे घराच्या प्रगतीचा मागोवा.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold text-[#004369] mb-6 text-center">कार्यप्रदर्शन आणि आर्थिक मदत: तुलना</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4">बांधलेली घरे (कोटींमध्ये)</h3>
+                        <div class="chart-container">
+                            <canvas id="housesBuiltChart"></canvas>
+                        </div>
+                         <p class="text-center mt-4 text-gray-600">PMAY-G ने IAY च्या तुलनेत घरांच्या बांधकामात लक्षणीय वाढ दर्शविली आहे, ज्यामुळे ग्रामीण गृहनिर्माण तूट वेगाने कमी होण्यास मदत झाली.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4">सरासरी आर्थिक मदत (रुपयांमध्ये)</h3>
+                         <div class="chart-container">
+                            <canvas id="fundingChart"></canvas>
+                        </div>
+                         <p class="text-center mt-4 text-gray-600">PMAY-G अंतर्गत आर्थिक मदत वाढवण्यात आली आहे, परंतु वाढत्या महागाईमुळे ती अपुरी असल्याची टीका होत आहे.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold text-[#DB1F48] mb-6 text-center">केवळ घर नाही, तर एक संपूर्ण पॅकेज</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="chart-container" style="height: 350px;">
+                            <canvas id="packageChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-700 text-lg mb-4">PMAY-G चा सर्वात मोठा बदल म्हणजे घराला इतर मूलभूत सुविधांशी जोडणे. यामुळे लाभार्थ्यांच्या जीवनमानात सर्वांगीण सुधारणा होते.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center"><span class="text-2xl mr-3">🏠</span><span class="font-bold">स्वच्छ भारत मिशन:</span> शौचालय बांधकामासाठी ₹१२,००० मदत.</li>
+                            <li class="flex items-center"><span class="text-2xl mr-3">💧</span><span class="font-bold">जल जीवन मिशन:</span> नळाद्वारे पिण्याचे पाणी.</li>
+                            <li class="flex items-center"><span class="text-2xl mr-3">💡</span><span class="font-bold">सौभाग्य योजना:</span> मोफत वीज कनेक्शन.</li>
+                            <li class="flex items-center"><span class="text-2xl mr-3">🔥</span><span class="font-bold">उज्ज्वला योजना:</span> मोफत एलपीजी गॅस कनेक्शन.</li>
+                            <li class="flex items-center"><span class="text-2xl mr-3">👷</span><span class="font-bold">मनरेगा:</span> ९०/९५ दिवसांची मजुरी.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+             <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold text-[#004369] mb-4 text-center">धोरणात्मक उत्क्रांती</h2>
+                <p class="text-center text-gray-600 mb-8">IAY च्या अनुभवातून शिकून PMAY-G ने एक अधिक मजबूत, पारदर्शक आणि कार्यक्षम प्रणाली तयार केली आहे.</p>
+                <div class="overflow-x-auto">
+                    <div class="flex flex-col md:flex-row items-center justify-between min-w-max md:min-w-full">
+                        <div class="text-center p-4 m-2 border-2 border-dashed border-red-400 rounded-lg flex-1">
+                            <h4 class="text-xl font-bold text-red-600">IAY ची आव्हाने</h4>
+                            <p>अस्पष्टता, गळती, विलंब</p>
+                        </div>
+                        <div class="hidden md:block text-4xl font-black text-[#DB1F48] mx-4">➡️</div>
+                        <div class="md:hidden text-4xl font-black text-[#DB1F48] my-2">⬇️</div>
+                        <div class="text-center p-4 m-2 bg-teal-100 border-2 border-teal-500 rounded-lg flex-1">
+                            <h4 class="text-xl font-bold text-teal-800">PMAY-G चे उपाय</h4>
+                            <p>तंत्रज्ञान, DBT, समन्वय</p>
+                        </div>
+                         <div class="hidden md:block text-4xl font-black text-[#DB1F48] mx-4">➡️</div>
+                        <div class="md:hidden text-4xl font-black text-[#DB1F48] my-2">⬇️</div>
+                        <div class="text-center p-4 m-2 border-2 border-dashed border-gray-400 rounded-lg flex-1">
+                            <h4 class="text-xl font-bold text-gray-600">भविष्यातील आव्हाने</h4>
+                            <p>जुना डेटा, अपुरा निधी, कनेक्टिव्हिटी</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold text-[#004369] mb-6 text-center">निष्कर्ष</h2>
+                <p class="text-gray-700 text-lg leading-relaxed">IAY ने ग्रामीण गृहनिर्माणाचा पाया घातला, तर PMAY-G ने तंत्रज्ञानाचा वापर करून आणि इतर योजनांशी समन्वय साधून अंमलबजावणीत क्रांती घडवली आहे. PMAY-G मुळे घरांच्या बांधकामाचा वेग आणि पारदर्शकता लक्षणीयरीत्या वाढली आहे. तथापि, जुनाट लाभार्थी डेटा, अपुरी आर्थिक मदत आणि ग्रामीण भागातील कनेक्टिव्हिटीची समस्या यांसारखी आव्हाने अजूनही कायम आहेत. ग्रामीण गृहनिर्माणाचे "सर्वांसाठी घरे" हे स्वप्न पूर्ण करण्यासाठी या आव्हानांवर मात करणे आवश्यक आहे.</p>
+            </div>
+        </main>
+        
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>हा इन्फोग्राफिक प्रदान केलेल्या संशोधन अहवालावर आधारित आहे. सर्व आकडेवारी आणि माहिती सार्वजनिकरित्या उपलब्ध स्त्रोतांकडून घेतली आहे.</p>
+            <p>डिझाइन आणि व्हिज्युअलायझेशन: कॅनव्हास इन्फोग्राफिक्स.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxWidth = 16) => {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: '#004369',
+                    titleFont: { size: 16, family: 'Inter' },
+                    bodyFont: { size: 14, family: 'Inter' },
+                    padding: 12,
+                    cornerRadius: 8,
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        font: { family: 'Inter', size: 12 },
+                        color: '#374151'
+                    },
+                    grid: {
+                        color: '#e5e7eb'
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: { family: 'Inter', size: 12 },
+                        color: '#374151',
+                        maxRotation: 0,
+                        minRotation: 0
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        };
+
+        const housesBuiltCtx = document.getElementById('housesBuiltChart').getContext('2d');
+        new Chart(housesBuiltCtx, {
+            type: 'bar',
+            data: {
+                labels: [wrapLabel('इंदिरा आवास योजना (2004-14)'), wrapLabel('प्रधानमंत्री आवास योजना-ग्रामीण (2014-25)')],
+                datasets: [{
+                    label: 'घरे (कोटींमध्ये)',
+                    data: [2.10, 3.50],
+                    backgroundColor: ['#01949A', '#DB1F48'],
+                    borderColor: ['#01949A', '#DB1F48'],
+                    borderWidth: 1,
+                    borderRadius: 8,
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        const fundingCtx = document.getElementById('fundingChart').getContext('2d');
+        new Chart(fundingCtx, {
+            type: 'bar',
+            data: {
+                labels: [wrapLabel('इंदिरा आवास योजना (अंतिम)'), wrapLabel('प्रधानमंत्री आवास योजना-ग्रामीण')],
+                datasets: [{
+                    label: 'मदत (रुपये)',
+                    data: [70000, 120000],
+                    backgroundColor: ['#01949A', '#DB1F48'],
+                    borderColor: ['#01949A', '#DB1F48'],
+                    borderWidth: 1,
+                    borderRadius: 8,
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    ...commonChartOptions.scales,
+                    y: {
+                        ...commonChartOptions.scales.y,
+                        ticks: {
+                             ...commonChartOptions.scales.y.ticks,
+                             callback: function(value) {
+                                return '₹' + new Intl.NumberFormat('en-IN').format(value);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const packageCtx = document.getElementById('packageChart').getContext('2d');
+        new Chart(packageCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['शौचालय', 'पाणी', 'वीज', 'गॅस', 'मजुरी'],
+                datasets: [{
+                    label: 'एकात्मिक पॅकेज',
+                    data: [20, 20, 20, 20, 20],
+                    backgroundColor: ['#004369', '#01949A', '#DB1F48', '#8A2BE2', '#FFD700'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                 responsive: true,
+                 maintainAspectRatio: false,
+                 plugins: {
+                     legend: {
+                         position: 'top',
+                         labels: {
+                             font: { family: 'Inter', size: 14 }
+                         }
+                     },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        backgroundColor: '#004369',
+                        titleFont: { size: 16, family: 'Inter' },
+                        bodyFont: { size: 14, family: 'Inter' },
+                        padding: 12,
+                        cornerRadius: 8,
+                    }
+                 }
+            }
+        });
+    </script>
+
+</body>
+</html>
