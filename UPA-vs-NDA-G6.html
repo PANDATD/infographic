@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ग्रामीण रोजगार इन्फोग्राफिक: मनरेगा आणि आवास प्लस</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- 
+        Palette Choice: Energetic & Playful (Adapted)
+        Primary: #665191 (Purple)
+        Secondary: #2f4b7c (Dark Blue)
+        Accent 1: #ffa600 (Yellow/Orange)
+        Accent 2: #f95d6a (Pink/Red)
+        Background: #f1f5f9 (Slate 100)
+        Text: #1e293b (Slate 800)
+    -->
+    <!--
+        Infographic Narrative Plan:
+        1.  Header: Title and introduction to the topic of rural employment.
+        2.  Section 1 (The Foundation): Introduce MGNREGA with key stats (Total vs. Active Job Cards). Goal: Inform & Compare.
+        3.  Section 2 (The Challenge): Briefly explain the initial problems with the scheme.
+        4.  Section 3 (The Digital Revolution): Introduce the post-2014 digital transformation, focusing on Awaas Plus.
+        5.  Section 4 (The Process Flow): Visualize the new, transparent process using an HTML/CSS flowchart. Goal: Organize.
+        6.  Section 5 (The Impact): Show the results of digital reforms with a comparative bar chart and highlight key benefits. Goal: Compare & Inform.
+        7.  Section 6 (The Tools): Explain the digital tools (AwaasSoft & AwaasApp) with icons. Goal: Organize.
+        8.  Conclusion: Summarize the overall positive impact on rural India.
+    -->
+    <!--
+        Visualization Selection & Justification (NO SVG / NO MERMAID):
+        1.  Job Cards Data Point: Goal: Compare composition. Chosen Viz: Donut Chart. Justification: Excellent for showing part-to-whole relationships clearly. Library: Chart.js (Canvas). NO SVG.
+        2.  Awaas Plus Process: Goal: Organize a process. Chosen Viz: HTML/CSS Flowchart. Justification: Required to avoid SVG/Mermaid. Implemented using Tailwind CSS (flexbox, borders) for a clean, structured layout. NO SVG.
+        3.  Scheme Impact Comparison: Goal: Compare pre/post reform metrics. Chosen Viz: Bar Chart. Justification: Best for comparing discrete categories (Transparency, Efficiency). Library: Chart.js (Canvas). NO SVG.
+        4.  Digital Tools Features: Goal: Organize features. Chosen Viz: Icon list. Justification: Simple, clear, and visually appealing using Unicode characters styled with CSS. NO SVG.
+    -->
+    <!--
+        Confirmation: Neither Mermaid JS nor SVG has been used in this document. All visualizations are rendered using Chart.js on HTML Canvas or are constructed with standard HTML and Tailwind CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #665191;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4" style="color: #2f4b7c;">ग्रामीण रोजगाराचे सक्षमीकरण</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">मनरेगा आणि आवास प्लसच्या माध्यमातून डिजिटल सुधारणांनी ग्रामीण भारताच्या आर्थिक आणि सामाजिक परिदृश्यात कसा बदल घडवला आहे, याचा आढावा.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 md:col-span-2">
+                <h2 class="text-2xl font-bold mb-4 text-center" style="color: #665191;">१. मनरेगा: ग्रामीण रोजगाराचा पाया</h2>
+                <p class="text-slate-600 mb-6 text-center max-w-4xl mx-auto">२००५ मध्ये सुरू झालेल्या महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार हमी योजनेने (मनरेगा) प्रत्येक ग्रामीण कुटुंबाला वर्षातून किमान १०० दिवसांच्या कामाची हमी देऊन एक ऐतिहासिक सामाजिक सुरक्षा जाळे निर्माण केले. या योजनेने ग्रामीण भागात रोजगाराच्या संधी निर्माण केल्या आणि महिलांचा आर्थिक सहभाग वाढवला.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="flex flex-col items-center justify-center">
+                        <p class="text-lg text-slate-600 mb-2">२०२०-२१ पर्यंत जारी जॉब कार्ड्स</p>
+                        <p class="text-6xl font-bold" style="color: #2f4b7c;">१४.८८ कोटी</p>
+                        <p class="mt-4 text-center text-slate-500">या योजनेने करोडो कुटुंबांना थेट रोजगाराची संधी उपलब्ध करून दिली, ज्यामुळे स्थलांतरावर नियंत्रण मिळण्यास मदत झाली.</p>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="jobCardsChart"></canvas>
+                        </div>
+                        <p class="text-center mt-4 text-slate-600">जारी केलेल्या जॉब कार्ड्सपैकी, सुमारे ६२% सक्रिय राहिल्या, जे योजनेच्या व्यापक पोहोच आणि अंमलबजावणीतील आव्हाने दोन्ही दर्शवते.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 md:col-span-2">
+                <h2 class="text-2xl font-bold mb-4 text-center" style="color: #665191;">२. डिजिटल क्रांती: 'आवास प्लस' आणि पारदर्शकता</h2>
+                <p class="text-slate-600 mb-6 text-center max-w-4xl mx-auto">सुरुवातीच्या काळात मनरेगामध्ये कामातील दिरंगाई, भ्रष्टाचार आणि पारदर्शकतेचा अभाव यांसारखी आव्हाने होती. २०१४ नंतर, सरकारने डिजिटल सुधारणांवर भर दिला. प्रधानमंत्री आवास योजनेला मनरेगासोबत जोडून 'आवास प्लस' हे उपमॉड्यूल सुरू केले, ज्यामुळे गृहनिर्माणाशी संबंधित कामांना वेग आला आणि प्रक्रिया अधिक पारदर्शक झाली.</p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 md:col-span-2">
+                <h3 class="text-xl font-bold text-center mb-6" style="color: #665191;">नवीन पारदर्शक प्रक्रिया (फ्लोचार्ट)</h3>
+                <div class="flex flex-col md:flex-row justify-between items-center text-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="flex flex-col items-center w-full md:w-1/5">
+                        <div class="p-4 border-2 border-dashed rounded-lg" style="border-color: #ffa600;">
+                            <span class="text-3xl">🏠</span>
+                            <h4 class="font-bold mt-2">घरकुल लाभार्थी</h4>
+                            <p class="text-sm text-slate-500">PMAY अंतर्गत लाभार्थी निवड</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow transform md:rotate-0 rotate-90">→</div>
+                    <div class="flex flex-col items-center w-full md:w-1/5">
+                        <div class="p-4 border-2 border-dashed rounded-lg" style="border-color: #f95d6a;">
+                             <span class="text-3xl">🛠️</span>
+                            <h4 class="font-bold mt-2">मनरेगा जॉब कार्ड</h4>
+                            <p class="text-sm text-slate-500">घर बांधकामासाठी मजुरीचे काम</p>
+                        </div>
+                    </div>
+                     <div class="flow-arrow transform md:rotate-0 rotate-90">→</div>
+                    <div class="flex flex-col items-center w-full md:w-1/5">
+                        <div class="p-4 border-2 border-dashed rounded-lg" style="border-color: #665191;">
+                            <span class="text-3xl">📱</span>
+                            <h4 class="font-bold mt-2">डिजिटल देखरेख</h4>
+                            <p class="text-sm text-slate-500">AwaasApp द्वारे कामाची नोंदणी</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow transform md:rotate-0 rotate-90">→</div>
+                    <div class="flex flex-col items-center w-full md:w-1/5">
+                        <div class="p-4 border-2 border-dashed rounded-lg" style="border-color: #2f4b7c;">
+                            <span class="text-3xl">🏦</span>
+                            <h4 class="font-bold mt-2">थेट लाभ हस्तांतरण (DBT)</h4>
+                            <p class="text-sm text-slate-500">मजुरी थेट बँक खात्यात</p>
+                        </div>
+                    </div>
+                </div>
+                 <p class="text-center mt-6 text-slate-600">या सुव्यवस्थित प्रक्रियेमुळे मध्यस्थांची भूमिका संपुष्टात आली आणि लाभार्थ्यांना वेळेवर व थेट आर्थिक लाभ मिळू लागला.</p>
+            </div>
+
+
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-bold mb-6 text-center" style="color: #665191;">३. डिजिटल साधनांची शक्ती</h2>
+                 <p class="text-slate-600 mb-6 text-center">'आवाससॉफ्ट' आणि 'आवासॲप' यांसारख्या डिजिटल साधनांमुळे संपूर्ण प्रक्रियेवर रिअल-टाइममध्ये लक्ष ठेवणे शक्य झाले आहे. यामुळे योजनेची कार्यक्षमता आणि विश्वासार्हता वाढली आहे.</p>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-2xl mr-4" style="color: #ffa600;">📍</span>
+                        <div>
+                            <h4 class="font-bold">जिओ-टॅगिंग (Geo-tagging)</h4>
+                            <p class="text-slate-600">कामाच्या अचूक भौगोलिक स्थानाची नोंदणी, ज्यामुळे बनावट कामांना आळा बसतो.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl mr-4" style="color: #f95d6a;">📸</span>
+                         <div>
+                            <h4 class="font-bold">फोटो अपलोड</h4>
+                            <p class="text-slate-600">बांधकामाच्या प्रत्येक टप्प्याचे छायाचित्र अपलोड करणे, ज्यामुळे प्रगतीची सत्यता तपासता येते.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl mr-4" style="color: #665191;">📊</span>
+                         <div>
+                            <h4 class="font-bold">रिअल-टाइम देखरेख</h4>
+                            <p class="text-slate-600">केंद्र आणि राज्य सरकारला कामाच्या प्रगतीवर थेट लक्ष ठेवण्याची सुविधा.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-bold mb-6 text-center" style="color: #665191;">४. सुधारणांचे परिणाम</h2>
+                 <p class="text-slate-600 mb-6 text-center">डिजिटल सुधारणांमुळे योजनेच्या अंमलबजावणीत झालेल्या सकारात्मक बदलांचे हे गुणात्मक विश्लेषण आहे. (स्केल १-१०, अंदाजित मूल्ये)</p>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="text-center mt-12">
+            <h2 class="text-3xl font-bold mb-4" style="color: #2f4b7c;">निष्कर्ष: एक उज्वल भविष्य</h2>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto">मनरेगा आणि आवास प्लसच्या डिजिटल एकत्रीकरणाने केवळ ग्रामीण रोजगारच निर्माण केला नाही, तर प्रशासनात पारदर्शकता, कार्यक्षमता आणि सामाजिक उत्तरदायित्व आणले आहे. या सुधारणांमुळे ग्रामीण भागातील नागरिकांचे जीवनमान उंचावत आहे आणि ते आर्थिकदृष्ट्या अधिक सुरक्षित होत आहेत.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const wrapLabel = (label, maxWidth) => {
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxWidth) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const defaultChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: "'Noto Sans Devanagari', 'Inter', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        bodyFont: {
+                           font: {
+                                family: "'Noto Sans Devanagari', 'Inter', sans-serif"
+                            }
+                        },
+                        titleFont: {
+                           font: {
+                                family: "'Noto Sans Devanagari', 'Inter', sans-serif"
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                           font: {
+                                family: "'Noto Sans Devanagari', 'Inter', sans-serif"
+                            }
+                        }
+                    },
+                    y: {
+                        ticks: {
+                           font: {
+                                family: "'Noto Sans Devanagari', 'Inter', sans-serif"
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const jobCardsCtx = document.getElementById('jobCardsChart').getContext('2d');
+            new Chart(jobCardsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['सक्रिय जॉब कार्ड्स (९.३ कोटी)', 'निष्क्रिय जॉब कार्ड्स (५.५८ कोटी)'],
+                    datasets: [{
+                        label: 'जॉब कार्ड्स वितरण',
+                        data: [9.3, 5.58],
+                        backgroundColor: ['#665191', '#ffa600'],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    ...defaultChartOptions,
+                    cutout: '60%',
+                     plugins: {
+                        ...defaultChartOptions.plugins,
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    family: "'Noto Sans Devanagari', 'Inter', sans-serif"
+                                },
+                                padding: 20
+                            }
+                        }
+                    }
+                }
+            });
+
+            const impactCtx = document.getElementById('impactChart').getContext('2d');
+            const originalLabels = ['पारदर्शकता', 'कार्यक्षमता', 'वेळेवर वेतन', 'सामाजिक उत्तरदायित्व'];
+            const wrappedLabels = originalLabels.map(label => wrapLabel(label, 16));
+
+            new Chart(impactCtx, {
+                type: 'bar',
+                data: {
+                    labels: wrappedLabels,
+                    datasets: [{
+                        label: 'डिजिटल सुधारणांपूर्वी',
+                        data: [3, 4, 2, 4],
+                        backgroundColor: '#f95d6a',
+                        borderRadius: 5
+                    }, {
+                        label: 'डिजिटल सुधारणांनंतर',
+                        data: [9, 8, 9, 8],
+                        backgroundColor: '#665191',
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                   ...defaultChartOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                             ticks: {
+                               font: {
+                                    family: "'Noto Sans Devanagari', 'Inter', sans-serif"
+                                }
+                            }
+                        },
+                        x: {
+                             ticks: {
+                               font: {
+                                    family: "'Noto Sans Devanagari', 'Inter', sans-serif"
+                                },
+                                maxRotation: 0,
+                                minRotation: 0
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
