@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ग्रामीण आरोग्य अभियान: एक दृष्य आढावा</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#004AAD]">ग्रामीण आरोग्य अभियान</h1>
+            <p class="text-xl text-[#0062D6] mt-2">एक दृष्य आढावा</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <section class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#004AAD] mb-4">प्रस्तावना</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    स्वतंत्र भारताच्या आरोग्य धोरणांमध्ये ग्रामीण भाग हे कायमच एक आव्हानात्मक केंद्रबिंदू राहिले आहेत. देशातील बहुसंख्य लोकसंख्या ग्रामीण भागात राहत असल्याने, त्यांच्यापर्यंत दर्जेदार व परवडणाऱ्या आरोग्यसेवा पोहोचवणे हे कोणत्याही सरकारपुढील प्राथमिक उद्दिष्ट ठरते. या इन्फोग्राफिकच्या माध्यमातून आपण दोन महत्त्वाच्या टप्प्यांचा आढावा घेणार आहोत: राष्ट्रीय ग्रामीण आरोग्य अभियान (NRHM) आणि त्यानंतर आलेली आयुष्मान भारत योजना.
+                </p>
+            </section>
+
+            <section class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-4 text-center">राष्ट्रीय ग्रामीण आरोग्य अभियान (NRHM): पायाभरणी (२००५-२०१४)</h2>
+                 <p class="text-gray-700 leading-relaxed mb-6 text-center max-w-3xl mx-auto">
+                    १२ एप्रिल २००५ रोजी सुरू झालेल्या NRHM चा उद्देश ग्रामीण भागातील आरोग्य सेवा सुधारणे हा होता, विशेषतः माता आणि बाल आरोग्य सेवांवर लक्ष केंद्रित करून. या योजनेमुळे आरोग्य सेवांच्या वापरात मोठी वाढ झाली, पण काही आव्हाने कायम राहिली.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 rounded-lg p-6 flex flex-col items-center justify-center">
+                        <h3 class="text-lg font-bold text-[#004AAD] mb-2 text-center">रुग्णालयातील प्रसूतीमध्ये वाढ</h3>
+                         <p class="text-gray-600 text-sm mb-4 text-center">२००४ ते २०१४ या काळात रुग्णालयात होणाऱ्या प्रसूतींच्या प्रमाणात लक्षणीय वाढ झाली, ज्यामुळे माता आणि बालमृत्यू दर कमी होण्यास मदत झाली.</p>
+                        <div class="chart-container h-64 md:h-72">
+                            <canvas id="deliveryGrowthChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="bg-blue-50 rounded-lg p-6 flex flex-col items-center justify-center">
+                        <h3 class="text-lg font-bold text-[#004AAD] mb-2 text-center">सरकारी रुग्णालयांच्या वापरात वाढ</h3>
+                        <p class="text-gray-600 text-sm mb-4 text-center">NRHM मुळे लोकांचा सरकारी आरोग्य यंत्रणेवरील विश्वास वाढला, जो प्रसूतीसाठी सरकारी रुग्णालयांच्या वाढलेल्या वापरातून दिसून येतो.</p>
+                        <div class="chart-container h-64 md:h-72">
+                            <canvas id="govtHospitalUsageChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="bg-red-50 rounded-lg p-6">
+                        <h3 class="text-lg font-bold text-red-800 mb-2 text-center">आरोग्यसेवेसाठी खाजगी क्षेत्रावरील अवलंबित्व</h3>
+                        <p class="text-gray-600 text-sm mb-4 text-center">मोठ्या यशानंतरही, ग्रामीण कुटुंबे बाह्यरुग्ण आणि रुग्णालयीन उपचारांसाठी मोठ्या प्रमाणावर खाजगी डॉक्टरांवर अवलंबून होती, ज्यामुळे खिशावरील खर्चाचा (OOP) भार वाढला.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="chart-container h-56">
+                                <canvas id="outpatientChart"></canvas>
+                            </div>
+                            <div class="chart-container h-56">
+                                <canvas id="inpatientChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="bg-red-50 rounded-lg p-6 flex flex-col items-center justify-center text-center">
+                        <h3 class="text-lg font-bold text-red-800 mb-2">आरोग्य खर्चामुळे वाढणारे दारिद्र्य</h3>
+                        <p class="text-gray-600 text-sm mb-4">जास्त वैद्यकीय खर्चामुळे दरवर्षी अनेक कुटुंबे दारिद्र्यरेषेखाली ढकलली जात होती. ही NRHM पुढील एक मोठी चिंता होती.</p>
+                        <div class="text-red-600">
+                            <span class="text-7xl font-bold">~७%</span>
+                            <p class="text-xl mt-2">कुटुंबे दरवर्षी गरीब बनत होती</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-4 text-center">आयुष्मान भारत: एक नवीन दिशा (२०१४ नंतर)</h2>
+                 <p class="text-gray-700 leading-relaxed mb-6 text-center max-w-3xl mx-auto">
+                    २०१४ नंतर, सरकारने NRHM च्या पायावर आयुष्मान भारत योजनेचा विस्तार केला. यामध्ये प्राथमिक सेवा बळकट करणे, विमा संरक्षण देणे आणि तंत्रज्ञानाचा प्रभावी वापर करणे यावर भर देण्यात आला.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-green-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">₹५ लाखांचे विमा संरक्षण</h3>
+                        <p class="text-gray-600">प्रधानमंत्री जन आरोग्य योजने (PM-JAY) अंतर्गत गरीब कुटुंबांना वार्षिक ₹५ लाखांपर्यंतचे आरोग्य विमा संरक्षण मिळाले.</p>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">५ कोटी+ लाभार्थी</h3>
+                        <p class="text-gray-600">२०२३ पर्यंत ५ कोटींपेक्षा जास्त लोकांनी PM-JAY योजनेचा प्रत्यक्ष लाभ घेतला आहे, ज्यामुळे OOP खर्चात घट झाली.</p>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">हेल्थ अँड वेलनेस सेंटर्स</h3>
+                        <p class="text-gray-600">प्राथमिक आरोग्य सेवा मजबूत करण्यासाठी देशभरात हेल्थ अँड वेलनेस सेंटर्स (HWCs) स्थापन करण्यात आली.</p>
+                    </div>
+                </div>
+                <div class="mt-8">
+                     <h3 class="text-2xl font-bold text-[#004AAD] mb-4 text-center">तंत्रज्ञानाचा प्रभावी वापर</h3>
+                      <p class="text-gray-700 leading-relaxed mb-6 text-center max-w-3xl mx-auto">
+                        आरोग्य सेवा अधिक गतिमान आणि पारदर्शक करण्यासाठी विविध डिजिटल उपक्रम सुरू करण्यात आले.
+                     </p>
+                    <div class="flex flex-wrap justify-center gap-4 text-center">
+                        <div class="bg-blue-100 text-blue-800 rounded-lg p-4 w-40">📱<br>टेलिमेडिसिन</div>
+                        <div class="bg-blue-100 text-blue-800 rounded-lg p-4 w-40">💻<br>ई-संजीवनी</div>
+                        <div class="bg-blue-100 text-blue-800 rounded-lg p-4 w-40">🚑<br>मोबाईल हेल्थ युनिट्स</div>
+                        <div class="bg-blue-100 text-blue-800 rounded-lg p-4 w-40">🌿<br>आयुष सेंटर्स</div>
+                        <div class="bg-blue-100 text-blue-800 rounded-lg p-4 w-40">📄<br>डिजिटल हेल्थ रेकॉर्ड्स</div>
+                    </div>
+                </div>
+            </section>
+
+             <section class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#004AAD] mb-4">निष्कर्ष आणि भविष्यातील आव्हाने</h2>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    NRHM ने ग्रामीण आरोग्याच्या पायाभूत सुविधा सुधारल्या, तर आयुष्मान भारतने त्यावर विमा संरक्षण आणि तंत्रज्ञानाची जोड दिली. यामुळे आरोग्य व्यवस्थेवरील आर्थिक भार कमी झाला आहे.
+                </p>
+                <p class="text-gray-700 font-bold">तरीही, काही आव्हाने कायम आहेत:</p>
+                <ul class="list-disc list-inside mt-2 text-red-700">
+                    <li>खिशावरील खर्चाचा (OOP) भार पूर्णपणे कमी करणे.</li>
+                    <li>कुशल मनुष्यबळाची कमतरता भरून काढणे.</li>
+                    <li>खाजगी आरोग्यसेवेवरील अवलंबित्व कमी करणे.</li>
+                    <li>दुर्गम भागांमध्ये आरोग्य सेवा पोहोचवणे.</li>
+                </ul>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>डेटा स्त्रोत: प्रदान केलेला संशोधन अहवाल. हे इन्फोग्राफिक केवळ माहितीसाठी आहे.</p>
+        </footer>
+    </div>
+<script>
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+            return label.join(' ');
+        }
+        return label;
+    };
+
+    const commonChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                 labels: {
+                    font: {
+                        family: "'Noto Sans', sans-serif"
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                },
+                 bodyFont: {
+                    family: "'Noto Sans', sans-serif"
+                },
+                titleFont: {
+                    family: "'Noto Sans', sans-serif"
+                }
+            }
+        },
+        scales: {
+            y: {
+                ticks: {
+                    font: {
+                        family: "'Noto Sans', sans-serif"
+                    }
+                }
+            },
+            x: {
+                ticks: {
+                    font: {
+                        family: "'Noto Sans', sans-serif"
+                    }
+                }
+            }
+        }
+    };
+    
+    const colors = {
+        blue1: '#004AAD',
+        blue2: '#0062D6',
+        blue3: '#4DA3FF',
+        grey: '#E5E7EB',
+        red1: '#DC2626',
+        red2: '#F87171'
+    };
+
+    new Chart(document.getElementById('deliveryGrowthChart'), {
+        type: 'line',
+        data: {
+            labels: ['2004', '2014'],
+            datasets: [{
+                label: 'रुग्णालयातील प्रसूती (%)',
+                data: [43, 83],
+                borderColor: colors.blue1,
+                backgroundColor: colors.blue3,
+                fill: true,
+                tension: 0.1
+            }]
+        },
+        options: { ...commonChartOptions, scales: { y: { beginAtZero: true, max: 100 } } }
+    });
+
+    new Chart(document.getElementById('govtHospitalUsageChart'), {
+        type: 'bar',
+        data: {
+            labels: ['2004', '2014'],
+            datasets: [{
+                label: 'सरकारी रुग्णालयांचा वापर (%)',
+                data: [21, 53],
+                backgroundColor: [colors.blue2, colors.blue1],
+                borderColor: [colors.blue2, colors.blue1],
+                borderWidth: 1
+            }]
+        },
+        options: { ...commonChartOptions, scales: { y: { beginAtZero: true, max: 100 } } }
+    });
+
+    new Chart(document.getElementById('outpatientChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['खाजगी डॉक्टर', 'सरकारी'],
+            datasets: [{
+                label: 'बाह्यरुग्ण सेवा',
+                data: [75, 25],
+                backgroundColor: [colors.red1, colors.grey],
+                hoverOffset: 4
+            }]
+        },
+        options: { ...commonChartOptions, plugins: { ...commonChartOptions.plugins, legend: { display: true, position: 'bottom' }, title: { display: true, text: 'बाह्यरुग्ण सेवा (%)', font: { family: "'Noto Sans', sans-serif", size: 14 } } } }
+    });
+
+    new Chart(document.getElementById('inpatientChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['खाजगी रुग्णालय', 'सरकारी'],
+            datasets: [{
+                label: 'रुग्णालयीन उपचार',
+                data: [55, 45],
+                backgroundColor: [colors.red2, colors.grey],
+                hoverOffset: 4
+            }]
+        },
+        options: { ...commonChartOptions, plugins: { ...commonChartOptions.plugins, legend: { display: true, position: 'bottom' }, title: { display: true, text: 'रुग्णालयीन उपचार (%)', font: { family: "'Noto Sans', sans-serif", size: 14 } } } }
+    });
+</script>
+
+</body>
+</html>
