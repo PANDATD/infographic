@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>प्रधानमंत्री ग्राम सडक योजना: एक तुलनात्मक इन्फोग्राफिक</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 320px;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            flex: 1;
+            min-width: 120px;
+        }
+        .flowchart-step .icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .flowchart-connector {
+            flex: 1;
+            height: 2px;
+            background-color: #ff6361;
+            align-self: center;
+            min-width: 40px;
+        }
+        @media (max-width: 767px) {
+            .flowchart-connector {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-[#003f5c] text-white p-6 shadow-lg text-center">
+        <h1 class="text-3xl md:text-4xl font-bold mb-2">प्रधानमंत्री ग्राम सडक योजना (PMGSY)</h1>
+        <p class="text-lg md:text-xl font-light">ग्रामीण भारताच्या विकासाची जीवनरेखा: एक तुलनात्मक विश्लेषण</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="intro" class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4">प्रस्तावना: दोन युगांमधील कामगिरीचे अवलोकन</h2>
+                <p class="text-base leading-relaxed">प्रधानमंत्री ग्राम सडक योजना (PMGSY) २००० साली सुरू झाली, पण तिची खरी गती आणि स्वरूप दोन वेगवेगळ्या सरकारच्या काळात कसे बदलले, हे पाहणे महत्त्वाचे आहे. यूपीए सरकारच्या काळात (२००४-२०१४) या योजनेचा विस्तार झाला, तर २०१४ नंतर मोदी सरकारने योजनेत वेग, गुणवत्ता आणि पारदर्शकता आणून तिला एका नव्या उंचीवर नेले. हे इन्फोग्राफिक याच दोन युगांमधील कामगिरीची आकडेवारी आणि आलेखांच्या मदतीने तुलना करते.</p>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center">
+                <h3 class="text-xl font-semibold text-center text-[#58508d] mb-4">दैनिक रस्ते बांधणीचा वेग</h3>
+                <div class="w-full flex justify-around items-center">
+                    <div class="text-center">
+                        <p class="text-4xl font-bold text-[#003f5c]">९८.५</p>
+                        <p class="text-sm text-gray-600">किमी/दिवस</p>
+                        <p class="font-semibold mt-2">यूपीए (२००४-१४)</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-6xl font-bold text-[#ff6361]">१३९</p>
+                        <p class="text-lg text-gray-600">किमी/दिवस</p>
+                        <p class="font-semibold mt-2">मोदी (२०१६-१८)</p>
+                    </div>
+                </div>
+                <p class="text-center mt-4 text-sm text-gray-500">मोदी सरकारच्या काळात रस्ते बांधणीचा वेग लक्षणीयरीत्या वाढला, ज्यामुळे ग्रामीण जोडणीला गती मिळाली.</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                 <h3 class="text-xl font-semibold text-center text-[#58508d] mb-4">पात्र वस्त्यांची जोडणी (%)</h3>
+                <div class="chart-container">
+                    <canvas id="connectivityChart"></canvas>
+                </div>
+                 <p class="text-center mt-4 text-sm text-gray-500">२०१४ पर्यंत ५५% गावांना जोडणी मिळाली होती, जी आता ९९.५% पर्यंत पोहोचली आहे.</p>
+            </div>
+        </div>
+
+        <section id="upa-era" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003f5c] mb-6 text-center">यूपीए सरकारचा कार्यकाळ (२००४-२०१४): पायाभरणी आणि आव्हाने</h2>
+             <p class="text-center max-w-3xl mx-auto mb-8 text-gray-600">या काळात योजनेला प्रारंभिक चालना मिळाली आणि सुमारे ४.१९ लाख किमी रस्ते बांधले गेले. तथापि, अनेक कार्यान्वयन आणि प्रशासकीय आव्हानांमुळे योजनेची परिणामकारकता मर्यादित राहिली.</p>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold text-center text-[#58508d] mb-4">कार्यान्वयनातील प्रमुख त्रुटी</h3>
+                <div class="chart-container">
+                    <canvas id="upaChallengesChart"></canvas>
+                </div>
+                 <p class="text-center mt-4 text-sm text-gray-500">कॅगच्या अहवालानुसार, अनेक प्रकल्पांमध्ये गुणवत्तेचा अभाव, अपुरी देखभाल आणि विलंब यांसारख्या गंभीर समस्या होत्या.</p>
+            </div>
+        </section>
+
+        <section id="modi-era" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003f5c] mb-6 text-center">मोदी सरकारचा कार्यकाळ (२०१४ नंतर): गतिमानता आणि परिवर्तन</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8 text-gray-600">२०१४ नंतर सरकारने PMGSY ला नवीन स्वरूप दिले. केवळ रस्ते बांधणीचा वेगच वाढवला नाही, तर गुणवत्ता, तंत्रज्ञान आणि पारदर्शकतेवरही भर दिला. यामुळे योजनेची व्याप्ती आणि परिणाम दोन्ही वाढले.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                 <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <p class="text-6xl font-bold text-[#bc5090]">७.७१</p>
+                    <p class="text-xl font-semibold text-gray-700">लाख किमी</p>
+                    <p class="text-gray-500 mt-2">एकूण रस्ते बांधले (डिसें. २०२४ पर्यंत)</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <p class="text-6xl font-bold text-[#ff6361]">९,२५७</p>
+                    <p class="text-xl font-semibold text-gray-700">पूल</p>
+                    <p class="text-gray-500 mt-2">एकूण पूल बांधले (डिसें. २०२४ पर्यंत)</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <p class="text-6xl font-bold text-[#ffa600]">₹३.३</p>
+                    <p class="text-xl font-semibold text-gray-700">लाख कोटी</p>
+                    <p class="text-gray-500 mt-2">एकूण खर्च</p>
+                </div>
+            </div>
+        </section>
+
+         <section id="tech-revolution" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003f5c] mb-6 text-center">तंत्रज्ञान आणि गुणवत्तेची क्रांती</h2>
+             <p class="text-center max-w-3xl mx-auto mb-8 text-gray-600">आधुनिक तंत्रज्ञानाचा वापर करून योजनेत पारदर्शकता, उत्तरदायित्व आणि शाश्वतता आणण्यात आली. हरित तंत्रज्ञानामुळे पर्यावरणपूरक आणि मजबूत रस्ते बांधणीला चालना मिळाली.</p>
+            <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <h3 class="text-xl font-semibold text-center text-[#58508d] mb-6">प्रगत अंमलबजावणी प्रक्रिया</h3>
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-4">
+                    <div class="flowchart-step">
+                        <div class="icon bg-[#003f5c]">🗺️</div>
+                        <h4 class="font-semibold">GIS मॅपिंग</h4>
+                        <p class="text-sm text-gray-600"> अचूक नियोजन आणि देखरेख</p>
+                    </div>
+                    <div class="flowchart-connector"></div>
+                    <div class="flowchart-step">
+                         <div class="icon bg-[#58508d]">🌿</div>
+                        <h4 class="font-semibold">हरित तंत्रज्ञान</h4>
+                         <p class="text-sm text-gray-600">कचरा प्लास्टिक, कोल्ड मिक्सचा वापर</p>
+                    </div>
+                     <div class="flowchart-connector"></div>
+                    <div class="flowchart-step">
+                        <div class="icon bg-[#bc5090]">📱</div>
+                        <h4 class="font-semibold">मेरीसडक ॲप</h4>
+                         <p class="text-sm text-gray-600">नागरिकांचा थेट अभिप्राय</p>
+                    </div>
+                    <div class="flowchart-connector"></div>
+                    <div class="flowchart-step">
+                         <div class="icon bg-[#ff6361]">🔧</div>
+                        <h4 class="font-semibold">e-MARG</h4>
+                         <p class="text-sm text-gray-600">देखभालीसाठी डिजिटल प्लॅटफॉर्म</p>
+                    </div>
+                </div>
+            </div>
+             <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold text-center text-[#58508d] mb-4">हरित तंत्रज्ञानाचा वापर (किमी मध्ये)</h3>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="greenTechChart"></canvas>
+                </div>
+                <p class="text-center mt-4 text-sm text-gray-500">पर्यावरणपूरक तंत्रज्ञानाचा वापर करून हजारो किलोमीटरचे रस्ते बांधण्यात आले, ज्यामुळे इंधन आणि संसाधनांची बचत झाली.</p>
+            </div>
+        </section>
+
+        <section id="socio-economic-impact" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003f5c] mb-6 text-center">ग्रामीण जीवनावरील सामाजिक-आर्थिक परिणाम</h2>
+             <p class="text-center max-w-3xl mx-auto mb-8 text-gray-600">उत्तम रस्त्यांमुळे केवळ दळणवळण सुधारले नाही, तर ग्रामीण भागातील शिक्षण, आरोग्य, शेती आणि रोजगाराच्या संधींमध्ये मोठी वाढ झाली. हे रस्ते खऱ्या अर्थाने विकासाच्या जीवनरेखा ठरले आहेत.</p>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold text-center text-[#58508d] mb-4">विविध क्षेत्रांमधील टक्केवारी वाढ</h3>
+                <div class="chart-container">
+                    <canvas id="impactChart"></canvas>
+                </div>
+                 <p class="text-center mt-4 text-sm text-gray-500">जोडणीमुळे कृषी उत्पादकता, आरोग्य सेवा आणि शिक्षणाच्या संधींमध्ये लक्षणीय वाढ झाली.</p>
+            </div>
+        </section>
+
+        <section id="future" class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-8">
+                 <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">भविष्याची दिशा: PMGSY-IV</h2>
+                <div class="flex flex-col md:flex-row justify-around items-center text-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-4xl font-bold text-[#ff6361]">२५,०००</p>
+                        <p class="font-semibold">नवीन वस्त्यांना जोडणी</p>
+                    </div>
+                     <div class="mb-4 md:mb-0">
+                        <p class="text-4xl font-bold text-[#ffa600]">₹७०,१२५ कोटी</p>
+                        <p class="font-semibold">अपेक्षित खर्च</p>
+                    </div>
+                     <div class="mb-4 md:mb-0">
+                        <p class="text-4xl font-bold text-[#bc5090]">२०२८-२९</p>
+                        <p class="font-semibold">योजनेचा कालावधी</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-center text-gray-600">PMGSY-IV अंतर्गत वाढत्या लोकसंख्येमुळे पात्र ठरलेल्या नवीन वस्त्यांना जोडणी देणे आणि विद्यमान रस्त्यांची देखभाल सुनिश्चित करणे हे मुख्य उद्दिष्ट आहे.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#003f5c] text-white text-center p-4 mt-8">
+        <p>&copy; २०२४. प्रधानमंत्री ग्राम सडक योजना विश्लेषण. सर्व हक्क राखीव.</p>
+    </footer>
+
+    <script>
+        const brilliantBlues = ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'];
+
+        function wrapLabels(label) {
+            const max_width = 16;
+            if (typeof label === 'string' && label.length > max_width) {
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).length > max_width && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        if (currentLine.length > 0) {
+                           currentLine += ' ' + word;
+                        } else {
+                           currentLine = word;
+                        }
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            }
+            return label;
+        }
+
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const connectivityCtx = document.getElementById('connectivityChart').getContext('2d');
+        new Chart(connectivityCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['जोडणी झाली (आता)', 'जोडणी बाकी (२०१४)'],
+                datasets: [{
+                    label: 'वस्त्यांची जोडणी',
+                    data: [99.5, 45],
+                    backgroundColor: [brilliantBlues[3], brilliantBlues[0]],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: tooltipTitleCallback.plugins.tooltip
+                }
+            }
+        });
+
+        const upaChallengesCtx = document.getElementById('upaChallengesChart').getContext('2d');
+        const upaLabels = ['निकृष्ट दर्जाचे रस्ते', 'जलनिस्सारणाचा अभाव', 'प्रकल्पांना विलंब', 'देखभालीचा अभाव'];
+        new Chart(upaChallengesCtx, {
+            type: 'bar',
+            data: {
+                labels: upaLabels.map(wrapLabels),
+                datasets: [{
+                    label: 'त्रुटी असलेले प्रकल्प (%)',
+                    data: [46, 60, 99, 21],
+                    backgroundColor: [brilliantBlues[0], brilliantBlues[1], brilliantBlues[2], brilliantBlues[3]],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: tooltipTitleCallback.plugins.tooltip
+                }
+            }
+        });
+        
+        const greenTechCtx = document.getElementById('greenTechChart').getContext('2d');
+        new Chart(greenTechCtx, {
+            type: 'pie',
+            data: {
+                labels: ['कचरा प्लास्टिक वापर', 'कोल्ड मिक्स तंत्रज्ञान', 'इतर हरित तंत्रज्ञान'],
+                datasets: [{
+                    label: 'हरित तंत्रज्ञान वापर (किमी मध्ये)',
+                    data: [26700, 17300, 5000],
+                    backgroundColor: [brilliantBlues[1], brilliantBlues[3], brilliantBlues[4]],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: tooltipTitleCallback.plugins.tooltip
+                }
+            }
+        });
+        
+        const impactCtx = document.getElementById('impactChart').getContext('2d');
+        const impactLabels = ['महिला कामगार सहभाग', 'आरोग्य सेवांपर्यंत पोहोच', 'ग्रामीण व्यवसाय बाजारपेठ', 'शाळा प्रवेश', 'कृषी उत्पादकता'];
+        new Chart(impactCtx, {
+            type: 'bar',
+            data: {
+                labels: impactLabels.map(wrapLabels),
+                datasets: [{
+                    label: 'टक्केवारी वाढ',
+                    data: [25, 23, 20, 15, 10],
+                    backgroundColor: [brilliantBlues[0], brilliantBlues[1], brilliantBlues[2], brilliantBlues[3], brilliantBlues[4]],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                 plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: tooltipTitleCallback.plugins.tooltip
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
