@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>स्वच्छ भारत मिशन (ग्रामीण): एक परिवर्तन - इन्फोग्राफिक</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F8F3D4]">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#00B8A9] mb-2">स्वच्छ भारत मिशन (ग्रामीण): एक परिवर्तन</h1>
+            <p class="text-lg text-gray-700">UPA काळातील योजनांपासून ते मोदी सरकारच्या यशस्वी अभियानापर्यंतचा प्रवास</p>
+        </header>
+
+        <main>
+            
+            <section id="pre-2014-situation" class="mb-12">
+                <div class="card text-center">
+                    <h2 class="text-3xl font-bold text-[#F6416C] mb-4">२०१४ पूर्वीची गंभीर परिस्थिती</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto mb-6">२०१४ पूर्वी, भारताच्या ग्रामीण भागात उघड्यावर शौच करणे ही एक मोठी समस्या होती. UPA सरकारच्या काळात 'संपूर्ण स्वच्छता अभियान' आणि 'निर्मल भारत अभियान' यांसारख्या योजना राबवल्या गेल्या, परंतु जनजागृतीचा अभाव, निधीतील अकार्यक्षमता आणि मर्यादित लोकसहभाग यांमुळे त्या अयशस्वी ठरल्या.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="flex flex-col items-center justify-center">
+                            <p class="text-xl text-gray-800 mb-2">२०१४ मध्ये ग्रामीण शौचालय कव्हरेज होते फक्त</p>
+                            <p class="font-inter text-8xl font-bold text-[#F6416C]">39%</p>
+                            <p class="text-gray-600 mt-2">याचा अर्थ १० पैकी ६ पेक्षा जास्त ग्रामीण कुटुंबांकडे शौचालय नव्हते.</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="coverageDonutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="sbm-launch" class="mb-12">
+                <div class="card text-center bg-[#00B8A9] text-white">
+                    <h2 class="text-3xl font-bold mb-4">एका नव्या युगाची सुरुवात: स्वच्छ भारत मिशन (ग्रामीण)</h2>
+                    <p class="max-w-3xl mx-auto mb-4">या पार्श्वभूमीवर, २ ऑक्टोबर २०१४ रोजी पंतप्रधान नरेंद्र मोदी यांनी 'स्वच्छ भारत मिशन (ग्रामीण)' या महत्त्वाकांक्षी अभियानाची सुरुवात केली. याचे ध्येय केवळ शौचालये बांधणे नव्हते, तर संपूर्ण देशाला हागणदारीमुक्त (ODF) करून लोकांच्या वर्तनात बदल घडवणे हे होते.</p>
+                    <div class="bg-white/20 p-4 rounded-lg inline-block">
+                        <p class="text-2xl font-bold font-inter">"हर घर शौचालय"</p>
+                        <p>ही या अभियानाची मूळ संकल्पना होती.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="achievements" class="mb-12">
+                <div class="card">
+                     <h2 class="text-3xl font-bold text-[#00B8A9] text-center mb-2">परिवर्तनाचे आकडे: एक अभूतपूर्व यश</h2>
+                     <p class="text-gray-600 max-w-3xl mx-auto mb-8 text-center">स्वच्छ भारत मिशनने अत्यंत कमी वेळात लक्षणीय प्रगती केली. या अभियानामुळे ग्रामीण स्वच्छतेच्या स्थितीत आमूलाग्र बदल झाला, जो आकड्यांवरून स्पष्ट दिसतो.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">स्वच्छता कव्हरेजमधील वाढ (२०१४-२०१९)</h3>
+                            <p class="text-gray-600 mb-4 text-center">अभियान सुरू झाल्यानंतर केवळ पाच वर्षांत ग्रामीण स्वच्छता कव्हरेज ३९% वरून १००% पर्यंत पोहोचले. ही एक ऐतिहासिक उपलब्धी होती.</p>
+                            <div class="chart-container h-80">
+                                <canvas id="coverageLineChart"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">शौचालय निर्मिती (मार्च २०२४ पर्यंत)</h3>
+                            <p class="text-gray-600 mb-4 text-center">देशभरात कोट्यवधी नवीन शौचालये बांधण्यात आली, ज्यामुळे प्रत्येक घराला सन्मान आणि सुरक्षा मिळाली.</p>
+                            <div class="chart-container h-80">
+                                <canvas id="toiletConstructionBarChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="comparison" class="mb-12">
+                <div class="card">
+                    <h2 class="text-3xl font-bold text-[#F6416C] text-center mb-2">दोन युगांची कहाणी: योजनांची तुलना</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto mb-8 text-center">निर्मल भारत अभियान (UPA) आणि स्वच्छ भारत मिशन (मोदी सरकार) यांच्या दृष्टिकोन आणि परिणामांमध्ये मोठे अंतर आहे. SBM चा भर केवळ बांधकामावर नव्हता, तर वर्तणुकीतील बदलावर होता, ज्यामुळे त्याला अभूतपूर्व यश मिळाले.</p>
+                     <div class="chart-container">
+                        <canvas id="programComparisonChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="social-impact" class="mb-12">
+                <div class="card">
+                    <h2 class="text-3xl font-bold text-[#00B8A9] text-center mb-8">शौचालयांच्या पलीकडे: सामाजिक परिवर्तन</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <div class="p-4 rounded-lg bg-yellow-50">
+                            <div class="text-5xl mb-4">👩</div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">महिलांचा सन्मान आणि सुरक्षा</h3>
+                            <p class="text-gray-600">घरात शौचालय उपलब्ध झाल्यामुळे महिलांना शौचासाठी बाहेर जाण्याची गरज संपली, ज्यामुळे त्यांचा सन्मान आणि सुरक्षितता वाढली. हिंसेचा धोका कमी झाला.</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-green-50">
+                            <div class="text-5xl mb-4">⚕️</div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">आरोग्यात सुधारणा</h3>
+                            <p class="text-gray-600">उघड्यावर शौच थांबल्याने अतिसार आणि जलजन्य आजारांचे प्रमाण लक्षणीयरीत्या कमी झाले, ज्यामुळे लाखो मुलांचे प्राण वाचले.</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-red-50">
+                            <div class="text-5xl mb-4">🏫</div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">शिक्षणावर सकारात्मक परिणाम</h3>
+                            <p class="text-gray-600">शाळांमध्ये मुलींसाठी स्वतंत्र आणि स्वच्छ शौचालये उपलब्ध झाल्यामुळे त्यांची शाळेतील उपस्थिती वाढली आणि गळतीचे प्रमाण कमी झाले.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="odf-plus" class="mb-12">
+                <div class="card md:col-span-2">
+                    <h2 class="text-3xl font-bold text-[#F6416C] text-center mb-2">पुढील टप्पा: ODF प्लस आणि शाश्वत स्वच्छता</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto mb-8 text-center">अभियानाचा पहिला टप्पा यशस्वी झाल्यानंतर, सरकारने 'ODF प्लस' ही संकल्पना आणली. याचा उद्देश केवळ शौचालयांचा वापरच नव्हे, तर गावांमध्ये घन आणि द्रव कचऱ्याचे योग्य व्यवस्थापन करून संपूर्ण स्वच्छता सुनिश्चित करणे आहे.</p>
+                    
+                    <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="p-4 border-2 border-[#00B8A9] rounded-lg text-center w-full md:w-1/4">
+                            <h3 class="font-bold text-[#00B8A9]">ODF</h3>
+                            <p class="text-sm text-gray-600">गाव हागणदारीमुक्त</p>
+                        </div>
+                        
+                        <div class="font-inter text-2xl text-[#00B8A9] transform md:-rotate-0 rotate-90">➔</div>
+                        
+                        <div class="p-4 border-2 border-dashed border-[#FFDE7D] rounded-lg text-center w-full md:w-1/3 bg-yellow-50">
+                            <h3 class="font-bold text-[#D99B00]">ODF+</h3>
+                            <p class="text-sm text-gray-600">ODF स्थिती कायम + कचरा आणि सांडपाणी व्यवस्थापन</p>
+                            <div class="mt-4 text-left text-xs space-y-2">
+                                <p><strong class="text-gray-700">ॲस्पायरिंग:</strong> घन किंवा द्रव कचरा व्यवस्थापन सुरू.</p>
+                                <p><strong class="text-gray-700">रायझिंग:</strong> दोन्ही प्रकारचे व्यवस्थापन सुरू.</p>
+                                <p><strong class="text-gray-700">मॉडेल:</strong> दोन्ही व्यवस्थापन + गाव दृश्यात्मक स्वच्छ.</p>
+                            </div>
+                        </div>
+
+                         <div class="font-inter text-2xl text-[#00B8A9] transform md:-rotate-0 rotate-90">➔</div>
+
+                        <div class="p-4 border-2 border-[#F6416C] rounded-lg text-center w-full md:w-1/4 bg-red-50">
+                            <h3 class="font-bold text-[#F6416C]">लक्ष्य</h3>
+                            <p class="font-bold text-2xl font-inter text-[#F6416C]">5.63 लाख+</p>
+                            <p class="text-sm text-gray-600">गावे ODF-प्लस घोषित (मार्च २०२४)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+            <p class="text-gray-600">हे इन्फोग्राफिक 'भारतातील ग्रामीण स्वच्छता मिशन' वरील सखोल संशोधन अहवालावर आधारित आहे.</p>
+            <p class="text-sm text-gray-500 mt-2">रंग पॅलेट: Energetic & Playful | डेटा व्हिज्युअलायझेशन: Chart.js | जून २०२५</p>
+        </footer>
+    </div>
+
+<script>
+    const energeticPlayful = {
+        primary: '#00B8A9',
+        accent: '#F6416C',
+        background: '#F8F3D4',
+        highlight: '#FFDE7D'
+    };
+    
+    function wrapLabels(label, maxWidth) {
+        if (typeof label !== 'string' || label.length <= maxWidth) {
+            return label;
+        }
+        const words = label.split(' ');
+        let lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        });
+        if (currentLine) {
+            lines.push(currentLine.trim());
+        }
+        return lines;
+    }
+
+    const commonTooltipCallback = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                          return label.join(' ');
+                        } else {
+                          return label;
+                        }
+                    }
+                }
+            },
+            legend: {
+                labels: {
+                    font: {
+                        family: "'Tiro Devanagari Marathi', serif",
+                        size: 14
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                ticks: {
+                    font: {
+                        family: "'Inter', sans-serif",
+                    }
+                }
+            },
+            x: {
+                 ticks: {
+                    font: {
+                        family: "'Tiro Devanagari Marathi', serif",
+                        size: 12
+                    }
+                }
+            }
+        }
+    };
+
+    const coverageDonutCtx = document.getElementById('coverageDonutChart');
+    if (coverageDonutCtx) {
+        new Chart(coverageDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['शौचालय कव्हरेज', 'कव्हरेज नाही'],
+                datasets: [{
+                    label: 'ग्रामीण शौचालय कव्हरेज (२०१४)',
+                    data: [39, 61],
+                    backgroundColor: [energeticPlayful.primary, energeticPlayful.accent],
+                    borderColor: [energeticPlayful.background],
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                     tooltip: commonTooltipCallback.plugins.tooltip,
+                     legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                            }
+                        }
+                     }
+                }
+            }
+        });
+    }
+
+    const coverageLineCtx = document.getElementById('coverageLineChart');
+    if(coverageLineCtx) {
+        new Chart(coverageLineCtx, {
+            type: 'line',
+            data: {
+                labels: ['२०१४', '२०१५', '२०१६', '२०१७', '२०१८', '२०१९'],
+                datasets: [{
+                    label: 'ग्रामीण स्वच्छता कव्हरेज (%)',
+                    data: [39, 52, 65, 80, 95, 100],
+                    borderColor: energeticPlayful.accent,
+                    backgroundColor: 'rgba(246, 65, 108, 0.2)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...commonTooltipCallback,
+                 scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%'
+                            },
+                             font: {
+                                family: "'Inter', sans-serif",
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                             font: {
+                                family: "'Inter', sans-serif",
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    const toiletConstructionBarCtx = document.getElementById('toiletConstructionBarChart');
+    if (toiletConstructionBarCtx) {
+        const labels = ['घरगुती शौचालये', 'सामुदायिक शौचालये', 'ODF+ गावे'];
+        const wrappedLabels = labels.map(label => wrapLabels(label, 16));
+
+        new Chart(toiletConstructionBarCtx, {
+            type: 'bar',
+            data: {
+                labels: wrappedLabels,
+                datasets: [{
+                    label: 'संख्या',
+                    data: [11.77, 0.0249, 5.63],
+                    backgroundColor: [energeticPlayful.primary, energeticPlayful.highlight, energeticPlayful.accent],
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                     tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                let value = context.raw;
+                                if(context.dataIndex == 0) return value + ' कोटी';
+                                if(context.dataIndex == 1) return (value*100) + ' लाख';
+                                return value + ' लाख';
+                            }
+                        }
+                    },
+                     legend: {
+                        display: false
+                     }
+                },
+                scales: {
+                     x: {
+                        beginAtZero: true,
+                         title: {
+                            display: true,
+                            text: 'संख्या (कोटी/लाख मध्ये)',
+                            font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                            }
+                        },
+                        ticks: {
+                             font: {
+                                family: "'Inter', sans-serif",
+                            }
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    const programComparisonCtx = document.getElementById('programComparisonChart');
+    if(programComparisonCtx) {
+        const labels = ['अंमलबजावणीतील वेग', 'वर्तन बदलावर भर', 'लोकसहभाग', 'आरोग्यावर परिणाम'];
+        const wrappedLabels = labels.map(label => wrapLabels(label, 16));
+        new Chart(programComparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: wrappedLabels,
+                datasets: [
+                    {
+                        label: 'निर्मल भारत अभियान (UPA)',
+                        data: [3, 2, 4, 3],
+                        backgroundColor: energeticPlayful.accent,
+                        borderColor: 'white',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'स्वच्छ भारत मिशन (मोदी सरकार)',
+                        data: [9, 10, 8, 9],
+                        backgroundColor: energeticPlayful.primary,
+                        borderColor: 'white',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...commonTooltipCallback,
+                 scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10,
+                        title: {
+                            display: true,
+                            text: 'परिणामकारकता (१० पैकी गुण)',
+                             font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                            }
+                        },
+                        ticks: {
+                             font: {
+                                family: "'Inter', sans-serif",
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>
