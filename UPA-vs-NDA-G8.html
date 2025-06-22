@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>स्थानिक प्रशासन: एक डिजिटल क्रांती | इन्फोग्राफिक</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flow-arrow::after {
+            content: '▼';
+            font-size: 2rem;
+            color: #ffa600;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .pyramid-level {
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+        }
+    </style>
+</head>
+<body class="bg-[#e8eff5] text-[#003f5c]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#003f5c] mb-2">स्थानिक प्रशासन</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-[#665191]">डिजिटल आणि सामुदायिक सहभागातून क्रांती</h2>
+            <p class="max-w-3xl mx-auto mt-4 text-lg text-[#2f4b7c]">भारतीय ग्रामीण प्रशासनाचा प्रवास, आव्हानांपासून ते पारदर्शक आणि उत्तरदायी प्रशासनापर्यंत.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="md:col-span-1 lg:col-span-3 bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-between transition-transform transform hover:scale-105">
+                <div>
+                    <h3 class="text-2xl font-bold text-[#d45087] mb-2">परिवर्तनाची दोन दशके</h3>
+                    <p class="text-lg text-[#2f4b7c]">७३ व्या घटना दुरुस्तीने स्थानिक स्वराज्य संस्थांना अधिकार दिले, परंतु खरा बदल डिजिटल साधनांमुळे आणि वाढलेल्या पारदर्शकतेमुळे घडून आला. हे दोन कालखंड या बदलाचे साक्षीदार आहेत.</p>
+                </div>
+                <div class="text-5xl font-bold text-[#ffa600] mt-4 md:mt-0 p-4">
+                    <span>🏛️</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-bold text-[#a05195] mb-4 border-b-2 border-[#ffa600] pb-2">कालखंड १: पायाभरणी आणि आव्हाने (२००४-२०१४)</h3>
+                <p class="mb-4 text-[#2f4b7c]">७३ व्या घटनादुरुस्तीने निधी आणि अधिकार दिले असले तरी, या काळात अंमलबजावणीत अनेक अडथळे होते. पारदर्शकतेच्या अभावामुळे योजनांचा लाभ लोकांपर्यंत प्रभावीपणे पोहोचत नव्हता.</p>
+                <ul class="space-y-3">
+                    <li class="flex items-center"><span class="text-2xl mr-3 text-red-500">📉</span> ग्रामसभांचा मर्यादित सहभाग</li>
+                    <li class="flex items-center"><span class="text-2xl mr-3 text-red-500">❌</span> योजना प्रक्रियेत पारदर्शकतेचा अभाव</li>
+                    <li class="flex items-center"><span class="text-2xl mr-3 text-red-500">🐌</span> योजनांची संथ आणि अपूर्ण अंमलबजावणी</li>
+                    <li class="flex items-center"><span class="text-2xl mr-3 text-red-500">📋</span> कामकाजाची नोंद ठेवण्यात व्यवस्थात्मक मर्यादा</li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-bold text-[#665191] mb-4 border-b-2 border-[#ffa600] pb-2">कालखंड २: डिजिटल क्रांती आणि पारदर्शकता (२०१४-२०२४)</h3>
+                <p class="mb-4 text-[#2f4b7c]">या दशकात स्थानिक प्रशासनाला अधिक उत्तरदायी आणि पारदर्शक बनवण्यावर भर दिला गेला. 'ई-ग्राम स्वराज' सारख्या डिजिटल उपक्रमांनी यात महत्त्वाची भूमिका बजावली.</p>
+                 <div class="text-center">
+                    <div class="p-4 bg-red-100 text-red-700 rounded-lg shadow-inner mb-2">
+                        <p class="font-semibold">पूर्वीची समस्या</p>
+                        <p>पारदर्शकतेचा अभाव</p>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="p-4 bg-green-100 text-green-700 rounded-lg shadow-inner">
+                        <p class="font-semibold">नवीन उपाय</p>
+                        <p>'ई-ग्राम स्वराज' आणि 'ऑडिट ऑनलाइन'</p>
+                    </div>
+                     <div class="flow-arrow"></div>
+                     <div class="p-4 bg-blue-100 text-blue-700 rounded-lg shadow-inner mt-2">
+                        <p class="font-semibold">परिणाम</p>
+                        <p>उत्तरदायी आणि पारदर्शक प्रशासन</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-1 bg-white rounded-lg shadow-md p-6 transition-transform transform hover:scale-105 flex flex-col items-center justify-center text-center">
+                <h3 class="text-xl font-bold text-[#d45087] mb-4">डिजिटल इंडियाचा प्रभाव</h3>
+                <p class="text-6xl md:text-8xl font-bold text-[#ffa600]">२.५ लाख+</p>
+                <p class="text-xl mt-2 text-[#2f4b7c]">ग्रामपंचायती २०२३ पर्यंत 'ई-ग्राम स्वराज' पोर्टलवर नोंदणीकृत झाल्या.</p>
+                <div class="w-full mt-4 chart-container h-64">
+                     <canvas id="panchayatOnboardingChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">यामुळे ग्रामपंचायतींचा वार्षिक विकास आराखडा थेट ऑनलाइन उपलब्ध झाला आहे.</p>
+            </div>
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6 transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-bold text-[#a05195] mb-2">वाढलेला सहभाग आणि पारदर्शकता</h3>
+                <p class="mb-4 text-[#2f4b7c]">डिजिटल साधनांमुळे योजनांच्या अंमलबजावणीत लोकांचा सहभाग वाढला आणि पारदर्शकता आली. स्वच्छ भारत मिशन, जल जीवन मिशन यांसारख्या योजना ग्रामपंचायत स्तरावर अधिक प्रभावीपणे राबवल्या गेल्या.</p>
+                <div class="chart-container">
+                    <canvas id="participationChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-lg p-6 transition-transform transform hover:scale-105">
+                <h3 class="text-2xl font-bold text-[#665191] text-center mb-4">नवीन प्रशासनाचा पाया</h3>
+                <p class="text-lg text-center max-w-2xl mx-auto text-[#2f4b7c] mb-6">स्थानिक प्रशासन आता केवळ निधी वितरण करणारे माध्यम राहिलेले नाही, तर हक्क, सहभाग आणि जबाबदारी या तीन स्तंभांवर ग्रामीण विकासाचे नेतृत्व करणारी एक सक्षम संस्था बनली आहे.</p>
+                <div class="w-full max-w-md mx-auto flex flex-col items-center">
+                    <div class="pyramid-level bg-[#d45087] text-white w-2/3 text-center p-3 font-bold text-lg shadow-md">जबाबदारी</div>
+                    <div class="pyramid-level bg-[#a05195] text-white w-5/6 text-center p-3 font-bold text-lg shadow-md -mt-1">सहभाग</div>
+                    <div class="pyramid-level bg-[#665191] text-white w-full text-center p-3 font-bold text-lg shadow-md -mt-1">हक्क</div>
+                </div>
+                <p class="text-center mt-4 font-bold text-xl text-[#003f5c]">▲ ग्रामीण विकासाचे नेतृत्व ▲</p>
+            </div>
+
+        </main>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>स्रोत: स्थानिक प्रशासन - डिजिटल व सामुदायिक सहभाग अहवाल.</p>
+            <p>&copy; २०२४. माहितीच्या व्हिज्युअलायझेशनसाठी तयार केले आहे.</p>
+        </footer>
+    </div>
+
+    <script>
+        function wrapLabel(str, max_width) {
+            if (str.length <= max_width) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let current_line = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (current_line.length + words[i].length + 1 <= max_width) {
+                    current_line += ' ' + words[i];
+                } else {
+                    lines.push(current_line);
+                    current_line = words[i];
+                }
+            }
+            lines.push(current_line);
+            return lines;
+        }
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#003f5c',
+                        font: {
+                            size: 14,
+                            family: "'Noto Sans', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: '#2f4b7c'
+                    },
+                    grid: {
+                        color: '#e0e0e0'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#2f4b7c'
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        };
+
+        const panchayatOnboardingCtx = document.getElementById('panchayatOnboardingChart').getContext('2d');
+        new Chart(panchayatOnboardingCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['ई-ग्रामस्वराज वर नोंदणीकृत', 'इतर'],
+                datasets: [{
+                    label: 'ग्रामपंचायतींची स्थिती',
+                    data: [98, 2],
+                    backgroundColor: ['#665191', '#e0e0e0'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                         labels: {
+                            color: '#003f5c',
+                            font: {
+                                size: 12,
+                                family: "'Noto Sans', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: commonChartOptions.plugins.tooltip
+                }
+            }
+        });
+
+        const participationCtx = document.getElementById('participationChart').getContext('2d');
+        new Chart(participationCtx, {
+            type: 'bar',
+            data: {
+                labels: ['ग्रामसभा सहभाग', 'योजनांची पारदर्शकता', 'कामांच्या नोंदींची उपलब्धता'],
+                datasets: [{
+                    label: 'डिजिटायझेशन पूर्वी (अंदाजे)',
+                    data: [30, 25, 20],
+                    backgroundColor: '#d45087',
+                    borderColor: '#c4457a',
+                    borderWidth: 1
+                }, {
+                    label: 'डिजिटायझेशन नंतर (अंदाजे)',
+                    data: [85, 90, 95],
+                    backgroundColor: '#ffa600',
+                    borderColor: '#e89600',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                           callback: function(value) {
+                                return value + '%'
+                           },
+                           color: '#2f4b7c'
+                        },
+                        grid: {
+                           color: '#e0e0e0'
+                        }
+                    },
+                    x: {
+                         ticks: {
+                           color: '#2f4b7c'
+                        },
+                         grid: {
+                           display: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
