@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>प्रधानमंत्री उज्ज्वला योजना (PMUY) - एक क्रांती</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Tiro+Devanagari+Marathi:wght@400&display=swap" rel="stylesheet">
+    <!-- Color Palette: Brilliant Blues -->
+    <!-- CONFIRMATION: NO SVG or Mermaid JS used. All diagrams are HTML/CSS. All charts are via Chart.js on Canvas. -->
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 320px;
+            width: 100%;
+            max-width: 600px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .stat-card h3 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #205295;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-[#0A2647]">
+
+    <header class="bg-[#004AAD] text-white p-6 shadow-lg text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-2">प्रधानमंत्री उज्ज्वला योजना (PMUY)</h1>
+        <p class="text-lg md:text-xl font-light">भारताच्या ग्रामीण भागातील स्वच्छ ऊर्जा क्रांती: एक विश्लेषण</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <!-- Section 1: The Silent Crisis -->
+        <section id="crisis" class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <h2 class="text-3xl font-bold text-[#144272] mb-4">एक अदृश्य संकट: घरातील वायू प्रदूषण</h2>
+                <p class="text-lg mb-6 max-w-3xl mx-auto">प्रधानमंत्री उज्ज्वला योजनेपूर्वी, भारतातील करोडो ग्रामीण महिला स्वयंपाकासाठी पारंपरिक इंधन (लाकूड, शेण) वापरत होत्या. यामुळे निर्माण होणारा धूर त्यांच्या आरोग्यासाठी अत्यंत धोकादायक होता.</p>
+                <div class="bg-[#205295] text-white rounded-lg p-8 max-w-md mx-auto stat-card">
+                    <p class="text-xl mb-2">एका तासाचा संपर्क</p>
+                    <h3 class="font-extrabold">४०० सिगारेट</h3>
+                    <p class="text-xl mt-2">ओढण्याइतका धोकादायक होता.</p>
+                </div>
+                <p class="text-sm mt-4 text-gray-500">*स्रोत: जागतिक आरोग्य संघटना (WHO)</p>
+            </div>
+        </section>
+
+        <!-- Section 2: LPG Reach Expansion -->
+        <section id="reach" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#144272] mb-8">उज्ज्वला क्रांती: पोहोच आणि पायाभूत सुविधांचा विस्तार</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
+                    <h3 class="text-2xl font-bold text-[#004AAD] mb-3">LPG कनेक्शनमध्ये प्रचंड वाढ</h3>
+                    <p class="text-gray-600 mb-4">PMUY मुळे देशातील एकूण LPG ग्राहकांच्या संख्येत अभूतपूर्व वाढ झाली आहे.</p>
+                    <div class="chart-container w-full h-80">
+                        <canvas id="lpgConnectionsChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500">एप्रिल 2016 पासून नोव्हेंबर 2024 पर्यंतची वाढ.</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
+                    <span class="text-6xl text-[#205295] mb-4">🏠</span>
+                    <h3 class="text-2xl font-bold text-[#004AAD] mb-3">उज्ज्वलाचे मैलाचे दगड</h3>
+                    <p class="text-6xl font-extrabold text-[#144272]">10.33 कोटी</p>
+                    <p class="text-lg text-gray-600 mt-2">नवीन LPG कनेक्शन गरीब कुटुंबांना वितरित (नोव्हेंबर 2024 पर्यंत)</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
+                    <h3 class="text-2xl font-bold text-[#004AAD] mb-3">ग्रामीण वितरक नेटवर्क</h3>
+                     <p class="text-gray-600 mb-4">ग्रामीण भागात LPG ची उपलब्धता सुनिश्चित करण्यासाठी वितरक नेटवर्कमध्ये 161% ची वाढ झाली.</p>
+                    <div class="chart-container w-full h-80">
+                        <canvas id="ruralDistributorsChart"></canvas>
+                    </div>
+                     <p class="mt-4 text-sm text-gray-500">2014 ते 2024 या काळातील वाढ.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Usage and Adoption -->
+        <section id="usage" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#144272] mb-8">वाढता वापर: सवयीतील बदल आणि सरकारी पाठबळ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-[#004AAD] mb-4 text-center">LPG रिफिल वापराचा कल</h3>
+                    <p class="text-center text-gray-600 mb-4">सुरुवातीच्या मोफत कनेक्शननंतरही, PMUY लाभार्थ्यांकडून LPG चा वापर सातत्याने वाढत आहे, जे योजनेच्या यशाचे द्योतक आहे.</p>
+                    <div class="chart-container w-full h-80">
+                        <canvas id="refillTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-[#004AAD] mb-4 text-center">थेट लाभ हस्तांतरण (DBT) आणि अनुदान</h3>
+                    <p class="text-center text-gray-600 mb-6">अनुदानाची रक्कम थेट लाभार्थ्यांच्या बँक खात्यात जमा करून पारदर्शकता आणि कार्यक्षमता वाढवली आहे.</p>
+                     <div class="space-y-4">
+                        <div class="flex items-center justify-center p-4 bg-gray-50 rounded-lg">
+                            <span class="text-4xl mr-4">1️⃣</span>
+                            <p class="text-lg">ग्राहक पूर्ण बाजारभावाने सिलिंडर खरेदी करतो.</p>
+                        </div>
+                        <div class="flex justify-center">
+                            <span class="flow-arrow">⬇️</span>
+                        </div>
+                        <div class="flex items-center justify-center p-4 bg-gray-50 rounded-lg">
+                            <span class="text-4xl mr-4">2️⃣</span>
+                            <p class="text-lg">आधार-लिंक्ड बँक खात्याची पडताळणी होते.</p>
+                        </div>
+                        <div class="flex justify-center">
+                            <span class="flow-arrow">⬇️</span>
+                        </div>
+                        <div class="flex items-center justify-center p-4 bg-[#e0f2fe] rounded-lg border-2 border-[#205295]">
+                             <span class="text-4xl mr-4">3️⃣</span>
+                            <div>
+                               <p class="text-lg font-semibold">₹300 चे अनुदान थेट खात्यात जमा होते.</p>
+                               <p class="text-sm">(प्रति 14.2 किलो सिलिंडर, वर्षाला 12 रिफिलपर्यंत)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Socio-Economic Impact -->
+        <section id="impact" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#144272] mb-8">स्वयंपाकघराच्या पलीकडे: एक सामाजिक-आर्थिक परिवर्तन</h2>
+             <p class="text-lg text-center mb-8 max-w-3xl mx-auto">PMUY चा प्रभाव केवळ स्वयंपाकापुरता मर्यादित नाही, तर त्याने महिलांचे सक्षमीकरण, आरोग्य आणि पर्यावरणावर दूरगामी सकारात्मक परिणाम केले आहेत.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                    <span class="text-6xl">👩‍⚕️</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-2 text-[#004AAD]">सुधारित आरोग्य</h3>
+                    <p class="text-gray-600">धूरमुक्त स्वयंपाकघरांमुळे महिला आणि मुलांमधील श्वसन आणि डोळ्यांचे आजार कमी झाले आहेत.</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                     <span class="text-6xl">⏳</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-2 text-[#004AAD]">वेळेची बचत</h3>
+                    <p class="text-gray-600">इंधन गोळा करण्याच्या कष्टातून महिलांचे वर्षाला सरासरी ३७४ तास वाचले, ज्यामुळे त्यांना विश्रांती आणि इतर कामांसाठी वेळ मिळाला.</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                     <span class="text-6xl">🌳</span>
+                    <h3 class="text-2xl font-bold mt-4 mb-2 text-[#004AAD]">पर्यावरण संवर्धन</h3>
+                    <p class="text-gray-600">लाकुडतोड कमी झाल्यामुळे पर्यावरणाचे रक्षण झाले आणि कार्बन उत्सर्जन घटले.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 5: The Path Forward -->
+        <section id="future" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#144272] mb-8">पुढील वाटचाल: आव्हाने आणि भविष्यातील दिशा</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto">
+                 <p class="text-lg text-center mb-6">PMUY ने मोठे यश मिळवले असले तरी, सातत्यपूर्ण वापर आणि सर्वांपर्यंत पोहोच सुनिश्चित करण्यासाठी काही आव्हाने आहेत.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                     <div>
+                         <h4 class="text-xl font-bold text-[#004AAD] mb-3">प्रमुख आव्हाने</h4>
+                         <ul class="space-y-3 list-disc list-inside text-gray-700">
+                             <li><b>रिफिलची परवडणारीता:</b> काही कुटुंबांसाठी रिफिलचा खर्च अजूनही एक अडथळा आहे.</li>
+                             <li><b>'इंधन स्टॅकिंग':</b> LPG सोबत पारंपरिक इंधनाचा वापर सुरू ठेवणे.</li>
+                             <li><b>वितरण नेटवर्क:</b> दुर्गम भागात शेवटच्या मैलापर्यंत सेवा पोहोचवणे.</li>
+                             <li><b>जागरूकता:</b> सुरक्षित वापराविषयी आणि फायद्यांविषयी अधिक जागृती करणे.</li>
+                         </ul>
+                     </div>
+                     <div>
+                        <h4 class="text-xl font-bold text-[#004AAD] mb-3">भविष्यातील दृष्टिकोन</h4>
+                         <ul class="space-y-3 list-disc list-inside text-gray-700">
+                              <li><b>लक्ष्यित अनुदान:</b> रिफिलसाठी पुरेसे आणि लक्ष्यित अनुदान सुरू ठेवणे.</li>
+                              <li><b>बहु-इंधन दृष्टिकोन:</b> LPG सोबत PNG, वीज, आणि बायोगॅस यांसारख्या पर्यायांना प्रोत्साहन देणे.</li>
+                              <li><b>पायाभूत सुविधा:</b> दुर्गम भागात वितरण नेटवर्क अधिक मजबूत करणे.</li>
+                              <li><b>शिक्षण:</b> सुरक्षितता आणि फायद्यांबद्दल सतत जागरूकता कार्यक्रम चालवणे.</li>
+                         </ul>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#0A2647] text-white text-center p-4 mt-8">
+        <p>&copy; 2025. प्रधानमंत्री उज्ज्वला योजना विश्लेषण. सर्व हक्क राखीव.</p>
+    </footer>
+
+    <script>
+        const FONT_COLOR = '#0A2647';
+        const GRID_COLOR = '#D1D5DB';
+        const PALETTE = {
+            blue1: '#205295',
+            blue2: '#144272',
+            blue3: '#0A2647',
+            blue4: '#004AAD',
+        };
+
+        function processLabel(label, maxLength = 16) {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        const commonTooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            return Array.isArray(label) ? label.join(' ') : label;
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: FONT_COLOR,
+                        font: { size: 14 }
+                    }
+                }
+            },
+             scales: {
+                y: {
+                    ticks: { color: FONT_COLOR, font: { size: 12 } },
+                    grid: { color: GRID_COLOR }
+                },
+                x: {
+                    ticks: { color: FONT_COLOR, font: { size: 12 } },
+                    grid: { color: 'transparent' }
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        };
+
+        // Chart 1: LPG Connections Growth
+        const lpgConnectionsCtx = document.getElementById('lpgConnectionsChart').getContext('2d');
+        new Chart(lpgConnectionsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['एप्रिल 2016', 'नोव्हेंबर 2024'],
+                datasets: [{
+                    label: 'एकूण LPG ग्राहक (कोटी मध्ये)',
+                    data: [16.63, 32.83],
+                    backgroundColor: [PALETTE.blue1, PALETTE.blue4],
+                    borderColor: [PALETTE.blue2, PALETTE.blue3],
+                    borderWidth: 1
+                }]
+            },
+            options: { ...commonTooltipCallback }
+        });
+
+        // Chart 2: Rural Distributors Growth
+        const ruralDistributorsCtx = document.getElementById('ruralDistributorsChart').getContext('2d');
+        new Chart(ruralDistributorsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['एप्रिल 2014', 'एप्रिल 2024'],
+                datasets: [{
+                    label: 'ग्रामीण वितरक (संख्या)',
+                    data: [6724, 17560],
+                    backgroundColor: [PALETTE.blue1, PALETTE.blue4],
+                    borderColor: [PALETTE.blue2, PALETTE.blue3],
+                    borderWidth: 1
+                }]
+            },
+            options: { ...commonTooltipCallback }
+        });
+        
+        // Chart 3: Refill Trend
+        const refillTrendCtx = document.getElementById('refillTrendChart').getContext('2d');
+        new Chart(refillTrendCtx, {
+            type: 'line',
+            data: {
+                labels: ['2019-20', '2023-24', '2024-25 (मार्च)'],
+                datasets: [{
+                    label: 'प्रति ग्राहक वार्षिक रिफिल',
+                    data: [3.01, 3.95, 4.43],
+                    fill: true,
+                    backgroundColor: 'rgba(32, 82, 149, 0.2)',
+                    borderColor: PALETTE.blue1,
+                    tension: 0.1,
+                    pointBackgroundColor: PALETTE.blue4,
+                    pointRadius: 5
+                }]
+            },
+            options: { ...commonTooltipCallback }
+        });
+
+    </script>
+</body>
+</html>
