@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>जल जीवन मिशन: एक दृश्य आढावा</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- 
+    Infographic Narrative Plan:
+    1.  **Introduction/Hook**: Start with the core problem - low tap water access in 2019.
+    2.  **The Shift**: Compare the old (NRDWP) and new (JJM) approaches.
+    3.  **The Transformation**: Showcase the massive growth in tap connections with a line chart. This is the centerpiece.
+    4.  **How it Works**: Explain the four pillars of JJM's strategy using a flowchart-like structure.
+    5.  **State Performance**: Display states that have achieved 100% coverage using a bar chart.
+    6.  **Ground Impact**: Visualize the socio-economic benefits (health, women empowerment, education) with big numbers, icons, and a donut chart for a specific survey.
+    7.  **The Road Ahead**: List the future challenges.
+    8.  **Conclusion**: End with the powerful tagline of the mission.
+    
+    Visualization Choices (NO SVG / NO MERMAID):
+    -   **Tap Connection Growth**: Goal: Change. Visualization: Line Chart (Chart.js/Canvas). Justification: Best for showing a trend over time.
+    -   **Scheme Comparison**: Goal: Compare. Visualization: Styled HTML Table. Justification: Clearly presents feature-by-feature differences.
+    -   **State Performance**: Goal: Compare/Rank. Visualization: Horizontal Bar Chart (Chart.js/Canvas). Justification: Excellent for comparing categorical data and ranking.
+    -   **Bihar Survey Satisfaction**: Goal: Inform. Visualization: Donut Chart (Chart.js/Canvas). Justification: Ideal for showing a part-to-whole relationship (percentage).
+    -   **JJM Pillars/Flow**: Goal: Organize. Visualization: HTML/CSS Flexbox diagram. Justification: Creates a clear process flow without using prohibited graphics libraries.
+    -   **Socio-economic Stats**: Goal: Inform. Visualization: Large numbers with Unicode icons (HTML/CSS). Justification: High-impact way to present key figures.
+    
+    Confirmation: NEITHER Mermaid JS NOR SVG graphics were used in this output. All charts are rendered on Canvas via Chart.js, and diagrams are built with standard HTML and Tailwind CSS.
+    
+    Color Palette Used: Brilliant Blues (#004AAD, #0096C7, #48CAE4, #ADE8F4, #CAF0F8)
+    -->
+
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-[#004AAD] mb-4" style="font-family: 'Tiro Devanagari Marathi', serif;">जल जीवन मिशन: ग्रामीण भारताची जलक्रांती</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">२०१९ पासून प्रत्येक ग्रामीण घरात नळाद्वारे शुद्ध पाणी पोहोचवण्याच्या महत्त्वाकांक्षी प्रवासाचा एक दृश्य आढावा.</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section class="text-center bg-white rounded-2xl shadow-lg p-8 border-t-8 border-[#004AAD]">
+                 <h2 class="text-2xl font-bold text-gray-700 mb-2" style="font-family: 'Tiro Devanagari Marathi', serif;">परिवर्तनाची सुरुवात</h2>
+                <p class="text-gray-600 mb-6">ऑगस्ट २०१९ मध्ये, भारताच्या ग्रामीण भागात एक मोठी दरी होती.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                    <div class="text-[#004AAD]">
+                        <p class="text-7xl md:text-8xl font-extrabold">१७%</p>
+                        <p class="text-xl font-semibold">ग्रामीण घरांमध्ये नळजोडणी होती</p>
+                    </div>
+                     <div class="text-gray-500 text-6xl font-thin">→</div>
+                    <div class="text-[#0096C7]">
+                        <p class="text-7xl md:text-8xl font-extrabold" id="current-coverage">८०.८१%</p>
+                        <p class="text-xl font-semibold">ग्रामीण घरांमध्ये नळजोडणी (जून २०२५)</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#004AAD] mb-6" style="font-family: 'Tiro Devanagari Marathi', serif;">दोन योजना, दोन दृष्टिकोन: एक तुलनात्मक बदल</h2>
+                <p class="text-center text-gray-600 max-w-4xl mx-auto mb-8">
+                    जल जीवन मिशन (JJM) हे केवळ आधीच्या राष्ट्रीय ग्रामीण पाणीपुरवठा कार्यक्रमाचे (NRDWP) विस्तारित रूप नव्हते, तर ते एक धोरणात्मक बदल होता. जिथे NRDWP चे लक्ष 'वस्ती' आणि 'सार्वजनिक स्रोत' यांवर होते, तिथे JJM ने 'प्रत्येक घरात नळ' (हर घर जल) यावर लक्ष केंद्रित करून सेवेची व्याख्याच बदलली.
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">वैशिष्ट्य</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider bg-[#ADE8F4]/30">NRDWP (युपीए सरकार)</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider bg-[#48CAE4]/30">जल जीवन मिशन (मोदी सरकार)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold">मुख्य लक्ष</td>
+                                <td class="px-6 py-4 whitespace-nowrap bg-[#ADE8F4]/30">वस्ती/समुदाय पातळीवर पाणीपुरवठा</td>
+                                <td class="px-6 py-4 whitespace-nowrap bg-[#48CAE4]/30 font-bold">प्रत्येक घरात कार्यात्मक नळ जोडणी (FHTC)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold">दृष्टिकोन</td>
+                                <td class="px-6 py-4 whitespace-nowrap bg-[#ADE8F4]/30">पुरवठा-आधारित (Supply-driven)</td>
+                                <td class="px-6 py-4 whitespace-nowrap bg-[#48CAE4]/30 font-bold">मागणी-आधारित आणि सेवा वितरण</td>
+                            </tr>
+                             <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold">सेवा स्तर</td>
+                                <td class="px-6 py-4 whitespace-nowrap bg-[#ADE8F4]/30">४० लिटर प्रति व्यक्ती प्रतिदिन (lpcd)</td>
+                                <td class="px-6 py-4 whitespace-nowrap bg-[#48CAE4]/30 font-bold">५५ लिटर प्रति व्यक्ती प्रतिदिन (lpcd)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold">महिलांचा सहभाग</td>
+                                <td class="px-6 py-4 whitespace-nowrap bg-[#ADE8F4]/30">स्पष्ट अनिवार्य तरतूद नाही</td>
+                                <td class="px-6 py-4 whitespace-nowrap bg-[#48CAE4]/30 font-bold">ग्राम पाणी समितीत ५०% महिला सहभाग अनिवार्य</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold">तंत्रज्ञानाचा वापर</td>
+                                <td class="px-6 py-4 whitespace-nowrap bg-[#ADE8F4]/30">मर्यादित</td>
+                                <td class="px-6 py-4 whitespace-nowrap bg-[#48CAE4]/30 font-bold">व्यापक (IoT, डॅशबोर्ड, DBT, जिओ-टॅगिंग)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-2xl shadow-lg p-6 md:p-8 md:col-span-2">
+                <h2 class="text-3xl font-bold text-center text-[#004AAD] mb-2" style="font-family: 'Tiro Devanagari Marathi', serif;">'हर घर जल' चा अविश्वसनीय प्रवास</h2>
+                <p class="text-center text-gray-600 max-w-4xl mx-auto mb-8">
+                   २०१९ पासून ग्रामीण भागातील घरांना नळजोडणी देण्याच्या वेगात अभूतपूर्व वाढ झाली आहे. हा आलेख गेल्या काही वर्षांतील नेत्रदीपक प्रगती दर्शवतो.
+                </p>
+                <div class="chart-container h-96">
+                    <canvas id="coverageGrowthChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-2">
+                <h2 class="text-3xl font-bold text-center text-[#004AAD] mb-8" style="font-family: 'Tiro Devanagari Marathi', serif;">यशामागील चतुःसूत्री</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-b-8 border-[#0096C7]">
+                        <div class="text-5xl mb-4">💻</div>
+                        <h3 class="text-xl font-bold mb-2">तंत्रज्ञान-आधारित पारदर्शकता</h3>
+                        <p class="text-gray-600 text-sm">रिअल-टाइम डॅशबोर्ड, IoT सेन्सर्सद्वारे देखरेख आणि थेट लाभ हस्तांतरण (DBT) यामुळे भ्रष्टाचार कमी झाला आणि कार्यक्षमता वाढली.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-b-8 border-[#48CAE4]">
+                        <div class="text-5xl mb-4">🤝</div>
+                        <h3 class="text-xl font-bold mb-2">लोकसहभाग (जन भागीदारी)</h3>
+                        <p class="text-gray-600 text-sm">ग्राम जल आणि स्वच्छता समित्यांची स्थापना, ज्यात महिलांना ५०% प्रतिनिधित्व दिले गेले, त्यामुळे योजनांची मालकी आणि जबाबदारी वाढली.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-b-8 border-[#ADE8F4]">
+                        <div class="text-5xl mb-4">💧</div>
+                        <h3 class="text-xl font-bold mb-2">गुणवत्ता आणि नियमितता</h3>
+                        <p class="text-gray-600 text-sm">५५ lpcd पाणीपुरवठ्याचे उद्दिष्ट, पाण्याच्या गुणवत्तेची नियमित तपासणी आणि जलस्रोतांच्या शाश्वततेवर भर देण्यात आला.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-b-8 border-[#CAF0F8]">
+                        <div class="text-5xl mb-4">🎯</div>
+                        <h3 class="text-xl font-bold mb-2">सेवा-केंद्रित दृष्टिकोन</h3>
+                        <p class="text-gray-600 text-sm">पाणीपुरवठा ही केवळ एक 'सुविधा' न मानता एक 'सेवा' म्हणून पाहिले गेले, ज्यामुळे तक्रार निवारण आणि दुरुस्तीवर लक्ष केंद्रित झाले.</p>
+                    </div>
+                </div>
+            </section>
+
+             <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                <div class="md:col-span-3 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-[#004AAD] mb-6" style="font-family: 'Tiro Devanagari Marathi', serif;">यशस्वी राज्यांची कामगिरी</h2>
+                     <p class="text-gray-600 max-w-4xl mx-auto mb-8">
+                       अनेक राज्यांनी आणि केंद्रशासित प्रदेशांनी १००% ग्रामीण घरांना नळजोडणी देण्याचे उद्दिष्ट पूर्ण केले आहे, ज्यामुळे ते इतरांसाठी प्रेरणास्थान बनले आहेत.
+                    </p>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="statePerformanceChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 bg-white rounded-2xl shadow-lg p-6 md:p-8 flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold text-center text-[#004AAD] mb-4" style="font-family: 'Tiro Devanagari Marathi', serif;">बिहारमधील समाधान सर्वेक्षण</h2>
+                     <p class="text-center text-gray-600 max-w-4xl mx-auto mb-6">
+                       मे २०२५ मध्ये बिहारच्या मुजफ्फरपूर आणि गया जिल्ह्यांमध्ये झालेल्या स्वतंत्र सर्वेक्षणातून योजनेच्या यशाचे समाधानकारक चित्र समोर आले.
+                    </p>
+                    <div class="chart-container h-64">
+                        <canvas id="satisfactionDonutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <section class="md:col-span-2">
+                 <h2 class="text-3xl font-bold text-center text-[#004AAD] mb-8" style="font-family: 'Tiro Devanagari Marathi', serif;">पाण्यापलीकडचे परिणाम: एक सामाजिक परिवर्तन</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <div class="text-6xl text-[#0096C7] mb-4">👩‍👧‍👦</div>
+                        <h3 class="text-2xl font-bold mb-2">महिलांचा सन्मान आणि वेळेची बचत</h3>
+                        <p class="text-gray-600 text-lg">पाणी भरण्याच्या त्रासातून सुटका झाल्यामुळे महिलांचा दररोजचा ५.५ कोटी तासांपेक्षा जास्त वेळ वाचत आहे, जो त्या शिक्षण, रोजगार किंवा कुटुंबासाठी वापरू शकतात.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <div class="text-6xl text-[#0096C7] mb-4">🏥</div>
+                        <h3 class="text-2xl font-bold mb-2">आरोग्यात सुधारणा</h3>
+                        <p class="text-gray-600 text-lg">शुद्ध पाण्यामुळे अतिसार, कॉलरा यांसारख्या जलजन्य आजारांमध्ये मोठी घट झाली आहे, ज्यामुळे आरोग्य खर्च कमी झाला आहे आणि जीवनमान सुधारले आहे.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <div class="text-6xl text-[#0096C7] mb-4">👩‍🎓</div>
+                        <h3 class="text-2xl font-bold mb-2">मुलींच्या शिक्षणाला चालना</h3>
+                        <p class="text-gray-600 text-lg">घरी आणि शाळांमध्ये पाण्याची सोय झाल्यामुळे, विशेषतः मुलींच्या शाळेतील उपस्थितीचे प्रमाण वाढले आहे आणि गळतीचे प्रमाण कमी झाले आहे.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#004AAD] mb-6" style="font-family: 'Tiro Devanagari Marathi', serif;">पुढील वाटचाल आणि आव्हाने</h2>
+                <div class="max-w-2xl mx-auto">
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 mt-1">✓</span>
+                            <span><b>शाश्वतता:</b> तयार केलेल्या पाणीपुरवठा योजनांची देखभाल आणि दुरुस्ती (O&M) साठी एक मजबूत यंत्रणा उभी करणे.</span>
+                        </li>
+                        <li class="flex items-start">
+                             <span class="text-green-500 mr-3 mt-1">✓</span>
+                            <span><b>जलस्रोतांचे संरक्षण:</b> भूजल पातळी टिकवून ठेवण्यासाठी पर्जन्यजल संवर्धन आणि जल पुनर्भरण यावर अधिक भर देणे.</span>
+                        </li>
+                        <li class="flex items-start">
+                             <span class="text-green-500 mr-3 mt-1">✓</span>
+                            <span><b>शेवटच्या घटकापर्यंत पोहोचणे:</b> दुर्गम, डोंगराळ आणि आदिवासी भागांमध्ये योजना पोहोचवण्यासाठी विशेष प्रयत्न करणे.</span>
+                        </li>
+                         <li class="flex items-start">
+                             <span class="text-green-500 mr-3 mt-1">✓</span>
+                            <span><b>आर्थिक नियोजन:</b> राज्यांना त्यांच्या हिश्श्याचा निधी वेळेवर उपलब्ध करून देण्यासाठी प्रोत्साहन देणे आणि निधीचा योग्य वापर सुनिश्चित करणे.</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-16 py-8 border-t-2 border-[#004AAD]">
+            <p class="text-2xl font-bold text-[#004AAD]" style="font-family: 'Tiro Devanagari Marathi', serif;">"पाणी म्हणजे फक्त गरज नाही, तर सन्मान आहे."</p>
+            <p class="text-gray-500 mt-2">- जल जीवन मिशन</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const brilliantBlues = {
+            dark: '#004AAD',
+            medium: '#0096C7',
+            light: '#48CAE4',
+            lighter: '#ADE8F4',
+            lightest: '#CAF0F8'
+        };
+
+        function wrapLabels(label, maxLength) {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+        
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    display: false
+                }
+            }
+        };
+
+        
+        const coverageCtx = document.getElementById('coverageGrowthChart').getContext('2d');
+        new Chart(coverageCtx, {
+            type: 'line',
+            data: {
+                labels: ['ऑगस्ट २०१९', 'वर्ष २०२०', 'वर्ष २०२१', 'वर्ष २०२२', 'वर्ष २०२३', 'वर्ष २०२४', 'जून २०२५'],
+                datasets: [{
+                    label: 'ग्रामीण नळजोडणी व्याप्ती (%)',
+                    data: [17.0, 30.5, 45.2, 55.6, 68.9, 75.3, 80.81],
+                    backgroundColor: 'rgba(0, 150, 199, 0.2)',
+                    borderColor: brilliantBlues.medium,
+                    borderWidth: 4,
+                    pointBackgroundColor: brilliantBlues.dark,
+                    pointRadius: 6,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                ...tooltipTitleCallback,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'व्याप्ती (%)',
+                            font: { size: 14, weight: 'bold' }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'वर्ष',
+                            font: { size: 14, weight: 'bold' }
+                        }
+                    }
+                },
+                plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        const satisfactionCtx = document.getElementById('satisfactionDonutChart').getContext('2d');
+        new Chart(satisfactionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['समाधानी लाभार्थी', 'इतर'],
+                datasets: [{
+                    data: [95, 5],
+                    backgroundColor: [brilliantBlues.medium, brilliantBlues.lightest],
+                    borderColor: [brilliantBlues.dark, brilliantBlues.lighter],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: tooltipTitleCallback.plugins.tooltip,
+                    title: {
+                        display: true,
+                        text: 'जलसेवेबद्दल समाधान (%)',
+                        font: { size: 16, weight: 'bold', family: "'Tiro Devanagari Marathi', serif" },
+                        padding: { top: 10, bottom: 10 }
+                    }
+                }
+            }
+        });
+
+        const stateCtx = document.getElementById('statePerformanceChart').getContext('2d');
+        const stateLabels = ['गोवा', 'तेलंगणा', 'हरियाणा', 'गुजरात', 'पंजाब', 'हिमाचल प्रदेश', 'पुडुचेरी', 'दमण आणि दीव', 'अंदमान आणि निकोबार', 'अरुणाचल प्रदेश', 'मिझोराम'];
+        const wrappedStateLabels = stateLabels.map(label => wrapLabels(label, 16));
+
+        new Chart(stateCtx, {
+            type: 'bar',
+            data: {
+                labels: wrappedStateLabels,
+                datasets: [{
+                    label: 'ग्रामीण नळजोडणी व्याप्ती',
+                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    backgroundColor: brilliantBlues.light,
+                    borderColor: brilliantBlues.medium,
+                    borderWidth: 1,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                ...tooltipTitleCallback,
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 110,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    title: {
+                        display: true,
+                        text: '१००% उद्दिष्ट पूर्ण करणारी राज्ये/केंद्रशासित प्रदेश',
+                         font: { size: 16, weight: 'bold', family: "'Tiro Devanagari Marathi', serif" },
+                        padding: { top: 10, bottom: 20 }
+                    }
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>
