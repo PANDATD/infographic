@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ग्रामीण शिक्षण व्यवस्था: एक इन्फोग्राफिक</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .stat-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .stat-card p {
+            font-size: 3rem;
+            font-weight: 900;
+        }
+        .arrow {
+            width: 0;
+            height: 0;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+        }
+        .arrow-right {
+            border-left: 30px solid #F86624;
+        }
+         .arrow-down {
+            border-top: 30px solid #F86624;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    
+    <div id="infographic-container" class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#662E9B] mb-2">भारतातील ग्रामीण शिक्षण</h1>
+            <p class="text-xl md:text-2xl text-gray-600">दोन सरकारांच्या कार्यकाळातील धोरणात्मक बदलांचा आढावा</p>
+        </header>
+
+        
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            
+            <section class="md:col-span-2 bg-white p-6 rounded-xl shadow-lg border-l-8 border-[#43BCCD]">
+                <h2 class="text-3xl font-bold mb-4 text-[#43BCCD]">पहिली पायरी: शिक्षणाचा विस्तार (काँग्रेस सरकार: २००४-२०१४)</h2>
+                <p class="text-lg text-gray-700">२००४ ते २०१४ या काळात 'सर्व शिक्षा अभियान' (SSA) अंतर्गत ग्रामीण भागात शाळांची उपलब्धता आणि मुलांची नोंदणी वाढवण्यावर सर्वाधिक भर देण्यात आला. या धोरणामुळे शिक्षणाच्या मूलभूत सुविधा ग्रामीण भागापर्यंत पोहोचल्या, ज्यामुळे मुलामुलींना शाळेत दाखल होणे सोपे झाले. हे एक मोठे यश होते, परंतु शिक्षणाच्या गुणवत्तेचे आव्हान मात्र कायम राहिले.</p>
+            </section>
+
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg stat-card text-center flex flex-col justify-center items-center">
+                 <h3 class="text-gray-700 mb-2">शाळांची उपलब्धता</h3>
+                 <p class="text-[#43BCCD]">९८%</p>
+                 <span class="text-base font-medium text-gray-600 mt-2">ग्रामीण वस्त्यांमध्ये ३ किमीच्या आत प्राथमिक शाळा</span>
+            </div>
+
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="font-bold text-xl mb-4 text-center text-gray-700">प्राथमिक शिक्षण नोंदणी दरात वाढ</h3>
+                <div class="chart-container h-64 md:h-72">
+                    <canvas id="gerChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">या काळात सकल नोंदणी दर (GER) ८१.६% वरून ९७% पर्यंत वाढला, जे शिक्षणाच्या सार्वत्रिकीकरणाच्या दिशेने एक मोठे पाऊल होते.</p>
+            </div>
+
+            
+            <section class="md:col-span-2 bg-white p-6 rounded-xl shadow-lg border-l-8 border-[#F86624]">
+                <h2 class="text-3xl font-bold mb-4 text-[#F86624]">दुसरी पायरी: गुणवत्तेकडे वाटचाल (भाजप सरकार: २०१४-२०२४)</h2>
+                <p class="text-lg text-gray-700">'समग्र शिक्षा अभियान' अंतर्गत केवळ शाळा प्रवेशावर न थांबता शिक्षणाची गुणवत्ता, मुलांची मूलभूत कौशल्ये आणि डिजिटल साक्षरता वाढवण्यावर लक्ष केंद्रित करण्यात आले. 'पढे भारत, बढे भारत' सारख्या उपक्रमांतून मुलांची वाचन आणि गणित क्षमता सुधारण्याचे प्रयत्न झाले, ज्याचे सकारात्मक परिणाम दिसून येत आहेत.</p>
+            </section>
+            
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="font-bold text-xl mb-4 text-center text-gray-700">मूलभूत कौशल्यांमध्ये सुधारणा (इयत्ता ३री)</h3>
+                 <div class="chart-container h-64 md:h-72">
+                    <canvas id="skillImprovementChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">ASER २०२४ नुसार, मुलांच्या वाचन आणि वजाबाकी करण्याच्या क्षमतेत २०१८ च्या तुलनेत लक्षणीय वाढ झाली आहे.</p>
+            </div>
+
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="font-bold text-xl mb-4 text-center text-gray-700">शाळाबाह्य मुलांच्या प्रमाणात घट (१५-१६ वयोगट)</h3>
+                 <div class="chart-container h-64 md:h-72">
+                    <canvas id="dropoutRateChart"></canvas>
+                </div>
+                 <p class="text-center text-gray-600 mt-4">शाळाबाह्य मुलांचे प्रमाण कमी झाल्यामुळे अधिक मुले शिक्षण प्रवाहात टिकून राहत असल्याचे स्पष्ट होते.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg stat-card text-center flex flex-col justify-center items-center">
+                 <h3 class="text-gray-700 mb-2">डिजिटल शिक्षणाची वाढ</h3>
+                 <p class="text-[#EA3546]">९०%</p>
+                 <span class="text-base font-medium text-gray-600 mt-2">१४-१६ वयोगटातील मुलांकडे स्मार्टफोनची उपलब्धता</span>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="font-bold text-xl mb-4 text-center text-gray-700">मुलींसाठी स्वच्छतागृहांची उपलब्धता</h3>
+                 <div class="chart-container h-64 md:h-72">
+                    <canvas id="toiletAccessChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">शाळांमध्ये मुलींसाठी स्वतंत्र स्वच्छतागृहांची उपलब्धता वाढल्याने त्यांच्या उपस्थितीवर सकारात्मक परिणाम झाला आहे.</p>
+            </div>
+
+
+            
+            <section class="md:col-span-2 bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold mb-4 text-center text-[#662E9B]">धोरणात्मक बदल: प्रवेश ते गुणवत्ता</h2>
+                <p class="text-lg text-gray-700 text-center mb-8">खालील प्रवाहचित्र दोन्ही सरकारांच्या धोरणांमधील मुख्य फरक दर्शवतो. शिक्षण व्यवस्थेचा भर हा केवळ 'शाळेत आणण्यापासून' ते 'शिकवण्यावर' कसा बदलला हे यातून स्पष्ट होते.</p>
+                <div class="flex flex-col md:flex-row items-center justify-around w-full">
+                    
+                    <div class="w-full md:w-2/5 p-4">
+                        <h3 class="text-2xl font-bold text-[#43BCCD] text-center mb-4">सर्व शिक्षा अभियान</h3>
+                        <div class="space-y-3">
+                            <div class="bg-blue-100 text-blue-800 p-3 rounded-lg text-center font-semibold">शाळांची उपलब्धता</div>
+                            <div class="bg-blue-100 text-blue-800 p-3 rounded-lg text-center font-semibold">नोंदणी दरात वाढ</div>
+                            <div class="bg-blue-100 text-blue-800 p-3 rounded-lg text-center font-semibold">मूलभूत पायाभूत सुविधा</div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="w-16 h-16 flex items-center justify-center my-4 md:my-0">
+                       <div class="arrow-down md:arrow-right"></div>
+                    </div>
+
+                    
+                    <div class="w-full md:w-2/5 p-4">
+                        <h3 class="text-2xl font-bold text-[#F86624] text-center mb-4">समग्र शिक्षा अभियान</h3>
+                         <div class="space-y-3">
+                            <div class="bg-orange-100 text-orange-800 p-3 rounded-lg text-center font-semibold">शिक्षणाची गुणवत्ता</div>
+                            <div class="bg-orange-100 text-orange-800 p-3 rounded-lg text-center font-semibold">मूलभूत कौशल्य विकास</div>
+                            <div class="bg-orange-100 text-orange-800 p-3 rounded-lg text-center font-semibold">डिजिटल आणि व्यावसायिक शिक्षण</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            
+            <section class="md:col-span-2 bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold mb-6 text-center text-[#662E9B]">तुलनात्मक आढावा</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">वैशिष्ट्य</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">काँग्रेस सरकार (SSA)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">भाजप सरकार (समग्र शिक्षा)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold">प्रमुख उद्दिष्ट</td>
+                                <td class="px-6 py-4 whitespace-nowrap">मोफत व सक्तीचे शिक्षण</td>
+                                <td class="px-6 py-4 whitespace-nowrap">गुणवत्ता, कौशल्य व डिजिटल शिक्षण</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold">शालेय प्रवेश</td>
+                                <td class="px-6 py-4 whitespace-nowrap">GER ८१.६% → ९७%</td>
+                                <td class="px-6 py-4 whitespace-nowrap">नोंदणी दर ९८.१% (ASER 2024)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold">गुणवत्ता सुधारणा</td>
+                                <td class="px-6 py-4 whitespace-nowrap">पायाभूत सुविधांवर भर, गुणवत्ता कमी</td>
+                                <td class="px-6 py-4 whitespace-nowrap">वाचन व गणित कौशल्यात वाढ</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold">शाळाबाह्य मुले</td>
+                                <td class="px-6 py-4 whitespace-nowrap">अडचणी कायम</td>
+                                <td class="px-6 py-4 whitespace-nowrap">प्रमाण १३.१% → ७.९%</td>
+                            </tr>
+                             <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold">डिजिटल शिक्षण</td>
+                                <td class="px-6 py-4 whitespace-nowrap">मर्यादित सुविधा</td>
+                                <td class="px-6 py-4 whitespace-nowrap">९०% मुलांकडे स्मार्टफोन, मोठी वाढ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 py-4 border-t border-gray-200">
+            <p class="text-sm text-gray-500">माहिती स्त्रोत: ASER 2024 अहवाल आणि सरकारी प्रकाशने. इन्फोग्राफिक केवळ विश्लेषणासाठी.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const energeticPalette = {
+            yellow: '#F9C80E',
+            orange: '#F86624',
+            red: '#EA3546',
+            purple: '#662E9B',
+            blue: '#43BCCD'
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine += ' ' + word;
+                }
+            }
+            lines.push(currentLine.trim());
+            return lines.map(l => l.trim());
+        }
+
+        
+        const gerCtx = document.getElementById('gerChart').getContext('2d');
+        new Chart(gerCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['नोंदणी दर (२०१४)', 'उर्वरित'],
+                datasets: [{
+                    label: 'सकल नोंदणी दर (GER)',
+                    data: [97, 3],
+                    backgroundColor: [energeticPalette.blue, '#e0e0e0'],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                cutout: '70%',
+            }
+        });
+
+        
+        const skillCtx = document.getElementById('skillImprovementChart').getContext('2d');
+        new Chart(skillCtx, {
+            type: 'bar',
+            data: {
+                labels: ['वाचन क्षमता', 'वजाबाकी क्षमता'],
+                datasets: [
+                    {
+                        label: '२०१८',
+                        data: [20.9, 28.2],
+                        backgroundColor: energeticPalette.blue,
+                        borderColor: energeticPalette.blue,
+                        borderWidth: 1
+                    },
+                    {
+                        label: '२०२४',
+                        data: [23.4, 33.7],
+                        backgroundColor: energeticPalette.orange,
+                        borderColor: energeticPalette.orange,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'टक्केवारी (%)'
+                        }
+                    }
+                }
+            }
+        });
+
+        
+        const dropoutCtx = document.getElementById('dropoutRateChart').getContext('2d');
+        new Chart(dropoutCtx, {
+            type: 'line',
+            data: {
+                labels: ['२०१८', '२०२४'],
+                datasets: [{
+                    label: 'शाळाबाह्य मुलांचे प्रमाण (%)',
+                    data: [13.1, 7.9],
+                    fill: true,
+                    backgroundColor: 'rgba(234, 53, 70, 0.2)',
+                    borderColor: energeticPalette.red,
+                    tension: 0.1,
+                    pointBackgroundColor: energeticPalette.red,
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                 ...defaultChartOptions
+            }
+        });
+
+        
+        const toiletCtx = document.getElementById('toiletAccessChart').getContext('2d');
+        new Chart(toiletCtx, {
+            type: 'bar',
+            data: {
+                labels: ['मुलींसाठी स्वच्छतागृह उपलब्धता (%)'],
+                datasets: [{
+                    label: 'पूर्वी',
+                    data: [66.4],
+                    backgroundColor: energeticPalette.yellow,
+                }, {
+                    label: 'आता',
+                    data: [72.0],
+                    backgroundColor: energeticPalette.purple,
+                }]
+            },
+             options: {
+                ...defaultChartOptions,
+                 scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>
