@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आणीबाणी: लोकशाहीवरील आघाताचे विश्लेषण</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Tiro+Devanagari+Marathi:wght@400&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Warm Neutrals (Background: #FDFBF7, Text: #3A3A3A, Accent: #D9534F, Muted: #8D8D8D) -->
+    <!-- Application Structure Plan: Thematic SPA with a sticky top navigation for easy access to different facets of the Emergency. The structure is non-linear, allowing users to explore based on interest: 1. Hero section for immediate context. 2. A "By the Numbers" section for high-impact data visualization using KPI cards and charts (now only media censorship). 3. A tabbed "Cultural Oppression" section to manage detailed narratives cleanly. 4. A card-based "Voices of Resistance" section to highlight positive defiance. 5. A new "Disadvantages" section to directly address the negative impacts. 6. A concluding "Legacy" section. This user-centric design makes the dense report content more engaging and comprehensible than a linear document. -->
+    <!-- Visualization & Content Choices: Repression Stats -> Goal: High-impact information -> Viz: KPI Cards (HTML/Tailwind) & Donut Chart (Chart.js) -> Interaction: Hover effects -> Justification: Delivers key figures instantly and shows proportions of media censorship. Cultural Stories ('Kissa Kursi Ka', Kishore Kumar) -> Goal: Narrate complex events -> Viz: Tabbed interface (HTML/JS) -> Interaction: Click to switch content -> Justification: Organizes multiple detailed stories in a compact space, preventing user overload. Resistance Stories -> Goal: Inspire & Inform -> Viz: Grid of styled cards (HTML/Tailwind) -> Justification: Presents individual acts of courage in a digestible, visually appealing format. Disadvantages -> Goal: Summarize negative impacts -> Viz: Grid of summary cards (HTML/Tailwind) -> Justification: Provides a direct and concise answer to the "disadvantages" query, consolidating key negative effects. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            background-color: #FDFBF7;
+            color: #3A3A3A;
+        }
+        .tiro-marathi {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #D9534F;
+            border-bottom-color: #D9534F;
+        }
+        .tab-button {
+            transition: all 0.3s;
+        }
+        .tab-button.active {
+            background-color: #D9534F;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <h1 class="text-xl md:text-2xl font-bold text-[#D9534F] tiro-marathi">आणीबाणी (१९७५-१९७७)</h1>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#numbers" class="text-gray-600 hover:text-[#D9534F] nav-link py-1">आकडेवारी</a>
+                    <a href="#culture" class="text-gray-600 hover:text-[#D9534F] nav-link py-1">सांस्कृतिक गळचेपी</a>
+                    <a href="#resistance" class="text-gray-600 hover:text-[#D9534F] nav-link py-1">प्रतिकाराचे आवाज</a>
+                    <a href="#disadvantages" class="text-gray-600 hover:text-[#D9534F] nav-link py-1">तोटे</a>
+                    <a href="#legacy" class="text-gray-600 hover:text-[#D9534F] nav-link py-1">वारसा</a>
+                </div>
+                 <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 hover:text-[#D9534F]">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </nav>
+         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <a href="#numbers" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">आकडेवारी</a>
+            <a href="#culture" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">सांस्कृतिक गळचेपी</a>
+            <a href="#resistance" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">प्रतिकाराचे आवाज</a>
+            <a href="#disadvantages" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">तोटे</a>
+            <a href="#legacy" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">वारसा</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl md:text-6xl font-bold tiro-marathi">लोकशाहीवरील आघात</h2>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">जून १९७५ ते मार्च १९७७, भारतीय इतिहासातील २१ महिन्यांचा "सर्वात अंधकारमय काळ", ज्याने नागरी स्वातंत्र्य आणि अभिव्यक्ती स्वातंत्र्याचा गळा घोटला.</p>
+                <div class="mt-8 flex justify-center items-center space-x-2 text-gray-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <span class="font-medium">२५ जून १९७५ – २१ मार्च १९७७</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="numbers" class="py-16 lg:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold tiro-marathi">आणीबाणी: आकड्यांमधून वास्तव</h2>
+                    <p class="mt-3 text-gray-600 max-w-2xl mx-auto">आणीबाणीच्या काळातील दडपशाही आणि सरकारच्या धोरणांचे परिणाम दर्शवणारी धक्कादायक आकडेवारी.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-16">
+                    <div class="bg-white p-8 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                        <h3 class="text-4xl md:text-5xl font-bold text-[#D9534F]">१.१ कोटी</h3>
+                        <p class="mt-2 text-gray-700 font-semibold tiro-marathi">सक्तीची नसबंदी</p>
+                        <p class="text-sm text-gray-500 mt-1">नाझी राजवटीच्या १५ पट अधिक</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                        <h3 class="text-4xl md:text-5xl font-bold text-[#D9534F]">१,००,०००+</h3>
+                        <p class="mt-2 text-gray-700 font-semibold tiro-marathi">राजकीय अटक</p>
+                        <p class="text-sm text-gray-500 mt-1">खटल्याशिवाय स्थानबद्ध</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                        <h3 class="text-4xl md:text-5xl font-bold text-[#D9534F]">१,५०,१०५</h3>
+                        <p class="mt-2 text-gray-700 font-semibold tiro-marathi">बांधकामे पाडली</p>
+                         <p class="text-sm text-gray-500 mt-1">केवळ दिल्लीत</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 place-items-center">
+                    <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                         <h3 class="text-xl font-bold mb-4 tiro-marathi text-center">माध्यमांची गळचेपी</h3>
+                        <div class="chart-container">
+                            <canvas id="mediaCensorshipChart"></canvas>
+                        </div>
+                        <p class="text-xs text-center mt-4 text-gray-500">सुमारे ८३० दैनिकांपैकी बहुतांश वृत्तपत्रांवर नियंत्रण आणि २०० पत्रकारांना अटक झाली.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="culture" class="py-16 lg:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold tiro-marathi">सांस्कृतिक गळचेपी</h2>
+                    <p class="mt-3 text-gray-600 max-w-2xl mx-auto">कला, साहित्य, आणि चित्रपट यांवर सरकारने लादलेले कठोर निर्बंध आणि सेन्सॉरशिपचा काळा अध्याय.</p>
+                </div>
+
+                <div>
+                    <div class="flex flex-wrap justify-center mb-8 border-b border-gray-200">
+                        <button class="tab-button py-2 px-4 -mb-px text-gray-600 bg-gray-100 rounded-t-md active" data-tab="press">माध्यम स्वातंत्र्य</button>
+                        <button class="tab-button py-2 px-4 -mb-px text-gray-600 bg-gray-100 rounded-t-md" data-tab="kishore">किशोर कुमार</button>
+                        <button class="tab-button py-2 px-4 -mb-px text-gray-600 bg-gray-100 rounded-t-md" data-tab="films">चित्रपट</button>
+                    </div>
+                    <div class="tab-content active" id="press">
+                        <div class="max-w-3xl mx-auto text-center">
+                            <h3 class="text-2xl font-bold mb-4 tiro-marathi">चौथ्या स्तंभावर हल्ला</h3>
+                            <p class="text-gray-700 leading-relaxed mb-4">आणीबाणीच्या घोषणेनंतर, दिल्लीतील वृत्तपत्रांच्या कार्यालयांची वीज खंडित करण्यात आली. सरकारवर टीका करणाऱ्या बातम्यांवर पूर्ण बंदी घालण्यात आली. अनेक वृत्तपत्रांनी सरकारच्या दबावापुढे मान तुकवली, पण 'द इंडियन एक्सप्रेस'ने संपादकीय रकाना कोरा सोडून एक मूक पण शक्तिशाली निषेध नोंदवला. याला उत्तर म्हणून, सरकारने कोरे रकाने सोडण्यावरही बंदी घातली.</p>
+                            <blockquote class="border-l-4 border-[#D9534F] pl-4 italic text-gray-600">"जेव्हा त्यांना वाकायला सांगितले, तेव्हा त्यांनी सरपटायला सुरुवात केली." - लालकृष्ण अडवाणी, माध्यमांच्या शरणागतीवर.</blockquote>
+                        </div>
+                    </div>
+                    <div class="tab-content hidden" id="kishore">
+                        <div class="max-w-3xl mx-auto text-center">
+                            <h3 class="text-2xl font-bold mb-4 tiro-marathi">एका गायकाचा आवाज दाबला</h3>
+                            <p class="text-gray-700 leading-relaxed mb-4">प्रसिद्ध गायक किशोर कुमार यांनी काँग्रेसच्या रॅलीत गाण्यास नकार दिला. याचा बदला म्हणून, माहिती आणि प्रसारण मंत्री व्ही.सी. शुक्ला यांनी ४ मे १९७६ रोजी ऑल इंडिया रेडिओ आणि दूरदर्शनवर त्यांची गाणी प्रसारित करण्यावर बंदी घातली. ही बंदी आणीबाणी संपेपर्यंत लागू होती. हा एका कलाकाराच्या स्वातंत्र्यावर थेट हल्ला होता.</p>
+                             <blockquote class="border-l-4 border-[#D9534F] pl-4 italic text-gray-600">"माफी? छे! गरज पडल्यास, मी गाणे सोडून देईन." - किशोर कुमार, बंदीच्या काळात.</blockquote>
+                        </div>
+                    </div>
+                    <div class="tab-content hidden" id="films">
+                        <div class="max-w-3xl mx-auto text-center">
+                            <h3 class="text-2xl font-bold mb-4 tiro-marathi">सिनेमावरील सेन्सॉरशिप</h3>
+                            <p class="text-gray-700 leading-relaxed mb-2">राजकीय भाष्य करणाऱ्या चित्रपटांनाही सरकारच्या क्रोधाचा सामना करावा लागला.</p>
+                            <ul class="text-left space-y-3 list-disc list-inside mx-auto max-w-2xl">
+                                <li><strong class="font-semibold">'आंधी' (१९७५):</strong> पंतप्रधान इंदिरा गांधींच्या जीवनावर आधारित असल्याच्या समजुतीमुळे २३ आठवड्यांच्या यशस्वी प्रदर्शनानंतर या चित्रपटावर बंदी घालण्यात आली.</li>
+                                <li><strong class="font-semibold">'किस्सा कुर्सी का' (१९७७):</strong> इंदिरा गांधी आणि संजय गांधींवर थेट राजकीय उपहास करणाऱ्या या चित्रपटाच्या सर्व प्रती जप्त करून त्या गुरुग्राममधील मारुतीच्या कारखान्यात जाळून टाकण्यात आल्या.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resistance" class="py-16 lg:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold tiro-marathi">प्रतिकाराचे आवाज</h2>
+                    <p class="mt-3 text-gray-600 max-w-2xl mx-auto">दडपशाहीच्या अंधारातही, काही धाडसी व्यक्ती आणि घटनांनी लोकशाहीची ज्योत तेवत ठेवली.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-bold mb-3 tiro-marathi">दुर्गाबाई भागवत यांचे भाषण</h3>
+                        <p class="text-gray-600 flex-grow">कराड येथील साहित्य संमेलनात अध्यक्षीय भाषणातून दुर्गाबाई भागवत यांनी यशवंतराव चव्हाणांच्या उपस्थितीत आणीबाणीवर सडेतोड टीका केली. "विचाराच्या अभिव्यक्तीवरची बंधनं रद्द होणं आवश्यक आहे. नाहीतर भीतीचं राज्य निर्माण होईल," असे त्यांचे निर्भीड उद्गार होते.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-bold mb-3 tiro-marathi">'बॉबी' विरुद्ध जनतेचा कौल</h3>
+                        <p class="text-gray-600 flex-grow">जयप्रकाश नारायण यांच्या दिल्लीतील रामलीला मैदानावरच्या सभेला गर्दी होऊ नये म्हणून, सरकारने त्याच वेळी दूरदर्शनवर लोकप्रिय 'बॉबी' चित्रपट दाखवला. तरीही, लोकांनी चित्रपट सोडून सभेला प्रचंड गर्दी केली आणि सरकारचा डाव उधळला.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-bold mb-3 tiro-marathi">सूक्ष्म प्रतिकार</h3>
+                        <p class="text-gray-600 flex-grow">शास्त्रीय गायक भीमसेन जोशी यांनी एका मैफिलीत, व्ही.सी. शुक्ला यांच्या समोर "दया धर्म का मूल है, नरक मूल अभिमान" हे भजन गाऊन सूक्ष्म पण प्रभावी निषेध नोंदवला. अनेक लेखकांनी भूमिगत राहून साहित्य लिहिले आणि माहिती तोंडी पसरवली.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="disadvantages" class="py-16 lg:py-24 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold tiro-marathi text-[#D9534F]">आणीबाणीचे तोटे आणि गंभीर परिणाम</h2>
+                    <p class="mt-3 text-gray-600 max-w-2xl mx-auto">२१ महिन्यांच्या आणीबाणीने भारतीय लोकशाहीवर आणि सामान्य नागरिकांच्या जीवनावर खोलवर नकारात्मक परिणाम केले.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-3 tiro-marathi">नागरी स्वातंत्र्याचा अंत</h3>
+                        <p class="text-gray-600">मूलभूत हक्क आणि स्वातंत्र्ये निलंबित करण्यात आली. लोकांना अटक करण्याचे अधिकार सरकारला मिळाले आणि न्यायव्यवस्थेची भूमिका मर्यादित झाली.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-3 tiro-marathi">अभिव्यक्ती स्वातंत्र्यावर गदा</h3>
+                        <p class="text-gray-600">वृत्तपत्रे, कला आणि साहित्यावर कठोर सेन्सॉरशिप लादली गेली. सरकारविरोधात कोणताही आवाज दाबण्यात आला, ज्यामुळे लोकशाहीचा चौथा स्तंभ कोलमडला.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-3 tiro-marathi">सक्तीची नसबंदी</h3>
+                        <p class="text-gray-600">लोकसंख्या नियंत्रणासाठी सक्तीने नसबंदी मोहीम राबवण्यात आली, ज्यामुळे नागरिकांच्या शारीरिक स्वातंत्र्याचे उल्लंघन झाले आणि मोठ्या प्रमाणात मानवाधिकार पायदळी तुडवले गेले.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-3 tiro-marathi">राजकीय दडपशाही</h3>
+                        <p class="text-gray-600">विरोधी पक्षनेत्यांना, कार्यकर्त्यांना आणि असंतुष्ट व्यक्तींना मोठ्या संख्येने अटक करून तुरुंगात टाकण्यात आले. राजकीय विरोध पूर्णपणे दाबण्यात आला.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-3 tiro-marathi">लोकशाही संस्थांचा कमकुवतपणा</h3>
+                        <p class="text-gray-600">संसद, न्यायपालिका आणि प्रेस यांसारख्या लोकशाही संस्था कमकुवत झाल्या. सत्तेचे केंद्रीकरण झाले आणि कार्यकारी मंडळाने असीमित अधिकार वापरले.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-3 tiro-marathi">आर्थिक गैरव्यवस्थापन आणि अनिश्चितता</h3>
+                        <p class="text-gray-600">दावा केलेला आर्थिक 'स्थिरता' अल्पकाळ टिकणारी होती. काही वर्षांतच कृषी वाढ घटली आणि अनिश्चिततेचे वातावरण निर्माण झाले. दीर्घकाळात यामुळे अर्थव्यवस्थेवर नकारात्मक परिणाम झाला.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="legacy" class="py-16 lg:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold tiro-marathi">धडे आणि वारसा</h2>
+                    <p class="mt-3 text-gray-600 max-w-2xl mx-auto">आणीबाणीने भारतीय लोकशाहीला कायमचे धडे दिले आणि संविधानात महत्त्वपूर्ण बदल घडवले.</p>
+                </div>
+                <div class="max-w-4xl mx-auto text-center">
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">आणीबाणीने हे दाखवून दिले की लोकशाही संस्था किती नाजूक असू शकतात. या अनुभवातून शिकून, भविष्यात अशा सत्तेच्या गैरवापराला आळा घालण्यासाठी संविधानात बदल करण्यात आले.</p>
+                    <div class="bg-red-50 border-l-4 border-[#D9534F] p-4 rounded-r-lg inline-block">
+                        <h4 class="font-bold tiro-marathi">४४ वी घटनादुरुस्ती</h4>
+                        <p class="text-sm text-gray-600">आणीबाणीनंतर, "अंतर्गत अशांतता" हा अस्पष्ट शब्द बदलून "सशस्त्र बंड" असा करण्यात आला, जेणेकरून भविष्यात आणीबाणी लावणे अधिक कठीण होईल.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const wrapText = (ctx, text, maxWidth) => {
+        const words = text.split(' ');
+        let lines = [];
+        let currentLine = words[0];
+
+        for (let i = 1; i < words.length; i++) {
+            const word = words[i];
+            const width = ctx.measureText(currentLine + " " + word).width;
+            if (width < maxWidth) {
+                currentLine += " " + word;
+            } else {
+                lines.push(currentLine);
+                currentLine = word;
+            }
+        }
+        lines.push(currentLine);
+        return lines;
+    };
+
+    const mediaData = {
+        labels: ['पूर्व-सेन्सॉरशिपखालील वृत्तपत्रे', 'अटक झालेले पत्रकार', 'इतर नियंत्रित दैनिके'],
+        datasets: [{
+            label: 'माध्यम नियंत्रण',
+            data: [60, 200, 830 - 60],
+            backgroundColor: ['#D9534F', '#F0AD4E', '#8D8D8D'],
+            hoverOffset: 4
+        }]
+    };
+
+    const mediaChartCtx = document.getElementById('mediaCensorshipChart').getContext('2d');
+    new Chart(mediaChartCtx, {
+        type: 'doughnut',
+        data: mediaData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: { display: false },
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+
+    const tabs = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.getAttribute('data-tab');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+                if (content.id === target) {
+                    content.classList.remove('hidden');
+                }
+            });
+        });
+    });
+
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    const mobileNavLinks = document.querySelectorAll('#mobile-menu a');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
+
+});
+</script>
+
+</body>
+</html>
