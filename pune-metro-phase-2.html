@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pune Metro: An Interactive Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 
+    Chosen Palette: Calm Harmony
+    - Background: #F8F9FA (Off-white)
+    - Base Text: #212529 (Dark Gray)
+    - Muted Text: #6C757D (Medium Gray)
+    - Primary Interactive: #007BFF (Vibrant Blue)
+    - Accent/Highlight: #FFC107 (Warm Gold)
+    - Chart Colors: A professional and distinct palette of blues, greens, and grays.
+    -->
+    
+    <!-- 
+    Application Structure Plan:
+    The application is designed as a thematic, single-page dashboard to provide a non-linear, exploratory user experience, which is more effective for web-based consumption than the report's linear chapter format.
+    - User Flow: Start with a high-level overview (Hero), dive into the network's physical state (Interactive Network Map), analyze the core operational challenge (Ridership Dashboard), explore the financial and real-estate implications (Economic Impact), and finally understand the solutions and strategic outlook (Livability & Recommendations).
+    - Structure Rationale: This thematic grouping allows users to focus on specific areas of interest (e.g., "How is the project financed?" or "Which lines are actually running?"). The interactive map is a far more engaging way to present the network details from Section 2 of the report than a static table. A dedicated "Ridership Challenge" section highlights the report's central finding for maximum impact. This design prioritizes usability and narrative clarity over mimicking the source document's layout.
+    -->
+
+    <!-- 
+    Visualization & Content Choices:
+    - Key Metrics (Hero Section): Inform -> Dynamic Stats -> Large, bold text for immediate impact.
+    - Metro Network Status: Organize/Explore -> Interactive Diagram (HTML/CSS/JS) -> Allows users to actively query information about each line, which is more engaging than a static table. Justification: Superior user interaction. Library/Method: Vanilla JS on styled divs.
+    - Ridership Gap: Compare -> Bar Chart -> Visually emphasizes the stark difference between projected and actual numbers. Justification: Best for direct comparison. Library/Method: Chart.js (Canvas).
+    - Ridership Trends: Change -> Line Chart -> Shows performance over time, highlighting growth and fluctuations. Justification: Standard for time-series data. Library/Method: Chart.js (Canvas).
+    - Revenue Mix: Inform (Proportion) -> Doughnut Chart -> Clearly illustrates the 50/50 target for farebox vs. non-farebox revenue. Justification: Ideal for part-to-whole relationships. Library/Method: Chart.js (Canvas).
+    - Real Estate Appreciation: Compare -> Horizontal Bar Chart -> Compares the "metro effect" across different locations effectively. Justification: Clear for categorical comparison. Library/Method: Chart.js (Canvas).
+    - Last-Mile Solutions: Inform/Organize -> Icon-based List -> Uses visual cues to make solutions easily scannable and digestible. Justification: Enhances readability. Library/Method: HTML/CSS with Unicode.
+    - Recommendations: Organize -> Card Layout -> Breaks down complex recommendations into clear, manageable chunks. Justification: Improves content structure. Library/Method: HTML/CSS.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #212529;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #007BFF;
+            border-bottom-color: #007BFF;
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-left: 4px solid #007BFF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background-color: #007BFF;
+            color: white;
+        }
+        .line-dot {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 9999px;
+            border: 2px solid white;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-gray-800">Pune Metro Analysis</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#overview" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Overview</a>
+                        <a href="#network" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Network Explorer</a>
+                        <a href="#ridership" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Ridership Challenge</a>
+                        <a href="#economy" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Economic Impact</a>
+                        <a href="#livability" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Urban Livability</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="overview" class="py-12 md:py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900">Pune's Urban Transit Revolution</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-gray-600">An interactive analysis of the Pune Metro project, its expansion, economic impact, and the critical path to becoming the city's sustainable backbone.</p>
+                <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="stat-card">
+                        <p class="text-sm font-medium text-gray-500">Total Network (Operational)</p>
+                        <p class="mt-1 text-4xl font-bold text-gray-900">33.3 km</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-sm font-medium text-gray-500">Phase-2 Extension Investment</p>
+                        <p class="mt-1 text-4xl font-bold text-gray-900">₹3,626 Cr</p>
+                    </div>
+                    <div class="stat-card" style="border-left-color: #FFC107;">
+                        <p class="text-sm font-medium text-gray-500">Real Estate Value Uplift</p>
+                        <p class="mt-1 text-4xl font-bold text-gray-900">15-20% ▲</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="network" class="py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-gray-900">Interactive Network Explorer</h3>
+                    <p class="mt-2 max-w-2xl mx-auto text-lg text-gray-600">The Pune Metro is a multi-phase, multi-agency effort. Click on a line below to explore its status, route, and strategic importance in weaving a new urban fabric for the city.</p>
+                </div>
+                <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                    <div class="lg:col-span-1 flex flex-col space-y-4">
+                        <button class="tab-button w-full text-left p-4 rounded-lg bg-white shadow-sm font-semibold active" data-line="line1">
+                            <span class="inline-block w-3 h-3 rounded-full mr-3" style="background-color: #8A2BE2;"></span> Line 1 (Purple) & Extensions
+                        </button>
+                        <button class="tab-button w-full text-left p-4 rounded-lg bg-white shadow-sm font-semibold" data-line="line2">
+                            <span class="inline-block w-3 h-3 rounded-full mr-3" style="background-color: #20B2AA;"></span> Line 2 (Aqua) & Extensions
+                        </button>
+                        <button class="tab-button w-full text-left p-4 rounded-lg bg-white shadow-sm font-semibold" data-line="line3">
+                           <span class="inline-block w-3 h-3 rounded-full mr-3" style="background-color: #FF8C00;"></span> Line 3 (Hinjewadi-Shivajinagar)
+                        </button>
+                        <button class="tab-button w-full text-left p-4 rounded-lg bg-white shadow-sm font-semibold" data-line="future">
+                           <span class="inline-block w-3 h-3 rounded-full mr-3" style="background-color: #6C757D;"></span> Future Vision & Proposed Lines
+                        </button>
+                    </div>
+
+                    <div id="line-details" class="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg min-h-[400px]">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="ridership" class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-gray-900">The Ridership Challenge</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg text-gray-600">Ridership is the lifeblood of the metro, directly impacting its financial health and its mission to decongest Pune. The project faces a critical gap between initial forecasts and current reality.</p>
+                </div>
+                <div class="mt-12 grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <div class="lg:col-span-3">
+                        <div class="chart-container" style="height: 450px;">
+                            <canvas id="ridershipGapChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 flex flex-col justify-center bg-gray-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-semibold text-gray-800">Reality vs. Projection</h4>
+                        <p class="mt-2 text-gray-600">The 2015 Detailed Project Report (DPR) projected over <strong class="text-gray-900">600,000</strong> daily riders. Current figures hover around <strong class="text-gray-900">160,000</strong>, less than 25% of the forecast. This disconnect is the single biggest challenge, highlighting that a "build it and they will come" approach is insufficient.</p>
+                        <p class="mt-4 text-gray-600">Achieving projected ridership for new extensions—<strong class="text-gray-900">96,000</strong> for Phase 2 and <strong class="text-gray-900">95,000</strong> for the Katraj line—is crucial for financial viability.</p>
+                    </div>
+                </div>
+                 <div class="mt-8 text-center">
+                    <h4 class="text-2xl font-bold text-gray-800">Monthly Performance</h4>
+                    <p class="mt-1 text-gray-600">Despite the overall gap, monthly data shows a growing trend influenced by network expansions and external factors.</p>
+                 </div>
+                 <div class="mt-6">
+                    <div class="chart-container" style="max-width: 900px;">
+                        <canvas id="ridershipTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="economy" class="py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-gray-900">Economic & Real Estate Impact</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg text-gray-600">The metro is a powerful economic engine, reshaping Pune's real estate market and creating new financial opportunities and challenges.</p>
+                </div>
+                <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-semibold text-center mb-4 text-gray-800">The Non-Farebox Imperative</h4>
+                        <div class="chart-container" style="height: 350px;">
+                            <canvas id="revenueMixChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-gray-600 text-center">Fare collection alone cannot sustain the metro. Maha-Metro has a critical target of generating <strong class="text-gray-900">50% of its revenue</strong> from non-farebox sources like advertising, station co-branding, and large-scale property development at hubs like Vanaz and Swargate.</p>
+                    </div>
+                     <div>
+                        <h4 class="text-xl font-semibold text-center mb-4 text-gray-800">The "Metro Effect" on Real Estate</h4>
+                        <div class="chart-container" style="height: 350px;">
+                            <canvas id="realEstateChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-gray-600 text-center">Proximity to a metro station has become a premium feature. This chart shows the average property price appreciation in key micro-markets within a 1km radius of metro corridors, driving investment and Transit-Oriented Development (TOD).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="livability" class="py-16 bg-white">
+             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-gray-900">Enhancing Urban Livability</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg text-gray-600">The ultimate goal of the metro is to improve daily life. This hinges on solving the "last-mile" puzzle and delivering on its environmental promise.</p>
+                </div>
+                 <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-gray-800">Mastering the First & Last Mile</h4>
+                        <p class="mt-2 text-gray-600">Solving the problem of getting commuters to and from stations is the key to unlocking widespread metro adoption. Current initiatives are retroactively addressing this early planning gap.</p>
+                        <div class="mt-6 space-y-4">
+                            <div class="flex items-start"><span class="text-2xl mr-4">🚌</span><div><h5 class="font-semibold">Feeder Buses & PMPML Integration</h5><p class="text-sm text-gray-500">Synchronized bus routes and integrated ticketing.</p></div></div>
+                            <div class="flex items-start"><span class="text-2xl mr-4">🛺</span><div><h5 class="font-semibold">Formalized Auto-Rickshaw Services</h5><p class="text-sm text-gray-500">Partnerships with unions for reliable, metered transport from stations.</p></div></div>
+                            <div class="flex items-start"><span class="text-2xl mr-4">🚶</span><div><h5 class="font-semibold">Improved Walkability (NMT)</h5><p class="text-sm text-gray-500">Upgrading footpaths and non-motorized transport infrastructure.</p></div></div>
+                            <div class="flex items-start"><span class="text-2xl mr-4">🏢</span><div><h5 class="font-semibold">Multimodal Hubs</h5><p class="text-sm text-gray-500">Integrating metro termini with intercity bus services.</p></div></div>
+                        </div>
+                    </div>
+                     <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-gray-800">The Green Promise</h4>
+                        <p class="mt-2 text-gray-600">A fully utilized network promises significant environmental benefits, though these are contingent on achieving a large-scale modal shift away from private vehicles.</p>
+                        <div class="mt-6 space-y-4">
+                            <div class="flex items-center"><span class="text-4xl text-green-500 mr-4">🍃</span><div><h5 class="font-semibold">100,000 Tonnes</h5><p class="text-sm text-gray-500">Projected annual reduction in CO2 emissions.</p></div></div>
+                            <div class="flex items-center"><span class="text-4xl text-blue-500 mr-4">💧</span><div><h5 class="font-semibold">Fuel & Time Savings</h5><p class="text-sm text-gray-500">Reduced congestion leads to massive collective savings.</p></div></div>
+                            <div class="flex items-center"><span class="text-4xl text-yellow-500 mr-4">☀️</span><div><h5 class="font-semibold">5 MW Solar Power</h5><p class="text-sm text-gray-500">Investment in renewable energy to power stations.</p></div></div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-300">This interactive application is based on the report "Pune's Urban Transit Revolution: A Deep-Dive Analysis".</p>
+            <p class="text-xs text-gray-400 mt-2">Data synthesized for mid-2025. All visualizations are for illustrative purposes.</p>
+        </div>
+    </footer>
+
+<script>
+const lineData = {
+    line1: {
+        title: "Line 1 (Purple Line) & Extensions",
+        color: "#8A2BE2",
+        content: `
+            <h4 class="text-2xl font-bold" style="color: #8A2BE2;">North-South Backbone</h4>
+            <p class="mt-2 text-gray-600">Connecting PCMC Bhavan to Swargate, this line forms the primary North-South axis of the network. It's a hybrid line with both elevated and critical underground sections through the city's core.</p>
+            <div class="mt-6 border-t pt-6">
+                <h5 class="font-semibold text-lg text-gray-800">Key Extensions:</h5>
+                <ul class="mt-4 space-y-4 text-gray-600">
+                    <li><strong>PCMC to Nigdi (Under Construction):</strong> A 4.51 km elevated extension deepening the metro's reach into the Pimpri-Chinchwad industrial belt. Targeted completion: 2027.</li>
+                    <li><strong>Swargate to Katraj (Tendering):</strong> A 5.46 km fully underground southern extension. Its scope was expanded to include more stations, highlighting responsiveness to public demand but also increasing costs and timelines.</li>
+                </ul>
+            </div>
+        `
+    },
+    line2: {
+        title: "Line 2 (Aqua Line) & Extensions",
+        color: "#20B2AA",
+        content: `
+            <h4 class="text-2xl font-bold" style="color: #20B2AA;">The East-West Artery</h4>
+            <p class="mt-2 text-gray-600">Running from Vanaz to Ramwadi, this fully elevated line serves dense residential and commercial areas and currently generates the highest ridership. The newly approved extensions are set to transform it into a seamless city-wide corridor.</p>
+            <div class="mt-6 border-t pt-6">
+                <h5 class="font-semibold text-lg text-gray-800">Approved Phase-2 Extensions:</h5>
+                <ul class="mt-4 space-y-4 text-gray-600">
+                    <li><strong>Vanaz to Chandani Chowk:</strong> A 1.12 km western extension creating a crucial multimodal hub to integrate with highway bus services from Mumbai/Bengaluru.</li>
+                    <li><strong>Ramwadi to Wagholi:</strong> A vital 11.63 km eastern extension connecting the massive Kharadi IT park and the rapidly growing Wagholi residential area, aiming to decongest Ahmednagar Road.</li>
+                </ul>
+            </div>
+        `
+    },
+    line3: {
+        title: "Line 3 (Hinjewadi - Shivajinagar)",
+        color: "#FF8C00",
+        content: `
+            <h4 class="text-2xl font-bold" style="color: #FF8C00;">Connecting the IT Hub</h4>
+            <p class="mt-2 text-gray-600">This 23.3 km elevated line is distinct as it's executed by PMRDA on a Public-Private Partnership (PPP) model. It is strategically critical for connecting the Hinjewadi IT Park, Pune's largest employment hub, with the city center at Shivajinagar.</p>
+            <div class="mt-6 border-t pt-6">
+                <h5 class="font-semibold text-lg text-gray-800">Current Status & Challenges:</h5>
+                <p class="mt-2 text-gray-600">The project has faced significant delays, with the completion date pushed to March 2026 or later. Progress has been hampered by land acquisition issues and complex construction at the University Chowk junction. Seamless integration with Maha-Metro's lines at the Civil Court interchange will be crucial for its success.</p>
+            </div>
+        `
+    },
+    future: {
+        title: "Future Vision & Proposed Corridors",
+        color: "#6C757D",
+        content: `
+            <h4 class="text-2xl font-bold" style="color: #6C757D;">Weaving a Complete Network</h4>
+            <p class="mt-2 text-gray-600">Beyond the current construction, Maha-Metro has a strategic vision to create a truly comprehensive network connecting every key part of the Pune Metropolitan Region.</p>
+            <div class="mt-6 border-t pt-6">
+                <h5 class="font-semibold text-lg text-gray-800">Key Proposed Corridors (Awaiting Approval):</h5>
+                <ul class="mt-4 space-y-4 text-gray-600">
+                    <li><strong>Airport Connectivity:</strong> A DPR is being prepared for a ~3km link from Ramwadi to Pune International Airport, a long-standing and critical demand.</li>
+                    <li><strong>Khadakwasla to Kharadi:</strong> A major 25.8 km line that would create another East-West corridor through the dense areas of Swargate and Hadapsar.</li>
+                    <li><strong>Ring Line Metro:</strong> A proposed ~36 km line intended to encircle the city, connecting all radial corridors to create a true network effect and enhance inter-suburb travel.</li>
+                </ul>
+            </div>
+        `
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const lineDetailsContainer = document.getElementById('line-details');
+    const tabButtons = document.querySelectorAll('.tab-button');
+
+    function updateContent(lineKey) {
+        const data = lineData[lineKey];
+        lineDetailsContainer.innerHTML = data.content;
+        tabButtons.forEach(button => {
+            button.classList.toggle('active', button.dataset.line === lineKey);
+        });
+    }
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            updateContent(button.dataset.line);
+        });
+    });
+
+    updateContent('line1');
+    
+    const chartTooltipCallback = {
+        title: function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        }
+    }
+    
+    const chartDefaultOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: { color: '#495057' }
+            },
+            tooltip: { callbacks: chartTooltipCallback }
+        },
+        scales: {
+            y: {
+                ticks: { color: '#495057' },
+                grid: { color: '#DEE2E6' }
+            },
+            x: {
+                ticks: { color: '#495057' },
+                grid: { display: false }
+            }
+        }
+    };
+    
+    new Chart(document.getElementById('ridershipGapChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['DPR Projection (2015)', 'Actual Ridership (2025)'],
+            datasets: [{
+                label: 'Daily Riders',
+                data: [600000, 160000],
+                backgroundColor: ['#6C757D', '#007BFF'],
+                borderRadius: 4
+            }]
+        },
+        options: {
+            ...chartDefaultOptions,
+            plugins: { ...chartDefaultOptions.plugins, legend: { display: false } },
+            scales: {
+                y: { ...chartDefaultOptions.scales.y,
+                    ticks: {
+                        callback: function(value) { return value / 1000 + 'k' }
+                    }
+                }
+            }
+        }
+    });
+
+    new Chart(document.getElementById('ridershipTrendChart').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May'],
+            datasets: [{
+                label: 'Total Monthly Ridership (in Lakhs)',
+                data: [49.64, 43.07, 44.81, 46.59, 47.62],
+                borderColor: '#007BFF',
+                backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                fill: true,
+                tension: 0.3,
+                borderWidth: 2
+            }]
+        },
+        options: chartDefaultOptions
+    });
+    
+    new Chart(document.getElementById('revenueMixChart').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Farebox Revenue Target', 'Non-Farebox Revenue Target'],
+            datasets: [{
+                data: [50, 50],
+                backgroundColor: ['#007BFF', '#FFC107'],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: { ...chartDefaultOptions, cutout: '65%' }
+    });
+
+    new Chart(document.getElementById('realEstateChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['Kharadi', 'Baner/Balewadi', 'Chandani Chowk', 'Wagholi', 'Kothrud'],
+            datasets: [{
+                label: 'Avg. Property Price Appreciation (%)',
+                data: [17.5, 17.5, 17.5, 15, 12.5],
+                backgroundColor: ['#28a745', '#28a745', '#28a745', '#ffc107', '#ffc107'],
+                borderRadius: 4
+            }]
+        },
+        options: { ...chartDefaultOptions, indexAxis: 'y',
+            plugins: { ...chartDefaultOptions.plugins, legend: { display: false } }
+        }
+    });
+    
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('main section');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 80) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('active');
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
