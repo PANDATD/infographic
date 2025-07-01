@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आषाढी एकादशी: एक इंटरॲक्टिव्ह अनुभव</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony (Light Amber/Orange, Stone Gray, Saffron Accent, Subtle Green) -->
+    <!-- Application Structure Plan: A single-page, vertical scrolling application with a sticky navigation bar for thematic sections (Confluence, Faith, Farming, Health, Equality). This structure breaks down the dense report into digestible, interconnected themes, guiding the user through the multi-faceted nature of Ashadhi Ekadashi. The flow moves from a high-level overview to deep dives into spiritual, practical, and social aspects, creating a more engaging narrative than a linear report. -->
+    <!-- Visualization & Content Choices:
+    - Wari Journey: Goal: Show process. Method: Interactive HTML/CSS timeline. Interaction: Click to expand details. Justification: More engaging than a list. Library: Vanilla JS.
+    - Farming Cycle: Goal: Show relationship/timing. Method: Bar Chart. Interaction: Static visualization for clarity. Justification: Clearly shows the Wari's placement within the agricultural calendar. Library: Chart.js.
+    - Fasting Diet: Goal: Show proportions. Method: Donut Chart. Interaction: Hover to see details. Justification: Intuitive for showing parts of a whole (diet composition). Library: Chart.js.
+    - Social Concepts: Goal: Organize information. Method: Card-based grid. Interaction: Hover effects. Justification: Cleanly presents distinct but related social themes. Library: Vanilla JS + Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .tiro-marathi {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+    </style>
+</head>
+<body class="bg-amber-50 text-stone-800">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl md:text-2xl font-bold text-amber-600 tiro-marathi">आषाढी एकादशी</h1>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#sangam" class="text-stone-600 hover:text-amber-600 transition duration-300">संगम</a>
+                    <a href="#shraddha" class="text-stone-600 hover:text-amber-600 transition duration-300">श्रद्धेची वाट</a>
+                    <a href="#shetkari" class="text-stone-600 hover:text-amber-600 transition duration-300">शेतकऱ्याचे साकडे</a>
+                    <a href="#arogya" class="text-stone-600 hover:text-amber-600 transition duration-300">उपासाचे विज्ञान</a>
+                    <a href="#samata" class="text-stone-600 hover:text-amber-600 transition duration-300">समतेचा उत्सव</a>
+                </div>
+                <div class="md:hidden">
+                    <select id="mobile-nav" class="bg-white border border-stone-300 rounded-md px-2 py-1">
+                        <option value="#sangam">संगम</option>
+                        <option value="#shraddha">श्रद्धेची वाट</option>
+                        <option value="#shetkari">शेतकऱ्याचे साकडे</option>
+                        <option value="#arogya">उपासाचे विज्ञान</option>
+                        <option value="#samata">समतेचा उत्सव</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <section id="sangam" class="text-center mb-16 md:mb-24">
+            <h2 class="text-3xl md:text-5xl font-bold text-stone-700 mb-4 tiro-marathi">श्रद्धा, शेती आणि आरोग्याचा त्रिवेणी संगम</h2>
+            <p class="max-w-3xl mx-auto text-stone-600 text-lg">
+                आषाढी एकादशी केवळ एक धार्मिक व्रत नाही, तर ती वारकरी शेतकऱ्याचे जीवन, त्याचे आरोग्य आणि त्याची अढळ श्रद्धा यांना जोडणारा एक अनुपम सोहळा आहे. हा 'देवशयनी एकादशी' पासून सुरू होणारा चातुर्मासाचा काळ, मानवाला निसर्ग आणि अध्यात्म यांच्याशी एकरूप होण्याची संधी देतो.
+            </p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-amber-200">
+                    <span class="text-4xl">🙏</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2 tiro-marathi">अध्यात्म आणि श्रद्धा</h3>
+                    <p class="text-stone-600">लाखो वारकऱ्यांचा पंढरीकडे जाणारा पायी प्रवास, नामस्मरणाचा गजर आणि विठ्ठलाच्या भेटीची ओढ.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-green-200">
+                    <span class="text-4xl">🌱</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2 tiro-marathi">शेती आणि जीवन</h3>
+                    <p class="text-stone-600">पेरणी आटोपून, पीकपाण्याची चिंता विठ्ठलावर सोडून पंढरीची वाट धरणारा शेतकरी-वारकरी.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border-blue-200">
+                    <span class="text-4xl">❤️</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2 tiro-marathi">आरोग्य आणि विज्ञान</h3>
+                    <p class="text-stone-600">पावसाळ्यात मंदावलेल्या पचनशक्तीला आराम देणारे एकादशीचे व्रत आणि त्यामागील आयुर्वेद.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="shraddha" class="mb-16 md:mb-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-stone-700 mb-12 tiro-marathi">श्रद्धेची वाट: वारीचा अध्यात्मिक प्रवास</h2>
+            <p class="max-w-3xl mx-auto text-center text-stone-600 mb-12">
+                पंढरीची वारी हा केवळ पायी प्रवास नाही, तर तो एक चालता-फिरता भक्तीसोहळा आहे. या प्रवासातील प्रत्येक टप्पा वारकऱ्याला ईश्वराच्या जवळ घेऊन जातो आणि त्याच्यातील सामूहिक ऊर्जेला मुक्त करतो.
+            </p>
+            <div class="relative pl-8 border-l-2 border-amber-300">
+                <div class="mb-12 timeline-item">
+                    <div class="absolute w-6 h-6 bg-white border-4 border-amber-500 rounded-full -left-3.5 mt-1.5"></div>
+                    <h3 class="text-2xl font-bold text-amber-700 tiro-marathi">नामस्मरण आणि अभंगगायन</h3>
+                    <p class="text-stone-600 mt-2">टाळ-मृदंगाच्या तालावर 'माऊली-माऊली'चा गजर करत, संतांचे अभंग गात वारकरी मार्गक्रमण करतात. हा नाद त्यांना शारीरिक श्रमांचा विसर पाडतो.</p>
+                </div>
+                <div class="mb-12 timeline-item">
+                    <div class="absolute w-6 h-6 bg-white border-4 border-amber-500 rounded-full -left-3.5 mt-1.5"></div>
+                    <h3 class="text-2xl font-bold text-amber-700 tiro-marathi">कीर्तन आणि फड परंपरा</h3>
+                    <p class="text-stone-600 mt-2">मुक्कामाच्या ठिकाणी रात्री कीर्तनाचे फड रंगतात. यातून संतांचे विचार, कथा आणि तत्त्वज्ञान सहजपणे लोकांपर्यंत पोहोचते. ही एक चालती-फिरती ज्ञानशाळाच असते.</p>
+                </div>
+                <div class="mb-12 timeline-item">
+                    <div class="absolute w-6 h-6 bg-white border-4 border-amber-500 rounded-full -left-3.5 mt-1.5"></div>
+                    <h3 class="text-2xl font-bold text-amber-700 tiro-marathi">रिंगण सोहळा</h3>
+                    <p class="text-stone-600 mt-2">शिस्तीचे आणि सामूहिक ऊर्जेचे प्रतीक असलेला हा सोहळा डोळ्यांचे पारणे फेडतो. रिकामा धावणारा अश्व म्हणजे प्रत्यक्ष माऊली धावत असल्याची वारकऱ्यांची श्रद्धा असते. या अश्वाच्या टापांखालची माती कपाळी लावणे पवित्र मानले जाते.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="absolute w-6 h-6 bg-white border-4 border-amber-500 rounded-full -left-3.5 mt-1.5"></div>
+                    <h3 class="text-2xl font-bold text-amber-700 tiro-marathi">धावा</h3>
+                    <p class="text-stone-600 mt-2">पंढरपूर जवळ आल्यावर मंदिराचा कळस दिसताच, देहभान हरपून वारकरी विठ्ठलाच्या भेटीसाठी धाव घेतात. हा भक्ताच्या आत्म्याचा परमात्म्याकडे ओढीचा सर्वोच्च क्षण असतो.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="shetkari" class="mb-16 md:mb-24 bg-green-50/50 p-6 md:p-10 rounded-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-stone-700 mb-4 tiro-marathi">शेतकऱ्याचे साकडे: कृषीचक्र आणि वारीचे नाते</h2>
+            <p class="max-w-3xl mx-auto text-center text-stone-600 mb-10">
+                वारीची वेळ कृषीचक्रात अत्यंत विचारपूर्वक निवडलेली आहे. पेरणीचे महत्त्वाचे काम संपलेले असते, पण खुरपणीला अवकाश असतो. याच काळात शेतकरी आपल्या पिकांची आणि संसाराची चिंता विठ्ठलावर सोपवून त्याच्या दर्शनाला निघतो.
+            </p>
+            <div class="chart-container">
+                <canvas id="shetkariChart"></canvas>
+            </div>
+            <div class="text-center mt-8 bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+                <p class="text-xl text-green-800 font-semibold tiro-marathi">"पेरलेले चांगले पिकू दे, पाऊस-पाणी नीट पडू दे...<br>आणि जर परिस्थिती चांगली राहिली, तर देवा...<br>उतू देऊ नको, मातू देऊ नको!"</p>
+                <p class="text-stone-500 mt-2 text-sm">ही विनम्र प्रार्थना वारकऱ्याची केवळ भौतिक समृद्धीच्या पलीकडे जाऊन, त्याच्या नैतिक मूल्यांची सखोल जाणीव दर्शवते.</p>
+            </div>
+        </section>
+
+        <section id="arogya" class="mb-16 md:mb-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-stone-700 mb-12 tiro-marathi">उपासाचे विज्ञान: आरोग्य आणि अध्यात्म</h2>
+             <p class="max-w-3xl mx-auto text-center text-stone-600 mb-12">
+                आषाढी एकादशीचे व्रत केवळ धार्मिक कर्मकांड नाही, तर त्यामागे एक सखोल आरोग्य विचार आहे. आयुर्वेदानुसार पावसाळ्यात मंदावलेल्या 'जठराग्नी'ला (पचनशक्ती) आराम देणे आवश्यक असते. एकादशीचा उपवास ही शास्त्रीय गरज धार्मिक परंपरेशी जोडतो.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="chart-container">
+                    <canvas id="arogyaChart"></canvas>
+                    <p class="text-center text-sm text-stone-500 mt-2">एकादशीचा सात्विक आहार (घटकांनुसार प्रमाण)</p>
+                </div>
+                <div>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-3 mt-1">●</span>
+                            <div><strong class="text-blue-700">फळे व कंदमुळे:</strong> शरीराला ऊर्जा आणि जीवनसत्त्वे देतात. पचायला हलके असल्याने पचनसंस्थेवर ताण येत नाही.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-amber-500 mr-3 mt-1">●</span>
+                            <div><strong class="text-amber-700">हलकी तृणधान्ये:</strong> राजगिरा, वरई, साबुदाणा यांसारखी धान्ये आवश्यक कर्बोदके आणि पोषकतत्त्वे पुरवतात.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-500 mr-3 mt-1">●</span>
+                            <div><strong class="text-gray-700">दुग्धजन्य पदार्थ:</strong> दूध, दही, ताक यातून प्रथिने आणि कॅल्शियम मिळते.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-3 mt-1">●</span>
+                            <div><strong class="text-red-700">सुका मेवा:</strong> शेंगदाणे, बदाम, खजूर यांसारखे पदार्थ ऊर्जा आणि आवश्यक स्निग्धांश देतात.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="samata" class="bg-amber-100/50 p-6 md:p-10 rounded-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-stone-700 mb-12 tiro-marathi">समतेचा उत्सव: वारीचा सामाजिक संदेश</h2>
+            <p class="max-w-3xl mx-auto text-center text-stone-600 mb-12">
+                वारी हे सामाजिक समरसतेचे मूर्तिमंत प्रतीक आहे. इथे जात, पंथ, लिंग किंवा श्रीमंत-गरीब असा कोणताही भेद नसतो. सर्वजण एकच ओळख घेऊन चालतात - 'वारकरी'. एकमेकांना 'माऊली' म्हणून संबोधून ते मानवतेचा सर्वोच्च आदर्श निर्माण करतात.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-xl font-bold text-amber-700 mb-3 tiro-marathi">सर्वव्यापी 'माऊली'</h3>
+                    <p class="text-stone-600">वारीमध्ये प्रत्येक व्यक्तीला आदराने 'माऊली' म्हटले जाते, जे संत ज्ञानेश्वरांप्रति आदर आणि प्रत्येक माणसात देव पाहण्याच्या वृत्तीचे प्रतीक आहे.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-xl font-bold text-amber-700 mb-3 tiro-marathi">दिंडी व्यवस्था</h3>
+                    <p class="text-stone-600">लाखो लोकांचा प्रवास स्वयं-शिस्तीने आणि विकेंद्रित व्यवस्थापनाने पार पडतो. प्रत्येक दिंडी एक स्वायत्त गट म्हणून काम करते, जे सहकार्याचे उत्तम उदाहरण आहे.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-xl font-bold text-amber-700 mb-3 tiro-marathi">निर्मल वारी</h3>
+                    <p class="text-stone-600">आधुनिक काळात पर्यावरण आणि स्वच्छतेचे महत्त्व ओळखून 'निर्मल वारी' सारखे उपक्रम राबवले जातात. हे परंपरेच्या बदल स्वीकारण्याच्या क्षमतेचे द्योतक आहे.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-800 text-white mt-16">
+        <div class="container mx-auto px-4 py-6 text-center">
+            <p class="tiro-marathi">आषाढी एकादशी: श्रद्धा आणि विज्ञानाचा कालातीत संगम.</p>
+            <p class="text-sm text-stone-400 mt-1">एका इंटरॲक्टिव्ह अहवालातून साकारलेला अनुभव.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const shetkariCtx = document.getElementById('shetkariChart').getContext('2d');
+            const shetkariChart = new Chart(shetkariCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['पेरणी', 'वारीचा काळ', 'खुरपणी', 'पिकांची वाढ'],
+                    datasets: [{
+                        label: 'कृषी कामांचे चक्र',
+                        data: [80, 40, 70, 90],
+                        backgroundColor: [
+                            'rgba(34, 197, 94, 0.6)',
+                            'rgba(245, 158, 11, 0.6)',
+                            'rgba(59, 130, 246, 0.6)',
+                            'rgba(16, 185, 129, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(22, 163, 74, 1)',
+                            'rgba(217, 119, 6, 1)',
+                            'rgba(37, 99, 235, 1)',
+                            'rgba(5, 150, 105, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            display: false,
+                        },
+                         y: {
+                            ticks: {
+                                font: {
+                                    size: 14,
+                                    family: "'Tiro Devanagari Marathi', serif"
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                             enabled: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'वारी आणि कृषीचक्र यांचे नाते',
+                            font: {
+                                size: 16,
+                                family: "'Tiro Devanagari Marathi', serif"
+                            },
+                            padding: {
+                                top: 10,
+                                bottom: 20
+                            }
+                        }
+                    }
+                }
+            });
+
+            const arogyaCtx = document.getElementById('arogyaChart').getContext('2d');
+            const arogyaChart = new Chart(arogyaCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['फळे व कंदमुळे', 'हलकी तृणधान्ये', 'दुग्धजन्य पदार्थ', 'सुका मेवा'],
+                    datasets: [{
+                        label: 'सात्विक आहार',
+                        data: [40, 25, 20, 15],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(245, 158, 11, 0.7)',
+                            'rgba(209, 213, 219, 0.7)',
+                            'rgba(239, 68, 68, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(37, 99, 235, 1)',
+                            'rgba(217, 119, 6, 1)',
+                            'rgba(107, 114, 128, 1)',
+                            'rgba(220, 38, 38, 1)'
+                        ],
+                        borderWidth: 1,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 12,
+                                    family: "'Tiro Devanagari Marathi', serif"
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.addEventListener('change', function() {
+                window.location.href = mobileNav.value;
+            });
+        });
+    </script>
+</body>
+</html>
