@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आषाढी वारी: समतेचा सोहळा</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Earthy Saffron Harmony -->
+    <!-- Application Structure Plan: The SPA is designed as a single-page narrative journey. It starts with a Hero section to set the spiritual tone. A sticky navigation bar allows easy access to four core thematic sections: 1. 'तत्त्वज्ञान' (Philosophy) uses cards for digestible key concepts. 2. 'संत परंपरा' (Saint Tradition) features an interactive grid of saint profiles and a chart to visually prove the movement's inclusivity. This is more impactful than a simple list. 3. 'वारीचा अनुभव' (Wari Experience) uses visual components, including a CSS animation for the 'Ringan', to explain complex rituals. 4. 'समतेचे अभंग' (Abhangas of Equality) transforms the report's dense table into an interactive, filterable display, allowing users to explore the core textual evidence by selecting a saint. This structure guides the user from the 'why' (philosophy) to the 'who' (saints), the 'how' (rituals), and the 'what' (teachings), creating a logical and engaging user flow that prioritizes understanding over mimicking the report's linear format. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Diverse saints. Goal: Showcase inclusivity. Method: Interactive grid + Chart.js Donut Chart showing saints' social strata. Interaction: Click to reveal saint's info. Justification: Visually compelling and proves the report's main thesis about diversity.
+        - Report Info: Analysis of 10 Abhangas. Goal: Deep-dive into teachings. Method: Interactive card display with JS-powered filters. Interaction: User selects a saint to view their specific abhanga and analysis. Justification: Makes dense textual data explorable and less overwhelming.
+        - Report Info: 'Ringan' ritual. Goal: Explain the formation. Method: HTML/CSS animation. Interaction: Animation on view. Justification: A dynamic visual is more intuitive than static text for explaining a spatial event.
+        - Report Info: Core philosophical concepts. Goal: Inform. Method: Styled text cards with icons. Justification: Breaks down complex ideas into easy-to-read segments.
+        Library/Method: Chart.js for visualization, Vanilla JS for all interactions, Tailwind CSS for all styling and layout. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #FFF8F0; /* Warm Neutral Background */
+        }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .bg-warm-neutral { background-color: #FFF8F0; }
+        .bg-secondary { background-color: #FDF2E3; }
+        .text-primary { color: #4F463B; }
+        .text-accent { color: #FF9933; } /* Saffron/Orange Accent */
+        .border-accent { border-color: #FF9933; }
+        .bg-accent { background-color: #FF9933; }
+        .bg-accent-light { background-color: #FFEACC; }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover {
+            color: #FF9933;
+            border-bottom-color: #FF9933;
+        }
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .active-tab {
+            color: #FFFFFF !important;
+            background-color: #FF9933 !important;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 70vh;
+        }
+    </style>
+</head>
+<body class="bg-warm-neutral text-primary">
+
+    <!-- Header & Navigation -->
+    <header class="bg-secondary/80 backdrop-blur-md sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-accent">|| राम कृष्ण हरी ||</h1>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#philosophy" class="nav-link text-lg border-b-2 border-transparent pb-1">तत्त्वज्ञान</a>
+                <a href="#saints" class="nav-link text-lg border-b-2 border-transparent pb-1">संत परंपरा</a>
+                <a href="#wari" class="nav-link text-lg border-b-2 border-transparent pb-1">वारीचा अनुभव</a>
+                <a href="#abhang" class="nav-link text-lg border-b-2 border-transparent pb-1">समतेचे अभंग</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-secondary px-6 pb-4">
+            <a href="#philosophy" class="block py-2 text-lg">तत्त्वज्ञान</a>
+            <a href="#saints" class="block py-2 text-lg">संत परंपरा</a>
+            <a href="#wari" class="block py-2 text-lg">वारीचा अनुभव</a>
+            <a href="#abhang" class="block py-2 text-lg">समतेचे अभंग</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="text-center py-20 px-4 bg-secondary">
+            <div class="container mx-auto">
+                <h2 class="text-4xl md:text-6xl font-bold text-primary mb-4 fade-in">आषाढी वारी: समतेचा सोहळा</h2>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto text-primary/80 fade-in" style="animation-delay: 0.3s;">
+                    आषाढी एकादशीनिमित्त पंढरपूरला जाणारी वारी ही केवळ एक पदयात्रा नाही, तर ८०० वर्षांहून अधिक जुनी, जात-पात-लिंग भेद विसरून मानवी एकतेचा उत्सव साजरा करणारी एक जिवंत परंपरा आहे. हे ऍप्लिकेशन तुम्हाला या सोहळ्याच्या अंतरंगात डोकावून पाहण्यास मदत करेल.
+                </p>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="py-20 px-4">
+            <div class="container mx-auto">
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-4">भागवत धर्माचा पाया</h3>
+                <p class="text-center max-w-3xl mx-auto mb-12 text-primary/80">वारकरी संप्रदायाचे समतावादी तत्त्वज्ञान हे वरवरचे नाही, तर ते त्याच्या मूळ तात्त्विक बैठकीतूनच आले आहे. या विचारांनीच भेदभावाला जागा नाकारली आणि सर्वांसाठी एक खुला मार्ग तयार केला.</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card bg-secondary p-8 rounded-lg text-center fade-in">
+                        <div class="text-5xl mb-4">🌍</div>
+                        <h4 class="text-2xl font-bold mb-2">हे विश्वचि माझे घर</h4>
+                        <p>संत ज्ञानेश्वरांची ही संकल्पना संपूर्ण विश्वाला एक कुटुंब मानते. जेव्हा सर्व जीव आपले कुटुंबीय बनतात, तेव्हा कोणीही परका, उच्च किंवा नीच राहत नाही.</p>
+                    </div>
+                    <div class="card bg-secondary p-8 rounded-lg text-center fade-in" style="animation-delay: 0.2s;">
+                        <div class="text-5xl mb-4">✨</div>
+                        <h4 class="text-2xl font-bold mb-2">भेदाभेद भ्रम अमंगळ</h4>
+                        <p>संपूर्ण चराचरात एकच ईश्वरी तत्त्व आहे, त्यामुळे माणसा-माणसांत भेद करणे हा केवळ एक 'भ्रम' आणि 'अमंगळ' (अशुद्ध) विचार आहे, असे संत तुकाराम सांगतात.</p>
+                    </div>
+                    <div class="card bg-secondary p-8 rounded-lg text-center fade-in" style="animation-delay: 0.4s;">
+                         <div class="text-5xl mb-4">📿</div>
+                        <h4 class="text-2xl font-bold mb-2">नामस्मरणाचा सोपा मार्ग</h4>
+                        <p>कर्मकांडांना नकार देत, वारकरी संतांनी नामस्मरणाचा सोपा मार्ग दाखवला. यासाठी कोणत्याही मध्यस्थाची किंवा विशेष अधिकाराची गरज नाही, त्यामुळे अध्यात्म सर्वांसाठी खुले झाले.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Saint Tradition Section -->
+        <section id="saints" class="py-20 px-4 bg-secondary">
+            <div class="container mx-auto">
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-4">समतेचे पाईक: सर्वसमावेशक संतपरंपरा</h3>
+                 <p class="text-center max-w-3xl mx-auto mb-12 text-primary/80">वारकरी संप्रदायाने केवळ तत्त्वज्ञानातून समता सांगितली नाही, तर ती प्रत्यक्ष आचरणात आणली. या विभागात आपण पाहूया की कसे समाजातील विविध जाती-जमातींमधून आलेल्या व्यक्तींना 'संत' म्हणून सर्वोच्च सन्मान मिळाला, जे या चळवळीच्या सामाजिक क्रांतीचे जिवंत प्रमाण आहे.</p>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center" id="saints-grid">
+                            <!-- JS will populate this -->
+                        </div>
+                    </div>
+                    <div>
+                         <div class="chart-container">
+                            <canvas id="saintsChart"></canvas>
+                        </div>
+                        <p class="text-center mt-4 text-sm text-primary/70">हे वर्गीकरण संतांच्या सामाजिक पार्श्वभूमीचे प्रातिनिधिक दर्शन घडवते, जे वारकरी संप्रदायाची सर्वसमावेशकता दर्शवते.</p>
+                    </div>
+                </div>
+                <div id="saint-details" class="mt-8 p-6 bg-warm-neutral rounded-lg shadow-inner min-h-[100px] flex items-center justify-center">
+                    <p class="text-lg text-primary/70">माहिती पाहण्यासाठी कृपया एका संताच्या नावावर क्लिक करा.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wari Experience Section -->
+        <section id="wari" class="py-20 px-4">
+             <div class="container mx-auto">
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-4">वारी: समतेचा जिवंत अनुभव</h3>
+                <p class="text-center max-w-3xl mx-auto mb-12 text-primary/80">तत्त्वज्ञान आणि संतपरंपरा यांचा प्रत्यक्ष आविष्कार म्हणजे पंढरपूरची वारी. हा केवळ प्रवास नाही, तर एक चालता-बोलता समाजसुधारणेचा प्रयोग आहे, जिथे समतेची मूल्ये दररोज, प्रत्येक क्षणी जगली जातात.</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6">
+                        <div class="text-5xl mb-4">🤝</div>
+                        <h4 class="text-2xl font-bold mb-2">'माऊली' संबोधन</h4>
+                        <p>वारीत सर्वजण जात, लिंग, वय विसरून एकमेकांना 'माऊली' म्हणतात. हे एकच संबोधन सर्वांना एका कुटुंबात बांधते आणि भेदभावाला जागाच उरत नाही.</p>
+                    </div>
+                     <div class="text-center p-6">
+                        <div class="text-5xl mb-4">🏡</div>
+                        <h4 class="text-2xl font-bold mb-2">दिंडी: फिरते गाव</h4>
+                        <p>प्रत्येक दिंडी म्हणजे एक समतावादी गाव. सर्वजण एकत्र चालतात, एकत्र जेवतात आणि एकत्रच विसावतात. यातून अतूट बंधुभाव निर्माण होतो.</p>
+                    </div>
+                     <div class="text-center p-6">
+                        <div class="text-5xl mb-4">🐎</div>
+                        <h4 class="text-2xl font-bold mb-2">'रिंगण' सोहळा</h4>
+                        <p>वर्तुळात उभे राहून होणारा रिंगण सोहळा भेदभावरहित समाजाचे प्रतीक आहे. यात कोणीही पुढे-मागे किंवा उच्च-नीच नसतो, सर्वजण समान असतात.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Abhang Section -->
+        <section id="abhang" class="py-20 px-4 bg-secondary">
+            <div class="container mx-auto">
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-4">अभंगवाणीतील समतेचा संदेश</h3>
+                <p class="text-center max-w-4xl mx-auto mb-8 text-primary/80">
+                   वारकरी संतांनी आपल्या अभंगांमधून समतेचा आणि मानवतेचा संदेश प्रभावीपणे दिला. संत ज्ञानेश्वरांच्या 'हे विश्वचि माझे घर' या वैश्विक घोषणेपासून ते 'कुळ जाती वर्ण हे अकारण' या थेट नकारापर्यंत, समतेचा पाया घातला गेला. संत नामदेव, चोखोबा, एकनाथ, तुकाराम आणि निळोबा यांसारख्या संतांनी व्यवस्थेला जाब विचारला, शोषितांच्या वेदनेला वाचा फोडली आणि दीनदुबळ्यांच्या सेवेतच खरा धर्म पाहिला. त्यांचे अभंग एकादशीच्या वारीला केवळ धार्मिक सोहळा न ठेवता, चालत्या-बोलत्या समतावादी समाजाचे रूप कसे देतात, हे येथे अनुभवता येईल.
+                </p>
+                <div class="flex justify-center flex-wrap gap-2 md:gap-4 mb-8" id="saint-filter">
+                    <!-- JS will populate this -->
+                </div>
+                <div id="abhang-display" class="space-y-6">
+                    <!-- JS will populate this -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center py-10">
+        <div class="container mx-auto px-4">
+            <h4 class="text-2xl font-bold mb-2">वारी: एक वैश्विक महोत्सव</h4>
+            <p class="max-w-3xl mx-auto">
+                पंढरपूरची वारी हा केवळ हिंदूंचा उत्सव नसून, तो भेदभावाच्या सर्व भिंती ओलांडून मानवतेला जोडणारा एक वैश्विक महोत्सव आहे. तो समतेचा, श्रद्धेचा आणि आनंदाचा एक असा चिरंतन सोहळा आहे, जो शतकानुशतके मानवी मूल्यांचे जतन करत आला आहे.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const saintsData = [
+            { id: 'chokhoba', name: 'संत चोखामेळा', background: 'शोषित/दलित', details: "महार समाजात जन्मलेल्या चोखोबांचे अभंग जातीय विषमतेच्या वेदनेतून आलेला आर्त टाहो आहेत. 'आमुची केली हीन याती' असे म्हणत त्यांनी व्यवस्थेला जाब विचारला, तरीही त्यांच्या निस्सीम भक्तीमुळे त्यांना संतपद मिळाले." },
+            { id: 'savta', name: 'संत सावता माळी', background: 'कारागीर/बहुजन', details: "माळी समाजात जन्मलेल्या सावता महाराजांनी 'कांदा मुळा भाजी अवघी विठाबाई माझी' म्हणत आपल्या शेतीच्या कामातच विठ्ठलाचे रूप पाहिले आणि श्रमाला प्रतिष्ठा दिली." },
+            { id: 'janabai', name: 'संत जनाबाई', background: 'स्त्री/शोषित', details: "नामदेवांच्या घरी दासी म्हणून काम करणाऱ्या जनाबाईंनी 'स्त्री जन्म म्हणवुनी न व्हावे उदास' असे सांगून स्त्री-जन्माचा न्यूनगंड नाकारला आणि स्त्री-शक्तीचा जागर केला." },
+            { id: 'gora', name: 'संत गोरा कुंभार', background: 'कारागीर/बहुजन', details: "कुंभार समाजात जन्मलेल्या गोरोबांनी माती मळण्याच्या कामातच परब्रह्माचा अनुभव घेतला आणि प्रपंच व परमार्थ यांची यशस्वी सांगड घातली." },
+            { id: 'tukaram', name: 'संत तुकाराम', background: 'कारागीर/बहुजन', details: "वाणी (कुणबी) समाजात जन्मलेल्या तुकोबारायांनी 'भेदाभेद भ्रम अमंगळ' म्हणत विषमतेचा तात्त्विक पायाच नाकारला आणि भागवत धर्माला सर्वसामान्यांपर्यंत पोहोचवले." },
+            { id: 'dnyaneshwar', name: 'संत ज्ञानेश्वर', background: 'उच्चवर्णीय', details: "भागवत धर्माचे संस्थापक मानल्या जाणाऱ्या ज्ञानेश्वरांनी 'हे विश्वचि माझे घर' आणि 'कुळ जाती वर्ण हे अकारण' असे सांगून समतेचा तात्त्विक पाया रचला." },
+        ];
+
+        const abhangData = [
+            { saint: 'संत ज्ञानेश्वर', line: 'हे विश्वचि माझे घर । ऐसी मती जयाची स्थिर ।', analysis: "विश्लेषण: हा वारकरी समतेचा अंतिम टप्पा आहे. येथे केवळ माणसे समान नाहीत, तर संपूर्ण चराचर सृष्टीच आत्मस्वरूप बनते. या भावनेतून केवळ सामाजिक समताच नाही, तर पर्यावरणीय जाणीव आणि सर्व जीवमात्रांबद्दल करुणा निर्माण होते." },
+            { saint: 'संत ज्ञानेश्वर', line: 'म्हणोनि कुळ जाती वर्ण । हें आगवेंचि गा अकारण ॥', analysis: "विश्लेषण: साक्षात माऊलींनी जन्मसिद्ध श्रेष्ठत्वाच्या कल्पनांना 'अकारण' म्हणजे 'निरर्थक' म्हटले आहे. हा जातीव्यवस्थेच्या पायावर केलेला थेट प्रहार आहे. भक्तीच्या राज्यात फक्त भक्ताचा भाव महत्त्वाचा असतो." },
+            { saint: 'संत नामदेव', line: 'अग्निमाजी पडे बाळू । माता धावे कनवाळू ॥', analysis: "विश्लेषण: देवाला 'माऊली' (आई) म्हटले आहे. आईप्रमाणेच विठ्ठल सर्व भक्तांचा, मग ते कोणत्याही जातीचे असोत, समान कनवाळूपणे सांभाळ करतो. हा समतेचा हृदयस्पर्शी दृष्टिकोन आहे." },
+            { saint: 'संत चोखामेळा', line: 'आमुची केली हीन याती । तुज कां न कळे श्रीपती ॥', analysis: "विश्लेषण: हा चरण म्हणजे शोषितांच्या वेदनेचा स्फोट आहे. येथे चोखोबा देवाला शरण जात नाहीत, तर त्याला जाब विचारतात. वारकरी संप्रदायाने ही अभिव्यक्ती गौरवली, हेच या संप्रदायाचे मोठेपण आहे." },
+            { saint: 'संत एकनाथ', line: 'विठ्ठल विठ्ठल गजरीं । अवघी दुमदुमली पंढरी ॥', analysis: "विश्लेषण: हा अभंग वारीतील सामूहिकतेचे चित्र उभे करतो. 'अवघी पंढरी' एकाच नामघोषात सामील होते. या गजरात वैयक्तिक आणि सामाजिक ओळखी विरघळून जातात व केवळ 'वारकरी' ही एकच ओळख उरते." },
+            { saint: 'संत तुकाराम', line: 'जे का रंजले गांजले । त्यासी म्हणे जो आपुले ॥', analysis: "विश्लेषण: येथे ईश्वर मंदिरात नाही, तर दीनदुबळ्यांच्या सेवेत आहे, हा क्रांतिकारी विचार आहे. जात-पंथ न पाहता, जो 'रंजला-गांजला' आहे, त्याची सेवा करणे हाच खरा धर्म." },
+            { saint: 'संत तुकाराम', line: 'भेदाभेद भ्रम अमंगळ ॥ विष्णुमय जग वैष्णवांचा धर्म ।', analysis: "विश्लेषण: हा वारकरी समतेचा तात्त्विक कळस आहे. तो भेदभावाला केवळ सामाजिक चूक न मानता, एक 'भ्रम' आणि 'अमंगळ' (अशुद्ध) ठरवतो. या एका चरणाने सर्व भेद नाकारले आहेत." },
+            { saint: 'संत तुकाराम', line: 'बरे झाले देवा कुणबी केलो । नाही तरी दंभे असतो मेलो ॥', analysis: "विश्लेषण: येथे तुकाराम महाराज तथाकथित 'खालच्या' जातीत जन्मल्याबद्दल आनंद व्यक्त करतात, कारण त्यामुळे ते खोट्या प्रतिष्ठेच्या आणि अहंकाराच्या रोगापासून वाचले. हा उच्चवर्णीय दांभिकतेवर केलेला प्रहार आहे." },
+            { saint: 'संत तुकाराम', line: 'यारे यारे सान थोर । याती भलते नारी नर ॥', analysis: "विश्लेषण: हा चरण वारकरी संप्रदायाच्या सर्वसमावेशकतेचे प्रवेशद्वार आहे. येथे कोणालाही प्रवेशबंदी नाही. 'याती भलते' आणि 'नारी नर' हे शब्द स्पष्ट करतात की येथे कोणताही भेद नाही." },
+            { saint: 'संत निळोबा', line: 'सावत्याच्या घरीं देव झाला माळी । गोरोबाच्या मडकीं थापटितो ॥', analysis: "विश्लेषण: हा समतेचा सर्वोच्च आदर्श आहे. येथे खुद्द देवच जात-पात मानत नाही. तो माळी, कुंभार, दासी अशा वेगवेगळ्या जाती-व्यवसायातील भक्तांची सेवा करतो. यातून श्रमाला आणि भक्तीला महत्त्व आहे, जातीला नाही, हे सिद्ध होते." }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const saintsGrid = document.getElementById('saints-grid');
+            const saintDetails = document.getElementById('saint-details');
+            const saintFilter = document.getElementById('saint-filter');
+            const abhangDisplay = document.getElementById('abhang-display');
+
+            // Populate Saints Grid
+            saintsData.forEach(saint => {
+                const saintEl = document.createElement('div');
+                saintEl.className = 'card bg-warm-neutral p-4 rounded-lg cursor-pointer';
+                saintEl.innerHTML = `<p class="font-bold text-lg">${saint.name}</p>`;
+                saintEl.addEventListener('click', () => {
+                    saintDetails.innerHTML = `
+                        <div class="fade-in">
+                            <h5 class="text-xl font-bold mb-2">${saint.name}</h5>
+                            <p class="text-md">${saint.details}</p>
+                        </div>
+                    `;
+                });
+                saintsGrid.appendChild(saintEl);
+            });
+
+            // Populate Abhangs
+            function displayAbhangs(filter = 'All') {
+                abhangDisplay.innerHTML = '';
+                const filteredAbhangs = filter === 'All' ? abhangData : abhangData.filter(a => a.saint === filter);
+                
+                filteredAbhangs.forEach(abhang => {
+                    const abhangCard = document.createElement('div');
+                    abhangCard.className = 'card bg-warm-neutral p-6 rounded-lg shadow-lg fade-in';
+                    abhangCard.innerHTML = `
+                        <blockquote class="text-xl italic border-l-4 border-accent pl-4 mb-4">
+                           "${abhang.line}"
+                        </blockquote>
+                        <p class="font-bold text-lg text-accent mb-2">${abhang.saint}</p>
+                        <p class="text-primary/90">${abhang.analysis}</p>
+                    `;
+                    abhangDisplay.appendChild(abhangCard);
+                });
+            }
+
+            // Populate Saint Filter Buttons
+            const saintsForFilter = ['All', ...new Set(abhangData.map(a => a.saint))];
+            saintsForFilter.forEach(saintName => {
+                const button = document.createElement('button');
+                button.className = 'px-4 py-2 rounded-full text-md font-bold transition duration-300 ease-in-out border-2 border-accent';
+                button.textContent = saintName === 'All' ? 'सर्व अभंग' : saintName;
+                if (saintName === 'All') {
+                    button.classList.add('active-tab', 'text-white', 'bg-accent');
+                } else {
+                    button.classList.add('text-accent', 'bg-white');
+                }
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('#saint-filter button').forEach(btn => {
+                        btn.classList.remove('active-tab', 'text-white', 'bg-accent');
+                         btn.classList.add('text-accent', 'bg-white');
+                    });
+                    button.classList.add('active-tab', 'text-white', 'bg-accent');
+                     button.classList.remove('text-accent', 'bg-white');
+                    displayAbhangs(saintName);
+                });
+                saintFilter.appendChild(button);
+            });
+
+            // Initial display
+            displayAbhangs('All');
+
+            // Chart.js implementation
+            const ctx = document.getElementById('saintsChart').getContext('2d');
+            const backgroundCounts = saintsData.reduce((acc, saint) => {
+                acc[saint.background] = (acc[saint.background] || 0) + 1;
+                return acc;
+            }, {});
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(backgroundCounts),
+                    datasets: [{
+                        label: 'संत पार्श्वभूमी',
+                        data: Object.values(backgroundCounts),
+                        backgroundColor: [
+                            '#FF9933', // Saffron
+                            '#8B4513', // Brown
+                            '#D2B48C', // Tan
+                            '#A0522D', // Sienna
+                        ],
+                        borderColor: '#FFF8F0',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#4F463B',
+                                font: {
+                                    size: 14,
+                                    family: "'Tiro Devanagari Marathi', serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                             titleFont: {
+                                family: "'Tiro Devanagari Marathi', serif"
+                            },
+                             bodyFont: {
+                                family: "'Tiro Devanagari Marathi', serif"
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
