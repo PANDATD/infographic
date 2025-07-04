@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>वंदनीय मावशी केळकर: एक तेजस्वी जीवनप्रवास</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Tiro+Devanagari+Marathi:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #FEFBF6;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #2EC4B6;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #CBF3F0;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-left: 20px;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-right: 20px;
+            text-align: left;
+        }
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #FF9F1C;
+            border: 4px solid #CBF3F0;
+            z-index: 10;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+    </style>
+</head>
+<body class="bg-[#FEFBF6] text-[#333]">
+
+    <header class="text-center py-12 px-4 bg-white shadow-lg">
+        <h1 class="text-4xl md:text-6xl font-bold text-[#2EC4B6]">वंदनीय मावशी केळकर</h1>
+        <p class="text-xl md:text-2xl mt-4 text-gray-700">राष्ट्रसेविका समितीच्या संस्थापिका: एक तेजस्वी जीवनप्रवास</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+            <div class="card">
+                <h2 class="text-3xl font-bold text-[#FF9F1C] mb-4">बालपण आणि पायाभरणी</h2>
+                <p class="text-lg leading-relaxed">६ जुलै १९०५ रोजी सातारच्या दाते कुटुंबात जन्मलेल्या कमल भास्करराव दाते, म्हणजेच आपल्या सर्वांच्या लाडक्या मावशी केळकर. लहानपणीच हिंदू देवतांची निंदा ऐकून इंग्रजी शाळा सोडण्याचा त्यांचा निर्णय त्यांच्यातील स्वाभिमान आणि धर्मनिष्ठा दर्शवतो. एतदेशीय शाळेतील शिक्षणाने त्यांच्यावर धर्म, संस्कृती आणि शीलाचे सखोल संस्कार केले, जे त्यांच्या भावी कार्याचा भक्कम पाया ठरले.</p>
+            </div>
+            <div class="flex flex-col items-center justify-center space-y-4">
+                 <div class="text-center p-6 bg-white rounded-xl shadow-md">
+                    <div class="text-6xl font-black text-[#2EC4B6] font-inter">१९०५</div>
+                    <div class="text-xl text-gray-600 mt-2">जन्मवर्ष</div>
+                </div>
+                 <div class="text-center p-6 bg-white rounded-xl shadow-md">
+                    <div class="text-6xl font-black text-[#2EC4B6] font-inter">१९३६</div>
+                    <div class="text-xl text-gray-600 mt-2">ऐतिहासिक भेट</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card md:col-span-2 mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#FF9F1C] mb-8">संस्थेच्या स्थापनेचा महत्त्वपूर्ण प्रवास</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-8">
+                <div class="text-center p-6 border-2 border-dashed border-[#CBF3F0] rounded-lg">
+                    <div class="text-2xl font-bold text-[#2EC4B6]">पहिली भेट</div>
+                    <p class="mt-2">१९३६ साली डॉ. हेडगेवारांशी भेट आणि स्त्रियांसाठी स्वतंत्र संघटनेची कल्पना मांडली.</p>
+                </div>
+                <div class="text-4xl text-[#FF9F1C] font-bold hidden md:block">→</div>
+                 <div class="text-4xl text-[#FF9F1C] font-bold md:hidden">↓</div>
+                <div class="text-center p-6 border-2 border-dashed border-[#CBF3F0] rounded-lg">
+                    <div class="text-2xl font-bold text-[#2EC4B6]">निर्णायक भेट</div>
+                    <p class="mt-2">डॉ. हेडगेवार, आप्पाजी जोशी यांच्यासोबत निर्णायक चर्चेतून संघटनेची रूपरेषा ठरली.</p>
+                </div>
+                 <div class="text-4xl text-[#FF9F1C] font-bold hidden md:block">→</div>
+                 <div class="text-4xl text-[#FF9F1C] font-bold md:hidden">↓</div>
+                <div class="text-center p-6 bg-[#2EC4B6] text-white rounded-lg shadow-xl">
+                    <div class="text-2xl font-bold">स्थापना</div>
+                    <p class="mt-2">२७ ऑक्टोबर १९३६, विजयादशमीच्या मुहूर्तावर 'राष्ट्रसेविका समिती'ची स्थापना.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+            <div class="chart-container">
+                <canvas id="samitiGrowthChart"></canvas>
+            </div>
+            <div class="card">
+                <h2 class="text-3xl font-bold text-[#FF9F1C] mb-4">कार्याचा विस्तार (१९३७ - १९४७)</h2>
+                <p class="text-lg leading-relaxed">समितीच्या स्थापनेनंतर मावशींनी भारतभर प्रवास करून कार्याचा विस्तार केला. अवघ्या एका दशकात त्यांनी अनेक शहरांमध्ये सेविकांचे जाळे विणले आणि राष्ट्रनिष्ठेची ज्योत घरोघरी पोहोचवली. हा आलेख त्या काळातल्या कार्याची प्रतीकात्मक वाढ दर्शवतो, ज्यामुळे समितीला अखिल भारतीय स्वरूप प्राप्त झाले.</p>
+            </div>
+        </section>
+        
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#FF9F1C] mb-12">नेतृत्व आणि चिरंतन वारसा</h2>
+            <div class="relative timeline mx-auto">
+                <div class="timeline-item">
+                     <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-[#2EC4B6]">१९४७: कराची प्रसंग</h3>
+                        <p class="mt-2">फाळणीच्या काळात कराचीत भगवा ध्वज फडकावून सेविकांमध्ये धैर्याचे आणि राष्ट्रनिष्ठेचे स्फुल्लिंग चेतवले.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-[#2EC4B6]">१९५०-१९७०: अखिल भारतीय विस्तार</h3>
+                        <p class="mt-2">प्रशिक्षण शिबिरे, विचारविस्तार आणि नेतृत्व निर्मितीवर भर देत समितीला देशभरात एक मजबूत संघटना बनवले.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-[#2EC4B6]">१९७८: तेजस्वी युगाचा समारोप</h3>
+                        <p class="mt-2">२७ नोव्हेंबर १९७८ रोजी त्यांचे निधन झाले, पण त्यांचे विचार आणि कार्य आजही प्रेरणा देत आहे.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+             <div class="card">
+                <h2 class="text-3xl font-bold text-[#FF9F1C] mb-4">चिरंतन प्रेरणा</h2>
+                <p class="text-lg leading-relaxed">२०२५ मध्ये, वंदनीय मावशी केळकर यांची १२० वी जयंती साजरी होत आहे. त्यांचे जीवन हे स्त्रीशक्तीच्या जागृतीचे आणि निःस्वार्थ राष्ट्रसेवेचे प्रतीक आहे. त्यांचे कार्य आणि विचार आजही लाखो सेविकांसाठी एक अखंड प्रेरणास्रोत आहेत, जे त्यांच्या संपूर्ण समर्पणाचे द्योतक आहे.</p>
+            </div>
+            <div class="chart-container">
+                 <canvas id="legacyChart"></canvas>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 mt-12 bg-gray-800 text-white">
+        <p>© २०२५. वंदनीय मावशी केळकर यांच्या १२० व्या जयंतीनिमित्त विनम्र अभिवादन.</p>
+    </footer>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+
+        const samitiGrowthCtx = document.getElementById('samitiGrowthChart').getContext('2d');
+        const samitiGrowthChart = new Chart(samitiGrowthCtx, {
+            type: 'line',
+            data: {
+                labels: ['१९३७', '१९३९', '१९४१', '१९४३', '१९४५', '१९४७'],
+                datasets: [{
+                    label: 'समिती शाखांची प्रतीकात्मक वाढ',
+                    data: [5, 15, 35, 60, 90, 150],
+                    borderColor: '#2EC4B6',
+                    backgroundColor: 'rgba(46, 196, 182, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'शाखांची संख्या (प्रतीकात्मक)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const legacyCtx = document.getElementById('legacyChart').getContext('2d');
+        const legacyChart = new Chart(legacyCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['प्रेरणेचा अखंड वारसा'],
+                datasets: [{
+                    data: [100],
+                    backgroundColor: ['#FF9F1C'],
+                    borderColor: ['#FEFBF6'],
+                    borderWidth: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                         callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    },
+                     title: {
+                        display: true,
+                        text: '१२० वी जयंती',
+                        position: 'bottom',
+                        font: { size: 20, weight: 'bold' },
+                        color: '#333'
+                    }
+                }
+            },
+            plugins: [{
+                id: 'centerText',
+                beforeDraw: function(chart) {
+                    const width = chart.width;
+                    const height = chart.height;
+                    const ctx = chart.ctx;
+                    ctx.restore();
+                    const fontSize = (height / 114).toFixed(2);
+                    ctx.font = `bold ${fontSize}em 'Inter', sans-serif`;
+                    ctx.textBaseline = 'middle';
+                    const text = '१२०';
+                    const textX = Math.round((width - ctx.measureText(text).width) / 2);
+                    const textY = height / 2;
+                    ctx.fillStyle = '#FF9F1C';
+                    ctx.fillText(text, textX, textY);
+                    ctx.save();
+                }
+            }]
+        });
+    </script>
+</body>
+</html>
