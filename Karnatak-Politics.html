@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>राजकीय सरंजामशाही: एक दृश्यात्मक वृत्तांत</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- Application Structure Plan: हे इन्फोग्राफिक एका कथेप्रमाणे, वरून खाली स्क्रोल करण्याच्या स्वरूपात तयार केले आहे. सुरुवात सिद्दरमैयांच्या ताज्या घटनेने होते, जी दर्शकांना आकर्षित करते. त्यानंतर 'सरंजामशाहीची मुळे' या विभागात टाइमलाइनच्या मदतीने या वृत्तीचा ऐतिहासिक संदर्भ दिला आहे. 'गैरवर्तनाचा नमुना' विभागात बार चार्ट वापरून विविध प्रकारच्या गैरवर्तनांची तुलना केली आहे, ज्यामुळे माहिती दृश्यात्मक बनते. शेवटी, 'पक्षापलीकडील सरंजामशाही' या विभागात कार्ड्स वापरून इतर नेत्यांशी तुलना केली आहे. ही रचना वापरकर्त्याला माहिती सोप्या आणि प्रभावीपणे समजून घेण्यास मदत करते. -->
+    <!-- Visualization & Content Choices: 
+        1.  प्रमुख घटना (सिद्दरमैया) -> Inform -> मोठा आकडा आणि मजकूर -> घटनेची तीव्रता आणि गांभीर्य दाखवण्यासाठी.
+        2.  ऐतिहासिक संदर्भ (नेहरू/गांधी) -> Change -> Timeline (HTML/CSS) -> दशकांनुसार सरंजामी वृत्ती कशी टिकून राहिली हे दाखवण्यासाठी. SVG/Mermaid टाळण्यासाठी HTML/CSS चा वापर.
+        3.  गैरवर्तनांचे प्रकार -> Compare -> Bar Chart (Chart.js/Canvas) -> विविध प्रकारच्या गैरवर्तनांची संख्यात्मक तुलना करण्यासाठी. बार चार्ट निवडला कारण तो श्रेणींची तुलना करण्यासाठी प्रभावी आहे.
+        4.  इतर नेते -> Compare -> Cards (HTML/CSS) -> इतर पक्षांतील नेत्यांच्या गैरवर्तनाची संक्षिप्त माहिती देण्यासाठी.
+        सर्व व्हिज्युअलायझेशन निवडताना माहितीची स्पष्टता, दृश्यात्मक अपील आणि NO SVG नियमांचे पालन यावर लक्ष केंद्रित केले आहे. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #f0f9ff; /* sky-100 */
+        }
+        h1, h2, h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .text-marathi {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            border: 1px solid #e0f2fe; /* sky-200 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #bae6fd; /* sky-200 */
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding-bottom: 2rem;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2rem;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2rem;
+            text-align: left;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background-color: #0077B6;
+            border: 3px solid #90E0EF;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -8px;
+            transform: translateX(0%);
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -8px;
+            transform: translateX(0%);
+        }
+    </style>
+</head>
+<body class="bg-sky-50 text-slate-700">
+
+    <div class="container mx-auto px-4 py-8 md:px-8 md:py-12">
+
+        <!-- Header Section -->
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-sky-900">राजकीय सरंजामशाही</h1>
+            <p class="text-marathi text-xl text-sky-700 mt-2">घराणेशाही आणि सत्तेच्या गैरवापराचा दृश्यात्मक वृत्तांत</p>
+        </header>
+
+        <!-- Section 1: The Main Incident -->
+        <section class="mb-20">
+            <h2 class="text-3xl text-center mb-10 text-sky-800">सिद्दरमैया प्रकरण: <span class="text-marathi">सत्तेच्या माजाचा कळस</span></h2>
+            <div class="card grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-sky-900">वर्दीवर उगारलेला हात</h3>
+                    <p class="text-marathi text-slate-600 mt-4 leading-relaxed">
+                        कर्नाटकचे मुख्यमंत्री सिद्दरमैया यांनी भर सभेत एका वरिष्ठ पोलीस अधिकाऱ्याला जाहीरपणे खडसावले आणि त्यांच्यावर हात उचलण्याचा प्रयत्न केला. हे कृत्य काँग्रेसमधील 'हम करे सो कायदा' या सरंजामी मानसिकतेचे ज्वलंत उदाहरण आहे.
+                    </p>
+                </div>
+                <div class="text-center bg-sky-100 p-6 rounded-lg">
+                    <div class="text-7xl font-bold text-sky-800">३१</div>
+                    <p class="text-marathi text-lg text-sky-700 mt-2">वर्षांच्या सेवेचा जाहीर अपमान</p>
+                    <p class="text-marathi text-sm text-slate-500 mt-2">
+                        (पीडित पोलीस अधिकारी एन. व्ही. बरमाणी यांची एकूण सेवा)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Historical Roots Timeline -->
+        <section class="mb-20">
+            <h2 class="text-3xl text-center mb-12 text-sky-800"><span class="text-marathi">सरंजामशाहीची मुळे:</span> एक ऐतिहासिक दृष्टिक्षेप</h2>
+            <div class="relative timeline max-w-3xl mx-auto">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-sky-900">१९५०</h3>
+                    <p class="text-marathi text-slate-600 mt-2">
+                        पंतप्रधान नेहरूंनी कुटुंबासह इंडोनेशिया दौऱ्यासाठी नौदलाच्या 'आयएनएस दिल्ली' या युद्धनौकेचा वापर केल्याचा आरोप. 🚢
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-sky-900">१९८७</h3>
+                    <p class="text-marathi text-slate-600 mt-2">
+                        माजी पंतप्रधान राजीव गांधी यांनी कुटुंबाच्या खाजगी सुट्टीसाठी 'आयएनएस विराट' या विमानवाहू युद्धनौकेचा 'वैयक्तिक टॅक्सी' सारखा वापर केल्याचा आरोप. 🏝️
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-sky-900">२०१५</h3>
+                    <p class="text-marathi text-slate-600 mt-2">
+                        राहुल गांधी यांच्यासमोर माजी केंद्रीय मंत्री व्ही. नारायणसामी यांनी वाकून चप्पल उचलली. या घटनेने पक्षांतर्गत चाटुकारितेचे दर्शन घडवले. 👞
+                    </p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 class="text-xl font-bold text-sky-900">२०२५</h3>
+                    <p class="text-marathi text-slate-600 mt-2">
+                        सिद्दरमैया यांनी पोलीस अधिकाऱ्याचा जाहीर अपमान केला. यातून ही सरंजामी वृत्ती आजही जिवंत असल्याचे दिसून येते. 👮
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Pattern of Misconduct Chart -->
+        <section class="mb-20">
+            <h2 class="text-3xl text-center mb-4 text-sky-800"><span class="text-marathi">गैरवर्तनाचा नमुना</span></h2>
+            <p class="text-marathi text-center text-slate-600 mb-10 max-w-2xl mx-auto">अहवालातील घटनांनुसार गैरवर्तनाच्या विविध प्रकारांचे विश्लेषण. जाहीर अपमान आणि शारीरिक अरेरावीच्या घटना सर्वाधिक असल्याचे दिसून येते.</p>
+            <div class="card">
+                <div class="chart-container">
+                    <canvas id="misconductChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Comparison with other leaders -->
+        <section class="mb-12">
+            <h2 class="text-3xl text-center mb-10 text-sky-800"><span class="text-marathi">पक्षापलीकडील सरंजामशाही</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card text-center">
+                    <h3 class="text-2xl font-bold text-sky-900">राजा भैय्या</h3>
+                    <p class="text-marathi text-sm text-slate-500">(उत्तर प्रदेश)</p>
+                    <p class="text-marathi text-slate-600 mt-4">
+                        बाहुबली राजकारणाचे प्रतीक. पोलीस उपअधीक्षक झिया-उल-हक यांच्या हत्येप्रकरणी गंभीर आरोप.
+                    </p>
+                </div>
+                <div class="card text-center">
+                    <h3 class="text-2xl font-bold text-sky-900">लालू प्रसाद यादव</h3>
+                    <p class="text-marathi text-sm text-slate-500">(बिहार)</p>
+                    <p class="text-marathi text-slate-600 mt-4">
+                        'चारा घोटाळा' आणि 'जमिनीच्या बदल्यात नोकरी' यांसारख्या प्रकरणांतून प्रशासकीय यंत्रणेच्या गैरवापराचे आरोप.
+                    </p>
+                </div>
+                <div class="card text-center">
+                    <h3 class="text-2xl font-bold text-sky-900">ममता बॅनर्जी</h3>
+                    <p class="text-marathi text-sm text-slate-500">(पश्चिम बंगाल)</p>
+                    <p class="text-marathi text-slate-600 mt-4">
+                        वरिष्ठ अधिकाऱ्यांचा जाहीर अपमान करणे आणि केंद्रीय तपास यंत्रणांच्या कामात अडथळा आणण्याचे आरोप.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <footer class="text-center mt-16 pt-8 border-t border-sky-200">
+            <p class="text-marathi text-slate-600 max-w-3xl mx-auto">
+                हा वृत्तांत दर्शवतो की, सरंजामी मानसिकता ही भारतीय लोकशाहीसाठी एक गंभीर आव्हान आहे. जेव्हा सत्ताधारी स्वतःला कायद्यापेक्षा मोठे समजू लागतात, तेव्हा प्रशासकीय यंत्रणा कमकुवत होते आणि नागरिकांचा व्यवस्थेवरील विश्वास उडतो.
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart.js implementation
+            const ctx = document.getElementById('misconductChart').getContext('2d');
+            const misconductData = {
+                labels: [
+                    'जाहीर अपमान',
+                    ['राष्ट्रीय मालमत्तेचा', 'गैरवापर'],
+                    ['शारीरिक अरेरावी', 'आणि मारहाण'],
+                    'पक्षांतर्गत चाटुकारिता'
+                ],
+                datasets: [{
+                    label: 'घटनांची संख्या (अहवालानुसार)',
+                    data: [6, 2, 4, 1],
+                    backgroundColor: [
+                        '#0077B6', // Medium Blue
+                        '#00B4D8', // Bright Blue
+                        '#90E0EF', // Light Blue
+                        '#CAF0F8'  // Very Light Blue
+                    ],
+                    borderColor: '#004AAD', // Dark Blue
+                    borderWidth: 1.5,
+                    borderRadius: 5,
+                }]
+            };
+
+            const misconductChart = new Chart(ctx, {
+                type: 'bar',
+                data: misconductData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'x',
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0,
+                                font: {
+                                    family: "'Inter', sans-serif"
+                                }
+                            },
+                             grid: {
+                                color: '#e0f2fe' // sky-200
+                            }
+                        },
+                        x: {
+                           ticks: {
+                                font: {
+                                    size: 14,
+                                    family: "'Tiro Devanagari Marathi', serif"
+                                }
+                           },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#0369a1', // sky-700
+                            titleColor: '#f0f9ff',
+                            bodyColor: '#e0f2fe',
+                            padding: 12,
+                            cornerRadius: 8,
+                            titleFont: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 16
+                            },
+                             bodyFont: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                            },
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
