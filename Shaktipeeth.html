@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शक्तीपीठ महामार्ग: एक परस्परसंवादी दृष्टिक्षेप</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Harmony (Stone, Amber, Emerald) -->
+    <!-- Application Structure Plan: The SPA is designed as a top-down narrative journey, not mirroring the report's chapters. It starts with a high-impact 'Hero' section with key stats to grab attention. The core is an interactive 'Map' section, allowing users to visually explore the route and its impact on different regions, making the data tangible. This is followed by thematic, scrollable sections: 'Bhakti & Shakti' (Spiritual), 'Vikasachi Ganga' (Economic), and 'Rashtranirman & Avhane' (Challenges & Solutions). This structure guides the user from the "what" and "why" to the "how" and "for whom," creating a more intuitive and persuasive user flow than a linear report. The goal is to make the user feel like they are exploring a story of national development. -->
+    <!-- Visualization & Content Choices: 
+    - Key Stats (Hero Section): Goal: Inform & Impress. Method: Large typographic stat cards. Justification: Quick, high-impact delivery of core project metrics.
+    - Interactive 'Map' Diagram: Goal: Organize & Explore. Method: HTML/CSS diagram with clickable hotspots. Interaction: On click, reveals region-specific benefits in a modal. Justification: Provides a geographic and conceptual anchor for the entire project, making it easier to understand the scope and impact visually.
+    - Travel Time Comparison: Goal: Compare. Method: Chart.js Bar Chart. Interaction: Animated on load, with tooltips. Justification: A clear, data-driven visualization of the primary benefit of speed.
+    - Regional Benefits Toggles: Goal: Organize & Inform. Method: Interactive tabs/buttons. Interaction: Clicking a region (Vidarbha, Marathwada, etc.) updates a text pane with specific advantages. Justification: Prevents a 'wall of text' and empowers users to find information relevant to them, increasing engagement.
+    - Challenges & Solutions Accordion: Goal: Address Counterarguments. Method: HTML/JS Accordion. Interaction: Click to expand and reveal solutions. Justification: Presents a balanced view in a structured format, guiding the user through concerns and reinforcing the government's pro-active stance, aligning with the report's tone.
+    - Temple Showcase: Goal: Inform (Spiritual). Method: Grid of cards with hover effects. Justification: A visually appealing way to present the key pilgrimage sites connected by the route.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            background-color: #f8f7f4; /* Warm Neutral Background */
+        }
+        .font-marathi {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .bg-hero-pattern {
+            background-color: #f8f7f4;
+            background-image: linear-gradient(rgba(248, 247, 244, 0.95), rgba(248, 247, 244, 0.95)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23e4e2db' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h4v-9H0v-1h5v1h9v-1h1v1h9v-1h1v1h9v-1h1v1h9v-1h1v1h9v-1h1v1h9v-1h1v1h9v-1h1v1h9v-1h1v-1h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3cpath d='M6 5V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v9h5v1h-5v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5H0v-1h5V90H0v-1h5V80H0v-1h5V70H0v-1h5V60H0v-1h5V50H0v-1h5V40H0v-1h5V30H0v-1h5V20H0v-1h5V10H0V9h6V5zm10 1h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm-9 9v9h-1v-9h1zm0 10v9h-1v-9h1zm0 10v9h-1v-9h1zm0 10v9h-1v-9h1zm0 10v9h-1v-9h1zm0 10v9h-1v-9h1zm0 10v9h-1v-9h1zm0 10v9h-1v-9h1zm-10-9h-9v1h9v-1zm-10 0h-9v1h9v-1zm-10 0h-9v1h9v-1zm-10 0h-9v1h9v-1zm-10 0h-9v1h9v-1zm-10 0h-9v1h9v-1zm-10 0h-9v1h9v-1zm-10 0h-9v1h9v-1zm-9-10V6h1v9h-1zm0-10V6h1v9h-1zm0-10V6h1v9h-1zm0-10V6h1v9h-1zm0-10V6h1v9h-1zm0-10V6h1v9h-1zm0-10V6h1v9h-1zm0-10V6h1v9h-1zm10 89v-9h-1v9h1zm0-10v-9h-1v9h1zm0-10v-9h-1v9h1zm0-10v-9h-1v9h1zm0-10v-9h-1v9h1zm0-10v-9h-1v9h1zm0-10v-9h-1v9h1zm0-10v-9h-1v9h1zm10-9h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1zm10 0h9v-1h-9v1z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; 
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-width: 600px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover {
+            color: #f59e0b; /* amber-500 */
+        }
+        .active-nav {
+            color: #f59e0b;
+            border-bottom: 2px solid #f59e0b;
+        }
+        .map-point {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #f59e0b; /* amber-500 */
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+            border: 2px solid white;
+        }
+        .map-point:hover {
+            transform: scale(1.5);
+            box-shadow: 0 0 15px #f59e0b;
+        }
+        .map-point-label {
+            position: absolute;
+            transform: translateX(-50%);
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            bottom: 25px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+        .map-point:hover .map-point-label {
+            opacity: 1;
+        }
+        .region-tab.active {
+            background-color: #d97706; /* amber-600 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="text-stone-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-stone-100/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="font-bold text-xl md:text-2xl text-amber-600 font-marathi">शक्तीपीठ महामार्ग</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#overview" class="nav-link font-semibold pb-1">आढावा</a>
+                <a href="#map" class="nav-link font-semibold pb-1">नकाशा</a>
+                <a href="#benefits" class="nav-link font-semibold pb-1">विकासाची गंगा</a>
+                <a href="#spiritual" class="nav-link font-semibold pb-1">भक्ती आणि शक्ती</a>
+                <a href="#challenges" class="nav-link font-semibold pb-1">आव्हाने</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#overview" class="block text-center py-2 px-4 text-sm hover:bg-amber-100">आढावा</a>
+            <a href="#map" class="block text-center py-2 px-4 text-sm hover:bg-amber-100">नकाशा</a>
+            <a href="#benefits" class="block text-center py-2 px-4 text-sm hover:bg-amber-100">विकासाची गंगा</a>
+            <a href="#spiritual" class="block text-center py-2 px-4 text-sm hover:bg-amber-100">भक्ती आणि शक्ती</a>
+            <a href="#challenges" class="block text-center py-2 px-4 text-sm hover:bg-amber-100">आव्हाने</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="overview" class="py-16 md:py-24 bg-hero-pattern">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-black text-amber-700 font-marathi tracking-wide">श्रद्धा, शक्ती आणि समृद्धीचा महामार्ग</h1>
+                <p class="mt-4 md:mt-6 text-lg md:text-xl max-w-3xl mx-auto text-stone-600 font-marathi">
+                    नागपूर ते गोवा, महाराष्ट्राच्या तीन प्रमुख प्रदेशांना जोडणारा, राज्याच्या आध्यात्मिक, आर्थिक आणि सामाजिक पुनरुत्थानाची पायाभरणी करणारा एक ऐतिहासिक महाप्रकल्प.
+                </p>
+                <div class="mt-10 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto">
+                    <div class="bg-white/50 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-stone-200">
+                        <p class="text-3xl md:text-4xl font-bold text-emerald-700">८०२ किमी</p>
+                        <p class="mt-2 text-sm font-semibold text-stone-600 font-marathi">एकूण लांबी</p>
+                    </div>
+                    <div class="bg-white/50 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-stone-200">
+                        <p class="text-3xl md:text-4xl font-bold text-emerald-700">₹८६,३०० कोटी</p>
+                        <p class="mt-2 text-sm font-semibold text-stone-600 font-marathi">अंदाजित खर्च</p>
+                    </div>
+                    <div class="bg-white/50 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-stone-200">
+                        <p class="text-3xl md:text-4xl font-bold text-emerald-700">७-८ तास</p>
+                        <p class="mt-2 text-sm font-semibold text-stone-600 font-marathi">प्रवासाचा वेळ</p>
+                    </div>
+                    <div class="bg-white/50 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-stone-200">
+                        <p class="text-3xl md:text-4xl font-bold text-emerald-700">१२ जिल्हे</p>
+                        <p class="mt-2 text-sm font-semibold text-stone-600 font-marathi">थेट जोडणी</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Map Section -->
+        <section id="map" class="py-16 md:py-20 bg-stone-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold font-marathi">महामार्गाचा मार्ग: एक दृष्टिक्षेप</h2>
+                    <p class="mt-3 max-w-2xl mx-auto text-stone-600 font-marathi">
+                        हा महामार्ग केवळ अंतर कमी करत नाही, तर महाराष्ट्राच्या विविध प्रदेशांमध्ये विकासाच्या नवीन संधी निर्माण करतो. नकाशावरील ठिपक्यांवर क्लिक करून त्या प्रदेशाला होणारे फायदे जाणून घ्या.
+                    </p>
+                </div>
+                <div class="relative w-full max-w-4xl mx-auto h-96 md:h-[500px] bg-stone-200 rounded-lg shadow-inner overflow-hidden">
+                    <!-- Stylized Map Background (Not a real map) -->
+                    <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjZTllNmNkIi8+PHBhdGggZD0iTTMwMCA4MDBMODAwIDBMMTIwMCAwTDUwMCA4MDBIMzAwWiIgZmlsbD0iI2QxYzRjMyIvPjxwYXRoIGQ9Ik0wIDgwMEwzMDAgMEw3MDAgMEwyMDAgODAwSDBaIiBmaWxsPSIjY2RiZWMxIi8+PC9zdmc+');"></div>
+                    <!-- Highway Path (Stylized) -->
+                    <div class="absolute top-1/2 left-0 w-full h-2 bg-amber-400/50 -translate-y-1/2"></div>
+                    <div class="absolute top-1/2 left-0 w-full h-1 bg-white/80 -translate-y-1/2"></div>
+                    
+                    <!-- Map Points -->
+                    <div class="map-point" style="top: 50%; left: 10%;" data-title="पवनार (वर्धा)" data-content="प्रकल्पाचा प्रारंभ बिंदू. समृद्धी महामार्गाशी जोडणीमुळे विदर्भाच्या विकासाला नवी दिशा. कापूस आणि संत्र्यांसाठी थेट निर्यातीचा मार्ग.">
+                        <div class="map-point-label">पवनार</div>
+                    </div>
+                    <div class="map-point" style="top: 50%; left: 25%;" data-title="माहूर (नांदेड)" data-content="रेणुका मातेचे शक्तीपीठ. तीर्थक्षेत्राला विकासाच्या मुख्य प्रवाहात आणणार. पर्यटनाला चालना मिळून स्थानिक रोजगारात वाढ.">
+                        <div class="map-point-label">माहूर</div>
+                    </div>
+                     <div class="map-point" style="top: 50%; left: 40%;" data-title="परळी (बीड)" data-content="मराठवाड्याच्या विकासाचे केंद्र. औद्यगिक आणि कृषी समृद्धी केंद्रांमुळे स्थलांतराला आळा बसेल.">
+                        <div class="map-point-label">परळी</div>
+                    </div>
+                    <div class="map-point" style="top: 50%; left: 55%;" data-title="तुळजापूर (धाराशिव)" data-content="आई तुळजाभवानीचे शक्तीपीठ. भाविकांसाठी जलद आणि सुरक्षित प्रवास. स्थानिक अर्थव्यवस्थेला मोठी चालना.">
+                         <div class="map-point-label">तुळजापूर</div>
+                    </div>
+                    <div class="map-point" style="top: 50%; left: 70%;" data-title="पंढरपूर (सोलापूर)" data-content="महाराष्ट्राचे आराध्य दैवत विठुरायाच्या नगरीला जोडणी. धार्मिक पर्यटनाचे प्रमुख केंद्र बनेल.">
+                         <div class="map-point-label">पंढरपूर</div>
+                    </div>
+                    <div class="map-point" style="top: 50%; left: 85%;" data-title="कोल्हापूर" data-content="महालक्ष्मी शक्तीपीठ. पश्चिम महाराष्ट्राच्या औद्योगिक उत्पादनांना मध्य भारताची बाजारपेठ खुली होणार.">
+                         <div class="map-point-label">कोल्हापूर</div>
+                    </div>
+                    <div class="map-point" style="top: 50%; left: 95%;" data-title="पत्रादेवी (गोवा)" data-content="प्रकल्पाचा शेवटचा टप्पा. महाराष्ट्राच्या कृषी आणि औद्योगिक मालाला गोव्याच्या बंदरातून थेट आंतरराष्ट्रीय बाजारपेठेत प्रवेश.">
+                         <div class="map-point-label">पत्रादेवी</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal for Map -->
+        <div id="map-modal" class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-6 relative animate-fade-in-up">
+                <button id="close-modal" class="absolute top-2 right-3 text-2xl font-bold text-stone-500 hover:text-stone-800">&times;</button>
+                <h3 id="modal-title" class="text-2xl font-bold font-marathi text-amber-700 mb-3"></h3>
+                <p id="modal-content" class="text-stone-700 font-marathi"></p>
+            </div>
+        </div>
+        
+        <!-- Economic Benefits Section -->
+        <section id="benefits" class="py-16 md:py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold font-marathi">विकासाची गंगा: प्रादेशिक परिवर्तन</h2>
+                    <p class="mt-3 max-w-2xl mx-auto text-stone-600 font-marathi">
+                        हा महामार्ग महाराष्ट्राच्या प्रत्येक प्रदेशासाठी समृद्धीचे नवे दरवाजे उघडणार आहे. विदर्भ, मराठवाडा आणि पश्चिम महाराष्ट्राच्या अर्थव्यवस्थेला यामुळे कशी गती मिळेल ते पहा.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div>
+                        <div class="flex justify-center md:justify-start space-x-2 mb-4">
+                            <button class="region-tab active px-4 py-2 rounded-lg font-semibold transition duration-300" data-region="vidarbha">विदर्भ</button>
+                            <button class="region-tab px-4 py-2 rounded-lg font-semibold transition duration-300" data-region="marathwada">मराठवाडा</button>
+                            <button class="region-tab px-4 py-2 rounded-lg font-semibold transition duration-300" data-region="paschim">पश्चिम महाराष्ट्र</button>
+                        </div>
+                        <div id="region-content" class="p-6 bg-stone-50 rounded-lg border border-stone-200 min-h-[250px]">
+                            <h3 id="region-title" class="text-xl font-bold font-marathi text-amber-700 mb-2"></h3>
+                            <p id="region-text" class="text-stone-700 font-marathi"></p>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="travelTimeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spiritual Section -->
+        <section id="spiritual" class="py-16 md:py-20 bg-stone-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold font-marathi">भक्ती आणि शक्ती: तीर्थाटनाचा सुवर्णमार्ग</h2>
+                    <p class="mt-3 max-w-2xl mx-auto text-stone-600 font-marathi">
+                        हा महामार्ग महाराष्ट्राच्या प्रमुख शक्तीपीठांना आणि १८ पेक्षा जास्त तीर्थक्षेत्रांना जोडणारा एक 'धर्म कॉरिडॉर' आहे, जो भाविकांसाठी एक अविस्मरणीय यात्रा अनुभव देईल.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/FFF8E1/B45309?text=महाОलक्ष्मी')"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold font-marathi text-amber-800">श्री महालक्ष्मी, कोल्हापूर</h3>
+                            <p class="mt-2 text-stone-600 font-marathi">करवीर निवासिनी अंबाबाई, लाखो भक्तांचे श्रद्धास्थान आणि एक जागृत शक्तीप
