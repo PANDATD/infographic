@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>विठ्ठल: बुद्ध नव्हे, साक्षात परब्रह्म!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Tiro+Devanagari+Marathi:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #003f5c;
+            color: #f1f5f9;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        h1, h2, h3 {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            font-weight: 700;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-6xl font-black text-amber-400 tracking-tight">विठ्ठल: बुद्ध नव्हे, साक्षात परब्रह्म!</h1>
+            <p class="text-lg md:text-xl mt-4 text-slate-300 max-w-3xl mx-auto">हिंदुत्वाच्या अस्मितेवर घाला घालणाऱ्या अपप्रचाराचे सप्रमाण, दृकश्राव्य खंडण</p>
+        </header>
+
+        <main class="space-y-12 md:space-y-20">
+
+            <section id="hook" class="text-center">
+                <div class="card rounded-2xl p-8 max-w-2xl mx-auto">
+                    <h2 class="text-2xl text-pink-400 mb-2">श्रद्धेचा अटळ आधारस्तंभ</h2>
+                    <p class="font-inter text-8xl md:text-9xl font-black text-white my-4">युगे २८</p>
+                    <p class="text-slate-300 text-lg">विटेवर उभा असलेला हा सावळा परब्रह्म केवळ मूर्ती नाही, तर कोट्यवधी जीवांचा आत्मा आहे, जो अठ्ठावीस युगांपासून आपल्या भक्तांची वाट पाहत आहे.</p>
+                </div>
+            </section>
+
+            <section id="conflict">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">अपप्रचार विरुद्ध सत्य: एक बौद्धिक संघर्ष</h2>
+                    <p class="mt-2 text-slate-400">एकीकडे निराधार दावे आणि दुसरीकडे पुराव्यांचे डोंगर. सत्य काय आहे, ते स्वतःच पहा.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div class="card rounded-2xl p-6 border-red-500/50 border-2">
+                        <h3 class="text-2xl font-bold text-red-400 mb-4 text-center">🚫 निराधार दावा: 'विठ्ठल बुद्ध आहे'</h3>
+                        <ul class="space-y-4 text-left">
+                            <li class="flex items-start"><span class="font-inter text-red-400 mr-3 mt-1 text-xl font-bold">»</span> <div><strong class="text-white">सोयीस्कर संदर्भ:</strong> प्रबोधनकार ठाकरे किंवा डॉ. आंबेडकरांच्या नावांचा गैरवापर करणे.</div></li>
+                            <li class="flex items-start"><span class="font-inter text-red-400 mr-3 mt-1 text-xl font-bold">»</span> <div><strong class="text-white">शब्दांचा विपर्यास:</strong> संतवाणीतील 'बौद्ध' शब्दाचा मूळ अर्थ लपवून चुकीचा अर्थ लावणे.</div></li>
+                             <li class="flex items-start"><span class="font-inter text-red-400 mr-3 mt-1 text-xl font-bold">»</span> <div><strong class="text-white">पुराव्यांची अनुपस्थिती:</strong> एकही पुरातत्वीय किंवा मूर्तीशास्त्रीय पुरावा नसणे.</div></li>
+                        </ul>
+                    </div>
+                    <div class="card rounded-2xl p-6 border-green-500/50 border-2">
+                        <h3 class="text-2xl font-bold text-green-400 mb-4 text-center">✅ सप्रमाण सत्य: 'विठ्ठल श्रीकृष्ण आहे'</h3>
+                        <ul class="space-y-4 text-left">
+                            <li class="flex items-start"><span class="font-inter text-green-400 mr-3 mt-1 text-xl font-bold">»</span> <div><strong class="text-white">संत वाङ्मय:</strong> ज्ञानेश्वर ते तुकाराम, सर्व संतांनी विठ्ठलाला 'हरी', 'कान्हा', 'गोपाळ' म्हणूनच ओळखले.</div></li>
+                            <li class="flex items-start"><span class="font-inter text-green-400 mr-3 mt-1 text-xl font-bold">»</span> <div><strong class="text-white">इतिहास व पुरातत्व:</strong> ५व्या शतकापासूनचे शिलालेख आणि हिंदू परंपरेचे अखंड पुरावे.</div></li>
+                            <li class="flex items-start"><span class="font-inter text-green-400 mr-3 mt-1 text-xl font-bold">»</span> <div><strong class="text-white">मूर्तीविज्ञान:</strong> मूर्तीचे प्रत्येक चिन्ह (शंख, रखुमाई, श्रीवत्सलांछन) हे वैष्णव परंपरेचे आहे.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="saints">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">संतांचा एकमुखी गजर: 'तो हरी, तोच कान्हा'</h2>
+                    <p class="mt-2 text-slate-400 max-w-3xl mx-auto">वारकरी संतांच्या अभंगसागरात विठ्ठलाला 'बुद्ध' म्हटल्याचे उल्लेख नगण्य आणि काव्यात्मक आहेत, तर त्याला 'हरी', 'कृष्ण', 'गोपाळ' म्हणणारे हजारो प्रत्यक्ष पुरावे आहेत.</p>
+                </div>
+                <div class="card rounded-2xl p-6 md:p-8">
+                    <div class="chart-container">
+                        <canvas id="saintLiteratureChart"></canvas>
+                    </div>
+                    <p class="text-center mt-6 text-slate-300">संत नामदेव तर थेट म्हणतात: <strong class="text-amber-300">"विटेवरी समचरण सुंदर । बाळ सुकुमार यशोदेचे ॥"</strong>. यापेक्षा मोठा पुरावा काय असू शकतो?</p>
+                </div>
+            </section>
+            
+            <section id="history">
+                 <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">इतिहासाचे दगडी पुरावे</h2>
+                    <p class="mt-2 text-slate-400 max-w-3xl mx-auto">पंढरपूरच्या मंदिराचा इतिहास हा काही अंधारात चाचपडण्याचा विषय नाही. काळाच्या ओघात सापडलेले पुरावे अखंड हिंदू परंपरेचीच ग्वाही देतात.</p>
+                </div>
+                <div class="card rounded-2xl p-6 md:p-8">
+                    <div class="relative border-l-4 border-pink-500/50 ml-6 space-y-10">
+                        <div class="relative">
+                             <div class="absolute -left-[1.6rem] top-1 w-8 h-8 bg-pink-500 rounded-full border-4 border-[#003f5c]"></div>
+                             <div class="ml-10">
+                                <h3 class="text-xl font-bold text-pink-400">इ.स. ५१६ - राष्ट्रकूट ताम्रपट</h3>
+                                <p class="text-slate-300 mt-1">राजा अविधेय याच्या ताम्रपटामध्ये 'पांडरंगपल्ली' (पंढरपूर) नावाचा उल्लेख, जो 'विहार रूपांतर' सिद्धांताच्या शेकडो वर्षे आधीचा आहे.</p>
+                            </div>
+                        </div>
+                         <div class="relative">
+                             <div class="absolute -left-[1.6rem] top-1 w-8 h-8 bg-purple-500 rounded-full border-4 border-[#003f5c]"></div>
+                             <div class="ml-10">
+                                <h3 class="text-xl font-bold text-purple-400">इ.स. ११८९ - यादवकालीन शिलालेख</h3>
+                                <p class="text-slate-300 mt-1">शके ११११ च्या शिलालेखात पंढरपूर येथे एका छोट्या 'विठ्ठल देवळाची' स्थापना झाल्याचा स्पष्ट उल्लेख.</p>
+                            </div>
+                        </div>
+                        <div class="relative">
+                             <div class="absolute -left-[1.6rem] top-1 w-8 h-8 bg-blue-500 rounded-full border-4 border-[#003f5c]"></div>
+                             <div class="ml-10">
+                                <h3 class="text-xl font-bold text-blue-400">इ.स. १२७३ - हेमाडपंती दानपत्र</h3>
+                                <p class="text-slate-300 mt-1">यादव राजा रामचक्रदेव आणि मंत्री हेमाद्री पंडित यांनी मंदिराच्या देखभालीसाठी आणि पूजेसाठी दान दिल्याचे ठोस पुरावे.</p>
+                            </div>
+                        </div>
+                        <div class="relative">
+                             <div class="absolute -left-[1.6rem] top-1 w-8 h-8 bg-red-500 rounded-full border-4 border-[#003f5c]"></div>
+                             <div class="ml-10">
+                                <h3 class="text-xl font-bold text-red-400">पुरातत्वीय सत्य</h3>
+                                <p class="text-slate-300 mt-1">आजपर्यंत पंढरपूर किंवा परिसरात एकही स्तूप, मोडकी बौद्ध मूर्ती किंवा पाली शिलालेख सापडलेला नाही. पुराव्यांची ही संपूर्ण अनुपस्थिती हाच सर्वात मोठा पुरावा आहे.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="iconography">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">मूर्तीच सांगते सत्य: एक निःसंदिग्ध फरक</h2>
+                    <p class="mt-2 text-slate-400 max-w-3xl mx-auto">विठ्ठल आणि बुद्ध यांच्या मूर्तीविज्ञानात जमीन-अस्मानाचा फरक आहे. चला, त्यांची तुलना करूया.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                    <div class="md:col-span-3 card rounded-2xl p-4 md:p-6 overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                           <thead>
+                                <tr class="border-b border-slate-700">
+                                    <th class="p-3 text-lg text-amber-300">मुद्दा</th>
+                                    <th class="p-3 text-lg text-green-300">विठ्ठल मूर्ती</th>
+                                    <th class="p-3 text-lg text-red-300">बुद्ध मूर्ती</th>
+                                </tr>
+                           </thead>
+                           <tbody class="text-slate-300">
+                               <tr class="border-b border-slate-800"><td class="p-3">आसन</td><td class="p-3">विटेवर समचरण उभे</td><td class="p-3">पद्मासन/ध्यानमुद्रा</td></tr>
+                               <tr class="border-b border-slate-800"><td class="p-3">हस्तमुद्रा</td><td class="p-3">कर कटावरी (कमरेवर)</td><td class="p-3">ध्यान/अभय/भूमिस्पर्श</td></tr>
+                               <tr class="border-b border-slate-800"><td class="p-3">आयुधे/चिन्हे</td><td class="p-3">शंख, कमळ</td><td class="p-3">धर्मचक्र/भिक्षापात्र</td></tr>
+                               <tr class="border-b border-slate-800"><td class="p-3">सोबतची देवता</td><td class="p-3">रखुमाई (पत्नी)</td><td class="p-3">बोधिसत्व (क्वचित)</td></tr>
+                               <tr class="border-b border-slate-800"><td class="p-3">शिरोभूषण</td><td class="p-3">शिवलिंगाकृती मुकुट</td><td class="p-3">कुरळे केस, उष्णीष</td></tr>
+                               <tr><td class="p-3">वैष्णव चिन्हे</td><td class="p-3">श्रीवत्सलांछन, कौस्तुभ</td><td class="p-3">काहीही नाही</td></tr>
+                           </tbody>
+                        </table>
+                    </div>
+                    <div class="md:col-span-2 card rounded-2xl p-6 md:p-8 flex flex-col justify-center">
+                        <h3 class="text-xl font-bold text-center mb-4 text-white">मूर्तीशास्त्रीय ओळख</h3>
+                         <div class="chart-container h-64 md:h-auto">
+                            <canvas id="iconographyChart"></canvas>
+                        </div>
+                        <p class="text-center mt-4 text-slate-300">विठ्ठलाची मूर्ती ही शैव (शिवलिंगाकृती मुकुट) आणि वैष्णव (इतर सर्व चिन्हे) परंपरेचे प्रतीक आहे, बौद्ध परंपरेचे नाही. हे 'हरी-हर ऐक्य' दर्शवते.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="deconstruction">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">संतवाणीचा विपर्यास: 'बौद्ध' शब्दाचा खरा अर्थ</h2>
+                    <p class="mt-2 text-slate-400 max-w-3xl mx-auto">विरोधक 'बौद्ध' शब्द उचलतात, पण त्याचा खरा संदर्भ जाणीवपूर्वक लपवतात. संतांना नेमके काय म्हणायचे होते?</p>
+                </div>
+                <div class="card rounded-2xl p-8">
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                        <div class="text-center">
+                            <p class="text-lg text-slate-300">संत म्हणतात...</p>
+                            <p class="font-inter text-3xl font-bold my-2 text-amber-300">"बौद्ध अवतार..."</p>
+                        </div>
+                        <div class="font-inter text-4xl text-pink-400 hidden md:block">→</div>
+                         <div class="font-inter text-4xl text-pink-400 md:hidden">↓</div>
+                        <div class="flex flex-col md:flex-row gap-6 text-center">
+                           <div class="border-2 border-dashed border-slate-600 rounded-xl p-4">
+                                <h3 class="text-xl font-bold text-white">संदर्भ १: दशावतार</h3>
+                                <p class="text-slate-300 mt-2">विष्णूचा <strong class="text-purple-400">'नववा अवतार'</strong> म्हणून उल्लेख. जनाबाई म्हणतात, "होवूनिया <strong class="text-green-400">कृष्ण</strong> कंस वधियेला । आता <strong class="text-purple-400">बुद्ध</strong> झाला सखा माझा ॥"</p>
+                           </div>
+                           <div class="border-2 border-dashed border-slate-600 rounded-xl p-4">
+                                <h3 class="text-xl font-bold text-white">संदर्भ २: काव्यात्मक उपमा</h3>
+                                <p class="text-slate-300 mt-2">विठ्ठलाच्या <strong class="text-blue-400">'मौन'</strong> किंवा ध्यानस्थ रूपासाठी. तुकाराम महाराज म्हणतात, "बौद्ध अवतार... <strong class="text-blue-400">मौन्य सुखे</strong> निष्ठा धरियेली ॥"</p>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center my-12 md:my-16">
+            <h2 class="text-3xl font-bold text-amber-400">सत्यमेव जयते!</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-slate-300 text-lg">पुरावे आणि तर्क स्पष्ट आहेत. विठ्ठल हा बुद्ध असल्याचा दावा हा इतिहासाचा, परंपरेचा आणि तर्काचा गळा घोटून केलेला अपप्रचार आहे. महाराष्ट्राच्या अस्मितेचा हा जयघोष अखंड निनादत राहील.</p>
+            <p class="text-2xl mt-6 font-bold text-white">पुंडलिक वरदा, हरी विठ्ठल! श्री ज्ञानदेव तुकाराम!</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const brilliantBlues = ['#003f5c', '#7a5195', '#ef5675', '#ffa600'];
+        const brilliantBluesFull = ['#003f5c', '#444e86', '#955196', '#dd5182', '#ff6e54', '#ffa600'];
+        
+        const wrapLabel = (str, maxWidth) => {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                } else {
+                    currentLine += " " + words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+
+        const defaultChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#f1f5f9',
+                        font: {
+                            family: "'Tiro Devanagari Marathi', serif",
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: '#94a3b8' },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                },
+                x: {
+                    ticks: { color: '#94a3b8' },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                }
+            }
+        };
+
+        const ctx1 = document.getElementById('saintLiteratureChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['कान्हा/कृष्ण', 'हरी', 'गोपाळ', 'नारायण', 'पांडुरंग', wrapLabel('बौद्ध (काव्यात्मक/दशावतार)', 16)],
+                datasets: [{
+                    label: 'संत वाङ्मयातील उल्लेख (अंदाजे प्रमाण)',
+                    data: [1200, 1100, 800, 950, 1500, 15],
+                    backgroundColor: [
+                        brilliantBluesFull[1],
+                        brilliantBluesFull[2],
+                        brilliantBluesFull[3],
+                        brilliantBluesFull[4],
+                        brilliantBluesFull[5],
+                        '#64748b'
+                    ],
+                    borderColor: '#003f5c',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+            }
+        });
+        
+        const ctx2 = document.getElementById('iconographyChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['वैष्णव चिन्हे', 'शैव चिन्हे (हरी-हर ऐक्य)', 'बौद्ध चिन्हे'],
+                datasets: [{
+                    label: 'मूर्तीशास्त्रीय ओळख',
+                    data: [90, 10, 0],
+                    backgroundColor: [
+                        brilliantBluesFull[1],
+                        brilliantBluesFull[2],
+                        '#64748b'
+                    ],
+                    borderColor: '#003f5c',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                     legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#f1f5f9',
+                            font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                            },
+                             padding: 20
+                        }
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
