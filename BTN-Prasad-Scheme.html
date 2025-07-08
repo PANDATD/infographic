@@ -1,108 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PRASHAD Scheme Maps</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
-      line-height: 1.6;
-    }
-    .embed-container {
-      width: 100%;
-      max-width: 960px;
-      margin: 20px auto;
-      padding: 10px;
-      background: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    .embed-container h2 {
-      font-size: 1rem;
-      margin-bottom: 10px;
-      text-align: center;
-      color: #333333;
-    }
-    .responsive-iframe {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 75%; /* Default aspect ratio for mobile */
-      overflow: hidden;
-      border-radius: 4px;
-    }
-    .responsive-iframe iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
 
-    @media (min-width: 480px) {
-      .embed-container h2 {
-        font-size: 1.1rem;
-      }
-      .responsive-iframe {
-        padding-bottom: 70%;
-      }
-    }
-    @media (min-width: 768px) {
-      .embed-container {
-        padding: 15px;
-      }
-      .embed-container h2 {
-        font-size: 1.25rem;
-      }
-      .responsive-iframe {
-        padding-bottom: 65%;
-      }
-    }
-    @media (min-width: 1024px) {
-      .responsive-iframe {
-        padding-bottom: 60%;
-      }
-    }
-  </style>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>PRASHAD Scheme Projects – Responsive Embeds</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			background-color: #f9f9f9;
+		}
+
+		.embed-wrapper {
+			padding: 20px 10px;
+		}
+
+		.embed-container {
+			max-width: 800px;
+			/* fixed max width for dignity */
+			margin: 0 auto 30px auto;
+			/* vertical spacing */
+			padding: 10px;
+			/* inner padding for breathing space */
+			background: #fff;
+			/* subtle background for contrast */
+			border-radius: 8px;
+			/* gentle rounded corners */
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			/* soft shadow for depth */
+		}
+
+		.embed-container iframe {
+			width: 100% !important;
+			height: auto;
+			border: none;
+			display: block;
+			border-radius: 4px;
+		}
+
+		@media (max-width: 600px) {
+			.embed-container {
+				max-width: 100%;
+				padding: 8px;
+				margin-bottom: 20px;
+			}
+		}
+	</style>
 </head>
+
 <body>
 
-  <div class="embed-container">
-    <h2>Physical Progress (%) of PRASHAD Scheme Development Projects</h2>
-    <div class="responsive-iframe">
-      <iframe title="Physical Progress (%) of PRASHAD Scheme Development Projects Across India" aria-label="Map" id="datawrapper-chart-dpnKq" src="https://datawrapper.dwcdn.net/dpnKq/1/" scrolling="no" data-external="1"></iframe>
-    </div>
-  </div>
+	<div class="embed-wrapper">
+		<div class="embed-container">
+			<iframe title="PRASHAD Scheme Projects Across India" aria-label="Map" id="datawrapper-chart-4DRVQ" src="https://datawrapper.dwcdn.net/4DRVQ/1/" scrolling="no" frameborder="0" height="500" data-external="1">
+			</iframe>
+		</div>
 
-  <div class="embed-container">
-    <h2>PRASHAD Scheme Projects Across India</h2>
-    <div class="responsive-iframe">
-      <iframe title="PRASHAD Scheme Projects Across India" aria-label="Map" id="datawrapper-chart-4DRVQ" src="https://datawrapper.dwcdn.net/4DRVQ/1/" scrolling="no" data-external="1"></iframe>
-    </div>
-  </div>
+		<div class="embed-container">
+			<iframe title="Physical Progress (%) of PRASHAD Scheme Development Projects Across India" aria-label="Map" id="datawrapper-chart-dpnKq" src="https://datawrapper.dwcdn.net/dpnKq/1/" scrolling="no" frameborder="0" height="500" data-external="1">
+			</iframe>
+		</div>
+	</div>
 
-  <script type="text/javascript">
-    (function() {
-      "use strict";
-      window.addEventListener("message", function(event) {
-        if (typeof event.data["datawrapper-height"] !== "undefined") {
-          var iframes = document.querySelectorAll("iframe");
-          for (var chartId in event.data["datawrapper-height"]) {
-            for (var i = 0; i < iframes.length; i++) {
-              if (iframes[i].contentWindow === event.source) {
-                iframes[i].style.height = event.data["datawrapper-height"][chartId] + "px";
-              }
-            }
-          }
-        }
-      });
-    })();
-  </script>
+	<script type="text/javascript">
+		(function() {
+			"use strict";
+			window.addEventListener("message", function(a) {
+				if (void 0 !== a.data["datawrapper-height"]) {
+					var e = document.querySelectorAll("iframe");
+					for (var t in a.data["datawrapper-height"])
+						for (var r, i = 0; r = e[i]; i++)
+							if (r.contentWindow === a.source) {
+								var d = a.data["datawrapper-height"][t] + "px";
+								r.style.height = d;
+							}
+				}
+			});
+		})();
+	</script>
 
 </body>
+
 </html>
