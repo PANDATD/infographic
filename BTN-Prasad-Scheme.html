@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRASHAD Scheme Maps</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: #f9f9f9;
+    }
+    .embed-container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 10px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+    iframe {
+      width: 100%;
+      height: 784px;
+      border: none;
+      display: block;
+    }
+    @media (max-width: 600px) {
+      iframe {
+        height: 600px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="embed-container">
+    <h2>Physical Progress (%) of PRASHAD Scheme Development Projects</h2>
+    <iframe title="Physical Progress (%) of PRASHAD Scheme Development Projects Across India" aria-label="Map" id="datawrapper-chart-dpnKq" src="https://datawrapper.dwcdn.net/dpnKq/1/" scrolling="no" data-external="1"></iframe>
+  </div>
+
+  <div class="embed-container">
+    <h2>PRASHAD Scheme Projects Across India</h2>
+    <iframe title="PRASHAD Scheme Projects Across India" aria-label="Map" id="datawrapper-chart-4DRVQ" src="https://datawrapper.dwcdn.net/4DRVQ/1/" scrolling="no" data-external="1"></iframe>
+  </div>
+
+  <script type="text/javascript">
+    (function() {
+      "use strict";
+      window.addEventListener("message", function(event) {
+        if (typeof event.data["datawrapper-height"] !== "undefined") {
+          var iframes = document.querySelectorAll("iframe");
+          for (var chartId in event.data["datawrapper-height"]) {
+            for (var i = 0; i < iframes.length; i++) {
+              if (iframes[i].contentWindow === event.source) {
+                iframes[i].style.height = event.data["datawrapper-height"][chartId] + "px";
+              }
+            }
+          }
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
