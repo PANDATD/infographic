@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गुरुपौर्णिमा, भगवा ध्वज आणि संघ: एक इन्फोग्राफिक</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tiro+Devanagari+Marathi:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            background-color: #FFF7F0; /* Light Saffron/Cream */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        
+        /* Saffron Color Palette */
+        .text-saffron-main { color: #FF9933; }
+        .bg-saffron-main { background-color: #FF9933; }
+        .border-saffron-main { border-color: #FF9933; }
+
+        .text-saffron-dark { color: #D46A00; }
+        .bg-saffron-dark { background-color: #D46A00; }
+
+        .text-saffron-light { color: #FFE0B3; }
+        .bg-saffron-light { background-color: #FFF7F0; }
+
+        .text-neutral-dark { color: #4A4A4A; }
+        .text-neutral-light { color: #F5F5F5; }
+        .bg-neutral-dark { background-color: #4A4A4A; }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            border-left: 5px solid #FF9933;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #FFE0B3; /* Light Saffron for timeline track */
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2rem;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2rem;
+        }
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 9999px;
+            background-color: white;
+            border: 4px solid #FF9933; /* Main Saffron border */
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -0.625rem;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -0.625rem;
+        }
+        .header-bg {
+             background-color: #6B4F4B; /* Deep Earthy Brown */
+        }
+    </style>
+</head>
+<body class="text-neutral-dark">
+
+    <header class="header-bg text-white text-center py-8 px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2 text-saffron-main" style="font-family: 'Tiro Devanagari Marathi', serif;">गुरुपौर्णिमा आणि संघ</h1>
+        <p class="text-lg text-neutral-light">गुरु-तत्त्व, भगवा ध्वज आणि राष्ट्र-समर्पणाची परंपरा</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="introduction" class="mb-12">
+            <div class="card text-center">
+                <h2 class="text-3xl font-bold text-saffron-dark mb-4" style="font-family: 'Tiro Devanagari Marathi', serif;">गुरु-तत्त्वाचे सार</h2>
+                <p class="text-lg max-w-3xl mx-auto mb-6">भारतीय संस्कृतीत 'गुरु' हे अज्ञानाचा अंधार दूर करून ज्ञानाच्या प्रकाशाकडे नेणारे चैतन्यमय तत्त्व आहे. आषाढ पौर्णिमेला, म्हणजेच गुरुपौर्णिमेला, आदिगुरू महर्षी वेदव्यास यांचे स्मरण करून या अखंड ज्ञान-परंपरेप्रती कृतज्ञता व्यक्त केली जाते.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                    <div class="bg-saffron-light rounded-lg p-6 border-l-4 border-saffron-main">
+                        <h3 class="text-xl font-bold text-saffron-dark mb-2">'गु' + 'रु' = गुरु</h3>
+                        <p><strong class="text-saffron-dark">'गु'</strong> म्हणजे अंधकार (अज्ञान) आणि <strong class="text-saffron-dark">'रु'</strong> म्हणजे त्याचा नाश करणारा प्रकाश (ज्ञान).</p>
+                    </div>
+                    <div class="bg-saffron-light rounded-lg p-6 border-l-4 border-saffron-main">
+                        <h3 class="text-xl font-bold text-saffron-dark mb-2">व्यास पौर्णिमा</h3>
+                        <p>हा दिवस महर्षी वेदव्यास यांचा जन्मदिवस आहे, ज्यांनी महाभारत, पुराणे आणि वेदांची रचना केली. ते 'आदिगुरू' मानले जातात.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="flag-history" class="mb-12">
+            <div class="card">
+                <h2 class="text-3xl font-bold text-center text-saffron-dark mb-8" style="font-family: 'Tiro Devanagari Marathi', serif;">भगवा ध्वज: एक कालातीत प्रतीक</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-10">भगवा रंग हा केवळ एक वर्ण नसून, तो त्याग, शौर्य, ज्ञान आणि पावित्र्याचा संगम आहे. हा ध्वज हजारो वर्षांपासून भारताच्या सनातन संस्कृतीचा आणि राष्ट्रीय अस्मितेचा प्रेरणास्रोत राहिला आहे.</p>
+                
+                <div class="relative wrap overflow-hidden p-2 h-full">
+                    <div class="timeline">
+                        <div class="timeline-item mb-8 flex justify-between items-center">
+                            <div class="timeline-dot"></div>
+                            <div class="bg-saffron-main text-white rounded-lg p-4 w-full shadow-lg">
+                                <h3 class="font-bold">वैदिक काळ</h3>
+                                <p class="text-sm">🔥 अग्नी आणि ☀️ सूर्याचे तेज, ज्ञान आणि त्यागाचे प्रतीक.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item mb-8 flex justify-between items-center">
+                             <div class="timeline-dot"></div>
+                            <div class="bg-saffron-dark text-white rounded-lg p-4 w-full shadow-lg">
+                                <h3 class="font-bold">रामायण-महाभारत</h3>
+                                <p class="text-sm">⚔️ धर्म आणि सत्याच्या बाजूने लढणाऱ्या योद्ध्यांच्या रथावर फडकणारा ध्वज.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item mb-8 flex justify-between items-center">
+                             <div class="timeline-dot"></div>
+                            <div class="bg-saffron-main text-white rounded-lg p-4 w-full shadow-lg">
+                                <h3 class="font-bold">छत्रपती शिवाजी महाराज</h3>
+                                <p class="text-sm">🚩 हिंदवी स्वराज्याचा राष्ट्रध्वज आणि राष्ट्रीय स्वाभिमानाचे प्रतीक.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item mb-8 flex justify-between items-center">
+                             <div class="timeline-dot"></div>
+                            <div class="bg-saffron-dark text-white rounded-lg p-4 w-full shadow-lg">
+                                <h3 class="font-bold">शीख साम्राज्य</h3>
+                                <p class="text-sm">💪 गुरु गोविंद सिंह आणि महाराजा रणजीत सिंहांच्या विजयाचे प्रतीक.</p>
+                            </div>
+                        </div>
+                         <div class="timeline-item flex justify-between items-center">
+                             <div class="timeline-dot"></div>
+                            <div class="bg-neutral-dark text-white rounded-lg p-4 w-full shadow-lg">
+                                <h3 class="font-bold">राष्ट्रीय स्वयंसेवक संघ</h3>
+                                <p class="text-sm">🤝 १९२८ पासून 'गुरू' म्हणून स्थापित; तत्त्वनिष्ठेचे प्रतीक.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rss-guru" class="mb-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="card">
+                     <h2 class="text-3xl font-bold text-saffron-dark mb-4 text-center lg:text-left" style="font-family: 'Tiro Devanagari Marathi', serif;">संघाचा अद्वितीय गुरु: भगवा ध्वज</h2>
+                    <p class="mb-6">संघाचे संस्थापक डॉ. हेडगेवार यांनी व्यक्ती-पूजेचे धोके टाळून, एका शाश्वत आणि निर्दोष तत्त्वाला गुरु म्हणून स्थापित केले. भगवा ध्वज हा कोणत्याही व्यक्ती किंवा ग्रंथापेक्षा श्रेष्ठ आहे, कारण तो आपल्या हजारो वर्षांच्या संस्कृतीचा आणि मूल्यांचा अविकारी वारसा आहे.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <span class="text-red-500 text-2xl mr-3">❌</span>
+                            <div>
+                                <h4 class="font-bold">व्यक्ती</h4>
+                                <p class="text-sm">व्यक्ती नश्वर आणि स्खलनशील (चुकीला पात्र) असते.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-red-500 text-2xl mr-3">❌</span>
+                            <div>
+                                <h4 class="font-bold">ग्रंथ</h4>
+                                <p class="text-sm">पोथीनिष्ठा निर्माण होऊन विचारांवर मर्यादा येऊ शकतात.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-500 text-2xl mr-3">✅</span>
+                            <div>
+                                <h4 class="font-bold">भगवा ध्वज</h4>
+                                <p class="text-sm">शाश्वत, अविकारी आणि निर्दोष तत्त्वाचे कालातीत प्रतीक.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-saffron-dark">ध्वजाला गुरु का मानले?</h3>
+                     <div class="chart-container mx-auto" style="max-width: 400px;">
+                        <canvas id="guruReasonChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gurudakshina" class="mb-12">
+            <div class="card">
+                <h2 class="text-3xl font-bold text-center text-saffron-dark mb-8" style="font-family: 'Tiro Devanagari Marathi', serif;">गुरुदक्षिणा: राष्ट्रकार्यासाठी त्याग आणि समर्पण</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="mb-6 text-lg">गुरुदक्षिणा ही संघाच्या आर्थिक स्वावलंबनाचा आणि प्रत्येक स्वयंसेवकाच्या त्यागाचा संस्कार आहे. वर्षातून एकदा, प्रत्येक स्वयंसेवक आपल्या कष्टाच्या कमाईचा काही अंश गुप्तपणे आपल्या गुरूला, म्हणजेच ध्वजाला समर्पित करतो. हाच निधी देशभरातील सेवाकार्यांसाठी वापरला जातो.</p>
+                        <div class="text-center bg-saffron-main text-white rounded-lg p-6">
+                            <div class="text-5xl font-extrabold">१,५०,०००+</div>
+                            <div class="text-xl font-semibold mt-2">सेवा प्रकल्प</div>
+                            <p class="text-sm mt-1">शिक्षण, आरोग्य, स्वावलंबन आणि सामाजिक क्षेत्रात कार्यरत</p>
+                        </div>
+                    </div>
+                    <div class="bg-saffron-light rounded-lg p-4">
+                        <h3 class="text-2xl font-bold text-center mb-4 text-saffron-dark">प्रमुख सेवा क्षेत्रे</h3>
+                        <div class="chart-container mx-auto" style="max-width: 450px;">
+                            <canvas id="sevaPrakalpChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        function wrapText(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + words[i].length + 1 < maxWidth) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+        
+        const defaultTooltipCallback = {
+            title: function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            }
+        };
+
+        const guruReasonLabels = [
+            'शाश्वत तत्त्व', 
+            'संस्कृती आणि परंपरेचे प्रतीक', 
+            'एकत्रित करणारी शक्ती', 
+            'व्यक्ती-पूजेच्या पलीकडे'
+        ].map(label => wrapText(label, 16));
+
+        const guruReasonCtx = document.getElementById('guruReasonChart').getContext('2d');
+        new Chart(guruReasonCtx, {
+            type: 'doughnut',
+            data: {
+                labels: guruReasonLabels,
+                datasets: [{
+                    label: 'कारण',
+                    data: [40, 30, 20, 10],
+                    backgroundColor: ['#D46A00', '#FF9933', '#FFB866', '#FFD4A3'],
+                    borderColor: '#ffffff',
+                    borderWidth: 3,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: "'Inter', sans-serif"
+                            },
+                            color: '#4A4A4A'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: defaultTooltipCallback
+                    }
+                }
+            }
+        });
+
+        const sevaPrakalpCtx = document.getElementById('sevaPrakalpChart').getContext('2d');
+        new Chart(sevaPrakalpCtx, {
+            type: 'pie',
+            data: {
+                labels: ['शिक्षण', 'आरोग्य', 'स्वावलंबन', 'सामाजिक समरसता', 'इतर सेवा'],
+                datasets: [{
+                    label: 'सेवा प्रकल्प',
+                    data: [35, 25, 20, 15, 5],
+                    backgroundColor: [
+                        '#6B4F4B', // Deep Earthy Brown
+                        '#D46A00', // Dark Saffron
+                        '#FF9933', // Main Saffron
+                        '#FFB866', // Lighter Saffron
+                        '#FFD4A3'  // Lightest Saffron
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 3,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                         labels: {
+                            font: {
+                                family: "'Inter', sans-serif"
+                            },
+                            color: '#4A4A4A'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: defaultTooltipCallback
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
