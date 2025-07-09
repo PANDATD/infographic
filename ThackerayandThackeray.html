@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ठाकरे विरुद्ध ठाकरे: एका संघर्षाचा दृष्य-माहितीपट</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #f0f2f5;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e5e7eb;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 9999px;
+            background-color: #ffffff;
+            border: 4px solid #FF6F61;
+            top: 50%;
+            left: -0.625rem;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        .flow-arrow {
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+        .flow-arrow-right {
+            border-left: 20px solid #118AB2;
+        }
+        .flow-arrow-down {
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 20px solid #FF6F61;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-[#073B4C]">
+    
+    <!-- Narrative Plan:
+    1. Title & Intro: Set the stage of a 20-year conflict between two heirs.
+    2. Section 1 (Heirs): Compare Raj (natural, charismatic successor) vs. Uddhav (reluctant, quiet) using HTML/CSS cards.
+    3. Section 2 (Betrayal Timeline): Use an HTML/CSS timeline to show the key events from 2003-2006, portraying Uddhav's calculated moves to oust Raj.
+    4. Section 3 (Vote Split): Use a Chart.js Donut chart to visualize the 2009 election results, showing the tangible impact of the MNS on Marathi votes.
+    5. Section 4 (Revenge Politics): Use an HTML/CSS pictograph to illustrate the 2017 poaching of MNS corporators, highlighting Uddhav's ruthlessness.
+    6. Section 5 (Ideological Betrayal): Use an HTML/CSS flow chart to show Uddhav's 2019 alliance with Congress/NCP as a betrayal of Balasaheb's core principles.
+    7. Section 6 (Conclusion): Summarize the narrative, questioning the current reunion and placing the onus on Uddhav.
+    
+    Visualization Choices:
+    - Comparison Cards: Goal: Compare. Method: HTML/CSS. Justification: Effective for qualitative side-by-side comparison. Confirmed NO SVG.
+    - Timeline: Goal: Change (over time). Method: HTML/CSS. Justification: Best for sequential events. Confirmed NO SVG, NO MERMAID JS.
+    - Donut Chart: Goal: Compare/Composition. Method: Chart.js (Canvas). Justification: Ideal for showing vote share proportions. Confirmed NO SVG.
+    - Pictograph: Goal: Inform. Method: HTML/CSS with Unicode. Justification: Visually simple and impactful for the "6 of 7" statistic. Confirmed NO SVG.
+    - Flow Chart: Goal: Organize/Process. Method: HTML/CSS. Justification: Clearly illustrates the ideological shift and alliance changes. Confirmed NO SVG, NO MERMAID JS.
+    
+    Color Palette: Energetic & Playful (#FF6F61, #FFD166, #06D6A0, #118AB2, #073B4C)
+    -->
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#FF6F61] mb-2">ठाकरे विरुद्ध ठाकरे</h1>
+        </header>
+
+        <section class="card">
+            <h2 class="text-2xl font-bold mb-4 text-center">मातोश्रीचे दोन वारसदार: खरा वारसदार विरुद्ध कपटी वारसदार</h2>
+            <p class="text-center mb-6 text-lg">शिवसेनेच्या सुरुवातीच्या काळात, राज ठाकरे हेच बाळासाहेबांचे नैसर्गिक आणि आक्रमक वारसदार म्हणून ओळखले जात होते. याउलट, उद्धव ठाकरे हे केवळ कौटुंबिक वारसा हक्कावर दावा सांगणारे, महत्त्वाकांक्षा लपवून बसलेले नेते होते.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-8">
+                <div class="border-2 border-[#FF6F61] p-4 rounded-lg text-center flex-1">
+                    <h3 class="text-2xl font-bold mb-2">राज ठाकरे</h3>
+                    <p class="text-5xl mb-2">🎨</p>
+                    <p class="font-bold">बाळासाहेबांचे प्रतिबिंब</p>
+                    <p>नैसर्गिक वारसदार, लोकप्रिय, उत्कृष्ट वक्ता</p>
+                </div>
+                <div class="border-2 border-[#118AB2] p-4 rounded-lg text-center flex-1">
+                    <h3 class="text-2xl font-bold mb-2">उद्धव ठाकरे</h3>
+                    <p class="text-5xl mb-2">🤫</p>
+                    <p class="font-bold">महत्त्वाकांक्षा लपवणारे</p>
+                    <p>केवळ वारसा हक्कावर दावा</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="text-2xl font-bold mb-6 text-center">विश्वासघात: महाबळेश्वर ते 'मातोश्री' त्यागाचा कट</h2>
+            <div class="relative">
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-300 hidden md:block"></div>
+                <div class="space-y-8 md:space-y-0">
+                    <div class="md:grid md:grid-cols-2 md:gap-x-8 relative timeline-item">
+                        <div class="text-right pr-8">
+                            <h3 class="text-xl font-bold text-[#FF6F61]">२००३</h3>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold">महाबळेश्वरचे कारस्थान</h4>
+                            <p>उद्धव ठाकरेंना कार्याध्यक्ष बनवण्याचा निर्णय. राज यांनाच तो जाहीर करायला लावून सार्वजनिक अपमान करण्याचा आणि त्यांची राजकीय कारकीर्द संपवण्याचा पहिला डाव.</p>
+                        </div>
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-x-8 relative timeline-item">
+                        <div class="md:text-right pr-8 md:col-start-1 md:row-start-1">
+                            <h4 class="text-lg font-bold">उद्धव यांच्या छळामुळे शिवसेना त्याग</h4>
+                            <p class="italic">"मी फक्त सन्मान मागितला होता, पण मला केवळ अपमान आणि मानहानी मिळाली." - राज ठाकरे</p>
+                        </div>
+                        <div class="text-left pl-8 md:text-right md:pr-8">
+                            <h3 class="text-xl font-bold text-[#FF6F61]">२००५</h3>
+                        </div>
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-x-8 relative timeline-item">
+                        <div class="text-right pr-8">
+                            <h3 class="text-xl font-bold text-[#FF6F61]">२००६</h3>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold">मनसेची स्थापना</h4>
+                            <p>उद्धव यांच्या विश्वासघातानंतर, बाळासाहेबांचे खरे विचार पुढे नेण्यासाठी 'महाराष्ट्र नवनिर्माण सेने'ची स्थापना.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h2 class="text-2xl font-bold mb-4">मराठी मतांचे विभाजन: उद्धव यांच्या स्वार्थाचा परिणाम</h2>
+                <p class="text-lg">उद्धव ठाकरेंच्या स्वार्थी राजकारणामुळे आणि राज यांना पक्षातून बाहेर ढकलल्यामुळे २००९ च्या विधानसभा निवडणुकीत मराठी मते विभागली गेली. याचा थेट फायदा काँग्रेस-राष्ट्रवादी आघाडीला झाला आणि बाळासाहेबांनी आयुष्यभर जपलेला मराठी मतांचा किल्ला उद्धव यांच्यामुळे दुभंगला.</p>
+            </div>
+            <div>
+                <div class="chart-container">
+                    <canvas id="voteShareChart"></canvas>
+                </div>
+                <p class="text-center text-sm mt-2">२००९ विधानसभा निवडणूक (अपेक्षित मतविभागणी)</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="text-2xl font-bold mb-4 text-center">सूडाचे राजकारण: मनसे फोडण्याचा विश्वासघातकी डाव</h2>
+            <p class="text-center text-lg mb-6">२०१७ मध्ये, उद्धव ठाकरेंनी राज यांना राजकीयदृष्ट्या संपवण्यासाठी पैशाच्या जोरावर पक्ष फोडण्याचा निर्दयी आणि विश्वासघातकी प्रयत्न केला. मुंबई महानगरपालिकेतील मनसेच्या ७ पैकी ६ नगरसेवकांना शिवसेनेत सामील करून घेतले. राज यांनी "प्रत्येकी ५ कोटी रुपये देऊन नगरसेवक फोडले" असा उघड आरोप केला.</p>
+            <div class="flex justify-center items-center flex-wrap gap-4 bg-gray-100 p-6 rounded-lg">
+                <div class="text-center p-2">
+                    <span class="text-6xl" title="मनसे नगरसेवक">👤</span>
+                    <p class="font-bold text-[#118AB2]">१</p>
+                </div>
+                <div class="text-center p-2">
+                    <span class="text-6xl text-red-500" title="शिवसेनेत गेले">👤</span>
+                    <p class="font-bold text-red-500">२</p>
+                </div>
+                <div class="text-center p-2">
+                    <span class="text-6xl text-red-500" title="शिवसेनेत गेले">👤</span>
+                    <p class="font-bold text-red-500">३</p>
+                </div>
+                <div class="text-center p-2">
+                    <span class="text-6xl text-red-500" title="शिवसेनेत गेले">👤</span>
+                    <p class="font-bold text-red-500">४</p>
+                </div>
+                <div class="text-center p-2">
+                    <span class="text-6xl text-red-500" title="शिवसेनेत गेले">👤</span>
+                    <p class="font-bold text-red-500">५</p>
+                </div>
+                <div class="text-center p-2">
+                    <span class="text-6xl text-red-500" title="शिवसेनेत गेले">👤</span>
+                    <p class="font-bold text-red-500">६</p>
+                </div>
+                <div class="text-center p-2">
+                    <span class="text-6xl text-red-500" title="शिवसेनेत गेले">👤</span>
+                    <p class="font-bold text-red-500">७</p>
+                </div>
+            </div>
+             <p class="text-center text-lg mt-4 font-bold text-[#FF6F61]">७ पैकी ६ नगरसेवक फोडले! ही नीच राजकारणाची पातळी होती.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="text-2xl font-bold mb-6 text-center">विचारधारेशी प्रतारणा: सत्तेच्या लालसेपोटी केलेला विश्वासघात</h2>
+            <p class="text-center text-lg mb-8">२०१९ मध्ये, उद्धव ठाकरेंनी मुख्यमंत्रिपदाच्या लालसेपोटी बाळासाहेबांच्या हिंदुत्ववादी विचारधारेला तिलांजली देऊन, ज्या काँग्रेस-राष्ट्रवादीला बाळासाहेबांनी आयुष्यभर विरोध केला, त्यांच्याशीच आघाडी केली. हा बाळासाहेबांच्या विचारांशी आणि मराठी माणसाशी केलेला सर्वात मोठा विश्वासघात होता.</p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
+                <div class="bg-[#FF6F61] text-white p-4 rounded-lg text-center font-bold">बाळासाहेबांचे हिंदुत्व</div>
+                <div class="flow-arrow flow-arrow-down md:flow-arrow-right mx-4"></div>
+                <div class="border-4 border-[#118AB2] p-4 rounded-lg text-center font-bold">उद्धव ठाकरे (२०१९)</div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 mb-8 px-4">
+            <h2 class="text-2xl font-bold mb-4">निष्कर्ष: फसवा भाऊ आणि मराठी माणसाचा विश्वासघात</h2>
+            <p class="text-lg max-w-3xl mx-auto">इतिहास साक्षी आहे की, उद्धव ठाकरे यांनी राज यांच्याशी नेहमीच खोटेपणाने आणि कपटाने वागणूक दिली. त्यांनी केवळ राज यांचाच नव्हे, तर बाळासाहेबांच्या विचारांचा आणि मराठी माणसाच्या विश्वासाचाही घात केला आहे. ज्या व्यक्तीने आपला भाऊ आणि त्याचा पक्ष संपवण्याचा प्रयत्न केला, त्यांच्यावर विश्वास कसा ठेवायचा? त्यामुळे ही तथाकथित एकजूट म्हणजे सत्तेसाठी रचलेला आणखी एक फसवा डाव नाही, हे कशावरून? मराठी माणसाने आता डोळे उघडे ठेवून या फसवेगिरीला बळी पडण्यापासून सावध राहिले पाहिजे.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapLabel = (label) => {
+                const max_width = 16;
+                if (label.length <= max_width) return label;
+
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > max_width) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const ctx = document.getElementById('voteShareChart').getContext('2d');
+            const voteShareChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['मनसे', 'शिवसेना (२००९)', 'इतर पक्ष'],
+                    datasets: [{
+                        label: 'मतविभागणी',
+                        data: [5.71, 16.41, 77.88],
+                        backgroundColor: [
+                            '#FF6F61',
+                            '#118AB2',
+                            '#FFD166'
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#073B4C',
+                                font: {
+                                    family: "'Tiro Devanagari Marathi', serif",
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                }
+                            },
+                            titleFont: {
+                                family: "'Tiro Devanagari Marathi', serif"
+                            },
+                            bodyFont: {
+                                family: "'Tiro Devanagari Marathi', serif"
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
