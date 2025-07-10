@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>बिहार विशेष मतदार यादी पुनरावलोकन (SIR) - इन्फोग्राफिक</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Color Palette: Brilliant Blues -->
+    <!-- Narrative Plan: 1. Intro (What is SIR), 2. Why SIR (The Problem), 3. Process & Timeline, 4. Citizenship Rules, 5. Progress, 6. Political Debate, 7. Supreme Court Verdict, 8. Conclusion (Long-term impact). -->
+    <!-- Visualization Choices: Voter Breakdown -> Donut Chart (Compare); Timeline -> HTML/CSS Diagram (Organize); Citizenship Rules -> HTML/CSS Flowchart (Organize); Progress -> Bar Chart (Compare); Key Stats -> Big Number Callouts (Inform). NO SVG, NO Mermaid JS USED. -->
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #F2F2F2;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #0077C0;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 20px;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 60px;
+            text-align: left;
+        }
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 2px solid #00A1E4;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid #0077C0;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#005082] mb-2">बिहार विशेष मतदार यादी पुनरावलोकन (SIR)</h1>
+            <p class="text-xl text-[#0077C0]">एक पारदर्शक आणि शुद्ध निवडणूक प्रक्रियेकडे वाटचाल</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="card lg:col-span-3">
+                <h2 class="text-2xl font-bold text-[#005082] mb-4">SIR प्रक्रिया: का आणि कशासाठी?</h2>
+                <p class="text-lg">बिहारमधील मतदार याद्यांमध्ये मोठ्या प्रमाणावर आढळलेल्या त्रुटी, दुहेरी नावे, मृत व्यक्तींच्या नोंदी आणि नागरिकत्वाशी संबंधित शंका दूर करण्यासाठी भारतीय निवडणूक आयोगाने (ECI) हे विशेष अभियान सुरू केले आहे. याचा मुख्य उद्देश मतदार यादी पूर्णपणे त्रुटीमुक्त, पारदर्शक आणि कायदेशीर करणे हा आहे.</p>
+                <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                    <div class="bg-blue-100 p-4 rounded-lg">
+                        <p class="text-3xl font-bold text-[#005082] font-inter">७.८९ कोटी</p>
+                        <p class="text-md">एकूण मतदार</p>
+                    </div>
+                    <div class="bg-blue-100 p-4 rounded-lg">
+                        <p class="text-3xl font-bold text-[#005082] font-inter">२.९३ कोटी</p>
+                        <p class="text-md">२००३ नंतर नोंदणीकृत मतदार</p>
+                    </div>
+                     <div class="bg-blue-100 p-4 rounded-lg">
+                        <p class="text-3xl font-bold text-[#005082] font-inter">७७,८९५</p>
+                        <p class="text-md">बूथ लेव्हल ऑफिसर्स (BLO)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card md:col-span-1">
+                <h2 class="text-2xl font-bold text-[#005082] mb-4">मतदार विभागणी</h2>
+                <p class="mb-4">बिहारमधील एकूण मतदारांपैकी सुमारे ३७% मतदार २००३ नंतर नोंदणीकृत झाले आहेत. या मतदारांची सखोल कागदपत्रांसह तपासणी केली जात आहे, तर उर्वरित मतदारांची तपासणी सुलभ निकषांवर होत आहे.</p>
+                <div class="chart-container h-64 md:h-auto">
+                    <canvas id="voterDistributionChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="card md:col-span-1">
+                <h2 class="text-2xl font-bold text-[#005082] mb-4">प्रगतीचा आढावा (१० जुलै २०२५ पर्यंत)</h2>
+                <p class="mb-4">SIR अभियानाने अल्पावधीत लक्षणीय प्रगती केली आहे. आतापर्यंत २.८८ कोटी तपासणी अर्ज गोळा झाले आहेत, जे एकूण मतदारांच्या ३६% पेक्षा जास्त आहे.</p>
+                 <div class="chart-container h-64 md:h-auto">
+                    <canvas id="progressChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card text-center">
+                <h2 class="text-2xl font-bold text-[#005082] mb-4">सर्वोच्च न्यायालयाचा कौल</h2>
+                <p class="text-lg mb-4">न्यायालयाने प्रक्रिया थांबवण्यास नकार दिला, परंतु काही महत्त्वाचे निर्देश दिले:</p>
+                <ul class="text-left list-disc list-inside space-y-2">
+                    <li>प्रक्रिया घटनासंमत आहे.</li>
+                    <li>आधार, रेशन कार्ड पुरावा म्हणून स्वीकारा.</li>
+                    <li>नागरिकत्वाचा अंतिम निर्णय गृह मंत्रालय घेईल.</li>
+                    <li>निवडणुकीच्या जवळ प्रक्रिया का सुरू केली, अशी विचारणा.</li>
+                </ul>
+            </div>
+
+            <div class="card lg:col-span-3">
+                <h2 class="text-2xl font-bold text-[#005082] mb-6 text-center">SIR प्रक्रियेचा टप्पा आणि वेळापत्रक</h2>
+                <div class="relative timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="font-bold text-lg text-[#0077C0]">२४ जून २०२५</h3>
+                            <p>अधिकृत घोषणा</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="font-bold text-lg text-[#0077C0]">२८ जून २०२५</h3>
+                            <p>प्रत्यक्ष अंमलबजावणी सुरू</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                         <div class="timeline-content">
+                            <h3 class="font-bold text-lg text-[#0077C0]">२५ जुलै २०२५</h3>
+                            <p>कागदपत्र सादर करण्याची अंतिम मुदत</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="font-bold text-lg text-[#0077C0]">१ ऑगस्ट २०२५</h3>
+                            <p>प्रारुप मतदार यादी प्रसिद्ध होणार</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="font-bold text-lg text-[#0077C0]">३० सप्टेंबर २०२५</h3>
+                            <p>अंतिम मतदार यादी प्रकाशित होणार</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card lg:col-span-3">
+                <h2 class="text-2xl font-bold text-[#005082] mb-4 text-center">नागरिकत्व पडताळणीचे निकष</h2>
+                <p class="text-center mb-6">भारतीय नागरिकत्व कायदा, १९५५ मधील बदलांनुसार जन्मतारखेच्या आधारावर पुरावे मागवले जात आहेत.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border-2 border-[#00A1E4] p-4 rounded-lg text-center">
+                        <h3 class="font-bold text-xl text-[#0077C0]">गट १</h3>
+                        <p class="font-semibold my-2">जन्म: १ जुलै १९८७ पूर्वी</p>
+                        <p>आवश्यक पुरावा: फक्त स्वतःचा जन्म आणि जन्मस्थानाचा पुरावा.</p>
+                    </div>
+                    <div class="border-2 border-[#00A1E4] p-4 rounded-lg text-center">
+                        <h3 class="font-bold text-xl text-[#0077C0]">गट २</h3>
+                        <p class="font-semibold my-2">जन्म: १ जुलै १९८७ ते २ डिसेंबर २००४</p>
+                        <p>आवश्यक पुरावा: स्वतःचा + किमान एका पालकाचा जन्मपुरावा.</p>
+                    </div>
+                    <div class="border-2 border-[#00A1E4] p-4 rounded-lg text-center">
+                        <h3 class="font-bold text-xl text-[#0077C0]">गट ३</h3>
+                        <p class="font-semibold my-2">जन्म: ३ डिसेंबर २००४ नंतर</p>
+                        <p>आवश्यक पुरावा: स्वतःचा + दोन्ही पालकांचा जन्मपुरावा.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card md:col-span-2 lg:col-span-3">
+                 <h2 class="text-2xl font-bold text-[#005082] mb-4 text-center">राजकीय वाद: आरोप आणि प्रत्यारोप</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                        <h3 class="text-xl font-bold text-red-800 mb-3">विरोधी पक्षांचा आक्षेप</h3>
+                        <ul class="list-disc list-inside space-y-2 text-red-700">
+                            <li>ही प्रक्रिया म्हणजे छुपा NRC (राष्ट्रीय नागरिक नोंदणी) आहे.</li>
+                            <li>गरीब, स्थलांतरित, अल्पशिक्षित आणि अल्पसंख्याक नागरिकांचे मतदानाचा हक्क हिरावण्याचा कट आहे.</li>
+                            <li>ममता बॅनर्जींनी याला "NRC पेक्षा धोकादायक घोटाळा" म्हटले.</li>
+                             <li>काँग्रेस आणि RJD ने याला "वंचित घटकांवर अन्याय" करणारे म्हटले.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                        <h3 class="text-xl font-bold text-green-800 mb-3">निवडणूक आयोगाची भूमिका</h3>
+                        <ul class="list-disc list-inside space-y-2 text-green-700">
+                            <li>उद्देश केवळ मतदार यादी शुद्ध आणि पारदर्शक करणे आहे.</li>
+                            <li>कोणत्याही पात्र नागरिकाला वगळले जाणार नाही.</li>
+                            <li>अपात्र आणि बेकायदेशीर नावे वगळली जातील.</li>
+                             <li>प्रक्रिया कायद्याच्या चौकटीत राहूनच केली जात आहे.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+             <div class="card lg:col-span-3">
+                <h2 class="text-2xl font-bold text-[#005082] mb-4 text-center">दूरगामी परिणाम आणि लोकशाहीचे सक्षमीकरण</h2>
+                <p class="text-lg text-center max-w-4xl mx-auto">
+                    SIR सारख्या प्रक्रियेमुळे केवळ पात्र भारतीय नागरिकांनाच मतदानाचा हक्क मिळेल, ज्यामुळे अवैध आणि बनावट मतदानाला आळा बसेल. यामुळे निवडणूक प्रक्रियेची पवित्रता वाढेल, खऱ्या अर्थाने जनतेचे प्रतिनिधित्व होईल आणि लोकशाही अधिक मजबूत होईल. हे भारतीय लोकशाहीसाठी एक महत्त्वाचे आणि नैतिक पाऊल आहे.
+                </p>
+            </div>
+        </div>
+        
+        <footer class="text-center mt-12 text-gray-500">
+            <p>माहिती स्रोत: १० जुलै २०२५ पर्यंत उपलब्ध सार्वजनिक अहवाल आणि वृत्त.</p>
+            <p>&copy; २०२५. केवळ माहितीसाठी तयार केलेले इन्फोग्राफिक.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const voterData = {
+            labels: ['२००३ नंतर नोंदणीकृत (तपासणी अंतर्गत)', '२००३ पूर्वी नोंदणीकृत'],
+            datasets: [{
+                label: 'मतदार विभागणी',
+                data: [2.93, 4.96],
+                backgroundColor: ['#00A1E4', '#005082'],
+                hoverOffset: 4
+            }]
+        };
+        const voterConfig = {
+            type: 'doughnut',
+            data: voterData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                     ...tooltipCallback.plugins,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: false
+                    }
+                }
+            },
+        };
+        new Chart(
+            document.getElementById('voterDistributionChart'),
+            voterConfig
+        );
+        
+        const progressData = {
+            labels: ['एकूण मतदार', 'अर्ज गोळा झाले'],
+            datasets: [{
+                label: 'अर्ज संकलन (कोटी मध्ये)',
+                data: [7.89, 2.88],
+                backgroundColor: ['#0077C0', '#00A1E4'],
+                borderColor: ['#005082', '#0077C0'],
+                borderWidth: 1
+            }]
+        };
+        const progressConfig = {
+            type: 'bar',
+            data: progressData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    ...tooltipCallback.plugins,
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'संख्या (कोटी मध्ये)'
+                        }
+                    }
+                }
+            }
+        };
+        new Chart(
+            document.getElementById('progressChart'),
+            progressConfig
+        );
+    </script>
+</body>
+</html>
