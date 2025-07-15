@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>बिरसा मुंडा: एक महान क्रांतीकारकाची गाथा</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            background-color: #FDF8F0; /* Light cream background */
+        }
+        h1, h2, h3 {
+            font-family: 'Teko', sans-serif;
+            letter-spacing: 1px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 4px solid #8C5A2D; /* Brown color */
+        }
+        .timeline-path {
+            position: absolute;
+            left: -22px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #8C5A2D; /* Brown color */
+            z-index: -1;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #D97706, #92400E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-bg {
+             background-color: rgba(255, 255, 255, 0.7);
+             backdrop-filter: blur(5px);
+             border: 1px solid rgba(209, 185, 156, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-[#FDF8F0] text-[#4A3F35]">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-6xl md:text-8xl font-bold gradient-text">धरती आबा बिरसा मुंडा</h1>
+            <p class="text-xl md:text-2xl text-[#8C5A2D] mt-2">एका महान क्रांतीकारकाची शौर्यगाथा (१८७५ - १९००)</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Left Column: Timeline -->
+            <div class="lg:col-span-1">
+                <div class="p-6 rounded-2xl shadow-lg card-bg">
+                    <h2 class="text-4xl font-bold text-[#8C5A2D] mb-6 text-center">जीवनप्रवास</h2>
+                    <div class="relative pl-8">
+                        <div class="timeline-path"></div>
+                        <div class="timeline-item relative mb-8">
+                            <h3 class="text-2xl font-bold text-[#92400E]">१८७५: जन्म</h3>
+                            <p class="text-md">झारखंडमधील उलिहातू येथे जन्म. बालपण निसर्गाच्या सान्निध्यात गेले.</p>
+                        </div>
+                        <div class="timeline-item relative mb-8">
+                            <h3 class="text-2xl font-bold text-[#92400E]">१८८६: शिक्षण</h3>
+                            <p class="text-md">चाईबासा येथील जर्मन मिशन स्कूलमध्ये प्रवेश, पण संस्कृतीचा अपमान सहन न झाल्याने शाळा सोडली.</p>
+                        </div>
+                        <div class="timeline-item relative mb-8">
+                            <h3 class="text-2xl font-bold text-[#92400E]">सनातन धर्माकडे परत</h3>
+                            <p class="text-md">आनंद पांडे यांच्या संपर्कात आल्यावर सनातन धर्माचे तत्त्वज्ञान शिकले आणि आपल्या मूळ भारतीय संस्कृतीकडे परतले.</p>
+                        </div>
+                        <div class="timeline-item relative mb-8">
+                            <h3 class="text-2xl font-bold text-[#92400E]">१८९४: बिरसाइट पंथ</h3>
+                            <p class="text-md">आदिवासींना त्यांच्या मूळ धर्माशी जोडण्यासाठी 'बिरसाइट' पंथाची स्थापना केली. 'धरती आबा' म्हणून ओळख मिळाली.</p>
+                        </div>
+                         <div class="timeline-item relative mb-8">
+                            <h3 class="text-2xl font-bold text-[#92400E]">१८९५: उलगुलान!</h3>
+                            <p class="text-md">ब्रिटिश आणि 'दिकूं'च्या शोषणाविरुद्ध 'उलगुलान' (महान बंड) पुकारले. अटक झाली.</p>
+                        </div>
+                        <div class="timeline-item relative mb-8">
+                            <h3 class="text-2xl font-bold text-[#92400E]">१८९७: सुटका</h3>
+                            <p class="text-md">दोन वर्षांच्या तुरुंगवासानंतर सुटका. संघर्षाची ज्योत पुन्हा पेटवली.</p>
+                        </div>
+                        <div class="timeline-item relative mb-8">
+                            <h3 class="text-2xl font-bold text-[#92400E]">१९००: डोंबारी हत्याकांड</h3>
+                            <p class="text-md">९ जानेवारी रोजी डोंबारी डोंगरावर जमलेल्या निष्पाप अनुयायांवर इंग्रजांचा अमानुष गोळीबार.</p>
+                        </div>
+                        <div class="timeline-item relative">
+                            <h3 class="text-2xl font-bold text-[#92400E]">१९००: बलिदान</h3>
+                            <p class="text-md">फितुरीमुळे अटक आणि ९ जून रोजी रांची तुरुंगात संशयास्पद मृत्यू. वयाच्या २५व्या वर्षी वीरमरण.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Details -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Ulgulan Section -->
+                <div class="p-8 rounded-2xl shadow-lg text-center card-bg">
+                    <h2 class="text-5xl font-bold text-[#92400E] mb-4">उलगुलान (महान बंड)</h2>
+                    <p class="text-2xl italic text-gray-700 mb-4">"अबुआ राज एते जना, महारानी राज तुंदु जना"</p>
+                    <p class="text-lg">या घोषणेचा अर्थ होता, "आमचे राज्य येऊ दे आणि महाराणीचे राज्य संपू दे". हे केवळ एक बंड नव्हते, तर जल, जंगल, जमीन आणि आदिवासी अस्मितेसाठी पुकारलेला स्वातंत्र्याचा एल्गार होता. धनुष्यबाणांनी त्यांनी ब्रिटिश साम्राज्याच्या तोफांना आव्हान दिले.</p>
+                </div>
+
+                <!-- Birsait Philosophy -->
+                <div class="p-8 rounded-2xl shadow-lg card-bg">
+                    <h2 class="text-4xl font-bold text-[#8C5A2D] mb-6 text-center">बिरसाइट पंथाची शिकवण</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div class="p-4 rounded-lg bg-white/50">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-[#D97706]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                            <h3 class="text-2xl font-bold mt-2 text-[#92400E]">सिंगबोंगा उपासना</h3>
+                            <p>एकेश्वरवादाचा पुरस्कार करत सूर्यदेव 'सिंगबोंगा' हाच सर्वोच्च देव मानला.</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-white/50">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-[#D97706]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <h3 class="text-2xl font-bold mt-2 text-[#92400E]">नैतिक आचरण</h3>
+                            <p>मद्यपान, अंधश्रद्धा आणि सामाजिक कुप्रथांना तीव्र विरोध केला.</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-white/50">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-[#D97706]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                            <h3 class="text-2xl font-bold mt-2 text-[#92400E]">सांस्कृतिक अस्मिता</h3>
+                            <p>तुळशी पूजन आणि गो-रक्षणाचे महत्त्व सांगून भारतीय मूल्यांचा अंगीकार केला.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Legacy Section -->
+                <div class="p-8 rounded-2xl shadow-lg text-center bg-gradient-to-br from-[#8C5A2D] to-[#5A3A1D] text-white">
+                    <h2 class="text-5xl font-bold mb-4">अजरामर वारसा</h2>
+                    <p class="text-lg mb-4">बिरसा मुंडा हे केवळ आदिवासी नेते नव्हते, तर ते भारताच्या स्वातंत्र्य संग्रामातील एक महान क्रांतिकारक होते. त्यांचा लढा आजही करोडो भारतीयांसाठी प्रेरणास्रोत आहे.</p>
+                    <div class="mt-6 border-t-2 border-amber-200/50 pt-4">
+                        <p class="text-xl font-bold">भारत सरकारकडून सन्मान:</p>
+                        <p class="text-lg">त्यांची जयंती, <span class="font-bold text-amber-300">१५ नोव्हेंबर</span>, हा दिवस आता देशभर <span class="font-bold text-amber-300">'जनजातीय गौरव दिवस'</span> म्हणून साजरा केला जातो.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
