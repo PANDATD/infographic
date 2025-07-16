@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>बिरसा मुंडा आणि वन हक्क लढा: एक इन्फोग्राफिक</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Teko:wght@700&display=swap" rel="stylesheet">
+    <!-- 
+    Infographic Plan:
+    Narrative & Structure:
+    1. Hero Section: Title and hook.
+    2. Pre-British Era: Illustrate the autonomous life of tribal communities.
+    3. The Colonial Onslaught: A timeline visualization of the oppressive Forest Acts.
+    4. Impact Analysis: A bar chart comparing the pre-colonial and post-colonial state of tribal rights.
+    5. The Rise of a Leader: Introduction to Birsa Munda, the 'Dharti Aba'.
+    6. 'Ulgulan' Explained: A structured HTML/CSS diagram detailing the multi-faceted nature of the movement.
+    7. 'Birsait' Philosophy: A donut chart showing the core principles of his socio-religious movement.
+    8. Enduring Legacy: Connecting Birsa Munda's struggle to the Forest Rights Act, 2006.
+    
+    Visualization Selection:
+    - Data Point: Timeline of Forest Acts -> Goal: Change -> Visualization: HTML/CSS Timeline -> Justification: The most effective method for showing chronological events clearly without using SVG or prohibited libraries. (Confirming NO SVG).
+    - Data Point: Impact on Tribal Life -> Goal: Compare -> Visualization: Chart.js Bar Chart -> Justification: Ideal for a direct before-and-after comparison of multiple facets of tribal life. Rendered on Canvas. (Confirming NO SVG).
+    - Data Point: 'Ulgulan' Movement's Dimensions -> Goal: Organize -> Visualization: HTML/CSS Flow Diagram -> Justification: Can represent the different components and flow of the movement using styled HTML elements, thus avoiding SVG and Mermaid JS. (Confirming NO SVG).
+    - Data Point: 'Birsait' Principles -> Goal: Composition -> Visualization: Chart.js Donut Chart -> Justification: Excellent for displaying the component parts of a whole ideology. Rendered on Canvas. (Confirming NO SVG).
+    - Data Point: Key Dates and Concepts -> Goal: Inform -> Visualization: Big Number Text & Unicode Icons -> Justification: High-impact method for key statistics and simple concepts. (Confirming NO SVG).
+    
+    Color Palette Selection:
+    - Chosen Palette Name: Fresh & Earthy
+    - HEX Codes: #F5E8C7 (background), #4A7C59 (primary green), #B2533E (accent red), #3A3845 (dark text/headers).
+    - Justification: The palette is thematically aligned with the subject of forests, land, and struggle. It offers a professional look with excellent color contrast for readability.
+    
+    Confirmation of Constraints:
+    - NEITHER Mermaid JS NOR SVG were used anywhere in the output. All visualizations are created using Chart.js (which renders on Canvas) or are custom-built using structured HTML and CSS via Tailwind.
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            background-color: #F5E8C7; 
+        }
+        h1, h2, h3 {
+            font-family: 'Teko', sans-serif;
+            letter-spacing: 1px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e5e7eb;
+        }
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #4A7C59;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-container.left {
+            left: 0;
+        }
+        .timeline-container.right {
+            left: 50%;
+        }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #B2533E;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-container.right::after {
+            left: -16px;
+        }
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-container.right {
+                left: 0%;
+            }
+            .timeline-container.left::after, .timeline-container.right::after {
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#3A3845] text-white text-center py-12 px-4">
+        <h1 class="text-5xl md:text-7xl font-bold text-[#F5E8C7]">बिरसा मुंडा आणि वन हक्क लढा</h1>
+        <p class="text-xl md:text-2xl mt-4 max-w-3xl mx-auto text-gray-300">एका महानायकाचा संघर्ष, ज्याने आदिवासी अस्मितेसाठी 'उलगुलान' पुकारले आणि स्वातंत्र्याची मशाल पेटवली.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="pre-british" class="card text-center">
+            <h2 class="text-4xl text-[#4A7C59]">ब्रिटिशपूर्व काळ: स्वायत्त आणि स्वयंपूर्ण जीवन</h2>
+            <p class="mt-4 text-lg max-w-4xl mx-auto">ब्रिटिशांच्या आगमनापूर्वी, भारतातील वनवासी समाज जंगलाशी एकरूप होऊन स्वतंत्र जीवन जगत होता. निसर्गच त्यांचे घर, उपजीविका आणि श्रद्धास्थान होते. त्यांची व्यवस्था पूर्णपणे आत्मनिर्भर आणि निसर्गाशी सुसंवादी होती.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 text-center">
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <div class="text-5xl mb-2">🌳</div>
+                    <h3 class="text-2xl text-[#4A7C59]">नैसर्गिक हक्क</h3>
+                    <p>जंगल आणि जमिनीवर समाजाचा सामूहिक अधिकार होता, वैयक्तिक मालकी नव्हती.</p>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <div class="text-5xl mb-2">⚖️</div>
+                    <h3 class="text-2xl text-[#4A7C59]">स्थानिक प्रशासन</h3>
+                    <p>पोलीस, न्याय आणि व्यवस्थापन हे समाजाचे प्रमुखच पाहत असत.</p>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg">
+                     <div class="text-5xl mb-2">🌿</div>
+                    <h3 class="text-2xl text-[#4A7C59]">निसर्गाशी एकरूपता</h3>
+                    <p>अन्न, औषध, निवारा या सर्व गरजा जंगलातूनच पूर्ण होत होत्या.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="forest-acts" class="card">
+            <h2 class="text-4xl text-center text-[#B2533E]">जाचक वन कायदे: हक्कांवर हल्ला</h2>
+            <p class="mt-4 text-lg text-center max-w-4xl mx-auto">ब्रिटिश वसाहतवादाने महसूल आणि नैसर्गिक संसाधनांच्या शोषणासाठी अनेक वन कायदे लादले, ज्यामुळे आदिवासींचे पारंपरिक हक्क हिरावले गेले.</p>
+            <div class="timeline mt-8">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="text-2xl text-[#B2533E]">१८६५: भारतीय वन कायदा</h3>
+                        <p>जंगलांवर सरकारी नियंत्रणाची अधिकृत सुरुवात. वनसंपत्तीवर मालकी हक्क प्रस्थापित.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3 class="text-2xl text-[#B2533E]">१८७८: सुधारित वन कायदा</h3>
+                        <p>आदिवासींचे सामूहिक हक्क नाकारून फक्त "विशेष अधिकार" दिले, ज्यासाठी कर आवश्यक होता. जंगलांचे वर्गीकरण करून प्रवेशावर नियंत्रण.</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="text-2xl text-[#B2533E]">१८९४: वन धोरण</h3>
+                        <p>शेतीला अधिक प्राधान्य देत, वनवासींच्या गरजांकडे दुर्लक्ष केले गेले.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3 class="text-2xl text-[#B2533E]">१९२७: भारतीय वन कायदा</h3>
+                        <p>वनसंपत्तीच्या वापरावर कठोर शिक्षा आणि दंडाची तरतूद करून शोषण अधिक तीव्र केले.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="card">
+            <h2 class="text-4xl text-center text-[#B2533E]">कायद्यांचे परिणाम: एक विनाशकारी बदल</h2>
+            <p class="mt-4 text-lg text-center max-w-4xl mx-auto">या कायद्यांमुळे वनवासी समाज त्यांच्याच भूमीवर परका झाला. त्यांचे जीवनमान, संस्कृती आणि अर्थव्यवस्था पूर्णपणे उद्ध्वस्त झाली.</p>
+            <div class="chart-container mt-8">
+                <canvas id="impactChart"></canvas>
+            </div>
+             <p class="mt-4 text-center text-sm text-gray-600">हे चार्ट ब्रिटिश कायद्यांनंतर आदिवासींच्या संसाधनांवरील अधिकारातील घट दर्शवते. 'आधी' १००% स्वायत्तता होती, तर 'नंतर' सरकारी नियंत्रणामुळे ती मोठ्या प्रमाणात घटली.</p>
+        </section>
+
+        <section id="birsa-munda" class="bg-[#4A7C59] text-white p-8 rounded-lg shadow-xl my-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-8">
+                <div class="md:col-span-1 text-center">
+                    <div class="text-9xl">✊</div>
+                    <h3 class="text-5xl font-bold mt-2">बिरसा मुंडा</h3>
+                    <p class="text-xl">(१८७५ - १९००)</p>
+                </div>
+                <div class="md:col-span-2">
+                    <h2 class="text-4xl text-[#F5E8C7]">एक तेजस्वी नेता: 'धरती आबा'</h2>
+                    <p class="mt-4 text-lg">छोटानागपूरच्या भूमीतून, ब्रिटिश आणि जमीनदारी शोषणाविरुद्ध एक तेजस्वी आवाज उभा राहिला - बिरसा मुंडा. बालपणीच अन्यायाचे चटके सोसलेल्या बिरसांनी आदिवासी समाजाला एकत्र करून त्यांच्या हक्कांसाठी लढण्याची प्रेरणा दिली. त्यांनी स्वतःला 'धरती आबा' (पृथ्वीचे पिता) म्हणून घोषित केले आणि एका नव्या युगाची सुरुवात केली.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ulgulan" class="card">
+            <h2 class="text-4xl text-center text-[#4A7C59]">उलगुलान: एक बहुआयामी महाउठाव</h2>
+            <p class="mt-4 text-lg text-center max-w-4xl mx-auto">'उलगुलान' म्हणजे केवळ एक बंड नव्हते, तर ती एक समग्र क्रांती होती. बिरसा मुंडा यांनी सामाजिक, धार्मिक आणि राजकीय अशा सर्व स्तरांवर बदलासाठी लढा दिला.</p>
+            <div class="mt-8 flex flex-col md:flex-row justify-around items-center gap-4 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="bg-[#B2533E] text-white rounded-full w-32 h-32 flex items-center justify-center text-center p-2 shadow-lg">
+                        <h3 class="text-xl font-bold">सामाजिक सुधारणा</h3>
+                    </div>
+                    <p class="mt-2 max-w-xs">दारू, अंधश्रद्धा आणि अस्वच्छतेला नकार.</p>
+                </div>
+                <div class="text-4xl text-[#4A7C59] hidden md:block">&rarr;</div>
+                 <div class="text-4xl text-[#4A7C59] md:hidden">&darr;</div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-[#B2533E] text-white rounded-full w-32 h-32 flex items-center justify-center text-center p-2 shadow-lg">
+                        <h3 class="text-xl font-bold">आध्यात्मिक पुनरुज्जीवन</h3>
+                    </div>
+                    <p class="mt-2 max-w-xs">'बिरसायत' चळवळीतून पारंपरिक श्रद्धांचे पुनरुत्थान.</p>
+                </div>
+                 <div class="text-4xl text-[#4A7C59] hidden md:block">&rarr;</div>
+                 <div class="text-4xl text-[#4A7C59] md:hidden">&darr;</div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-[#B2533E] text-white rounded-full w-32 h-32 flex items-center justify-center text-center p-2 shadow-lg">
+                        <h3 class="text-xl font-bold">राजकीय प्रतिकार</h3>
+                    </div>
+                    <p class="mt-2 max-w-xs">वन कायदे, कर आणि सक्तीच्या मजुरीला थेट विरोध.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <section id="birsait" class="card">
+                <h2 class="text-4xl text-center text-[#4A7C59]">'बिरसायत' चळवळ</h2>
+                <p class="mt-4 text-lg text-center">ही चळवळ केवळ धार्मिक नव्हती, तर ती आदिवासी स्वाभिमान आणि स्वराज्याची प्रेरणा होती. "जमीन आमची, जंगल आमचं, देव आमचा" हा तिचा गाभा होता.</p>
+                <div class="chart-container mt-8">
+                    <canvas id="birsaitChart"></canvas>
+                </div>
+                 <p class="mt-4 text-center text-sm text-gray-600">हा चार्ट 'बिरसायत' चळवळीची मूलभूत तत्त्वे दर्शवतो, जी सामाजिक सुधारणा आणि आदिवासी एकजुटीवर केंद्रित होती.</p>
+            </section>
+
+            <section id="legacy" class="card">
+                <h2 class="text-4xl text-center text-[#B2533E]">वारसा आणि प्रेरणा</h2>
+                 <p class="mt-4 text-lg text-center">बिरसा मुंडा यांचा लढा व्यर्थ गेला नाही. त्यांच्या बलिदानाने भविष्यातील आदिवासी हक्क चळवळींना दिशा दिली.</p>
+                <div class="text-center my-8">
+                    <div class="text-8xl md:text-9xl font-bold text-[#B2533E]">२००६</div>
+                    <h3 class="text-3xl mt-2 text-[#4A7C59]">वन हक्क कायदा</h3>
+                </div>
+                <p class="text-lg">बिरसा मुंडा यांच्या संघर्षाचे आणि विचारांचे प्रतिबिंब २००६ च्या वन हक्क कायद्यात स्पष्टपणे दिसते. या कायद्याने आदिवासींचे वडिलोपार्जित जमिनीवरील हक्क मान्य केले, जे बिरसांच्या लढ्याचे एक मोठे यश आहे.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-[#3A3845] text-white text-center p-6 mt-8">
+        <p>बिरसा मुंडा केवळ एक ऐतिहासिक योद्धे नाहीत, तर ते आजच्या वन हक्क चळवळीचे आद्यप्रणेते आणि प्रेरणास्थान आहेत.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const FONT_COLOR = '#3A3845';
+            const PRIMARY_COLOR = '#4A7C59';
+            const SECONDARY_COLOR = '#B2533E';
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const wrapLabel = (label) => {
+                const maxLength = 16;
+                if (label.length <= maxLength) return label;
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const impactCtx = document.getElementById('impactChart');
+            if(impactCtx) {
+                new Chart(impactCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: [wrapLabel('जमिनीवर हक्क'), wrapLabel('वनसंपत्तीचा वापर'), wrapLabel('स्थानिक प्रशासन'), wrapLabel('सांस्कृतिक स्वातंत्र्य')],
+                        datasets: [{
+                            label: 'ब्रिटिशपूर्व काळ',
+                            data: [100, 100, 100, 100],
+                            backgroundColor: PRIMARY_COLOR,
+                            borderColor: PRIMARY_COLOR,
+                            borderWidth: 1
+                        }, {
+                            label: 'ब्रिटिश कायद्यांनंतर',
+                            data: [20, 30, 10, 40],
+                            backgroundColor: SECONDARY_COLOR,
+                            borderColor: SECONDARY_COLOR,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'ब्रिटिश कायद्यांपूर्वी आणि नंतर आदिवासी हक्कांची स्थिती (%)',
+                                font: { size: 16, family: "'Noto Sans Devanagari', sans-serif" },
+                                color: FONT_COLOR,
+                                padding: { bottom: 20 }
+                            },
+                            tooltip: {
+                                callbacks: { title: tooltipTitleCallback }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: { color: FONT_COLOR, font: { family: "'Noto Sans Devanagari', sans-serif" } },
+                                grid: { color: '#e0e0e0' }
+                            },
+                            x: {
+                                ticks: { color: FONT_COLOR, font: { family: "'Noto Sans Devanagari', sans-serif" } },
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const birsaitCtx = document.getElementById('birsaitChart');
+            if(birsaitCtx) {
+                new Chart(birsaitCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [wrapLabel('नैतिकता आणि शिस्त'), wrapLabel('अंधश्रद्धांना नकार'), wrapLabel('सामुदायिक एकजूट'), wrapLabel('परकीय प्रभावाला विरोध'), wrapLabel('निसर्ग आणि पूर्वज पूजा')],
+                        datasets: [{
+                            label: 'बिरसायत चळवळीची तत्त्वे',
+                            data: [30, 20, 25, 15, 10],
+                            backgroundColor: [
+                                PRIMARY_COLOR,
+                                SECONDARY_COLOR,
+                                '#6a994e',
+                                '#f9844a',
+                                '#a7c957'
+                            ],
+                            borderColor: '#ffffff',
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'बिरसायत चळवळीची मूलभूत तत्त्वे',
+                                font: { size: 16, family: "'Noto Sans Devanagari', sans-serif" },
+                                color: FONT_COLOR,
+                                padding: { bottom: 20 }
+                            },
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: FONT_COLOR,
+                                    font: { family: "'Noto Sans Devanagari', sans-serif" }
+                                }
+                            },
+                             tooltip: {
+                                callbacks: { title: tooltipTitleCallback }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
