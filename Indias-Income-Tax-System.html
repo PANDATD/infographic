@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The Silent Revolution of India’s Income Tax System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #ea580c, #c2410c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0; /* slate-200 */
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+        .comparison-grid .divider {
+            width: 1px;
+            background-color: #cbd5e1; /* slate-300 */
+            height: 100%;
+        }
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-grid .divider {
+                display: none;
+            }
+            .comparison-grid > div:nth-child(2) {
+                order: 1; /* Moves "Post-2014" title up */
+            }
+             .comparison-grid > div:nth-child(1) {
+                order: 2;
+            }
+             .comparison-grid > div:nth-child(3) {
+                order: 3;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-2">The <span class="gradient-text">Silent Revolution</span></h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-slate-600">of India’s Income Tax System</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-slate-500 text-lg">From a maze of paperwork to a seamless digital highway, India has redefined taxation for over a billion people, building a system on trust, transparency, and technology.</p>
+        </header>
+
+        <!-- Key Metrics Section -->
+        <section class="mb-16">
+            <h3 class="text-3xl font-bold text-center mb-8 text-slate-700">A Decade of Transformation: The Results</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                <!-- Stat Card: Gross Tax Collections -->
+                <div class="stat-card">
+                    <div class="text-5xl font-extrabold text-orange-600">2.7X</div>
+                    <p class="mt-2 font-semibold text-slate-700">Increase in Gross Tax Collections</p>
+                    <p class="text-sm text-slate-500">from ₹7.22 to ₹19.72 lakh crore</p>
+                </div>
+                <!-- Stat Card: ITRs Filed -->
+                <div class="stat-card">
+                    <div class="text-5xl font-extrabold text-orange-600">2.3X</div>
+                    <p class="mt-2 font-semibold text-slate-700">Increase in Tax Filers</p>
+                    <p class="text-sm text-slate-500">from 3.8 to 8.9 crore</p>
+                </div>
+                <!-- Stat Card: Refund Processing Time -->
+                <div class="stat-card">
+                    <div class="text-5xl font-extrabold text-green-600">17 <span class="text-3xl">days</span></div>
+                    <p class="mt-2 font-semibold text-slate-700">Avg. Refund Processing Time</p>
+                    <p class="text-sm text-slate-500">Down from 93 days</p>
+                </div>
+                <!-- Stat Card: Total Refunds -->
+                <div class="stat-card">
+                    <div class="text-5xl font-extrabold text-green-600">5.7X</div>
+                    <p class="mt-2 font-semibold text-slate-700">Increase in Refunds Issued</p>
+                    <p class="text-sm text-slate-500">from ₹0.83 to ₹4.77 lakh crore</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Then vs Now Section -->
+        <section class="mb-16">
+            <h3 class="text-3xl font-bold text-center mb-8 text-slate-700">Then vs. Now: A System Reimagined</h3>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
+                <div class="comparison-grid">
+                    <!-- Pre-2014 Column -->
+                    <div class="md:text-right">
+                        <h4 class="text-2xl font-bold text-red-600 mb-4">Pre-2014 Regime</h4>
+                        <div class="space-y-4">
+                            <p><strong class="text-slate-600">Process:</strong> Manual, paper-based, long queues</p>
+                            <p><strong class="text-slate-600">Assessment:</strong> Face-to-face, high discretion</p>
+                            <p><strong class="text-slate-600">Refunds:</strong> Paper cheques, often delayed</p>
+                            <p><strong class="text-slate-600">Payments:</strong> Manual challans at banks</p>
+                            <p><strong class="text-slate-600">Corruption:</strong> High potential due to human interface</p>
+                        </div>
+                    </div>
+                    
+                    <div class="divider hidden md:block"></div>
+
+                    <!-- Post-2014 Column -->
+                    <div>
+                        <h4 class="text-2xl font-bold text-green-600 mb-4">Post-2014 Regime</h4>
+                        <div class="space-y-4">
+                            <p><strong class="text-slate-600">Process:</strong> Digital, pre-filled forms, file from anywhere</p>
+                            <p><strong class="text-slate-600">Assessment:</strong> Faceless, anonymous, team-based</p>
+                            <p><strong class="text-slate-600">Refunds:</strong> Direct bank credit, fast & automated</p>
+                            <p><strong class="text-slate-600">Payments:</strong> Seamless online options (UPI, Cards)</p>
+                            <p><strong class="text-slate-600">Corruption:</strong> Drastically reduced and auditable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Innovations Section -->
+        <section class="mb-16">
+            <h3 class="text-3xl font-bold text-center mb-8 text-slate-700">The Engines of Change</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Innovation Card 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <h4 class="font-bold text-xl text-orange-700 mb-2">Faceless Assessment</h4>
+                    <p class="text-slate-600">Anonymous, team-based assessments eliminate bias and corruption by removing in-person interactions.</p>
+                </div>
+                <!-- Innovation Card 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <h4 class="font-bold text-xl text-orange-700 mb-2">Comprehensive Data</h4>
+                    <p class="text-slate-600">AIS & TIS provide a 360° view of financial data, ensuring accuracy and transparency for taxpayers.</p>
+                </div>
+                <!-- Innovation Card 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <h4 class="font-bold text-xl text-orange-700 mb-2">Pre-filled Returns</h4>
+                    <p class="text-slate-600">Data is automatically populated into tax forms, simplifying filing and reducing errors dramatically.</p>
+                </div>
+                <!-- Innovation Card 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <h4 class="font-bold text-xl text-orange-700 mb-2">Upgraded TIN 2.0 Portal</h4>
+                    <p class="text-slate-600">A modern, one-stop portal for filing, payments, tracking refunds, and resolving grievances.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Bigger Picture Section -->
+        <section class="mb-16 bg-slate-100 p-8 rounded-xl border border-slate-200">
+            <h3 class="text-3xl font-bold text-center mb-6 text-slate-700">The Bigger Picture: A Virtuous Cycle</h3>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <p class="text-lg text-slate-600 mb-4">This transformation is more than just efficiency. It's about building a formal, trusting economy.</p>
+                    <ul class="space-y-3 list-disc list-inside text-slate-600">
+                        <li><span class="font-semibold">Formalising the Economy:</span> More citizens are in the tax net, even if they have zero tax liability.</li>
+                        <li><span class="font-semibold">Building Trust:</span> Transparency and fairness reinforce the idea of tax as a civic contribution.</li>
+                        <li><span class="font-semibold">Fueling Nation-Building:</span> Higher revenue funds infrastructure, welfare, and inclusive growth.</li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 w-full bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="text-xl font-bold text-center text-orange-700 mb-3">The Rise of Zero-Tax Filers</h4>
+                    <p class="text-center text-5xl font-extrabold text-blue-600 mb-2">66.5%</p>
+                    <p class="text-center text-slate-600">of ITR filers now have zero tax liability, up from 45% in FY20. This indicates a broadening of the formal economy, not just the tax base.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Road Ahead Section -->
+        <section>
+            <h3 class="text-3xl font-bold text-center mb-8 text-slate-700">The Road Ahead</h3>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <h4 class="font-semibold text-lg text-slate-800">Smarter Enforcement</h4>
+                    <p class="text-slate-600 mt-1">Deeper integration of AI & Machine Learning for data-driven integrity.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <h4 class="font-semibold text-lg text-slate-800">System Simplification</h4>
+                    <p class="text-slate-600 mt-1">Legislative reforms to reduce complexity and litigation.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <h4 class="font-semibold text-lg text-slate-800">Strengthening Trust</h4>
+                    <p class="text-slate-600 mt-1">Sustained efforts to maintain and build upon taxpayer confidence.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 pt-6 border-t border-slate-300">
+            <p class="text-sm text-slate-500">Source: Analysis based on MyGov article on India's Direct Tax System Reforms.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
