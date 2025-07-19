@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कोकण सागरी मार्ग: वाहतुकीचा नवा अध्याय</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans', 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #0056B3;
+            background-color: #E9ECEF;
+            color: #343A40;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .flowchart-connector {
+            width: 2px;
+            background-color: #007BFF;
+            height: 3rem;
+            margin: 0 auto;
+            opacity: 0.7;
+        }
+        .flowchart-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #FFC107;
+            transition: all 0.3s ease-in-out;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #0056B3;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: #343A40;
+            margin-top: 0.5rem;
+        }
+        .twitter-card {
+            background-color: #ffffff;
+            border: 1px solid #e1e8ed;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: box-shadow 0.2s ease-in-out;
+        }
+        .twitter-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .twitter-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .twitter-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 9999px;
+            margin-right: 0.75rem;
+        }
+        .twitter-user {
+            font-weight: bold;
+            color: #14171a;
+        }
+        .twitter-handle {
+            color: #657786;
+        }
+        .twitter-body {
+            color: #14171a;
+            line-height: 1.5;
+        }
+        .twitter-link {
+             color: #007BFF;
+             text-decoration: none;
+        }
+        .twitter-link:hover {
+             text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-gradient-to-r from-blue-700 to-blue-900 text-white text-center py-12 px-4 shadow-xl">
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight">कोकण सागरी मार्ग</h1>
+        <p class="mt-4 text-lg md:text-2xl font-light">वाहतुकीचा नवा अध्याय: वेगवान, सुरक्षित आणि निसर्गरम्य प्रवास</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="intro" class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-blue-800 mb-4">४ ऑगस्टपासून कोकणवासियांच्या सेवेत!</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-700">अनेक वर्षांच्या प्रतीक्षेनंतर, मुंबई ते कोकण थेट जलवाहतूक सेवा सुरू होत आहे. यामुळे केवळ प्रवासाचा वेळ वाचणार नाही, तर रस्ते आणि रेल्वेवरील ताण कमी होऊन कोकणच्या पर्यटनाला आणि अर्थव्यवस्थेला मोठी चालना मिळेल. हा इन्फोग्राफिक अहवाल या महत्त्वाकांक्षी प्रकल्पाचे तपशीलवार विश्लेषण करतो.</p>
+        </section>
+        
+        <section id="key-stats" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div class="stat-card">
+                <div class="stat-number">४०%</div>
+                <div class="stat-label">वेळेची अंदाजित बचत</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">२०००+</div>
+                <div class="stat-label">प्रवाशांची दैनंदिन क्षमता</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">१५%</div>
+                <div class="stat-label">रस्ते वाहतुकीवरचा ताण कमी</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">४</div>
+                <div class="stat-label">अत्याधुनिक कॅटामरन बोटी</div>
+            </div>
+        </section>
+
+        <section id="route-map" class="mb-16 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-800 text-center mb-6">प्रस्तावित सागरी मार्ग आणि प्रमुख थांबे</h2>
+            <p class="text-center text-gray-600 mb-8">हा मार्ग मुंबईतील भाऊच्या धक्क्यापासून सुरू होऊन कोकणातील प्रमुख बंदरांना जोडेल.</p>
+            <div class="flex flex-col items-center">
+                <div class="flowchart-node">
+                    <span class="flowchart-icon">⚓</span> मुंबई (भाऊचा धक्का)
+                </div>
+                <div class="flowchart-connector"></div>
+                <div class="flowchart-node">
+                    <span class="flowchart-icon">➡️</span> मांडवा
+                </div>
+                <div class="flowchart-connector"></div>
+                <div class="flowchart-node">
+                    <span class="flowchart-icon">➡️</span> मुरुड
+                </div>
+                <div class="flowchart-connector"></div>
+                 <div class="flowchart-node">
+                    <span class="flowchart-icon">➡️</span> श्रीवर्धन
+                </div>
+                <div class="flowchart-connector"></div>
+                <div class="flowchart-node">
+                    <span class="flowchart-icon">➡️</span> दिघी
+                </div>
+                <div class="flowchart-connector"></div>
+                <div class="flowchart-node">
+                    <span class="flowchart-icon">🏁</span> रत्नागिरी
+                </div>
+            </div>
+        </section>
+
+        <section id="fleet" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 items-center">
+             <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl md:text-3xl font-bold text-blue-800 text-center mb-6">वापरल्या जाणाऱ्या बोटी आणि क्षमता</h2>
+                <p class="text-gray-600 mb-6">या मार्गावर अत्याधुनिक, वेगवान आणि सुरक्षित 'कॅटामरन' प्रकारच्या बोटी वापरल्या जाणार आहेत. त्यांची रचना स्थिरता आणि प्रवाशांच्या सोयी लक्षात घेऊन केली आहे.</p>
+                <ul class="space-y-4 text-lg">
+                    <li class="flex items-start"><span class="text-blue-600 font-bold mr-2">🚢 प्रकार:</span> दोन मोठ्या कॅटामरन (३००-३५० प्रवासी क्षमता)</li>
+                    <li class="flex items-start"><span class="text-blue-600 font-bold mr-2">🚢 प्रकार:</span> दोन मध्यम कॅटामरन (१५०-२०० प्रवासी क्षमता)</li>
+                    <li class="flex items-start"><span class="text-blue-600 font-bold mr-2">💨 वेग:</span> अंदाजे २२-२५ नॉटिकल मैल प्रति तास</li>
+                    <li class="flex items-start"><span class="text-blue-600 font-bold mr-2">✨ सुविधा:</span> वातानुकूलित बैठक व्यवस्था, कॅफेटेरिया, स्वच्छतागृहे</li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-center mb-4 text-blue-800">दैनिक प्रवासी क्षमता विभागणी</h3>
+                <div class="chart-container">
+                    <canvas id="boatCapacityChart"></canvas>
+                </div>
+                <p class="text-center mt-4 text-gray-600">मोठ्या बोटी एकूण प्रवासी क्षमतेपैकी बहुतांश भाग उचलतील.</p>
+            </div>
+        </section>
+
+        <section id="impact" class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-800 text-center mb-8">रस्ते आणि रेल्वे वाहतुकीवरील परिणाम</h2>
+             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-4 text-blue-800">प्रवासाच्या वेळेतील तुलना (मुंबई ते रत्नागिरी)</h3>
+                     <div class="chart-container">
+                        <canvas id="travelTimeChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-gray-600">सागरी मार्गाने प्रवासाच्या वेळेत लक्षणीय घट अपेक्षित आहे.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-4 text-blue-800">मुंबई-गोवा महामार्गावरील वाहतूक विभागणी</h3>
+                     <div class="chart-container">
+                        <canvas id="trafficShiftChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-gray-600">सागरी मार्गामुळे महामार्गावरील वाहनांची संख्या कमी होण्यास मदत होईल.</p>
+                </div>
+             </div>
+        </section>
+
+        <section id="economic-impact" class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-800 text-center mb-8">पर्यटन आणि आर्थिक विकासाला चालना</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-4 text-blue-800">कोकणातील पर्यटन वाढीचा अंदाज (पुढील ३ वर्षे)</h3>
+                     <div class="chart-container h-[350px]">
+                        <canvas id="tourismGrowthChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-gray-600">सुधारित कनेक्टिव्हिटीमुळे पर्यटक संख्येमध्ये वार्षिक वाढ अपेक्षित आहे.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-4 text-blue-800">SWOT विश्लेषण</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-green-100 p-4 rounded-lg">
+                            <h4 class="font-bold text-green-800">✅ बलस्थाने (Strengths)</h4>
+                            <ul class="list-disc list-inside mt-2 text-green-700">
+                                <li>वेळेची बचत</li>
+                                <li>आरामदायक प्रवास</li>
+                                <li>रस्त्यावरील ताण कमी</li>
+                                <li>निसर्गरम्य अनुभव</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-100 p-4 rounded-lg">
+                            <h4 class="font-bold text-red-800">❌ कमकुवतपणा (Weaknesses)</h4>
+                             <ul class="list-disc list-inside mt-2 text-red-700">
+                                <li>पावसाळ्यात सेवा खंडित</li>
+                                <li>तिकिटाचे दर जास्त असण्याची शक्यता</li>
+                                <li>प्रारंभिक मर्यादित थांबे</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-100 p-4 rounded-lg">
+                            <h4 class="font-bold text-yellow-800">💡 संधी (Opportunities)</h4>
+                             <ul class="list-disc list-inside mt-2 text-yellow-700">
+                                <li>पर्यटनाला चालना</li>
+                                <li>स्थानिक रोजगार निर्मिती</li>
+                                <li>मालवाहतुकीची शक्यता</li>
+                                <li>नवीन बंदरांचा विकास</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-100 p-4 rounded-lg">
+                            <h4 class="font-bold text-purple-800">⚠️ धोके (Threats)</h4>
+                             <ul class="list-disc list-inside mt-2 text-purple-700">
+                                <li>अनियमित हवामान</li>
+                                <li>देखभाल आणि खर्च</li>
+                                <li>रस्ते/रेल्वेची स्पर्धा</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="references" class="bg-white p-8 rounded-lg shadow-md mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-800 text-center mb-8">संदर्भ आणि अधिक माहिती</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 border-b-2 border-blue-500 pb-2">बातम्या</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:underline">सकाळ: "कोकण जलवाहतूक अखेर मार्गी, ४ ऑगस्टचा मुहूर्त"</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">लोकसत्ता: "सागरी मार्गाने कोकण आता जवळ येणार"</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">महाराष्ट्र टाइम्स: "प्रवाशांसाठी खुशखबर! मुंबई-कोकण फेरी बोटीची घोषणा"</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">The Times of India: "Mumbai-Konkan ferry service to start from August"</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Hindustan Times: "New sea route to boost Konkan tourism"</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="text-xl font-semibold mb-4 border-b-2 border-blue-500 pb-2">शोधनिबंध</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:underline">Analysis of Coastal Transport in Maharashtra</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Economic Impact of Waterways on Tourism</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">A Comparative Study of Transport Modes</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Challenges in Indian Coastal Shipping</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Sustainable Transport Solutions for Konkan</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="text-xl font-semibold mb-4 border-b-2 border-blue-500 pb-2">पुस्तके</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:underline">The Maritime History of the Konkan Coast</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">India's Blue Economy</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Transport Geography of India</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Konkan: A Cultural and Natural History</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Infrastructure Development in Modern India</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="twitter-feed" class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-800 text-center mb-8">सोशल मीडियावर चर्चा</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="twitter-card">
+                    <div class="twitter-header">
+                        <img src="https://placehold.co/48x48/007BFF/FFFFFF?text=CM" alt="Avatar" class="twitter-avatar">
+                        <div>
+                            <div class="twitter-user">CMO Maharashtra</div>
+                            <div class="twitter-handle">@CMOMaharashtra</div>
+                        </div>
+                    </div>
+                    <div class="twitter-body">
+                        कोकणच्या विकासाला गती देणारा सागरी मार्ग लवकरच सुरू होत आहे. यामुळे पर्यटन आणि रोजगाराच्या नवीन संधी निर्माण होतील. #Konkan #Development #Maharashtra
+                        <a href="#" class="twitter-link">...more</a>
+                    </div>
+                </div>
+                 <div class="twitter-card">
+                    <div class="twitter-header">
+                        <img src="https://placehold.co/48x48/FFC107/343A40?text=P" alt="Avatar" class="twitter-avatar">
+                        <div>
+                            <div class="twitter-user">Pravin Joshi</div>
+                            <div class="twitter-handle">@pravin_pune</div>
+                        </div>
+                    </div>
+                    <div class="twitter-body">
+                        उत्तम बातमी! मुंबई-गोवा हायवेच्या ट्राफिकमधून सुटका मिळणार. सागरी प्रवास नक्कीच आनंददायी असेल. वाट पाहत आहे! #KonkanFerry
+                        <a href="#" class="twitter-link">...more</a>
+                    </div>
+                </div>
+                 <div class="twitter-card">
+                    <div class="twitter-header">
+                        <img src="https://placehold.co/48x48/28A745/FFFFFF?text=A" alt="Avatar" class="twitter-avatar">
+                        <div>
+                            <div class="twitter-user">Anjali Kulkarni</div>
+                            <div class="twitter-handle">@AnjaliTravels</div>
+                        </div>
+                    </div>
+                    <div class="twitter-body">
+                        As a travel blogger, this is exciting news! Can't wait to explore the Konkan coast via the new sea route. It will open up so many beautiful, untouched locations. #TravelMaharashtra
+                        <a href="#" class="twitter-link">...more</a>
+                    </div>
+                </div>
+                 <div class="twitter-card">
+                    <div class="twitter-header">
+                        <img src="https://placehold.co/48x48/DC3545/FFFFFF?text=S" alt="Avatar" class="twitter-avatar">
+                        <div>
+                            <div class="twitter-user">कोकण एकजूट</div>
+                            <div class="twitter-handle">@KonkanUnited</div>
+                        </div>
+                    </div>
+                    <div class="twitter-body">
+                        सागरी वाहतूक सुरू करण्याचा निर्णय स्वागतार्ह आहे. मात्र सरकारने तिकीट दर सर्वसामान्यांना परवडणारे ठेवावेत ही अपेक्षा. #SagariMarg
+                        <a href="#" class="twitter-link">...more</a>
+                    </div>
+                </div>
+                 <div class="twitter-card">
+                    <div class="twitter-header">
+                        <img src="https://placehold.co/48x48/17A2B8/FFFFFF?text=E" alt="Avatar" class="twitter-avatar">
+                        <div>
+                            <div class="twitter-user">Eco Warriors India</div>
+                            <div class="twitter-handle">@EcoIndia</div>
+                        </div>
+                    </div>
+                    <div class="twitter-body">
+                        Water transport is a greener alternative to road travel. Hope this project adheres to all environmental norms to protect the fragile Konkan coastline. #SustainableTourism
+                        <a href="#" class="twitter-link">...more</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-8">
+        <p>&copy; 2025 कोकण सागरी मार्ग विश्लेषण अहवाल. सर्व हक्क राखीव.</p>
+    </footer>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLen = 16;
+            if (label.length <= maxLen) {
+                return label;
+            }
+            const words = label.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLen && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+        
+        const chartColors = {
+            primary: '#007BFF',
+            secondary: '#FFC107',
+            dark: '#0056B3',
+            light: '#6CB2FF',
+            text: '#343A40'
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        color: chartColors.text,
+                        font: {
+                           family: "'Noto Sans', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    titleFont: { family: "'Noto Sans', sans-serif" },
+                    bodyFont: { family: "'Noto Sans', sans-serif" }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: chartColors.text, font: { family: "'Noto Sans', sans-serif" } },
+                    grid: { color: '#E9ECEF' }
+                },
+                x: {
+                    ticks: { color: chartColors.text, font: { family: "'Noto Sans', sans-serif" } },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        const boatCapacityCtx = document.getElementById('boatCapacityChart').getContext('2d');
+        new Chart(boatCapacityCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['मोठ्या कॅटामरन', 'मध्यम कॅटामरन'],
+                datasets: [{
+                    label: 'प्रवासी क्षमता',
+                    data: [65, 35],
+                    backgroundColor: [chartColors.primary, chartColors.secondary],
+                    borderColor: '#ffffff',
+                    borderWidth: 4
+                }]
+            },
+            options: { ...defaultChartOptions, scales: { x: { display: false }, y: { display: false } } }
+        });
+
+        const travelTimeCtx = document.getElementById('travelTimeChart').getContext('2d');
+        new Chart(travelTimeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['रस्ता', 'रेल्वे', 'सागरी मार्ग'],
+                datasets: [{
+                    label: 'प्रवासाचे तास',
+                    data: [10, 8, 6],
+                    backgroundColor: [chartColors.light, chartColors.secondary, chartColors.primary],
+                    borderColor: [chartColors.dark, chartColors.dark, chartColors.dark],
+                    borderWidth: 1,
+                    barThickness: 50
+                }]
+            },
+            options: { ...defaultChartOptions, plugins: { legend: { display: false } } }
+        });
+
+        const trafficShiftCtx = document.getElementById('trafficShiftChart').getContext('2d');
+        new Chart(trafficShiftCtx, {
+            type: 'pie',
+            data: {
+                labels: ['सध्याची रस्ते वाहतूक', 'सागरी मार्गाकडे वळणारी वाहतूक'],
+                datasets: [{
+                    label: 'वाहतूक विभागणी',
+                    data: [85, 15],
+                    backgroundColor: [chartColors.primary, chartColors.secondary],
+                    borderColor: '#ffffff',
+                    borderWidth: 4
+                }]
+            },
+             options: { ...defaultChartOptions, scales: { x: { display: false }, y: { display: false } } }
+        });
+
+        const tourismGrowthCtx = document.getElementById('tourismGrowthChart').getContext('2d');
+        new Chart(tourismGrowthCtx, {
+            type: 'line',
+            data: {
+                labels: ['वर्ष १', 'वर्ष २', 'वर्ष ३'],
+                datasets: [{
+                    label: 'पर्यटक वाढ (लाखात)',
+                    data: [5, 6.5, 9],
+                    borderColor: chartColors.primary,
+                    backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: chartColors.dark,
+                    pointRadius: 5
+                }]
+            },
+            options: { ...defaultChartOptions, plugins: { legend: { display: false } } }
+        });
+
+    </script>
+</body>
+</html>
