@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारत-आफ्रिका संबंध: एक दृढ भागीदारी</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            border-left: 4px solid #118AB2;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -2.8rem;
+            top: 0.25rem;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: #FFD166;
+            border: 4px solid #118AB2;
+        }
+        .flow-line {
+            border-color: #073B4C;
+        }
+        .flow-box {
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+        .flow-box-india {
+            border-color: #06D6A0;
+            background-color: #e6fff7;
+        }
+        .flow-box-china {
+            border-color: #FF6B6B;
+            background-color: #fff0f0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-[#073B4C]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#118AB2] mb-4">भारत-आफ्रिका संबंध</h1>
+            <p class="text-xl md:text-2xl text-gray-600">ऐतिहासिक भागीदारी ते २१व्या शतकातील सहकार्याचा एक आदर्श</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <div class="md:col-span-2 card">
+                <h2 class="text-3xl font-bold text-[#118AB2] mb-4 text-center">ऐतिहासिक आणि नैतिक पाया</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-xl font-bold mb-1">१८९३-१९१४: गांधीजींचा सत्याग्रह</h3>
+                        <p>महात्मा गांधींनी दक्षिण आफ्रिकेत वर्णभेदाविरुद्ध अहिंसक लढा दिला, ज्यामुळे "सत्याग्रह" ही संकल्पना उदयास आली. याने दोन्ही खंडांतील स्वातंत्र्य लढ्यांना प्रेरणा दिली.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-xl font-bold mb-1">१९४७ नंतर: गुटनिरपेक्ष चळवळ</h3>
+                        <p>पंडित नेहरूंनी 'गुटनिरपेक्ष चळवळ'च्या माध्यमातून आफ्रिकन देशांना एकत्र आणले आणि वर्णद्वेषाविरुद्ध ठाम भूमिका घेतली.</p>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-xl font-bold mb-1">१९९९: 'फोकस आफ्रिका' धोरण</h3>
+                        <p>भारताने आर्थिक सुधारणांसह आफ्रिकेसोबत व्यापार वाढवण्यासाठी 'फोकस आफ्रिका' धोरण सुरू केले.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 card">
+                <h2 class="text-3xl font-bold text-[#118AB2] mb-6 text-center">२०१५: भारत-आफ्रिका फोरम समिट (IAFS-III)</h2>
+                 <p class="text-center text-lg text-gray-600 mb-8">पंतप्रधान नरेंद्र मोदींच्या नेतृत्वाखाली आयोजित आतापर्यंतची सर्वात मोठी परिषद, जिथे भारताने आफ्रिकेसाठी महत्त्वपूर्ण घोषणा केल्या.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="p-6 bg-blue-100 rounded-xl">
+                        <div class="stat-number text-[#118AB2]">$१० अब्ज</div>
+                        <p class="text-xl font-semibold mt-2">सवलतीचे कर्ज</p>
+                    </div>
+                    <div class="p-6 bg-yellow-100 rounded-xl">
+                        <div class="stat-number text-[#FFD166]">$६०० दशलक्ष</div>
+                        <p class="text-xl font-semibold mt-2">अनुदान</p>
+                    </div>
+                    <div class="p-6 bg-green-100 rounded-xl">
+                        <div class="stat-number text-[#06D6A0]">५०,०००</div>
+                        <p class="text-xl font-semibold mt-2">शिष्यवृत्त्या</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="text-2xl font-bold text-[#118AB2] mb-4 text-center">IAFS-III मध्ये आफ्रिकन देशांचा सहभाग</h3>
+                <p class="text-center text-gray-600 mb-4">एकूण ५४ पैकी ४१ आफ्रिकन देशांचे राष्ट्रप्रमुख किंवा प्रतिनिधी या परिषदेत सहभागी झाले, जे या संबंधांचे महत्त्व दर्शवते.</p>
+                <div class="chart-container">
+                    <canvas id="participationChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="text-2xl font-bold text-[#118AB2] mb-4 text-center">मानवतावादी सहकार्य: कोविड-१९</h3>
+                 <p class="text-center text-gray-600 mb-6">संकटकाळात भारताने "वसुधैव कुटुंबकम्" या भावनेने आफ्रिकेला मदत केली.</p>
+                <div class="space-y-4 text-center">
+                    <div class="flex items-center justify-center p-4 bg-red-100 rounded-lg">
+                        <span class="text-4xl mr-4">💉</span>
+                        <p class="text-lg font-semibold">'व्हॅक्सिन मैत्री' अंतर्गत 'Covishield' लसींचा पुरवठा.</p>
+                    </div>
+                    <div class="flex items-center justify-center p-4 bg-blue-100 rounded-lg">
+                        <span class="text-4xl mr-4">💊</span>
+                        <p class="text-lg font-semibold">'मिशन सागर' द्वारे औषधे, अन्नधान्य आणि PPE किट्सची मदत.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 card">
+                <h2 class="text-3xl font-bold text-[#118AB2] mb-6 text-center">भारत विरुद्ध चीन: आफ्रिकेतील दृष्टिकोन</h2>
+                <p class="text-center text-gray-600 mb-8">आफ्रिकेच्या विकासासाठी दोन्ही देशांचे मार्ग भिन्न आहेत. भारताचा मार्ग सहकार्यावर आधारित आहे, तर चीनचा मार्ग आर्थिक प्रभावावर केंद्रित दिसतो.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flow-box flow-box-india p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-center text-[#06D6A0] mb-4">भारताचा दृष्टिकोन: सहकारी</h3>
+                        <ul class="space-y-3 list-inside">
+                            <li class="flex items-start"><span class="text-green-500 mr-2">🤝</span><span>समानतेवर आधारित भागीदारी</span></li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">🎓</span><span>क्षमता बांधणी आणि शिक्षण (e-VidyaBharti)</span></li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">❤️</span><span>विनाअटी, गरजेवर आधारित सहकार्य</span></li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">💻</span><span>तंत्रज्ञान हस्तांतरण (UPI)</span></li>
+                             <li class="flex items-start"><span class="text-green-500 mr-2">🎯</span><span>परिणाम: विश्वासार्ह मित्र आणि दीर्घकालीन विकास</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="flow-box flow-box-china p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-center text-[#FF6B6B] mb-4">चीनचा दृष्टिकोन: सावकार</h3>
+                        <ul class="space-y-3 list-inside">
+                            <li class="flex items-start"><span class="text-red-500 mr-2">🏗️</span><span>महागडे पायाभूत प्रकल्प</span></li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">⛓️</span><span>कर्जाचा सापळा आणि कठोर अटी</span></li>
+                             <li class="flex items-start"><span class="text-red-500 mr-2">💎</span><span>नैसर्गिक संसाधनांवर नियंत्रण</span></li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">🚢</span><span>सामरिक आणि भौगोलिक प्रभाव</span></li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">🎯</span><span>परिणाम: आर्थिक अवलंबित्व आणि संशय</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 card">
+                <h2 class="text-3xl font-bold text-[#118AB2] mb-6 text-center">२०२५ दौरा: "ग्लोबल साऊथ" धोरणाचे दृढीकरण</h2>
+                <p class="text-center text-gray-600 mb-8">पंतप्रधान मोदींच्या घाना आणि नामीबिया दौऱ्याने संरक्षण, आरोग्य, ऊर्जा आणि डिजिटल क्षेत्रात सहकार्याचे नवे पर्व सुरू केले. नामीबियाच्या संसदेत त्यांनी स्पष्ट केले की, "भारत आफ्रिकेचा स्पर्धक नाही, तर सहकारी आहे."</p>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <p class="text-4xl mb-2">🛡️</p>
+                        <p class="font-semibold">संरक्षण</p>
+                    </div>
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <p class="text-4xl mb-2">⚕️</p>
+                        <p class="font-semibold">आरोग्य</p>
+                    </div>
+                     <div class="p-4 bg-gray-100 rounded-lg">
+                        <p class="text-4xl mb-2">💡</p>
+                        <p class="font-semibold">ऊर्जा</p>
+                    </div>
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <p class="text-4xl mb-2">📲</p>
+                        <p class="font-semibold">डिजिटल तंत्रज्ञान</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t-2 border-[#118AB2]">
+            <p class="text-gray-600">मूल्याधिष्ठित, लोककेंद्रित आणि विकासाभिमुख भागीदारीतून भारताने आफ्रिकेसोबतच्या मैत्रीला २१व्या शतकातील जागतिक सहकार्याचा एक आदर्श बनवले आहे.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const colorPalette = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C',
+            lightGray: '#f0f4f8'
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+        
+        const participationCtx = document.getElementById('participationChart').getContext('2d');
+        new Chart(participationCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['सहभागी देश', 'गैरहजर देश'],
+                datasets: [{
+                    label: 'देशांचा सहभाग',
+                    data: [41, 13],
+                    backgroundColor: [
+                        colorPalette.green,
+                        colorPalette.lightGray
+                    ],
+                    borderColor: [
+                        colorPalette.green,
+                        colorPalette.lightGray
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14,
+                                family: "'Tiro Devanagari Marathi', serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+    </script>
+
+</body>
+</html>
