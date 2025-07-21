@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारताचा 'स्व'-बोध</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jaini&family=Tiro+Devanagari+Marathi:wght@400&family=Noto+Sans+Devanagari:wght@400;700&display=swap');
+        
+        :root {
+            --bg-color: #fdf6e3;
+            --text-color: #333;
+            --primary-color: #D84315; /* Saffron/Orange */
+            --secondary-color: #2E7D32; /* Green */
+            --accent-color: #1565C0; /* Blue */
+            --card-bg: #ffffff;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Tiro Devanagari Marathi', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            overflow-x: hidden;
+            font-size: 1.1rem; 
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: transparent;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid;
+            border-image: linear-gradient(to right, var(--primary-color), var(--secondary-color)) 1;
+        }
+
+        header h1 {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            color: var(--primary-color);
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            font-style: italic;
+            color: #555;
+            max-width: 800px;
+            margin: 1rem auto 0;
+            font-family: 'Tiro Devanagari Marathi', serif; 
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .column {
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .column:hover {
+            transform: translateY(-5px);
+        }
+
+        .column-lop {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border-left: 7px solid var(--secondary-color);
+        }
+
+        .column-bodh {
+            background: linear-gradient(135deg, #FFCCBC, #FFAB91);
+            border-left: 7px solid var(--primary-color);
+        }
+
+        .column h2 {
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .column-lop h2 { color: var(--secondary-color); } 
+        .column-bodh h2 { color: var(--primary-color); } 
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .column-lop .card { border-bottom-color: #a5d6a7; } 
+        .column-bodh .card { border-bottom-color: #ffab91; } 
+        
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            font-size: clamp(1.3rem, 3vw, 1.5rem);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .card ul {
+            padding-left: 20px;
+            margin: 0;
+            list-style-type: '✔ ';
+            flex-grow: 1;
+        }
+
+        .card li {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .icon {
+            font-size: 1.5em;
+            width: 1.5em;
+            text-align: center;
+        }
+
+        .renaissance-section {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            padding: 2.5rem;
+            margin-top: 2rem;
+            border-radius: 15px;
+            border-left: 7px solid var(--accent-color);
+        }
+        
+        .renaissance-section .card { border-bottom-color: #90caf9; }
+
+        .renaissance-section h2 {
+            color: var(--accent-color);
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-top: 0;
+            margin-bottom: 2.5rem;
+        }
+
+        .renaissance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .conclusion {
+            margin-top: 3rem;
+            padding: 2.5rem;
+            background-color: #fff;
+            border-radius: 15px;
+            text-align: center;
+            border-top: 7px solid;
+            border-image: linear-gradient(to right, var(--primary-color), var(--secondary-color)) 1;
+            box-shadow: var(--shadow);
+        }
+
+        .conclusion h2 {
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            color: var(--primary-color);
+        }
+
+        .conclusion p {
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 1rem auto 0;
+            line-height: 1.8;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gemini-btn {
+            background: linear-gradient(45deg, var(--accent-color), #42A5F5);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-family: 'Noto Sans Devanagari', sans-serif; /* Kept this for button readability */
+            cursor: pointer;
+            margin-top: 1rem;
+            align-self: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .gemini-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 25px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 15px;
+            position: relative;
+            animation: slideIn 0.4s;
+        }
+
+        .close-btn {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover, .close-btn:focus {
+            color: black;
+        }
+        
+        #modal-body {
+            margin-top: 20px;
+            line-height: 1.7;
+            max-height: 60vh;
+            overflow-y: auto;
+            font-family: 'Noto Sans Devanagari', sans-serif; /* Using a more readable font for modal content */
+            font-size: 1rem;
+        }
+        
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 8px solid var(--accent-color);
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+        @keyframes slideIn { from {transform: translateY(-50px);} to {transform: translateY(0);} }
+
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 1rem;
+            }
+            .modal-content {
+                width: 90%;
+                margin: 20% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="fade-in">
+        <h1>भारताचा 'स्व'-बोध</h1>
+        <p>"कुठल्याही समाजाला नष्ट करण्याचा सर्वात प्रभावी मार्ग म्हणजे आपल्या इतिहासाविषयी त्यांची स्वतःची समज नष्ट करणे." - जॉर्ज ऑर्वेल</p>
+    </header>
+
+    <div class="main-grid">
+        <div class="column column-lop fade-in">
+            <h2><i class="fa-solid fa-book-skull icon"></i>'स्व'-लोप: सांस्कृतिक आघात</h2>
+            <div class="card" data-topic="पाशवी मुघल आक्रमण">
+                <div>
+                    <h3><i class="fa-solid fa-mosque icon" style="color:var(--secondary-color);"></i>पाशवी मुघल आक्रमण</h3>
+                    <ul>
+                        <li>मंदिरे लुटणे, मूर्तीभंजन आणि जाचक कर (जिझिया).</li>
+                        <li>नालंदा विद्यापीठाचा विध्वंस (११९३): ज्ञानपरंपरेवर थेट हल्ला.</li>
+                    </ul>
+                </div>
+                <button class="gemini-btn">✨ अधिक जाणून घ्या</button>
+            </div>
+            <div class="card" data-topic="वसाहतवादी आक्रमण आणि मेकॉलेची शिक्षणपद्धती">
+                <div>
+                    <h3><i class="fa-solid fa-link-slash icon" style="color:var(--secondary-color);"></i>वसाहतवादी आक्रमण</h3>
+                    <ul>
+                        <li>मेकॉलेचे शिक्षण धोरण (१८३५): मानसिक गुलामगिरीचा पाया.</li>
+                        <li>"रक्ताने भारतीय, पण बुद्धीने इंग्रज" वर्ग निर्मितीचे ध्येय.</li>
+                    </ul>
+                </div>
+                <button class="gemini-btn">✨ अधिक जाणून घ्या</button>
+            </div>
+        </div>
+
+        <div class="column column-bodh fade-in">
+            <h2><i class="fa-solid fa-seedling icon"></i>'स्व'-बोध: एक आवश्यक प्रतिसाद</h2>
+            <div class="card" data-topic="छत्रपती शिवाजी महाराज आणि अहिल्याबाई होळकर यांचा वारसा">
+                <div>
+                    <h3><i class="fa-solid fa-landmark icon" style="color:var(--primary-color);"></i>ऐतिहासिक वारसा</h3>
+                    <ul>
+                        <li>छत्रपती शिवाजी महाराजांनी पाडलेली मंदिरे पुन्हा उभारली.</li>
+                        <li>महाराणी अहिल्याबाई होळकरांनी हाच वारसा पुढे चालवला.</li>
+                    </ul>
+                </div>
+                <button class="gemini-btn">✨ अधिक जाणून घ्या</button>
+            </div>
+            <div class="card" data-topic="भारतीय मनाचे वसाहतवाद मुक्तीकरण">
+                <div>
+                    <h3><i class="fa-solid fa-bullseye icon" style="color:var(--primary-color);"></i>पुनरुत्थानाचे ध्येय</h3>
+                    <ul>
+                        <li>वसाहतवादी मानसिकतेतून बाहेर पडून मूळ ओळख पुन्हा मिळवणे.</li>
+                        <li>'भारतीय मनाचे वसाहतवाद मुक्तीकरण' ही काळाची गरज.</li>
+                    </ul>
+                </div>
+                <button class="gemini-btn">✨ अधिक जाणून घ्या</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="renaissance-section fade-in">
+        <h2><i class="fa-solid fa-sun"></i>पुनरुत्थानाची चिन्हे</h2>
+        <div class="renaissance-grid">
+            <div class="card" data-topic="भारतातील शहरांचे नामांतरण">
+                <div>
+                    <h3><i class="fa-solid fa-map-location-dot icon" style="color:var(--accent-color);"></i>शहरांचे नामांतरण</h3>
+                    <ul>
+                        <li><strong>अलाहाबाद ➔ प्रयागराज:</strong> शहराची मूळ, पवित्र ओळख पुनर्संचयित करणे.</li>
+                        <li><strong>औरंगाबाद ➔ छत्रपती संभाजी नगर:</strong> स्वदेशी प्रतिकाराचा सन्मान.</li>
+                    </ul>
+                </div>
+                <button class="gemini-btn">✨ अधिक जाणून घ्या</button>
+            </div>
+            <div class="card" data-topic="सेंगोल आणि नवीन नौदल ध्वज यांचे महत्त्व">
+                <div>
+                    <h3><i class="fa-solid fa-gopuram icon" style="color:var(--accent-color);"></i>राष्ट्रीय प्रतीकांचे पुनरुज्जीवन</h3>
+                    <ul>
+                        <li><strong>सेंगोल:</strong> चोलकालीन नीतियुक्त शासनाचे प्रतीक.</li>
+                        <li><strong>नवीन नौदल ध्वज:</strong> स्वदेशी सामरिक वारसा स्वीकारणे.</li>
+                    </ul>
+                </div>
+                <button class="gemini-btn">✨ अधिक जाणून घ्या</button>
+            </div>
+            <div class="card" data-topic="राष्ट्रीय शैक्षणिक धोरण 2020 आणि बौद्धिक स्वातंत्र्य">
+                <div>
+                    <h3><i class="fa-solid fa-book-open-reader icon" style="color:var(--accent-color);"></i>बौद्धिक स्वातंत्र्य</h3>
+                    <ul>
+                        <li><strong>NEP २०२०:</strong> भारतीय ज्ञान प्रणाली (IKS) मुख्य प्रवाहात आणणे.</li>
+                        <li><strong>मातृभाषेतून शिक्षणावर भर:</strong> ज्ञानात्मक कौशल्ये वाढवणे.</li>
+                    </ul>
+                </div>
+                <button class="gemini-btn">✨ अधिक जाणून घ्या</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="conclusion fade-in">
+        <h2>या सगळ्यातून काय मिळणार?</h2>
+        <p>ही चळवळ कुणाचाही इतिहास पुसण्यासाठी नाही, तर आपला गौरवशाली इतिहास पुनर्स्थापित करण्यासाठी आहे. आपण कोण आहोत याची जाणीव झाल्याशिवाय कुठलाच देश प्रगती करू शकत नाही. भारताला हा 'स्व'-बोध होणे त्याच्या भविष्यासाठी आवश्यक आहे.</p>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="gemini-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="modal-title">अधिक माहिती</h2>
+        <div id="modal-body">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Intersection Observer for fade-in animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    const elements = document.querySelectorAll('.fade-in');
+    elements.forEach(el => observer.observe(el));
+
+    // Modal functionality
+    const modal = document.getElementById('gemini-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    const closeBtn = document.querySelector('.close-btn');
+
+    closeBtn.onclick = () => {
+        modal.style.display = 'none';
+    };
+
+    window.onclick = (event) => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+    
+    // Function to call Gemini API
+    async function callGemini(prompt) {
+        modal.style.display = 'block';
+        modalBody.innerHTML = '<div class="loader"></div>';
+
+        const apiKey = ""; // API key is handled by the environment
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        
+        const payload = {
+            contents: [{
+                parts: [{ text: prompt }]
+            }]
+        };
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`API Error: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                modalBody.innerHTML = text.replace(/\n/g, '<br>'); // Display response
+            } else {
+                 modalBody.innerHTML = "माफ करा, प्रतिसाद मिळवण्यात अडचण येत आहे. कृपया पुन्हा प्रयत्न करा.";
+            }
+        } catch (error) {
+            console.error("Error calling Gemini API:", error);
+            modalBody.innerHTML = "एक त्रुटी आली. कृपया तुमचं इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.";
+        }
+    }
+
+    // Event listeners for "Learn More" buttons
+    document.querySelectorAll('.gemini-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const card = e.target.closest('.card');
+            const topic = card.getAttribute('data-topic');
+            modalTitle.innerText = topic;
+            const prompt = `'${topic}' या विषयावर सोप्या मराठी भाषेत सविस्तर माहिती द्या.`;
+            callGemini(prompt);
+        });
+    });
+
+</script>
+
+</body>
+</html>
