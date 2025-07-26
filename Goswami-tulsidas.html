@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गोस्वामी तुलसीदास: एक दृकश्राव्य प्रवास</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', 'Tiro Devanagari Marathi', sans-serif;
+            background-color: #FFF8E1;
+            color: #6D4C41;
+        }
+        .tiro-marathi {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .themed-card {
+            background: #FFFAF0;
+            border-radius: 1rem;
+            border: 1px solid #FFCC80;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .themed-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(255, 152, 0, 0.2);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-image: linear-gradient(to bottom, #FFB74D, #FF9800);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 1rem 2rem;
+            box-sizing: border-box;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 4rem;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 4rem;
+            text-align: left;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background-color: #E65100;
+            border: 4px solid #FFF8E1;
+            border-radius: 50%;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #FFF8E1;
+            box-shadow: 0 0 15px #FF9800;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -12px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -12px;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center py-16 mb-12">
+            <h1 class="text-5xl md:text-7xl font-bold tiro-marathi" style="color: #E65100;">गोस्वामी तुलसीदास</h1>
+            <p class="text-2xl md:text-3xl mt-4 tiro-marathi" style="color: #FB8C00;">एका लोकनायकाचा दृकश्राव्य प्रवास</p>
+        </header>
+
+        <main class="space-y-20">
+
+            <section id="introduction" class="fade-in">
+                <div class="grid lg:grid-cols-5 gap-8 items-center">
+                    <div class="lg:col-span-3 themed-card p-8">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 tiro-marathi" style="color: #E65100;">१. लोकनायक कवी: अशांत युगातील आशेचा किरण</h2>
+                        <p class="text-lg tiro-marathi leading-relaxed text-gray-700">
+                            सोळाव्या शतकात, जेव्हा भारत राजकीय आणि सामाजिक अस्थिरतेतून जात होता, तेव्हा गोस्वामी तुलसीदासांनी आपल्या लेखणीतून एका मोठ्या क्रांतीला जन्म दिला. त्यांनी केवळ एक महाकाव्य लिहिले नाही, तर विखुरलेल्या समाजाला एका सांस्कृतिक धाग्यात बांधले. त्यांचे कार्य हे पराभूत मानसिकतेवर मिळवलेला एक मोठा विजय होता.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-2 text-center themed-card p-8 flex flex-col justify-center items-center h-full">
+                        <div class="text-7xl font-bold tiro-marathi" style="color: #FF9800;">५००</div>
+                        <div class="text-2xl font-semibold mt-2 tiro-marathi" style="color: #6D4C41;">वर्षांचा चिरंतन प्रभाव</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="revolution" class="fade-in">
+                 <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 lg:order-1 themed-card p-8">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 tiro-marathi" style="color: #E65100;">२. साहित्यिक क्रांती: ज्ञानाचे लोकशाहीकरण</h2>
+                        <p class="text-lg tiro-marathi leading-relaxed text-gray-700">
+                            तुलसीदासांनी धर्मग्रंथांची भाषा असलेल्या 'संस्कृत' ऐवजी सर्वसामान्यांची भाषा 'अवधी' निवडली. हा एक क्रांतिकारी निर्णय होता. यामुळे ज्ञानाची गंगा केवळ विद्वानांपुरती मर्यादित न राहता, ती प्रत्येक घरापर्यंत पोहोचली.
+                        </p>
+                    </div>
+                    <div class="order-1 lg:order-2 chart-container h-72 md:h-80">
+                        <canvas id="languageChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="manas" class="fade-in themed-card p-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 tiro-marathi" style="color: #E65100;">३. रामचरितमानस: श्रीरामाच्या कार्यांचे सरोवर</h2>
+                <p class="text-center text-lg mb-10 tiro-marathi text-gray-700">'रामचरितमानस' हे केवळ एक कथा नाही, तर ते भक्ती, धर्म आणि आदर्श जीवनमूल्यांचे एक विशाल सरोवर आहे.</p>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="chart-container h-96">
+                        <canvas id="themesChart"></canvas>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6 text-center tiro-marathi" style="color: #E65100;">सात कांडे: मोक्षाच्या सात पायऱ्या</h3>
+                        <div class="space-y-3">
+                            <div class="bg-amber-100/50 p-3 rounded-lg text-center tiro-marathi text-lg">बालकांड</div>
+                            <div class="bg-amber-100/50 p-3 rounded-lg text-center tiro-marathi text-lg">अयोध्याकांड</div>
+                            <div class="bg-amber-100/50 p-3 rounded-lg text-center tiro-marathi text-lg">अरण्यकांड</div>
+                            <div class="bg-amber-100/50 p-3 rounded-lg text-center tiro-marathi text-lg">किष्किंधाकांड</div>
+                            <div class="bg-amber-100/50 p-3 rounded-lg text-center tiro-marathi text-lg">सुंदरकांड</div>
+                            <div class="bg-amber-100/50 p-3 rounded-lg text-center tiro-marathi text-lg">लंकाकांड</div>
+                            <div class="bg-amber-100/50 p-3 rounded-lg text-center tiro-marathi text-lg">उत्तरकांड</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="toolkit" class="fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 tiro-marathi" style="color: #E65100;">४. एक समग्र आध्यात्मिक परिसंस्था</h2>
+                <p class="text-center text-lg mb-12 tiro-marathi text-gray-700">तुलसीदासांचे कार्य केवळ 'मानस'पुरते मर्यादित नाही. त्यांच्या इतर रचना भक्ताच्या विविध गरजा पूर्ण करतात.</p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🙏</div>
+                        <div class="themed-card p-6">
+                            <h3 class="text-xl font-bold mb-2 tiro-marathi" style="color: #E65100;">विनय पत्रिका</h3>
+                            <p class="tiro-marathi text-gray-600">रामाच्या दरबारात केलेली एक नम्र याचिका.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">📜</div>
+                        <div class="themed-card p-6">
+                            <h3 class="text-xl font-bold mb-2 tiro-marathi" style="color: #E65100;">कवितावली</h3>
+                            <p class="tiro-marathi text-gray-600">रामाच्या पराक्रमाचे वीररसात्मक वर्णन.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🎶</div>
+                        <div class="themed-card p-6">
+                            <h3 class="text-xl font-bold mb-2 tiro-marathi" style="color: #E65100;">गीतावली</h3>
+                            <p class="tiro-marathi text-gray-600">रामाच्या जीवनातील प्रसंगांचे संगीतमय सादरीकरण.</p>
+                        </div>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot">📖</div>
+                        <div class="themed-card p-6">
+                            <h3 class="text-xl font-bold mb-2 tiro-marathi" style="color: #E65100;">दोहावली</h3>
+                            <p class="tiro-marathi text-gray-600">नीती आणि ज्ञानाच्या ५७३ दोह्यांचा संग्रह.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🕉️</div>
+                        <div class="themed-card p-6">
+                            <h3 class="text-xl font-bold mb-2 tiro-marathi" style="color: #E65100;">हनुमान चालीसा</h3>
+                            <p class="tiro-marathi text-gray-600">हनुमानाच्या शक्ती आणि भक्तीचे स्तोत्र.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="legacy" class="fade-in">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div class="themed-card p-8">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 tiro-marathi" style="color: #E65100;">५. जिवंत वारसा: सांस्कृतिक प्रतिध्वनी</h2>
+                        <p class="text-lg tiro-marathi leading-relaxed text-gray-700">'रामचरितमानस'मुळे 'रामलीला' या नाट्यपरंपरेला भारतभर प्रसिद्धी मिळाली. या ग्रंथाने चित्रकला, संगीत आणि लोककलांना शतकानुशतके प्रेरणा दिली आहे. मे २०२४ मध्ये, युनेस्कोने (UNESCO) 'मानस'च्या हस्तलिखितांना 'मेमरी ऑफ द वर्ल्ड' म्हणून मान्यता दिली, ज्यामुळे त्याचा जागतिक वारसा म्हणून गौरव झाला.</p>
+                    </div>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="impactChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-20 pt-8 border-t border-amber-200">
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const wrapLabel = (label, maxWidth) => {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + ' ' + words[i]).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                } else {
+                    currentLine += ' ' + words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+        
+        const palette = {
+            darkSaffron: '#E65100',
+            midSaffron: '#FF9800',
+            lightSaffron: '#FFB74D',
+            brown: '#6D4C41',
+            cream: '#FFF8E1'
+        };
+
+        Chart.defaults.color = palette.brown;
+        Chart.defaults.font.family = "'Poppins', sans-serif";
+        
+        const languageCtx = document.getElementById('languageChart').getContext('2d');
+        new Chart(languageCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['अवधी (सर्वसामान्यांची भाषा)', 'संस्कृत (विद्वानांची भाषा)'],
+                datasets: [{
+                    label: 'भाषा निवड',
+                    data: [85, 15],
+                    backgroundColor: [palette.midSaffron, palette.lightSaffron],
+                    borderColor: palette.cream,
+                    borderWidth: 6,
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 14, family: "'Tiro Devanagari Marathi', serif" },
+                            padding: 20
+                        }
+                    },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        const themesCtx = document.getElementById('themesChart').getContext('2d');
+        new Chart(themesCtx, {
+            type: 'polarArea',
+            data: {
+                labels: ['भक्ती', 'धर्म', 'लोकमंगल', 'समन्वय', 'आदर्श'],
+                datasets: [{
+                    label: 'मानसचे मुख्य स्तंभ',
+                    data: [95, 90, 85, 80, 88],
+                    backgroundColor: [
+                        'rgba(255, 152, 0, 0.6)',
+                        'rgba(230, 81, 0, 0.6)',
+                        'rgba(255, 183, 77, 0.6)',
+                        'rgba(109, 76, 65, 0.6)',
+                        'rgba(251, 140, 0, 0.6)'
+                    ],
+                    borderColor: [
+                        palette.midSaffron,
+                        palette.darkSaffron,
+                        palette.lightSaffron,
+                        palette.brown,
+                        '#FB8C00'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        grid: { color: 'rgba(109, 76, 65, 0.2)' },
+                        ticks: { display: false },
+                        pointLabels: {
+                             font: { size: 14, family: "'Tiro Devanagari Marathi', serif" }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 14, family: "'Tiro Devanagari Marathi', serif" },
+                            padding: 20,
+                            usePointStyle: true
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'मानसचे मुख्य स्तंभ',
+                        font: { size: 18, weight: 'bold', family: "'Tiro Devanagari Marathi', serif" },
+                        padding: { bottom: 20 }
+                    },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+        
+        const impactCtx = document.getElementById('impactChart').getContext('2d');
+        new Chart(impactCtx, {
+            type: 'radar',
+            data: {
+                labels: ['रामलीला', 'लोकसंगीत', 'चित्रकला', 'साहित्य', 'नैतिक मूल्ये'],
+                datasets: [{
+                    label: 'सांस्कृतिक प्रभाव',
+                    data: [90, 85, 75, 95, 98],
+                    backgroundColor: 'rgba(255, 152, 0, 0.2)',
+                    borderColor: palette.midSaffron,
+                    pointBackgroundColor: palette.midSaffron,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: palette.midSaffron
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(109, 76, 65, 0.2)' },
+                        grid: { color: 'rgba(109, 76, 65, 0.2)' },
+                        pointLabels: { font: { size: 14, family: "'Tiro Devanagari Marathi', serif" }, color: palette.brown },
+                        ticks: { 
+                            backdropColor: 'rgba(255, 250, 240, 0.5)', 
+                            color: palette.darkSaffron, 
+                            stepSize: 20,
+                            callback: function(value, index, values) {
+                                const marathiNumerals = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+                                const valueStr = String(value);
+                                let marathiStr = '';
+                                for (let i = 0; i < valueStr.length; i++) {
+                                    marathiStr += marathiNumerals[parseInt(valueStr[i])];
+                                }
+                                return marathiStr;
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+    </script>
+</body>
+</html>
