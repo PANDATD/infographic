@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारतीय सण आणि बाजारपेठ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            color: #E0E0E0;
+            overflow-x: hidden;
+            background-color: #121212;
+            background-image:
+              linear-gradient(rgba(255,255,255,0.03) 2px, transparent 2px),
+              linear-gradient(90deg, rgba(255,255,255,0.03) 2px, transparent 2px),
+              linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+        }
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .card {
+            background-color: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -2px rgb(0 0 0 / 0.3);
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        .kpi-value {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            color: #FF8A8A;
+        }
+        .text-muted {
+            color: #B0B0B0;
+        }
+        .flow-box {
+            border: 2px solid #45B7D1;
+            background-color: #1A2E35;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 190px;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .pop-up-animation { display: inline-block; animation: popUp 2.5s ease-in-out infinite; animation-delay: 1s; }
+        @keyframes popUp { 0%, 100% { transform: scale(1); color: #FFFFFF; } 50% { transform: scale(1.2); color: #F7B801; } }
+    </style>
+</head>
+<body>
+
+    <header class="bg-black/50 backdrop-blur-sm shadow-lg shadow-black/20 py-6 sticky top-0 z-20">
+        <div class="container mx-auto text-center px-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-white font-poppins">हिंदूंच्या सणांचा फायदा कोणाला?</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 gap-12">
+
+            <section id="festive-economy" class="scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#45B7D1] animate-on-scroll">विदेशी कंपन्यांची महाकाय झेप</h2>
+                    <p class="mt-2 text-muted max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 100ms;">हिंदू सणांचा काळ हा देशातील सर्वात मोठी आर्थिक उलाढाल होणारा आहे, ज्यावर परदेशी कंपन्यांचं वर्चस्व वाढत आहे.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card text-center items-center justify-center flex flex-col animate-on-scroll">
+                        <h3 class="text-xl font-bold text-white">सणांमधील एकूण विक्री (GMV)</h3>
+                        <div class="mt-4 text-center">
+                            <p class="text-4xl md:text-5xl kpi-value leading-none">₹<span class="counter-animate" data-target="1.18">0.00</span> लाख</p>
+                            <p class="text-2xl md:text-3xl text-white">कोटी</p>
+                        </div>
+                        <p class="text-muted mt-2">(२०२४ अंदाज)</p>
+                    </div>
+                    <div class="card text-center items-center justify-center flex flex-col animate-on-scroll" style="transition-delay: 150ms;">
+                        <h3 class="text-xl font-bold text-white">ई-कॉमर्समधील वाटा</h3>
+                        <p class="text-4xl md:text-5xl kpi-value mt-4"><span class="counter-animate" data-target="90">0</span>%+</p>
+                        <p class="text-muted mt-2">(ॲमेझॉन आणि फ्लिपकार्ट)</p>
+                    </div>
+                    <div class="card text-center items-center justify-center flex flex-col animate-on-scroll" style="transition-delay: 300ms;">
+                        <h3 class="text-xl font-bold text-white">नवीन ग्राहक वाढ</h3>
+                        <p class="text-4xl md:text-5xl kpi-value mt-4"><span class="counter-animate" data-target="85">0</span>%</p>
+                        <p class="text-muted mt-2">(निम-शहरी आणि ग्रामीण भागातून)</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                    <div class="card animate-on-scroll">
+                        <h3 class="text-xl font-bold text-center mb-4">ई-कॉमर्स सणांमधील विक्रीची वाढ (GMV)</h3>
+                        <p class="text-center text-sm text-muted mb-4">सणांच्या पहिल्या आठवड्यातील विक्रीत सातत्याने वाढ दिसून येत आहे, जी या बाजारपेठेची प्रचंड क्षमता दर्शवते.</p>
+                        <div class="chart-container">
+                            <canvas id="salesGrowthChart" data-chart-id="salesGrowth"></canvas>
+                        </div>
+                    </div>
+                    <div class="card animate-on-scroll" style="transition-delay: 150ms;">
+                        <h3 class="text-xl font-bold text-center mb-4">ई-कॉमर्स बाजारपेठेतील वर्चस्व</h3>
+                        <p class="text-center text-sm text-muted mb-4">सणांच्या खरेदीवर आज वॉलमार्टच्या मालकीची फ्लिपकार्ट आणि ॲमेझॉन या दोन अमेरिकन कंपन्यांचं निर्विवाद वर्चस्व आहे.</p>
+                        <div class="chart-container">
+                            <canvas id="marketShareChart" data-chart-id="marketShare"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cultural-shift" class="scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#FF8A8A] animate-on-scroll">सणांचा बदलता आशय</h2>
+                    <p class="mt-2 text-muted max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 100ms;">जागतिक बाजारपेठेचा प्रभाव आता हिंदू सणांच्या मूळ स्वरूपावर आणि सांस्कृतिक मूल्यांवरही खोलवर परिणाम करत आहे. रक्षाबंधनाच्या पवित्र लोकरी किंवा सुती रक्षासूत्राच्या जागी कधी चायनीज राख्या आल्या हे आपल्याला कळलंही नाही. बहीण भावाला पेढा किंवा मिठाई भरवायची. त्याची जागा आता रक्षाबंधन celebration या विदेशी संकल्पनेने घेतली.</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <h3 class="text-xl font-bold text-center mb-6">रक्षाबंधनाचे स्थित्यंतर: पारंपरिक विरुद्ध आधुनिक</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 items-stretch gap-4 text-center">
+                        <div class="flow-box p-4 rounded-lg">
+                           <p class="text-5xl">🏵️</p>
+                            <h4 class="font-bold mt-2">सुती राखी</h4>
+                            <p class="text-sm text-muted">(परंपरा,पावित्र्य)</p>
+                        </div>
+                        <div class="flow-box p-4 rounded-lg">
+                             <p class="text-5xl">🧧</p>
+                            <h4 class="font-bold mt-2">चायनीज राखी</h4>
+                            <p class="text-sm text-muted">(आकर्षक, तकलादू)</p>
+                        </div>
+                        <div class="flow-box p-4 rounded-lg">
+                             <p class="text-5xl">🎁</p>
+                            <h4 class="font-bold mt-2">महागडे गिफ्टस्</h4>
+                            <p class="text-sm text-muted">(औपचारिक, बाजारीकृत)</p>
+                        </div>
+                    </div>
+                     <div class="grid grid-cols-1 md:grid-cols-3 items-stretch gap-4 text-center mt-8">
+                        <div class="flow-box p-4 rounded-lg">
+                            <p class="text-5xl">🍪</p>
+                            <h4 class="font-bold mt-2">घरी केलेले गोडाधोडाचे पदार्थ</h4>
+                            <p class="text-sm text-muted">(आनंद)</p>
+                        </div>
+                        <div class="flow-box p-4 rounded-lg">
+                             <p class="text-5xl">🍫</p>
+                            <h4 class="font-bold mt-2">महागडी चॉकलेटस्</h4>
+                            <p class="text-sm text-muted">(ब्रँडेड, प्रतिष्ठेचे प्रतीक)</p>
+                        </div>
+                        <div class="flow-box p-4 rounded-lg">
+                             <p class="text-5xl">🎁</p>
+                            <h4 class="font-bold mt-2">'गिफ्टिंग' संस्कृती</h4>
+                            <p class="text-sm text-muted">(व्यावसायिक, औपचारिक)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="marketing-maze" class="scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#F7B801] animate-on-scroll">जाहीरातींचं मायाजाल</h2>
+                    <p class="mt-2 text-muted max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 100ms;">जागतिक कंपन्या भारतीय ग्राहकांच्या मानसिकतेवर प्रभाव टाकण्यासाठी अत्यंत हुशारीने आणि योजनाबद्ध पद्धतीने विपणन आणि जाहिरात तंत्रांचा वापर करतात. जाहिरातीतून भावना, परंपरा आणि नातेसंबंधांतून ग्राहकांशी एक भावनिक नातं जोडण्याचा प्रयत्न केला जातो.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card border-l-4 border-[#FF8A8A] animate-on-scroll">
+                        <h3 class="text-2xl font-bold font-poppins">Cadbury</h3>
+                        <p class="font-bold text-lg mt-2 text-white font-poppins">'कुछ मीठा हो जाये'</p>
+                        <p class="mt-4 text-muted">कॅडबरीने 'कुछ मीठा हो जाये' या टॅगलाईनमधून भारतीय परंपरेतल्या शुभ प्रसंगी 'तोंड गोड करणे' या संकल्पनेची जागा घेण्याचा यशस्वी प्रयत्न केला. त्यांच्या दिवाळीच्या जाहिरात मोहिमा औदार्य, मदत आणि नातेसंबंध यांसारख्या भारतीय मूल्यांना हात घालतात. उदाहरणार्थ त्यांच्या '#ShopforShopless' मोहिमेत त्यांनी स्थानिक फेरीवाल्यांना मदत करण्याचे आवाहन केलं. ही मदत करण्याची कृती त्यांच्या 'कॅडबरी सेलिब्रेशन्स'च्या खरेदीशी जोडलेली होती.</p>
+                    </div>
+                    <div class="card border-l-4 border-[#4ECDC4] animate-on-scroll" style="transition-delay: 150ms;">
+                        <h3 class="text-2xl font-bold font-poppins">Coca-Cola</h3>
+                        <p class="font-bold text-lg mt-2 text-white font-poppins">'Milke hi Manegi Diwali'</p>
+                        <p class="mt-4 text-muted">जाहिरातींमध्ये दिवाळीचं पारंपरिक वातावरण (दिवे, रांगोळी, फराळ) दाखवून कोका-कोला हे त्या वातावरणाचा एक अविभाज्य आणि नैसर्गिक भाग आहे, असं  भासवलं जातं. 'Milke hi Manegi Diwali' सारख्या टॅगलाईन्स लोकांना प्रत्यक्ष भेटायला उद्युक्त करतात, पण त्या भेटीचा आणि आनंदाचा अविभाज्य भाग म्हणून कोका-कोला असायला हवं हेही सुचवायला ते विसरत नाहीत.</p>
+                    </div>
+                     <div class="card border-l-4 border-[#45B7D1] md:col-span-2 animate-on-scroll">
+                        <h3 class="text-2xl font-bold font-poppins">Amazon</h3>
+                        <p class="font-bold text-lg mt-2 text-white font-poppins">'Great Indian Festival'</p>
+                        <p class="mt-4 text-muted">ॲमेझॉन या सवलत देऊन व्यापार करण्याला 'इंडिया का फेस्टिव्हल' म्हणतं. हीच कंपनी स्थानिक कारागिरांना आणि लहान व्यवसायांना व्यासपीठ देत असल्याचा आव आणतात. प्रत्यक्षात मात्र मोठ्या परदेशी ब्रँडसना आणि सर्वाधिक विकल्या जाणाऱ्या वस्तूंना प्राधान्य देतात.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="local-impact" class="scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#4ECDC4] animate-on-scroll">स्थानिक अर्थव्यवस्थेवरील आघात</h2>
+                    <p class="mt-2 text-muted max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 100ms;">जागतिक कंपन्यांच्या या महाकाय विस्तारामुळे स्थानिक व्यापारी, कारागीर आणि उद्योगांवर गंभीर परिणाम झाले. स्थानिक मोबाइल दुकानात ग्राहक नाहीत अशी स्थिती आहे. ई-कॉमर्स कंपन्यांच्या प्रचंड सवलती (deep discounting) आणि अमिषयुक्त किंमत धोरणामुळे (predatory pricing) स्थानिक दुकानदार आणि किरकोळ विक्रेत्यांच्या विक्रीत ३०% ते ६०% पर्यंत घट झाल्याचा व्यापारी संघटनांचा दावा आहे. </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card animate-on-scroll">
+                        <h3 class="text-xl font-bold text-center mb-4">स्थानिक व्यापाऱ्यांचं नुकसान</h3>
+                        <p class="text-center text-sm text-muted mb-4">पारंपरिक वस्तू बनवणाऱ्या कारागिरांना म्हणजेच कुंभार, मूर्तिकार आणि इतर हस्तकलाकारांना चीनमधून आयात होणाऱ्या स्वस्त आणि आकर्षक वस्तूंमुळे मोठा फटका बसला आहे.</p>
+                        <div class="chart-container">
+                            <canvas id="localSalesDeclineChart" data-chart-id="localSalesDecline"></canvas>
+                        </div>
+                    </div>
+                    <div class="card flex flex-col justify-center animate-on-scroll" style="transition-delay: 150ms;">
+                        <h3 class="text-xl font-bold text-center mb-4">संधिसाधू परदेशी कंपन्या</h3>
+                         <p class="text-center text-sm text-muted mb-6">ई-कॉमर्स प्लॅटफॉर्म 'व्होकल फॉर लोकल' चळवळीचा वापर करून आपली प्रतिमा सुधारत आहेत, पण यामुळे स्थानिक उद्योजक त्यांच्यावरच अवलंबून राहत आहेत.</p>
+                        <div class="relative w-full h-48 flex items-center justify-center">
+                            <div class="absolute w-40 h-40 bg-[#FF6B6B] rounded-full opacity-70 flex items-center justify-center text-white font-bold text-center p-4" style="left: 20%;">
+                                व्होकल फॉर लोकल चळवळ
+                            </div>
+                            <div class="absolute w-40 h-40 bg-[#45B7D1] rounded-full opacity-70 flex items-center justify-center text-white font-bold text-center p-4" style="right: 20%;">
+                                ई-कॉमर्स प्लॅटफॉर्म्स
+                            </div>
+                            <div class="absolute z-10 text-center font-bold bg-gray-800 text-white p-2 rounded-lg shadow-lg">
+                                <p>स्थानिक विक्रेत्यांना</p>
+                                <p>व्यासपीठ,</p>
+                                <p>पण कमिशनसह!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conclusion" class="scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-green-400 animate-on-scroll">पुढची दिशा: जागरूक ग्राहक, आत्मनिर्भर भारत</h2>
+                    <p class="mt-2 text-muted max-w-3xl mx-auto animate-on-scroll" style="transition-delay: 100ms;">सणांचे पावित्र्य जपण्यासाठी आणि स्थानिक अर्थव्यवस्थेला बळकटी देण्यासाठी धोरणात्मक बदल आणि जागरूक ग्राहकत्वाची गरज आहे.</p>
+                </div>
+                <div class="card bg-black-900/30 border-l-4 border-orange-400 animate-on-scroll">
+                    <h3 class="text-xl font-bold text-center mb-4">खरेदी करण्यापूर्वी स्वतःला विचारा:</h3>
+                    <ul class="list-none space-y-4 text-center text-lg">
+                        <li class="flex items-center justify-center"><span class="text-2xl mr-2">🌍</span> हे उत्पादन कोठे बनले आहे?</li>
+                        <li class="flex items-center justify-center"><span class="text-2xl mr-2">🤝</span> या खरेदीचा नफा कोणाला मिळणार आहे?</li>
+                        <li class="flex items-center justify-center"><span class="text-2xl mr-2">🌱</span> याचा माझ्या समाजावर आणि पर्यावरणावर काय परिणाम होईल?</li>
+                    </ul>
+                    <p class="text-center mt-6 font-bold text-xl text-white"><span class="pop-up-animation">भारतीयांकडूनच स्वदेशी खरेदी करा, देशाला आत्मनिर्भर बनवा!</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white text-center p-4 mt-12">
+        <p>&copy;vayuveg.com</p>
+    </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                duration: 1500,
+                easing: 'easeInOutQuart'
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: "'Tiro Devanagari Marathi', serif",
+                            size: 14
+                        },
+                        color: '#E0E0E0'
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: "'Tiro Devanagari Marathi', serif"
+                    },
+                    titleFont: {
+                        family: "'Poppins', sans-serif"
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        font: {
+                            family: "'Poppins', sans-serif"
+                        },
+                        color: '#E0E0E0'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: {
+                            family: "'Tiro Devanagari Marathi', serif",
+                            size: 12
+                        },
+                        color: '#E0E0E0'
+                    },
+                     grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            }
+        };
+        
+        const wrapLabel = (label, maxWidth = 16) => {
+            if (label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+
+        const chartConfigs = {
+            salesGrowth: {
+                type: 'line',
+                data: {
+                    labels: ['२०२०', '२०२१', '२०२४ (अ)'],
+                    datasets: [{
+                        label: 'विक्री (कोटी रु)',
+                        data: [30000, 32000, 54500],
+                        backgroundColor: 'rgba(78, 205, 196, 0.2)',
+                        borderColor: '#4ECDC4',
+                        tension: 0.4,
+                        fill: true,
+                    }]
+                },
+                options: { ...commonChartOptions }
+            },
+            marketShare: {
+                type: 'doughnut',
+                data: {
+                    labels: ['ॲमेझॉन आणि फ्लिपकार्ट', 'इतर'],
+                    datasets: [{
+                        label: 'बाजारपेठेतील वाटा',
+                        data: [90, 10],
+                        backgroundColor: ['#45B7D1', '#FF6B6B'],
+                        hoverOffset: 4,
+                        borderColor: '#1e1e1e'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                     animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Tiro Devanagari Marathi', serif",
+                                    size: 14
+                                },
+                                color: '#E0E0E0'
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            },
+            localSalesDecline: {
+                type: 'bar',
+                data: {
+                    labels: ['स्थानिक व्यापारी', 'कारागीर आणि लहान उद्योजक'].map(label => wrapLabel(label)),
+                    datasets: [{
+                        label: 'विक्रीतील घट (%)',
+                        data: [45, 55], 
+                        backgroundColor: ['#FF6B6B', '#F7B801'],
+                        borderColor: ['#FF6B6B', '#F7B801'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...commonChartOptions,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                font: {
+                                    family: "'Poppins', sans-serif"
+                                },
+                                color: '#E0E0E0',
+                                callback: function(value) {
+                                    return value + "%"
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                font: {
+                                    family: "'Tiro Devanagari Marathi', serif",
+                                    size: 14
+                                },
+                                color: '#E0E0E0'
+                            },
+                             grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const animateCounter = (el) => {
+            const target = +el.getAttribute('data-target');
+            if (isNaN(target)) return;
+            const duration = 2000;
+            const hasDecimal = target.toString().includes('.');
+            let startTime = null;
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const currentValue = progress * target;
+
+                if (hasDecimal) {
+                    el.textContent = currentValue.toFixed(2);
+                } else {
+                    el.textContent = Math.floor(currentValue);
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    el.textContent = target;
+                }
+            }
+            requestAnimationFrame(step);
+        };
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+
+                    if (entry.target.classList.contains('counter-animate')) {
+                         animateCounter(entry.target);
+                    }
+                    
+                    if (entry.target.dataset.interactive === 'diya' || entry.target.dataset.interactive === 'bulb') {
+                        entry.target.classList.add('lit');
+                    }
+
+                    if (entry.target.tagName === 'CANVAS' && entry.target.dataset.chartId) {
+                        const canvas = entry.target;
+                        const chartId = canvas.dataset.chartId;
+                        if (chartConfigs[chartId] && !canvas.chart) {
+                            canvas.chart = new Chart(canvas.getContext('2d'), chartConfigs[chartId]);
+                        }
+                    }
+
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.animate-on-scroll, .counter-animate, canvas[data-chart-id], [data-interactive="diya"], [data-interactive="bulb"]').forEach(el => {
+            scrollObserver.observe(el);
+        });
+    });
+</script>
+
+</body>
+</html>
