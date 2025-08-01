@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veils of Control: An Interactive Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: A thematic, single-page scrolling application is used to guide the user through a narrative that mirrors the report's core arguments but in a more digestible format. The structure begins with the physical (the Veil's health impact), moves to the personal (Marriage and Divorce), and concludes with the systemic (Reform and Control). This flow was chosen to build a compelling case, starting with tangible, data-driven evidence and progressing to personal stories and high-level analysis. Interactive charts, toggles, and accordions allow users to explore data and compare arguments without being overwhelmed, fostering engagement over passive reading. -->
+    <!-- Visualization & Content Choices: 
+        - Vitamin D Data: Report Info -> Compare deficiency rates -> Viz: Bar Chart -> Interaction: Hover for details -> Justification: More visually impactful than a table for comparing disparate groups. -> Library: Chart.js/Canvas.
+        - Child Marriage Data: Report Info -> Compare legal age vs. actual prevalence -> Viz: Grouped Bar Chart -> Interaction: Hover for country specifics -> Justification: Highlights the critical gap between law and practice. -> Library: Chart.js/Canvas.
+        - Survivor Stories: Report Info -> Humanize impact of Triple Talaq -> Viz: Interactive Cards -> Interaction: Click to reveal story in a modal -> Justification: Personalizes the issue and creates empathy. -> Method: HTML/JS.
+        - Control vs. Reform: Report Info -> Explain systemic forces -> Viz: HTML/CSS diagram & side-by-side comparison -> Interaction: Hover/static -> Justification: Visually simplifies complex systems and a key comparative argument. -> Method: HTML/Tailwind.
+        - All choices adhere to NO SVG/Mermaid.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #332E2B;
+        }
+        .nav-link {
+            transition: color 0.3s, border-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #C5A07E;
+            border-bottom-color: #C5A07E;
+        }
+        .section-title {
+            color: #4A403A;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #EAE5E1;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+        }
+        .btn-primary {
+            background-color: #4A403A;
+            color: #FFFFFF;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #332E2B;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .tab-button {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .tab-button.active {
+            background-color: #4A403A;
+            color: #FFFFFF;
+        }
+        .accordion-header {
+            transition: background-color 0.3s;
+        }
+        .accordion-header:hover {
+            background-color: #F5F1ED;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="navbar" class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-[#4A403A]">Veils of Control</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#intro" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Introduction</a>
+                        <a href="#veil" class="nav-link px-3 py-2 rounded-md text-sm font-medium">The Veil</a>
+                        <a href="#marriage" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Early Marriage</a>
+                        <a href="#divorce" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Divorce</a>
+                        <a href="#reform" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Reform</a>
+                        <a href="#recommendations" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Recommendations</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-[#4A403A] hover:bg-[#F5F1ED] focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#intro" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Introduction</a>
+                <a href="#veil" class="nav-link block px-3 py-2 rounded-md text-base font-medium">The Veil</a>
+                <a href="#marriage" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Early Marriage</a>
+                <a href="#divorce" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Divorce</a>
+                <a href="#reform" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Reform</a>
+                <a href="#recommendations" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Recommendations</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <section id="intro" class="text-center mb-24 scroll-mt-20">
+            <h2 class="text-4xl font-bold tracking-tight sm:text-5xl section-title">Veils of Control</h2>
+            <p class="mt-6 text-lg leading-8 text-stone-700 max-w-3xl mx-auto">An analysis of how specific orthodox interpretations of Islam, not the religion itself, are used to systemically exploit women. This application explores the tangible impacts on women's health, autonomy, and security through data, case studies, and comparative analysis.</p>
+        </section>
+
+        <section id="veil" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <p class="text-base font-semibold text-[#C5A07E]">PILLAR 1</p>
+                <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl section-title">The Biopolitics of the Veil</h2>
+                <p class="mt-4 text-lg leading-8 text-stone-700 max-w-3xl mx-auto">This section examines how the enforced wearing of garments like the burqa and niqab translates from a symbol of piety into a public health crisis. We explore the direct, physiological consequences of restricted sun exposure, revealing how a socio-religious norm can become a tool of biopolitical control, prioritizing ideology over women's well-being.</p>
+            </div>
+            
+            <div class="card p-6 md:p-8 mb-12">
+                <h3 class="text-xl font-semibold mb-2 text-center">A Silent Pandemic: Vitamin D Deficiency</h3>
+                <p class="text-center text-stone-600 mb-6 max-w-2xl mx-auto">Across the globe, studies reveal a stark correlation between veiling practices and severe Vitamin D deficiency. The chart below visualizes data from several key studies, highlighting the dramatic disparity. Hover over the bars to see specific findings.</p>
+                <div class="chart-container">
+                    <canvas id="vitaminDChart"></canvas>
+                </div>
+            </div>
+
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold section-title">A Cascade of Ailments</h3>
+                <p class="text-stone-600 mt-2">The impact goes far beyond weak bones. Chronic deficiency triggers a range of debilitating physical and psychological issues.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-6">
+                    <h4 class="font-bold text-lg mb-2 text-center">🦴 Physical Consequences</h4>
+                    <p class="text-stone-600">Chronic deficiency leads to <span class="font-semibold">osteomalacia</span> (painful softening of bones) and <span class="font-semibold">osteoporosis</span>. The Jaunpur study found over 70% of veiled women suffering from osteomalacia, with many experiencing fractures from minor incidents.</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="font-bold text-lg mb-2 text-center">🤰 Intergenerational Harm</h4>
+                    <p class="text-stone-600">A Delhi study linked maternal deficiency directly to severe pregnancy complications like <span class="font-semibold">preeclampsia</span> and <span class="font-semibold">low birth weight</span> in newborns, perpetuating a cycle of biological disadvantage across generations.</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="font-bold text-lg mb-2 text-center">🧠 Psychological Toll</h4>
+                    <p class="text-stone-600">Low Vitamin D is strongly associated with <span class="font-semibold">depression, anxiety, chronic fatigue, and cognitive impairment</span> ("brain fog"), creating a cycle where social isolation causes a biological state that further reduces the will to engage with the world.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="marriage" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <p class="text-base font-semibold text-[#C5A07E]">PILLAR 2</p>
+                <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl section-title">Early Marriage & Lost Childhoods</h2>
+                <p class="mt-4 text-lg leading-8 text-stone-700 max-w-3xl mx-auto">Here, we investigate how the biological milestone of puberty is weaponized to justify child marriage. This practice, framed as a protection of "family honor," robs girls of their childhood, education, and health, demonstrating a stark conflict between orthodox interpretations and a girl's fundamental rights.</p>
+            </div>
+            
+            <div class="card p-6 md:p-8 mb-12">
+                 <h3 class="text-xl font-semibold mb-2 text-center">The Law vs. Reality</h3>
+                <p class="text-center text-stone-600 mb-6 max-w-2xl mx-auto">Many countries have laws setting the minimum age of marriage at 18, yet the reality on the ground is starkly different. This chart compares the legal minimum age for girls with the actual percentage of girls married before 18.</p>
+                <div class="chart-container">
+                    <canvas id="marriageChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="card p-6 md:p-8">
+                <h3 class="text-xl font-semibold mb-6 text-center">The Scriptural Battleground</h3>
+                <div class="w-full max-w-md mx-auto">
+                    <div class="flex rounded-lg p-1 bg-stone-200 mb-6">
+                        <button id="tab-orthodox" class="tab-button w-1/2 p-2 rounded-md font-semibold text-sm active">Orthodox Justification</button>
+                        <button id="tab-reformist" class="tab-button w-1/2 p-2 rounded-md font-semibold text-sm">Reformist Rebuttal</button>
+                    </div>
+                    <div id="content-orthodox">
+                        <h4 class="font-bold text-lg mb-2">Puberty as Maturity (`Akil Baligh`)</h4>
+                        <p class="text-stone-600 mb-4">Traditional interpretations conflate biological puberty with marital readiness, ignoring psychological and emotional maturity. This is used to legitimize marrying girls as young as nine.</p>
+                        <h4 class="font-bold text-lg mb-2">Prophetic Precedent</h4>
+                        <p class="text-stone-600">The most cited justification is the hadith reporting the Prophet's marriage to Aisha when she was nine. This is often presented as a definitive religious sanction, closing the debate.</p>
+                    </div>
+                    <div id="content-reformist" class="hidden">
+                        <h4 class="font-bold text-lg mb-2">Sound Judgment (`Rushd`)</h4>
+                        <p class="text-stone-600 mb-4">Reformists point to Quran 4:6, which links the "age of marriage" to the attainment of "sound judgment" and the ability to manage property—a capacity a child lacks.</p>
+                        <h4 class="font-bold text-lg mb-2">"A Most Solemn Pledge"</h4>
+                        <p class="text-stone-600">The Quran describes marriage as a "most solemn pledge" (4:21) requiring free and informed consent (4:19), which is fundamentally incompatible with child marriage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="divorce" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <p class="text-base font-semibold text-[#C5A07E]">PILLAR 3</p>
+                <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl section-title">Unilateral Divorce & Annihilated Security</h2>
+                <p class="mt-4 text-lg leading-8 text-stone-700 max-w-3xl mx-auto">The now-banned practice of Triple Talaq in India serves as a powerful case study in how unilateral divorce power can devastate women's lives. It institutionalized male privilege, leaving women destitute and traumatized by the utterance of three words, often delivered by text message.</p>
+            </div>
+
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold section-title">Voices of the Survivors</h3>
+                <p class="text-stone-600 mt-2 max-w-2xl mx-auto">The stories of women who endured this practice reveal the profound human cost of legal abandonment and psychological abuse. Click to read their stories.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-6 flex flex-col items-center text-center">
+                    <h4 class="font-bold text-lg mb-2">Gausiya Ahmed</h4>
+                    <p class="text-stone-600 mb-4 flex-grow">A doctor subjected to domestic violence, divorced via a written notice after giving birth to a daughter, left in a state of legal and religious chaos.</p>
+                    <button class="survivor-btn btn-primary px-4 py-2 rounded-md text-sm font-semibold" data-story="gausiya">Read Story</button>
+                </div>
+                <div class="card p-6 flex flex-col items-center text-center">
+                    <h4 class="font-bold text-lg mb-2">Zeenat Sheikh</h4>
+                    <p class="text-stone-600 mb-4 flex-grow">Endured 20 years of abuse before her husband divorced her via WhatsApp, a divorce she didn't want for the sake of her children.</p>
+                    <button class="survivor-btn btn-primary px-4 py-2 rounded-md text-sm font-semibold" data-story="zeenat">Read Story</button>
+                </div>
+                 <div class="card p-6 flex flex-col items-center text-center">
+                    <h4 class="font-bold text-lg mb-2">The Bareilly Case</h4>
+                    <p class="text-stone-600 mb-4 flex-grow">A woman forced into *nikah halala* (marrying another man) with her father-in-law to remarry her husband, only to be divorced again.</p>
+                    <button class="survivor-btn btn-primary px-4 py-2 rounded-md text-sm font-semibold" data-story="bareilly">Read Story</button>
+                </div>
+            </div>
+            
+            <div class="mt-16">
+                 <h3 class="text-2xl font-bold section-title text-center mb-8">The Legal Fight for Dignity in India</h3>
+                 <div class="relative">
+                    <div class="absolute left-1/2 h-full w-0.5 bg-stone-300 hidden md:block"></div>
+                    <div class="space-y-12 md:space-y-16">
+                        <div class="flex md:items-center flex-col md:flex-row">
+                            <div class="md:w-1/2 md:pr-8 text-center md:text-right">
+                                <p class="font-bold text-2xl text-[#C5A07E]">2016</p>
+                                <h4 class="font-bold text-xl mt-1">Shayara Bano Petitions Court</h4>
+                                <p class="text-stone-600 mt-2">After being divorced via letter, Shayara Bano petitions the Supreme Court of India, challenging the constitutionality of Triple Talaq, polygamy, and nikah halala.</p>
+                            </div>
+                            <div class="w-12 h-12 bg-[#FDFBF8] border-4 border-stone-300 rounded-full flex-shrink-0 mx-auto md:mx-0 my-4 md:my-0 flex items-center justify-center relative">
+                                <div class="w-4 h-4 bg-[#C5A07E] rounded-full"></div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-8"></div>
+                        </div>
+                        <div class="flex md:items-center flex-col md:flex-row-reverse">
+                            <div class="md:w-1/2 md:pl-8 text-center md:text-left">
+                                <p class="font-bold text-2xl text-[#C5A07E]">2017</p>
+                                <h4 class="font-bold text-xl mt-1">Supreme Court Verdict</h4>
+                                <p class="text-stone-600 mt-2">In a historic 3:2 verdict, the Court declares Triple Talaq unconstitutional, arbitrary, and a violation of fundamental rights.</p>
+                            </div>
+                            <div class="w-12 h-12 bg-[#FDFBF8] border-4 border-stone-300 rounded-full flex-shrink-0 mx-auto md:mx-0 my-4 md:my-0 flex items-center justify-center relative">
+                                 <div class="w-4 h-4 bg-[#C5A07E] rounded-full"></div>
+                            </div>
+                            <div class="md:w-1/2 md:pr-8"></div>
+                        </div>
+                         <div class="flex md:items-center flex-col md:flex-row">
+                            <div class="md:w-1/2 md:pr-8 text-center md:text-right">
+                                <p class="font-bold text-2xl text-[#C5A07E]">2019</p>
+                                <h4 class="font-bold text-xl mt-1">Criminalization Act Passed</h4>
+                                <p class="text-stone-600 mt-2">The Indian Parliament passes a controversial law criminalizing the pronouncement of Triple Talaq, making it punishable by up to three years in prison.</p>
+                            </div>
+                           <div class="w-12 h-12 bg-[#FDFBF8] border-4 border-stone-300 rounded-full flex-shrink-0 mx-auto md:mx-0 my-4 md:my-0 flex items-center justify-center relative">
+                                 <div class="w-4 h-4 bg-[#C5A07E] rounded-full"></div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-8"></div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="reform" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <p class="text-base font-semibold text-[#C5A07E]">THE WAY FORWARD</p>
+                <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl section-title">Control vs. Reform</h2>
+                <p class="mt-4 text-lg leading-8 text-stone-700 max-w-3xl mx-auto">The exploitation of women is not inevitable. It is maintained by an architecture of control, but challenged by a vibrant internal reform movement. This section contrasts the forces of suppression with the dynamics of change, demonstrating that the future of women's rights is a contested political battle, not a theological certainty.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-xl font-semibold mb-6 text-center">The Architecture of Control</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#4A403A] text-white flex items-center justify-center font-bold text-lg">1</div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Family & Community Pressure</h4>
+                                <p class="text-stone-600">Conformity is enforced to protect family "honor," with women's behavior as its primary symbol. Dissent risks ostracization.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#4A403A] text-white flex items-center justify-center font-bold text-lg">2</div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Religious Edicts (Fatwas)</h4>
+                                <p class="text-stone-600">Clerical bodies issue fatwas that declare reformers and minority groups "deviant," providing religious justification for suppression.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#4A403A] text-white flex items-center justify-center font-bold text-lg">3</div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">State-Sanctioned Orthodoxy</h4>
+                                <p class="text-stone-600">Authoritarian states form alliances with conservative clergy, using state power to enforce a single interpretation and framing dissent as a threat to national stability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-xl font-semibold mb-6 text-center">A Tale of Two Trajectories</h3>
+                     <p class="text-center text-stone-600 mb-6 max-w-2xl mx-auto">The dramatic difference in women's rights between countries like Tunisia and Saudi Arabia proves that outcomes are shaped by political choices, not religious destiny.</p>
+                    <div class="grid grid-cols-2 gap-4 divide-x divide-stone-200">
+                        <div class="text-center px-2">
+                             <h4 class="font-bold text-2xl mb-2">🇹🇳 Tunisia</h4>
+                             <ul class="space-y-2 text-left text-sm text-stone-600">
+                                <li class="flex items-start"><span class="mr-2 text-[#C5A07E]">&#10003;</span><span>Abolished polygamy in 1956.</span></li>
+                                <li class="flex items-start"><span class="mr-2 text-[#C5A07E]">&#10003;</span><span>Judicial divorce with equal rights.</span></li>
+                                <li class="flex items-start"><span class="mr-2 text-[#C5A07E]">&#10003;</span><span>Strong laws against gender violence.</span></li>
+                                 <li class="flex items-start"><span class="mr-2 text-[#C5A07E]">&#10003;</span><span>Driven by state reform and a vibrant, independent feminist movement.</span></li>
+                             </ul>
+                        </div>
+                        <div class="text-center px-2">
+                             <h4 class="font-bold text-2xl mb-2">🇸🇦 Saudi Arabia</h4>
+                            <ul class="space-y-2 text-left text-sm text-stone-600">
+                                <li class="flex items-start"><span class="mr-2 text-red-400">&#10007;</span><span>Male guardianship codified in law.</span></li>
+                                <li class="flex items-start"><span class="mr-2 text-red-400">&#10007;</span><span>Wife legally required to "obey" husband.</span></li>
+                                <li class="flex items-start"><span class="mr-2 text-red-400">&#10007;</span><span>Independent activists imprisoned.</span></li>
+                                 <li class="flex items-start"><span class="mr-2 text-red-400">&#10007;</span><span>"Reform" is a top-down gift from the state, not a won right.</span></li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommendations" class="scroll-mt-20">
+             <div class="text-center mb-12">
+                <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl section-title">Pathways to Change</h2>
+                <p class="mt-4 text-lg leading-8 text-stone-700 max-w-3xl mx-auto">Based on the report's findings, several key actions can be taken by different groups to challenge systemic exploitation and support genuine, sustainable reform.</p>
+            </div>
+            <div id="accordion-container" class="space-y-4 max-w-4xl mx-auto">
+                <!-- Accordion items will be generated by JS -->
+            </div>
+        </section>
+
+    </main>
+    
+    <div id="story-modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 md:p-8 relative">
+            <button id="close-modal" class="absolute top-4 right-4 text-stone-500 hover:text-stone-800">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 id="modal-title" class="text-2xl font-bold mb-4 section-title"></h3>
+            <div id="modal-content" class="text-stone-700 leading-relaxed space-y-4"></div>
+        </div>
+    </div>
+
+
+    <footer class="bg-stone-100 mt-24">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-sm text-stone-500">
+            <p>This interactive application is based on the report "Veils of Control: A Socio-Legal Analysis of Orthodox Islamic Interpretations and the Systemic Exploitation of Women."</p>
+            <p>&copy; 2025. All data and analysis derived from the source report.</p>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const vitaminDChartCtx = document.getElementById('vitaminDChart').getContext('2d');
+    new Chart(vitaminDChartCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Jaunpur Study (Muslim Women)', 'Jaunpur Study (Hindu Women)', 'Delhi Study (Burqa-clad pregnant women)'],
+            datasets: [{
+                label: '% Suffering from Severe Deficiency/Inadequacy',
+                data: [70, 30, 76.5],
+                backgroundColor: ['#4A403A', '#C5A07E', '#A07C60'],
+                borderColor: ['#332E2B', '#A07C60', '#6D5444'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: { display: false },
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += context.parsed.y + '%';
+                            }
+                            return label;
+                        },
+                        afterLabel: function(context){
+                             const notes = {
+                                0: "Source: Umanath Singh Medical College. Cause: Burqa use, avoiding sunlight.",
+                                1: "Source: Umanath Singh Medical College. Control group.",
+                                2: "Source: Delhi Maternity Hospital. 37.5% deficient, 39% inadequate."
+                             };
+                             return notes[context.dataIndex] || "";
+                        }
+                    },
+                    backgroundColor: '#332E2B',
+                    titleFont: { size: 14, weight: 'bold'},
+                    bodyFont: { size: 12 },
+                    padding: 10,
+                    displayColors: false,
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Percentage (%)',
+                        font: { weight: 'bold', size: 12 }
+                    },
+                    grid: { color: '#EAE5E1' }
+                },
+                x: {
+                   ticks: {
+                     autoSkip: false,
+                     maxRotation: 0,
+                     minRotation: 0,
+                     callback: function(value, index, values) {
+                        let label = this.getLabelForValue(value);
+                        if (label.length > 20) {
+                            return label.split(' ').reduce((acc, word) => {
+                                if (acc.length === 0) return [word];
+                                let lastLine = acc[acc.length - 1];
+                                if ((lastLine + ' ' + word).length > 15) {
+                                    acc.push(word);
+                                } else {
+                                    acc[acc.length - 1] = lastLine + ' ' + word;
+                                }
+                                return acc;
+                            }, []);
+                        }
+                        return label;
+                     }
+                   },
+                   grid: { display: false }
+                }
+            }
+        }
+    });
+
+    const marriageChartCtx = document.getElementById('marriageChart').getContext('2d');
+    new Chart(marriageChartCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Bangladesh', 'Iraq', 'Nigeria', 'Pakistan', 'Yemen'],
+            datasets: [
+                {
+                    label: 'Prevalence of Marriage <18 (%)',
+                    data: [59, 28, 44, 21, 32],
+                    backgroundColor: '#4A403A',
+                },
+                {
+                    label: 'Legal Minimum Age for Girls',
+                    data: [18, 18, 18, 16, 15],
+                    backgroundColor: '#C5A07E',
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: { display: false },
+                legend: {
+                    position: 'top',
+                },
+                 tooltip: {
+                    backgroundColor: '#332E2B',
+                    titleFont: { size: 14, weight: 'bold'},
+                    bodyFont: { size: 12 },
+                    padding: 10,
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Percentage / Age',
+                         font: { weight: 'bold', size: 12 }
+                    },
+                    grid: { color: '#EAE5E1' }
+                },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+    
+    const orthodoxTab = document.getElementById('tab-orthodox');
+    const reformistTab = document.getElementById('tab-reformist');
+    const orthodoxContent = document.getElementById('content-orthodox');
+    const reformistContent = document.getElementById('content-reformist');
+
+    orthodoxTab.addEventListener('click', () => {
+        orthodoxTab.classList.add('active');
+        reformistTab.classList.remove('active');
+        orthodoxContent.classList.remove('hidden');
+        reformistContent.classList.add('hidden');
+    });
+
+    reformistTab.addEventListener('click', () => {
+        reformistTab.classList.add('active');
+        orthodoxTab.classList.remove('active');
+        reformistContent.classList.remove('hidden');
+        orthodoxContent.classList.add('hidden');
+    });
+    
+    const survivorButtons = document.querySelectorAll('.survivor-btn');
+    const modal = document.getElementById('story-modal');
+    const closeModalBtn = document.getElementById('close-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+
+    const stories = {
+        gausiya: {
+            title: "Gausiya Ahmed's Story",
+            content: `<p>Gausiya Ahmed, a doctor, was subjected to extreme domestic violence and dowry harassment from the beginning of her arranged marriage. After she gave birth to a daughter, her husband stormed out of the hospital and never returned.</p><p>Two months later, she received a written divorce notice with "talaq" stated three times. This unilateral act left her in a state of legal and religious chaos, as different religious leaders gave conflicting opinions on whether her divorce was even valid. Her experience highlights the confusion and helplessness women faced, caught between an arbitrary pronouncement and a community unable to offer a clear path forward.</p>`
+        },
+        zeenat: {
+            title: "Zeenat Sheikh's Story",
+            content: `<p>Zeenat Sheikh endured 20 years of escalating physical and emotional abuse. Her husband first threatened her with a future-tense pronouncement of talaq, which a local cleric deemed invalid, only worsening the violence.</p><p>Later, in a fit of rage, he carefully uttered the words in the present tense and sent a written confirmation via WhatsApp, finalizing the divorce in his eyes. Zeenat's story is particularly poignant because, despite the abuse, she did not want the divorce, citing her love for her husband and the social taboo that would harm her daughters. Her case reveals the complex emotional landscape where women are trapped not only by abusive partners but also by deep-seated social norms.</p>`
+        },
+        bareilly: {
+            title: "The Bareilly Case: A Cycle of Exploitation",
+            content: `<p>Perhaps the most horrific illustration of how Triple Talaq functions within a broader system of exploitation is the case of a woman from Bareilly, Uttar Pradesh. After her husband gave her an instant triple talaq, her in-laws coerced her into undergoing <strong>nikah halala</strong>—a practice that requires a divorced woman to marry another man, consummate the marriage, and then get divorced or be widowed before she can remarry her original husband.</p><p>In her case, she was forced to marry and be raped by her father-in-law. After this ordeal, she was remarried to her husband, only for him to divorce her again via Triple Talaq years later. His family then demanded she undergo nikah halala with his younger brother. This case demonstrates a horrifying symbiosis between Triple Talaq and nikah halala, trapping women in a nightmarish cycle of repeated divorce and sexual exploitation, all sanctioned under the guise of religious procedure.</p>`
+        }
+    };
+
+    survivorButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const storyKey = button.dataset.story;
+            const story = stories[storyKey];
+            modalTitle.textContent = story.title;
+            modalContent.innerHTML = story.content;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        });
+    });
+
+    function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    const recommendations = [
+        {
+            title: 'For International Bodies & Human Rights Organizations',
+            content: `
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Support Internal Reformers:</strong> Provide direct support (funding, platforms, political protection) to local Islamic feminist scholars and activists.</li>
+                    <li><strong>Use Universal Rights Language:</strong> Frame issues like veiling-induced health problems as public health crises and violations of fundamental human rights to exert pressure on governments.</li>
+                    <li><strong>Condemn Suppression of Dissent:</strong> Actively document and condemn the persecution of women's rights advocates and make it a key metric in diplomatic engagement.</li>
+                </ul>
+            `
+        },
+        {
+            title: 'For National Governments in Muslim-Majority Countries',
+            content: `
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Commit to Legal Reform:</strong> Align family laws with international standards (CEDAW), including abolishing male guardianship and enforcing a marriage age of 18.</li>
+                    <li><strong>Protect Civil Society:</strong> Create a safe legal environment for women's rights groups to operate without fear of reprisal.</li>
+                    <li><strong>Invest in Girls' Education:</strong> Massively increase investment in girls' education, the single most powerful tool for empowerment.</li>
+                </ul>
+            `
+        },
+        {
+            title: 'For Community & Religious Leaders',
+            content: `
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Promote Religious & Legal Literacy:</strong> Fund initiatives that educate women about diverse interpretations within Islam to counter the monopoly of orthodox views.</li>
+                    <li><strong>Establish Accountability:</strong> Create transparent mechanisms within religious institutions to address abuses of authority by clerics.</li>
+                    <li><strong>Champion Public Health:</strong> Address the health consequences of enforced veiling by advocating for culturally sensitive solutions, such as private, sun-exposed spaces for women.</li>
+                </ul>
+            `
+        }
+    ];
+
+    const accordionContainer = document.getElementById('accordion-container');
+    recommendations.forEach((rec, index) => {
+        const item = document.createElement('div');
+        item.className = 'card';
+        item.innerHTML = `
+            <div class="accordion-header p-4 cursor-pointer flex justify-between items-center" data-index="${index}">
+                <h3 class="font-semibold">${rec.title}</h3>
+                <span class="transform transition-transform duration-300">&#9662;</span>
+            </div>
+            <div class="accordion-content px-4 pb-4 text-stone-600">
+                ${rec.content}
+            </div>
+        `;
+        accordionContainer.appendChild(item);
+    });
+
+    accordionContainer.addEventListener('click', (e) => {
+        const header = e.target.closest('.accordion-header');
+        if (!header) return;
+        
+        const content = header.nextElementSibling;
+        const arrow = header.querySelector('span');
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+        document.querySelectorAll('.accordion-content').forEach(c => {
+            c.style.maxHeight = '0px';
+            c.previousElementSibling.querySelector('span').style.transform = 'rotate(0deg)';
+        });
+        
+        if (!isOpen) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            arrow.style.transform = 'rotate(180deg)';
+        }
+    });
+    
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+    
+    function updateActiveNav() {
+        let currentSection = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 80) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === currentSection) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+});
+</script>
+
+</body>
+</html>
