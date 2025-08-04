@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>महादेवी हत्तीण प्रकरण: श्रद्धा, राजकारण आणि सत्य</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #f0f4f8;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            border: 4px solid #FFA600;
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-[#003F5C] text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-2">महादेवी हत्तीण प्रकरण</h1>
+            <p class="text-xl text-[#FFA600] font-semibold">श्रद्धा, राजकारण आणि सत्य: एक वस्तुनिष्ठ विश्लेषण</p>
+        </header>
+
+        <section class="card bg-white/90 backdrop-blur-sm">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003F5C]">एका हत्तीणीच्या दोन कथा</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-center">
+                    <p class="text-lg mb-4">नांदणीच्या ग्रामस्थांसाठी महादेवी ३४ वर्षांपासून श्रद्धेचं प्रतीक होती. तिचं जाणं हे एका जिवंत देवाला गमावण्यासारखं होतं. पण याच श्रद्धेच्या पडद्याआड एक वेगळंच सत्य दडलं होतं.</p>
+                    <div class="flex justify-around items-center mt-6">
+                        <div class="text-center">
+                            <p class="text-5xl font-extrabold text-[#BC5090] font-inter">३४</p>
+                            <p class="font-semibold">वर्षांची श्रद्धा</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-5xl font-extrabold text-[#FF6361] font-inter">३३</p>
+                            <p class="font-semibold">वर्षांचा छळ</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="chart-container">
+                        <canvas id="confinementChart"></canvas>
+                    </div>
+                    <p class="text-center mt-2 font-semibold text-sm text-gray-600">महादेवीच्या आयुष्यातील कैदेचा काळ</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card bg-white/90 backdrop-blur-sm">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003F5C]">आरोग्याची वस्तुस्थिती: वेदनेचे पुरावे</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8">न्यायालयाचा निर्णय भावनिक नव्हता, तर तो महादेवीच्या गंभीर आरोग्य समस्यांच्या पुराव्यांवर आधारित होता. सततच्या कैदेमुळे तिचं शरीर आणि मन दोन्ही खचलं होतं.</p>
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div class="p-4 bg-[#FF6361]/10 rounded-lg">
+                    <p class="text-4xl font-bold text-[#FF6361] font-inter">ग्रेड ४</p>
+                    <p class="mt-2 font-semibold">तीव्र संधिवात (Arthritis)</p>
+                </div>
+                <div class="p-4 bg-[#FFA600]/10 rounded-lg">
+                    <p class="text-4xl font-bold text-[#FFA600] font-inter">गंभीर</p>
+                    <p class="mt-2 font-semibold">पायांच्या जखमा (Foot Rot)</p>
+                </div>
+                <div class="p-4 bg-[#BC5090]/10 rounded-lg">
+                    <p class="text-4xl font-bold text-[#BC5090] font-inter">सतत</p>
+                    <p class="mt-2 font-semibold">मानसिक तणाव (Stereotypic Behaviour)</p>
+                </div>
+            </div>
+             <div class="mt-8">
+                <div class="chart-container mx-auto">
+                    <canvas id="illegalTransportChart"></canvas>
+                </div>
+                <p class="text-center mt-2 font-semibold text-sm text-gray-600">२०१२-२०२३ दरम्यान झालेली बेकायदेशीर वाहतूक (अंदाजे)</p>
+            </div>
+        </section>
+        
+        <section class="card bg-white/90 backdrop-blur-sm">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#003F5C]">कायदेशीर प्रक्रिया: न्यायाचा प्रवास</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8">महादेवीचे स्थलांतर हे कोणतेही षडयंत्र नव्हते, तर ते 'पेटा'च्या तक्रारीपासून सर्वोच्च न्यायालयाच्या अंतिम निर्णयापर्यंत चाललेल्या एका पारदर्शक कायदेशीर प्रक्रियेचा परिणाम होता.</p>
+            <div class="relative w-full max-w-3xl mx-auto">
+                <div class="border-l-4 border-dashed border-[#FFA600] absolute h-full top-0 left-4 md:left-1/2 md:-ml-[2px]"></div>
+                <div class="mb-8 flex justify-between items-center w-full">
+                    <div class="order-1 md:w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-[#FFA600] shadow-xl w-10 h-10 rounded-full">
+                        <h3 class="mx-auto font-bold text-lg text-white">१</h3>
+                    </div>
+                    <div class="order-1 bg-[#BC5090] rounded-lg shadow-xl w-10/12 md:w-5/12 px-6 py-4 ml-4 md:ml-0">
+                        <p class="font-bold text-white text-sm">ऑक्टोबर २०२३</p>
+                        <p class="text-sm leading-snug tracking-wide text-white/90">पेटा इंडियाने सर्वोच्च न्यायालयाच्या उच्चाधिकार समितीकडे (HPC) तक्रार दाखल केली.</p>
+                    </div>
+                </div>
+                <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
+                    <div class="order-1 md:w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-[#FFA600] shadow-xl w-10 h-10 rounded-full">
+                        <h3 class="mx-auto text-white font-bold text-lg">२</h3>
+                    </div>
+                    <div class="order-1 bg-[#FF6361] rounded-lg shadow-xl w-10/12 md:w-5/12 px-6 py-4 ml-4 md:ml-0">
+                        <p class="font-bold text-white text-sm">डिसेंबर २०२४</p>
+                        <p class="text-sm leading-snug tracking-wide text-white/90">HPC ने महादेवीला जामनगर येथे पुनर्वसनासाठी पाठवण्याचा पहिला आदेश दिला.</p>
+                    </div>
+                </div>
+                <div class="mb-8 flex justify-between items-center w-full">
+                    <div class="order-1 md:w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-[#FFA600] shadow-xl w-10 h-10 rounded-full">
+                        <h3 class="mx-auto font-bold text-lg text-white">३</h3>
+                    </div>
+                    <div class="order-1 bg-[#BC5090] rounded-lg shadow-xl w-10/12 md:w-5/12 px-6 py-4 ml-4 md:ml-0">
+                        <p class="font-bold text-white text-sm">१६ जुलै २०२५</p>
+                        <p class="text-sm leading-snug tracking-wide text-white/90">मुंबई उच्च न्यायालयाने प्राण्याच्या हक्कांना प्राधान्य देत स्थलांतराचा निर्णय कायम ठेवला.</p>
+                    </div>
+                </div>
+                <div class="flex justify-between md:flex-row-reverse items-center w-full">
+                    <div class="order-1 md:w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-[#FFA600] shadow-xl w-10 h-10 rounded-full">
+                        <h3 class="mx-auto text-white font-bold text-lg">४</h3>
+                    </div>
+                    <div class="order-1 bg-[#FF6361] rounded-lg shadow-xl w-10/12 md:w-5/12 px-6 py-4 ml-4 md:ml-0">
+                        <p class="font-bold text-white text-sm">२८ जुलै २०२५</p>
+                        <p class="text-sm leading-snug tracking-wide text-white/90">सर्वोच्च न्यायालयाने मठाची याचिका फेटाळली आणि स्थलांतराचा मार्ग मोकळा केला.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card bg-white/90 backdrop-blur-sm">
+            <h2 class="text-3xl font-bold text-center mb-2 text-[#003F5C]">राजकारण आणि दुटप्पी भूमिका</h2>
+            <p class="text-center font-semibold text-lg mb-8 text-[#58508D]">राजू शेट्टी: एक वस्तुस्थिती तपासणी (Fact-Check)</p>
+            <p class="text-center max-w-3xl mx-auto mb-8">महादेवीच्या स्थलांतराला 'षडयंत्र' म्हणणारे राजू शेट्टी यांनीच पूर्वी तिला मठातून हलवण्यासाठी प्रयत्न केले होते. त्यांच्या भूमिकेतील हा विरोधाभास राजकीय संधीसाधूपणा स्पष्ट करतो.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="border-4 border-red-300 rounded-lg p-6 bg-red-50">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4 text-center">नंतरची भूमिका (२०२५)</h3>
+                    <ul class="space-y-3 list-disc list-inside text-gray-700">
+                        <li>स्थलांतराला 'षडयंत्र' आणि 'प्राण्यांची तस्करी' म्हटले.</li>
+                        <li>सरकार आणि अंबानींवर जोरदार टीका केली.</li>
+                        <li>'आत्मक्लेष पदयात्रा' काढून जनभावना भडकावली.</li>
+                        <li>वनताराला 'बोगस संस्था' म्हणून संबोधले.</li>
+                    </ul>
+                </div>
+                <div class="border-4 border-green-300 rounded-lg p-6 bg-green-50">
+                    <h3 class="text-2xl font-bold text-green-600 mb-4 text-center">पूर्वीची भूमिका (२०१८-२०२०)</h3>
+                    <ul class="space-y-3 list-disc list-inside text-gray-700">
+                        <li>२०१८: माहुत नसल्याने महादेवीला वनविभागाने ताब्यात घ्यावे, यासाठी स्वतः पत्र लिहिले.</li>
+                        <li>२०२०: पेटाच्या प्रतिनिधींना भेटून तिच्या पुनर्वसनाच्या कल्पनेला पाठिंबा दर्शवला.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card bg-white/90 backdrop-blur-sm">
+             <h2 class="text-3xl font-bold text-center mb-6 text-[#003F5C]">जनक्षोभ आणि कॉर्पोरेट लक्ष्यीकरण</h2>
+             <p class="text-center max-w-3xl mx-auto mb-8">राजकीय नेत्यांनी लोकांच्या भावनांचा वापर करून या प्रकरणाला कॉर्पोरेट-विरोधी लढ्याचे स्वरूप दिले. न्यायालयाच्या निर्णयाऐवजी रिलायन्सच्या 'जिओ'ला लक्ष्य करणे सोपे होते.</p>
+             <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                 <div class="p-4 bg-gray-100 rounded-lg text-center shadow">
+                     <p class="font-bold">न्यायालयीन निर्णय</p>
+                 </div>
+                 <div class="text-2xl font-bold text-[#FFA600] transform rotate-90 md:rotate-0">➔</div>
+                 <div class="p-4 bg-gray-100 rounded-lg text-center shadow">
+                     <p class="font-bold">वनतारा (रिलायन्स समर्थित)</p>
+                 </div>
+                 <div class="text-2xl font-bold text-[#FFA600] transform rotate-90 md:rotate-0">➔</div>
+                 <div class="p-4 bg-[#FF6361] text-white rounded-lg text-center shadow-lg">
+                     <p class="font-bold">#BoycottJio मोहीम</p>
+                 </div>
+             </div>
+        </section>
+
+        <section class="card bg-white/90 backdrop-blur-sm">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003F5C]">वनतारा: वस्तुस्थिती काय आहे?</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8">'वनतारा'ची निवड त्यांच्या जागतिक दर्जाच्या सुविधांमुळे झाली. महादेवीसारख्या आजारी हत्तीवर उपचार करण्यासाठी आवश्यक असलेल्या विशेष सोयी तिथे उपलब्ध आहेत.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-4 bg-[#003F5C]/10 rounded-lg">
+                    <p class="text-5xl">🏥</p>
+                    <p class="mt-2 font-semibold">२५,००० चौ. फूट रुग्णालय</p>
+                </div>
+                <div class="p-4 bg-[#58508D]/10 rounded-lg">
+                    <p class="text-5xl">💧</p>
+                    <p class="mt-2 font-semibold">हायड्रोथेरपी पूल</p>
+                </div>
+                <div class="p-4 bg-[#BC5090]/10 rounded-lg">
+                    <p class="text-5xl">🌿</p>
+                    <p class="mt-2 font-semibold">नैसर्गिक अधिवास</p>
+                </div>
+                <div class="p-4 bg-[#FF6361]/10 rounded-lg">
+                    <p class="text-5xl">🧑‍⚕️</p>
+                    <p class="mt-2 font-semibold">तज्ज्ञ डॉक्टर आणि कर्मचारी</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 py-6">
+            <p class="text-white font-semibold">निष्कर्ष: या प्रकरणात, भावनांच्या गदारोळात वस्तुस्थिती दडपली गेली. राजकीय स्वार्थासाठी जनभावनेचा वापर झाला. पण अखेरीस, विजय कायद्याचा आणि एका मुक्या प्राण्याच्या निरोगी जीवनाच्या हक्काचा झाला.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label) => {
+            if (typeof label === 'string' && label.length > 16) {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            }
+            return label;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+        
+        const palette = {
+            blue: '#003F5C',
+            purple: '#58508D',
+            pink: '#BC5090',
+            red: '#FF6361',
+            orange: '#FFA600'
+        };
+
+        const confinementCtx = document.getElementById('confinementChart').getContext('2d');
+        new Chart(confinementCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['कैदेतील ३३ वर्षे', 'स्वातंत्र्यातील ३ वर्षे'],
+                datasets: [{
+                    label: 'आयुष्याची विभागणी',
+                    data: [33, 3],
+                    backgroundColor: [palette.red, palette.blue],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#003F5C',
+                            font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const illegalTransportCtx = document.getElementById('illegalTransportChart').getContext('2d');
+        new Chart(illegalTransportCtx, {
+            type: 'bar',
+            data: {
+                labels: ['तेलंगणा (मोहरम)', 'तेलंगणा (बोनालू)', 'इतर राज्ये'],
+                datasets: [{
+                    label: 'बेकायदेशीर वाहतूक',
+                    data: [6, 5, 2],
+                    backgroundColor: [palette.pink, palette.orange, palette.purple],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#003F5C',
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        },
+                        grid: {
+                            color: '#003F5C20'
+                        }
+                    },
+                    x: {
+                       ticks: {
+                            color: '#003F5C',
+                            font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 12
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
