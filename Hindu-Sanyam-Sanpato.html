@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>यवत संघर्ष: एक दृश्य विश्लेषण</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #111827;
+            color: #d1d5db;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: #1f2937;
+            border-radius: 0.75rem;
+            border: 1px solid #374151;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+            border-color: rgba(59, 130, 246, 0.7);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -3.3rem;
+            top: 0.25rem;
+            height: 1.75rem;
+            width: 1.75rem;
+            background-color: #3b82f6;
+            border-radius: 9999px;
+            border: 4px solid #1f2937;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        .flow-item {
+            background-color: #374151;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            flex-grow: 1;
+            border: 1px solid #4b5563;
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            color: #6b7280;
+            line-height: 1;
+            transform: rotate(90deg);
+        }
+        @media (min-width: 768px) {
+            .flow-arrow {
+                transform: rotate(0deg);
+            }
+        }
+        .icon {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 0.75rem;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-black font-inter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-300 mb-4">धार्मिक अस्मितेवर आघात</h1>
+            <p class="text-xl md:text-2xl text-gray-400">यवतच्या संघर्षामागील चिथावणीखोर सत्याचे दृश्य विश्लेषण</p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section class="card lg:col-span-3">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-red-400 flex items-center justify-center">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.287 8.287 0 0 0 3-2.554A8.254 8.254 0 0 1 15.362 5.214Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 3.75 3.75 0 0 0-1.983 7.468Z" /></svg>
+                    </span>
+                    पहिली ठिणगी: सुनियोजित चिथावणी
+                </h2>
+                <p class="text-center text-lg max-w-4xl mx-auto mb-8 text-gray-300">यवत गावात १ ऑगस्ट २०२५ रोजी उफाळलेला संघर्ष हा अचानक घडलेला नव्हता. त्याची पायाभरणी हिंदू श्रद्धास्थानांवर झालेल्या दोन मोठ्या आघातांनी केली होती. या घटना केवळ योगायोग नसून, त्या एका विशिष्ट मानसिकतेतून केल्या गेल्याचे स्पष्ट होते.</p>
+                <div class="timeline max-w-3xl mx-auto">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-xl font-bold text-gray-100">२६ जुलै: ऐतिहासिक अस्मितेवर हल्ला</h3>
+                        <p class="text-md text-gray-400">हिंदूंचे स्फूर्तिस्थान असलेल्या छत्रपती शिवाजी महाराजांच्या पुतळ्याची विटंबना करण्यात आली. या घटनेने यवत आणि परिसरातील वातावरण आधीच तणावपूर्ण झाले होते.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-xl font-bold text-red-400">१ ऑगस्ट: धार्मिक श्रद्धेवर हल्ला</h3>
+                        <p class="text-md text-gray-400">सय्यद नावाच्या मुस्लिम तरुणाने हिंदू धर्मगुरू आणि भगव्या रंगाला लक्ष्य करणारी अत्यंत अपमानकारक सोशल मीडिया पोस्ट टाकली. त्याने लिहिले: <span class="font-bold text-red-300">"आणखी एक पंडित, आता बोला भगवाधारी..."</span> या थेट टीकेने हिंदू समाजाच्या भावनांना पुन्हा एकदा पायदळी तुडवले.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card lg:col-span-3">
+                 <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-teal-300 flex items-center justify-center">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0 0 12 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-19.5 0c1.01.143 2.01.317 3 .52m13.5 0a48.468 48.468 0 0 1-7.5 0c-2.953 0-5.797.230-8.528.654" /></svg>
+                    </span>
+                    दुहेरी मापदंड: प्रतिक्रिया आणि परिणाम
+                </h2>
+                <p class="text-center text-lg max-w-4xl mx-auto mb-8 text-gray-300">धार्मिक अपमानाच्या घटनांवर भारतात मिळणाऱ्या प्रतिक्रिया आणि त्याचे कायदेशीर परिणाम यात मोठी तफावत दिसून येते. यवत प्रकरण आणि कन्हैयालाल हत्याकांडाची तुलना केल्यास हे विदारक सत्य समोर येते.</p>
+                <div class="chart-container mx-auto">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+                <p class="text-center mt-4 text-xs text-gray-500">वरील चार्ट प्रतिकात्मक असून तो घटनांची तीव्रता आणि परिणामांमधील तफावत दर्शवतो.</p>
+            </section>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <section class="card lg:col-span-2">
+                    <h2 class="text-2xl font-bold mb-6 text-center text-yellow-400">आघाताचे मूळ</h2>
+                    <p class="text-center mb-6 text-gray-300">यवत येथील उद्रेक हा अनेक घटनांच्या साखळीचा परिणाम होता. हिंदू समाजात वाढणाऱ्या असंतोषामागे काही प्रमुख कारणे आहेत.</p>
+                    <div class="flex flex-col md:flex-row items-center justify-around text-center space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="flow-item">
+                            <h3 class="font-bold text-red-400">पद्धतशीर हल्ले</h3>
+                            <p class="text-sm text-gray-400">श्रद्धास्थानांवर सतत होणारे हल्ले</p>
+                        </div>
+                        <div class="flow-arrow font-inter">➔</div>
+                        <div class="flow-item">
+                            <h3 class="font-bold text-yellow-400">कायद्यातील विषमता</h3>
+                            <p class="text-sm text-gray-400">दुहेरी मापदंडामुळे अन्यायाची भावना</p>
+                        </div>
+                        <div class="flow-arrow font-inter">➔</div>
+                        <div class="flow-item">
+                            <h3 class="font-bold text-blue-400">संयमाचा अंत</h3>
+                            <p class="text-sm text-gray-400">वाढता असंतोष आणि उद्रेक</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="card">
+                    <h2 class="text-2xl font-bold mb-6 text-center text-blue-400">कायदेशीर कारवाई</h2>
+                    <p class="text-center mb-6 text-gray-300">घटनेनंतर झालेल्या कायदेशीर कारवाईतही एक मोठी विषमता दिसून येते.</p>
+                    <div class="chart-container mx-auto h-64 md:h-72">
+                        <canvas id="firChart"></canvas>
+                    </div>
+                </section>
+            </div>
+
+            <section class="card lg:col-span-3">
+                <h2 class="text-2xl font-bold mb-4 text-center text-gray-100">निष्कर्ष</h2>
+                <p class="text-md text-gray-300 text-center max-w-4xl mx-auto">यवत येथील संघर्ष हा हिंदू समाजाची प्रतिक्रिया नसून, सय्यदसारख्या व्यक्तींनी हिंदूंच्या धार्मिक आणि ऐतिहासिक अस्मितेवर केलेल्या थेट आघातांचा परिणाम आहे. जोपर्यंत अशा मूळ चिथावणीखोर कृत्यांना आणि त्यामागील द्वेषपूर्ण विचारसरणीला रोखले जात नाही, तोपर्यंत समाजात धार्मिक सलोखा प्रस्थापित होणे अशक्य आहे. ही घटना एक चेतावणी आहे की, कोणत्याही समाजाच्या भावनांना सतत लक्ष्य केल्यास त्याचे परिणाम गंभीर असू शकतात.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                return Array.isArray(label) ? label.join(' ') : label;
+            };
+            
+            const commonTooltipOptions = {
+                backgroundColor: '#374151',
+                titleColor: '#e5e7eb',
+                bodyColor: '#d1d5db',
+                titleFont: { family: "'Tiro Devanagari Marathi', serif" },
+                bodyFont: { family: "'Tiro Devanagari Marathi', serif" },
+                padding: 10,
+                cornerRadius: 5,
+                displayColors: false,
+                callbacks: {
+                    title: tooltipTitleCallback
+                }
+            };
+
+            const comparisonCtx = document.getElementById('comparisonChart').getContext('2d');
+            const gradientBlue = comparisonCtx.createLinearGradient(0, 0, 0, 400);
+            gradientBlue.addColorStop(0, 'rgba(96, 165, 250, 0.8)');
+            gradientBlue.addColorStop(1, 'rgba(59, 130, 246, 0.8)');
+            
+            const gradientRed = comparisonCtx.createLinearGradient(0, 0, 0, 400);
+            gradientRed.addColorStop(0, 'rgba(248, 113, 113, 0.8)');
+            gradientRed.addColorStop(1, 'rgba(239, 68, 68, 0.8)');
+
+            new Chart(comparisonCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['गुन्ह्याचे स्वरूप', 'प्रतिक्रियेचे स्वरूप', 'परिणाम'],
+                    datasets: [{
+                        label: 'हिंदू धर्माचा अपमान (यवत)',
+                        data: [3, 5, 4],
+                        backgroundColor: gradientBlue,
+                        borderColor: '#60a5fa',
+                        borderWidth: 1,
+                        borderRadius: 5,
+                    }, {
+                        label: 'इस्लाम धर्माचा अपमान (कन्हैयालाल)',
+                        data: [6, 10, 10],
+                        backgroundColor: gradientRed,
+                        borderColor: '#f87171',
+                        borderWidth: 1,
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#374151' },
+                            ticks: {
+                                color: '#9ca3af',
+                                font: { family: "'Inter', sans-serif" },
+                                callback: (value) => {
+                                    const labels = { 0: 'किरकोळ', 5: 'मध्यम', 10: 'अत्यंत गंभीर' };
+                                    return labels[value] !== undefined ? labels[value] : '';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { 
+                                color: '#d1d5db',
+                                font: { size: 14, family: "'Tiro Devanagari Marathi', serif" }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#d1d5db', font: { family: "'Tiro Devanagari Marathi', serif" } } },
+                        tooltip: commonTooltipOptions,
+                        title: {
+                            display: true,
+                            text: 'दोन घटनांमधील तीव्रतेची प्रतिकात्मक तुलना',
+                            color: '#e5e7eb',
+                            font: { size: 16, family: "'Tiro Devanagari Marathi', serif" }
+                        }
+                    }
+                }
+            });
+
+            const firCtx = document.getElementById('firChart').getContext('2d');
+            new Chart(firCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['चिथावणी देणारा मुस्लिम तरुण', 'प्रतिक्रिया देणारे हिंदू'],
+                    datasets: [{
+                        label: 'नोंदवलेले गुन्हे',
+                        data: [1, 600],
+                        backgroundColor: ['#ef4444', '#3b82f6'],
+                        borderColor: '#1f2937',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        tooltip: commonTooltipOptions,
+                        title: {
+                            display: true,
+                            text: 'गुन्हे दाखल झालेल्या व्यक्तींची संख्या',
+                            color: '#e5e7eb',
+                            font: { size: 16, family: "'Tiro Devanagari Marathi', serif" }
+                        },
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#d1d5db', font: { family: "'Tiro Devanagari Marathi', serif" } }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
