@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कुलगुरू करमजीत सिंग प्रकरण आणि शीख-हिंदू सामायिक वारसा: एक व्हिज्युअल अहवाल</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #f0f4f8;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #0074D4;
+            line-height: 1;
+        }
+        .venn-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#00449E] mb-4">कुलगुरू करमजीत सिंग प्रकरण: एक विश्लेषणात्मक दृष्टिकोन</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">एका प्रशासकीय निर्णयामागे दडलेला वैचारिक संघर्ष आणि शीख-हिंदू परंपरेच्या अतूट वारशाचा वेध घेणारे व्हिज्युअल विश्लेषण.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-2 card">
+                <h2 class="text-2xl font-bold text-[#005CB9] mb-4 text-center">भाग १: वादाची ठिणगी - एका भाषणाचे पडसाद</h2>
+                <p class="text-center text-gray-600 mb-6">एका शैक्षणिक कार्यक्रमातील संवादामुळे पंजाबच्या राजकारणात आणि धार्मिक वर्तुळात वादळ कसे निर्माण झाले, याचा क्रमवार आढावा.</p>
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="p-4 bg-blue-100 rounded-lg shadow-sm">
+                            <p class="font-bold text-[#00449E]">कुलगुरूंचे भाषण</p>
+                            <p class="text-sm">RSS-संबंधित कार्यक्रमात सहभाग</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow transform md:rotate-0 rotate-90">➔</div>
+                    <div class="flex flex-col items-center">
+                        <div class="p-4 bg-blue-100 rounded-lg shadow-sm">
+                            <p class="font-bold text-[#00449E]">राजकीय हस्तक्षेप</p>
+                            <p class="text-sm">आमदार परगट सिंग यांनी व्हिडिओ प्रसारित केला</p>
+                        </div>
+                    </div>
+                    <div class="flow-arrow transform md:rotate-0 rotate-90">➔</div>
+                    <div class="flex flex-col items-center">
+                         <div class="p-4 bg-blue-100 rounded-lg shadow-sm">
+                            <p class="font-bold text-[#00449E]">SGPC ची कारवाई</p>
+                            <p class="text-sm">कुलगुरूंना समितीवरून हटवले</p>
+                        </div>
+                    </div>
+                     <div class="flow-arrow transform md:rotate-0 rotate-90">➔</div>
+                    <div class="flex flex-col items-center">
+                         <div class="p-4 bg-blue-100 rounded-lg shadow-sm">
+                            <p class="font-bold text-[#00449E]">वैचारिक वाद</p>
+                            <p class="text-sm">राजकीय आणि धार्मिक ध्रुवीकरण</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2 class="text-2xl font-bold text-[#005CB9] mb-4 text-center">भाग २: 'परगट सिंग' - नावामागील गोंधळ</h2>
+                <p class="text-center text-gray-600 mb-6">या प्रकरणात 'परगट सिंग' हे नाव केंद्रस्थानी आले. पण आमदार परगट सिंग आणि खलिस्तानी चळवळीशी संबंधित त्याच नावाच्या इतर व्यक्तींमधील फरक समजून घेणे महत्त्वाचे आहे.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">ओळख</th>
+                                <th scope="col" class="px-6 py-3">पार्श्वभूमी</th>
+                                <th scope="col" class="px-6 py-3">संलग्नता</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">परगट सिंग (आमदार)</th>
+                                <td class="px-6 py-4">माजी हॉकी कर्णधार</td>
+                                <td class="px-6 py-4">काँग्रेस</td>
+                            </tr>
+                            <tr class="bg-gray-50 border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">परगट सिंग (ISYF)</th>
+                                <td class="px-6 py-4">संस्थापक सदस्य</td>
+                                <td class="px-6 py-4">खलिस्तानी संघटना</td>
+                            </tr>
+                            <tr class="bg-white border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">परगट सिंग (NIA अटक)</th>
+                                <td class="px-6 py-4">SFJ साठी भरती</td>
+                                <td class="px-6 py-4">फुटीरतावादी गट</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <p class="mt-4 text-xs text-center text-gray-500">विश्लेषण: आमदारांचा थेट संबंध नसला तरी, त्यांची राजकीय भाषा फुटीरतावादी कथानकाला खतपाणी घालते.</p>
+            </section>
+
+            <section class="card flex flex-col justify-center items-center">
+                <h2 class="text-2xl font-bold text-[#005CB9] mb-4 text-center">भाग ३: तात्त्विक मूळ - गुरु नानक आणि सनातन परंपरा</h2>
+                <p class="text-center text-gray-600 mb-6">गुरु नानक देव यांची शिकवण सनातन परंपरेपासून वेगळी नव्हती, तर ती त्यातीलच एक सुधारणावादी प्रवाह होता. दोन्ही परंपरांमधील सामायिक संकल्पना हेच दर्शवतात.</p>
+                <div class="relative w-full h-48 flex items-center justify-center">
+                    <div class="venn-circle absolute left-1/4" style="background-color: #41A5E8;">सनातन परंपरा</div>
+                    <div class="venn-circle absolute right-1/4" style="background-color: #0074D4;">गुरु नानक देव यांची शिकवण</div>
+                    <div class="absolute text-lg font-bold text-black z-10 bg-white bg-opacity-75 px-2 rounded">कर्म, संसार, मुक्ती</div>
+                </div>
+            </section>
+            
+            <section class="md:col-span-2 card">
+                <h2 class="text-2xl font-bold text-[#005CB9] mb-4 text-center">भाग ४: शौर्याचा वारसा - दशम ग्रंथ आणि दिव्य तलवार</h2>
+                 <p class="text-center text-gray-600 mb-6 max-w-3xl mx-auto">गुरु गोविंद सिंग यांनी दशम ग्रंथाद्वारे शौर्य-भावना जागृत केली आणि त्यांच्या 'भगौती' तलवारीला दैवी प्रतीक मानले. हेच प्रतीक छत्रपती शिवाजी महाराजांच्या 'भवानी' तलवारीतही दिसते, जे एका सामायिक भारतीय शौर्य-परंपरेचे द्योतक आहे.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-bold text-center text-[#0074D4] mb-4">दशम ग्रंथातील प्रेरणा</h3>
+                        <p class="text-center text-gray-600 text-sm mb-4">दशम ग्रंथात हिंदू पौराणिक कथांचा वापर अनुयायांमध्ये 'बीर रस' (शौर्य भावना) जागृत करण्यासाठी केला आहे.</p>
+                        <div class="chart-container h-64">
+                            <canvas id="dasamGranthChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-center text-[#0074D4] mb-4">भगौती vs. भवानी: एक तुलना</h3>
+                        <p class="text-center text-gray-600 text-sm mb-4">दोन महान योद्ध्यांच्या तलवारींमधील विलक्षण साधर्म्य, जे धर्मरक्षणाच्या समान संकल्पनेतून आले आहे.</p>
+                        <div class="chart-container h-64">
+                            <canvas id="swordComparisonChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 card">
+                <h2 class="text-2xl font-bold text-[#005CB9] mb-4 text-center">भाग ५: जिवंत परंपरा - तख्त श्री हजूर साहिब, नांदेड</h2>
+                <p class="text-center text-gray-600 mb-6">महाराष्ट्रातील नांदेड येथील हे पवित्र स्थळ शीख-हिंदू धर्मातील अतूट संबंधांचा जिवंत पुरावा आहे, जिथे आजही समन्वयवादी परंपरा जपल्या जातात.</p>
+                <div class="flex flex-col md:flex-row justify-around text-center">
+                    <div class="p-4">
+                        <p class="font-inter text-6xl font-extrabold text-[#00449E]">२</p>
+                        <p class="mt-2 font-bold text-gray-700">ग्रंथांचा 'प्रकाश'</p>
+                        <p class="text-sm text-gray-500">(गुरु ग्रंथ साहिब आणि दशम ग्रंथ)</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="font-inter text-6xl font-extrabold text-[#0074D4]">३००+</p>
+                        <p class="mt-2 font-bold text-gray-700">वर्षांची अखंड परंपरा</p>
+                         <p class="text-sm text-gray-500">('चंडी दी वार' पठण)</p>
+                    </div>
+                     <div class="p-4">
+                        <p class="font-inter text-6xl font-extrabold text-[#41A5E8]">१</p>
+                        <p class="mt-2 font-bold text-gray-700">अद्वितीय ओळख</p>
+                        <p class="text-sm text-gray-500">(मूळ खालसा परंपरेचे जतन)</p>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <h2 class="text-2xl font-bold text-[#00449E] mb-2">निष्कर्ष: अतूट नाते</h2>
+            <p class="text-gray-700 max-w-3xl mx-auto">
+                राजकीय वाद तात्कालिक असतात, परंतु शीख आणि हिंदू परंपरेचा सामायिक वारसा हा ऐतिहासिक, तात्त्विक आणि सेंद्रिय आहे. फुटीरतावादी कथानकांच्या पलीकडे जाऊन या एकतेला समजून घेणे आणि तिचे जतन करणे, हेच भारताच्या सांस्कृतिक ऐक्यासाठी आवश्यक आहे.
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabels(label, maxWidth) {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+
+            words.forEach(word => {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const colors = {
+            blue1: '#00449E',
+            blue2: '#005CB9',
+            blue3: '#0074D4',
+            blue4: '#41A5E8',
+            blue5: '#81C9F2'
+        };
+
+        const dasamGranthCtx = document.getElementById('dasamGranthChart').getContext('2d');
+        new Chart(dasamGranthCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['पौराणिक कथा (उदा. चंडी दी वार)', 'आध्यात्मिक तत्त्वज्ञान', 'शौर्य-प्रेरक रचना'],
+                datasets: [{
+                    label: 'दशम ग्रंथातील प्रेरणा',
+                    data: [50, 30, 20],
+                    backgroundColor: [colors.blue3, colors.blue4, colors.blue1],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const swordComparisonCtx = document.getElementById('swordComparisonChart').getContext('2d');
+        const rawLabels = ['दैवी स्रोत', 'उद्देश', 'समकालीन शत्रू'];
+        const processedLabels = rawLabels.map(label => wrapLabels(label, 16));
+        
+        new Chart(swordComparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: processedLabels,
+                datasets: [
+                    {
+                        label: 'भगौती (गुरु गोविंद सिंग)',
+                        data: [10, 10, 10],
+                        backgroundColor: colors.blue3,
+                        borderColor: colors.blue2,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'भवानी (छत्रपती शिवाजी महाराज)',
+                        data: [10, 10, 10],
+                        backgroundColor: colors.blue4,
+                        borderColor: colors.blue3,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        display: false,
+                    },
+                    y: {
+                         ticks: {
+                            font: {
+                                size: 10
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                         callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
