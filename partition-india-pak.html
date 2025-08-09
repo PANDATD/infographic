@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारताची फाळणी: हिंदू समाजावरील अत्याचाराचा रक्तरंजित इतिहास</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #FEFBF6;
+            color: #1E0A0A;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .stat-card {
+            background-color: #FFFFFF;
+            border-left: 5px solid #D72323;
+        }
+        .flowchart-item {
+            border: 2px solid #3E3636;
+            background-color: #FFFFFF;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease;
+        }
+        .flowchart-item:hover {
+            transform: translateY(-5px);
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #D72323;
+            margin: 0 0.5rem;
+            align-self: center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#D72323] mb-4">फाळणी: एक विश्वासघात</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-700">काँग्रेसच्या धोरणात्मक चुका, मुस्लिम अनुनय आणि सत्ताकांक्षेची विनाशकारी परिणती, ज्यामुळे लाखो हिंदूंचे भविष्य अंधारात ढकलले गेले.</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section id="overview" class="text-center">
+                <h2 class="text-3xl font-bold mb-8">महाविस्थापनाची भीषण आकडेवारी</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="stat-card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-5xl font-extrabold text-[#D72323]">~2 कोटी</h3>
+                        <p class="mt-2 text-lg font-semibold">लोक विस्थापित झाले</p>
+                    </div>
+                    <div class="stat-card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-5xl font-extrabold text-[#D72323]">~10 लाख</h3>
+                        <p class="mt-2 text-lg font-semibold">लोक मारले गेले</p>
+                    </div>
+                    <div class="stat-card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-5xl font-extrabold text-[#D72323]">~1 लाख</h3>
+                        <p class="mt-2 text-lg font-semibold">महिलांचे अपहरण झाले</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="prelude">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1">
+                        <h2 class="text-3xl font-bold mb-4">नरसंहाराची नांदी: १९४६</h2>
+                        <p class="text-lg mb-4 text-gray-700">फाळणीचा रक्तरंजित अध्याय १९४७ मध्ये नाही, तर त्याची भीषण सुरुवात एक वर्ष आधीच झाली होती. मुस्लिम लीगने पुकारलेल्या 'प्रत्यक्ष कृती दिना'ने (Direct Action Day) भविष्यातील वांशिक संहाराची (ethnic cleansing) एक प्रकारे रंगीत तालीमच केली.</p>
+                        <ul class="list-disc list-inside space-y-2 text-lg">
+                            <li><strong class="text-[#D72323]">प्रत्यक्ष कृती दिन (कलकत्ता):</strong> १६ ऑगस्ट १९४६ रोजी सुरू झालेल्या या पूर्वनियोजित हल्ल्यात हजारो हिंदूंची कत्तल करण्यात आली.</li>
+                            <li><strong class="text-[#D72323]">नोआखली दंगल (पूर्व बंगाल):</strong> ऑक्टोबर-नोव्हेंबर १९४६ मध्ये हजारो हिंदूंची हत्या, सामूहिक बलात्कार आणि सक्तीने धर्मांतर करण्यात आले.</li>
+                        </ul>
+                    </div>
+                    <div class="chart-container order-1 md:order-2">
+                        <canvas id="preludeChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="massacres">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="chart-container">
+                        <canvas id="massacresChart"></canvas>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold mb-4">महासंहार: पंजाब आणि सिंध</h2>
+                        <p class="text-lg mb-4 text-gray-700">मार्च १९४७ पासून रावळपिंडी विभागात सुरू झालेला हिंसाचार आणि रॅडक्लिफ रेषेच्या घोषणेनंतर पश्चिम पंजाबमध्ये अडकलेल्या लाखो हिंदू आणि शीखांवर अनन्वित अत्याचार झाले. निर्वासितांच्या रेल्वे गाड्यांवर आणि काफिल्यांवर पद्धतशीर हल्ले झाले.</p>
+                        <p class="text-lg text-gray-700">सिंध प्रांतातही, संपन्न आणि शांतताप्रिय हिंदू समाजाला आपली घरेदारे सोडून भारतात पलायन करणे भाग पडले.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="women_atrocities">
+                 <h2 class="text-3xl font-bold mb-8 text-center">महिलांवरील अत्याचार: एक रणांगण</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="text-lg mb-4 text-gray-700">फाळणीच्या काळात महिलांवरील हिंसाचार हा केवळ अनागोंदीचा परिणाम नव्हता, तर तो हिंदू समाजाचे मनोधैर्य खच्ची करण्यासाठी केलेला एक सुनियोजित डाव होता. महिलांचे शरीर हे एक रणांगण बनले होते, ज्यावर हल्लेखोरांनी आपल्या विजयाचे आणि वर्चस्वाचे नारे कोरले.</p>
+                        <p class="text-lg font-semibold text-[#D72323]">थोहा खालसा गावात ९० हून अधिक शीख महिलांनी मुस्लिम जमावाच्या तावडीत सापडण्याऐवजी विहिरीत उड्या टाकून सामूहिक आत्महत्या केली. ही घटना काँग्रेसच्या नेतृत्वाने आपल्याच लोकांना वाऱ्यावर सोडल्याचे प्रतीक होते.</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="womenChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="leadership_failure">
+                <h2 class="text-3xl font-bold text-center mb-8">नेतृत्वाचे अपयश: विश्वासघाताचा मार्ग</h2>
+                <p class="text-lg text-center max-w-3xl mx-auto mb-10 text-gray-700">काँग्रेसच्या नेतृत्वाने घेतलेले अनेक निर्णय हिंदू समाजासाठी विनाशकारी ठरले. लोकसंख्येच्या अदलाबदलीच्या व्यावहारिक प्रस्तावाला नकार देण्यापासून ते फुटीरतावादाला खतपाणी घालण्यापर्यंत, प्रत्येक टप्प्यावर चुका होत गेल्या.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="flowchart-item">खिलाफत चळवळीला पाठिंबा</div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-item">स्वतंत्र मतदारसंघांना मान्यता</div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-item">लोकसंख्या अदलाबदलीला नकार</div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-item bg-[#D72323] text-white">फाळणीची स्वीकृती</div>
+                </div>
+            </section>
+
+            <section id="gandhi_role">
+                <h2 class="text-3xl font-bold mb-8 text-center">गांधीजींची भूमिका: एक घातक आदर्शवाद</h2>
+                <div class="bg-white p-8 rounded-lg shadow-xl max-w-4xl mx-auto">
+                    <p class="text-lg mb-4 text-gray-700">"फाळणी माझ्या मृतदेहावर होईल" अशी घोषणा करणारे गांधीजी अखेरीस हताशपणे फाळणीला संमती देऊन आपल्याच तत्त्वांशी प्रतारणा करत होते. त्यांचा हिंदू-मुस्लिम ऐक्याचा आग्रह इस्लामिक फुटीरतावादाच्या कठोर वास्तवासमोर एक घातक धोरण ठरला.</p>
+                    <div class="border-t-2 border-dashed border-gray-300 my-6"></div>
+                    <h4 class="text-xl font-bold mb-3 text-[#D72323]">वाल्मिकी मंदिर घटना (सप्टेंबर १९४७)</h4>
+                    <p class="text-lg text-gray-700">दिल्लीतील वाल्मिकी मंदिरात, पाकिस्तानमधून आलेल्या हिंदू निर्वासितांच्या तीव्र विरोधानंतरही गांधीजींनी पोलीस संरक्षणात कुराण पठण सुरू ठेवले. ज्या अत्याचारांना सामोरे जाताना हल्लेखोर याच आयतींचा जयघोष करत होते, त्याच पठणामुळे निर्वासितांच्या जखमांवर मीठ चोळले गेले. ही घटना गांधीजींच्या दुटप्पीपणाचे आणि आपल्याच समाजाच्या दुःखाबद्दलच्या असंवेदनशीलतेचे प्रतीक मानली जाते.</p>
+                </div>
+            </section>
+            
+            <section id="legacy" class="text-center">
+                <h2 class="text-3xl font-bold mb-4">एक अपूर्ण वारसा</h2>
+                <p class="text-lg max-w-3xl mx-auto text-gray-700">फाळणी ही एक 'अपूर्ण अजेंडा' आहे, कारण लोकसंख्येची संपूर्ण अदलाबदल झाली नाही. स्वातंत्र्योत्तर 'धर्मनिरपेक्ष' इतिहासकारांनी हिंदूंवरील अत्याचारांच्या खऱ्या इतिहासाला जाणीवपूर्वक दडपले. हा 'खरा इतिहास' आठवणे, हे राष्ट्रीय आत्म-सन्मानाच्या पुनर्स्थापनेसाठी आणि भविष्यात अशा शोकांतिकेची पुनरावृत्ती टाळण्यासाठी आवश्यक आहे.</p>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-300">
+            <p class="text-sm text-gray-500">हा इन्फोग्राफिक उपलब्ध ऐतिहासिक अहवाल आणि विश्लेषणावर आधारित आहे. याचा उद्देश केवळ माहिती देणे आहे.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const defaultTooltip = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).length > maxLength) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine ? ' ' : '') + word;
+                }
+            });
+            lines.push(currentLine);
+            return lines;
+        };
+        
+        const preludeCtx = document.getElementById('preludeChart').getContext('2d');
+        new Chart(preludeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['प्रत्यक्ष कृती दिन (कलकत्ता)', 'नोआखली दंगल'].map(wrapLabel),
+                datasets: [{
+                    label: 'अंदाजित मृत्यू/पीडित',
+                    data: [4000, 5000], 
+                    backgroundColor: ['#D72323', '#FF5733'],
+                    borderColor: ['#B81D1D', '#D94A28'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...defaultTooltip,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltip.plugins,
+                    title: {
+                        display: true,
+                        text: '१९४६ मधील प्रमुख हिंसाचार घटना',
+                        font: { size: 16, family: "'Tiro Devanagari Marathi', serif" },
+                        color: '#1E0A0A'
+                    },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'अंदाजित संख्या' }
+                    }
+                }
+            }
+        });
+
+        const massacresCtx = document.getElementById('massacresChart').getContext('2d');
+        new Chart(massacresCtx, {
+            type: 'bar',
+            data: {
+                labels: ['रावळपिंडी विभाग', 'शेखूपुरा', 'गुजरानवाला', 'कराची (१९४८)'].map(wrapLabel),
+                datasets: [{
+                    label: 'हिंसाचाराची तीव्रता (गुणात्मक)',
+                    data: [90, 80, 75, 60],
+                    backgroundColor: ['#3E3636', '#615555', '#847575', '#A89595'],
+                    borderColor: '#1E0A0A',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...defaultTooltip,
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltip.plugins,
+                    title: {
+                        display: true,
+                        text: 'प्रमुख हत्याकांड आणि त्यांची तीव्रता',
+                        font: { size: 16, family: "'Tiro Devanagari Marathi', serif" },
+                        color: '#1E0A0A'
+                    },
+                    legend: { display: false },
+                    tooltip: {
+                        ...defaultTooltip.plugins.tooltip,
+                        callbacks: {
+                             ...defaultTooltip.plugins.tooltip.callbacks,
+                            label: function(context) {
+                                return 'तीव्रता: ' + context.raw;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'तीव्रता निर्देशांक (गुणात्मक)' }
+                    }
+                }
+            }
+        });
+        
+        const womenCtx = document.getElementById('womenChart').getContext('2d');
+        new Chart(womenCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['अपहरण आणि बलात्कार झालेल्या महिला', 'इतर पीडित'],
+                datasets: [{
+                    data: [100000, 200000],
+                    backgroundColor: ['#D72323', '#E5DDCB'],
+                    borderColor: ['#B81D1D', '#D4CBB2'],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                ...defaultTooltip,
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...defaultTooltip.plugins,
+                    title: {
+                        display: true,
+                        text: 'महिलांवरील अत्याचाराची भीषणता',
+                        font: { size: 16, family: "'Tiro Devanagari Marathi', serif" },
+                        color: '#1E0A0A'
+                    },
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
