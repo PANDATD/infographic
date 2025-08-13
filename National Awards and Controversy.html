@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>राष्ट्रीय पुरस्कार आणि वाद: एक इन्फोग्राफिक</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            background-color: #003D6C;
+            color: #FFFFFF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        .tiro-marathi {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 1rem;
+            left: -0.45rem;
+            width: 0.875rem;
+            height: 0.875rem;
+            border-radius: 9999px;
+            background-color: #FF7A00;
+            border: 2px solid #0095FF;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-bold text-white tiro-marathi mb-2">राष्ट्रीय पुरस्कार आणि वाद</h1>
+            <p class="text-lg md:text-xl text-blue-200">पुरस्कार विजेत्या पण वादग्रस्त ठरलेल्या चित्रपटांचा विश्लेषणात्मक आढावा</p>
+        </header>
+
+        <main class="space-y-16 md:space-y-24">
+
+            <section id="timeline">
+                <div class="bg-blue-900/50 rounded-2xl shadow-2xl p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-center mb-2 tiro-marathi text-[#FFBC00]">वादांची कालरेषा</h2>
+                    <p class="text-center text-blue-200 mb-10 max-w-3xl mx-auto">गेल्या काही दशकांत, अनेक राष्ट्रीय पुरस्कार विजेते चित्रपट प्रदर्शनानंतर वादाच्या भोवऱ्यात सापडले. ही कालरेषा अशा काही प्रमुख चित्रपटांचा आणि त्यांच्या प्रदर्शन वर्षांचा मागोवा घेते.</p>
+                    <div class="relative border-l-2 border-blue-500 ml-4 md:ml-0 md:mx-auto md:max-w-3xl">
+                        
+                        <div class="timeline-item mb-10 ml-8">
+                            <h3 class="text-xl font-bold text-orange-400">१९९५</h3>
+                            <p class="text-lg tiro-marathi">बॉम्बे</p>
+                            <p class="text-blue-300 text-sm">हिंदू-मुस्लिम प्रेम आणि मुंबई दंगलीचे चित्रण.</p>
+                        </div>
+
+                        <div class="timeline-item mb-10 ml-8">
+                            <h3 class="text-xl font-bold text-orange-400">२०००</h3>
+                            <p class="text-lg tiro-marathi">हे राम</p>
+                            <p class="text-blue-300 text-sm">फाळणी आणि गांधी हत्येच्या कटाचे चित्रण.</p>
+                        </div>
+                        
+                        <div class="timeline-item mb-10 ml-8">
+                            <h3 class="text-xl font-bold text-orange-400">२००५</h3>
+                            <p class="text-lg tiro-marathi">Parzania</p>
+                            <p class="text-blue-300 text-sm">गुजरात दंगलीवर आधारित कौटुंबिक शोकांतिका.</p>
+                        </div>
+
+                        <div class="timeline-item mb-10 ml-8">
+                            <h3 class="text-xl font-bold text-orange-400">२००७</h3>
+                            <p class="text-lg tiro-marathi">ब्लॅक फ्रायडे</p>
+                            <p class="text-blue-300 text-sm">मुंबई बॉम्बस्फोटावरील तपासकथा.</p>
+                        </div>
+
+                        <div class="timeline-item mb-10 ml-8">
+                            <h3 class="text-xl font-bold text-orange-400">२०१०</h3>
+                            <p class="text-lg tiro-marathi">I Am</p>
+                            <p class="text-blue-300 text-sm">काश्मिरी पंडितांच्या विस्थापनाचे चित्रण.</p>
+                        </div>
+                        
+                        <div class="timeline-item ml-8">
+                            <h3 class="text-xl font-bold text-orange-400">२०१५</h3>
+                            <p class="text-lg tiro-marathi">हैदर</p>
+                            <p class="text-blue-300 text-sm">काश्मीरमधील लष्करी कारवाईवर आधारित वादग्रस्त चित्रपट.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="awards-comparison">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+                    <div class="md:col-span-2">
+                        <h2 class="text-3xl font-bold tiro-marathi text-[#FFBC00] mb-4">पुरस्कारांचे विश्लेषण</h2>
+                        <p class="text-blue-200 leading-relaxed">काही चित्रपटांना अनेक राष्ट्रीय पुरस्कार मिळाले, ज्यामुळे त्यांच्या निर्मितीच्या गुणवत्तेला मान्यता मिळाली. तथापि, याच पुरस्कारांमुळे त्यांच्या कथानकावरील वाद अधिकच वाढले. हा आलेख प्रत्येक चित्रपटाला मिळालेल्या प्रमुख राष्ट्रीय पुरस्कारांची संख्या दर्शवतो, ज्यामुळे त्यांच्या अधिकृत मान्यतेची तुलना करता येते.</p>
+                    </div>
+                    <div class="md:col-span-3 bg-blue-900/50 rounded-2xl shadow-2xl p-6">
+                         <div class="chart-container">
+                            <canvas id="awardsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="themes">
+                <h2 class="text-3xl font-bold text-center mb-2 tiro-marathi text-[#FFBC00]">प्रमुख वादग्रस्त विषय</h2>
+                <p class="text-center text-blue-200 mb-10 max-w-3xl mx-auto">हे चित्रपट विविध संवेदनशील विषयांवर आधारित आहेत, ज्यामुळे समाजात तीव्र चर्चा आणि वाद निर्माण झाले. खाली काही प्रमुख वादग्रस्त विषय आणि संबंधित चित्रपट दिले आहेत.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-blue-900/50 rounded-2xl shadow-2xl p-6 flex flex-col">
+                        <h3 class="text-xl font-bold tiro-marathi text-orange-400 mb-3">সাম্প্রदायिक दंगली आणि हिंसाचार</h3>
+                        <p class="text-blue-300 mb-4 flex-grow">या चित्रपटांनी भारतातील प्रमुख जातीय दंगलींचे चित्रण केले, परंतु अनेकदा ते एकतर्फी आणि पक्षपाती असल्याचा आरोप झाला.</p>
+                        <ul class="list-disc list-inside text-white">
+                            <li class="tiro-marathi">Parzania (गुजरात दंगल)</li>
+                            <li class="tiro-marathi">बॉम्बे (मुंबई दंगल)</li>
+                            <li class="tiro-marathi">ब्लॅक फ्रायडे (मुंबई बॉम्बस्फोट)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-blue-900/50 rounded-2xl shadow-2xl p-6 flex flex-col">
+                        <h3 class="text-xl font-bold tiro-marathi text-orange-400 mb-3">ऐतिहासिक घटना आणि राजकीय भाष्य</h3>
+                        <p class="text-blue-300 mb-4 flex-grow">काही चित्रपटांनी भारताच्या इतिहासातील महत्त्वाच्या घटनांवर भाष्य केले, ज्यात महात्मा गांधींची हत्या आणि फाळणी यांचा समावेश आहे, पण त्यांच्या चित्रणामुळे वाद निर्माण झाले.</p>
+                         <ul class="list-disc list-inside text-white">
+                            <li class="tiro-marathi">हे राम (गांधी हत्या कट)</li>
+                            <li class="tiro-marathi">फायनल सोल्यूशन (गुजरात दंगल)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-blue-900/50 rounded-2xl shadow-2xl p-6 flex flex-col">
+                        <h3 class="text-xl font-bold tiro-marathi text-orange-400 mb-3">काश्मीर आणि लष्करी कारवाई</h3>
+                        <p class="text-blue-300 mb-4 flex-grow">काश्मीरमधील गुंतागुंतीची परिस्थिती, दहशतवाद आणि भारतीय लष्कराच्या भूमिकेचे चित्रण करणारे चित्रपट तीव्र वादाचे कारण ठरले.</p>
+                         <ul class="list-disc list-inside text-white">
+                            <li class="tiro-marathi">I Am (काश्मिरी पंडित)</li>
+                            <li class="tiro-marathi">हैदर (लष्करी कारवाई)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="allegations">
+                 <div class="bg-blue-900/50 rounded-2xl shadow-2xl p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-center mb-2 tiro-marathi text-[#FFBC00]">मुख्य आरोप आणि आक्षेप</h2>
+                    <p class="text-center text-blue-200 mb-10 max-w-3xl mx-auto">या चित्रपटांवर अनेक गंभीर आरोप करण्यात आले, ज्यामुळे त्यांच्या हेतू आणि प्रभावावर प्रश्नचिन्ह निर्माण झाले. खालील आकृती या आरोपांचे स्वरूप स्पष्ट करते.</p>
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-center">
+                        <div class="border-2 border-dashed border-red-400 rounded-lg p-4 w-full md:w-1/4">
+                            <div class="text-5xl mb-2">🎭</div>
+                            <h4 class="font-bold text-lg text-red-300">एकतर्फी कथानक</h4>
+                            <p class="text-sm text-blue-300">घटनेची केवळ एक बाजू दाखवून पक्षपाती दृष्टिकोन मांडल्याचा आरोप.</p>
+                        </div>
+                        <div class="text-2xl text-blue-400 hidden md:block">→</div>
+                        <div class="border-2 border-dashed border-red-400 rounded-lg p-4 w-full md:w-1/4">
+                             <div class="text-5xl mb-2">🕉️</div>
+                            <h4 class="font-bold text-lg text-red-300">नकारात्मक चित्रण</h4>
+                            <p class="text-sm text-blue-300">हिंदू आणि राष्ट्रवादी गटांना नकारात्मक किंवा दंगेखोर दाखवल्याचा आक्षेप.</p>
+                        </div>
+                        <div class="text-2xl text-blue-400 hidden md:block">→</div>
+                        <div class="border-2 border-dashed border-red-400 rounded-lg p-4 w-full md:w-1/4">
+                             <div class="text-5xl mb-2">🛡️</div>
+                            <h4 class="font-bold text-lg text-red-300">प्रणालीवर टीका</h4>
+                            <p class="text-sm text-blue-300">सरकार आणि भारतीय लष्करावर टीका करून त्यांची प्रतिमा मलीन केल्याचा दावा.</p>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 md:mt-24 pt-8 border-t border-blue-700">
+            <p class="text-blue-300 text-sm">&copy; २०२४ - माहिती विश्लेषण आणि व्हिज्युअलायझेशन. सर्व हक्क राखीव.</p>
+            <p class="text-xs text-blue-400 mt-2">हे इन्फोग्राफिक प्रदान केलेल्या माहितीवर आधारित आहे आणि केवळ माहितीच्या उद्देशाने तयार केले आहे.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const awardsData = {
+            labels: ['Parzania', 'बॉम्बे', 'ब्लॅक फ्रायडे', 'I Am', 'हैदर'].map(label => wrapLabel(label, 16)),
+            datasets: [{
+                label: 'मिळालेले राष्ट्रीय पुरस्कार',
+                data: [2, 2, 1, 2, 5],
+                backgroundColor: '#FF7A00',
+                borderColor: '#FFBC00',
+                borderWidth: 2,
+                borderRadius: 5,
+                hoverBackgroundColor: '#FFBC00'
+            }]
+        };
+
+        const awardsConfig = {
+            type: 'bar',
+            data: awardsData,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#FFFFFF',
+                            stepSize: 1
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#FFFFFF'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        };
+
+        window.onload = function() {
+            const awardsCtx = document.getElementById('awardsChart').getContext('2d');
+            new Chart(awardsCtx, awardsConfig);
+        };
+    </script>
+</body>
+</html>
