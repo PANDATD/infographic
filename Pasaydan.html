@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>पसायदान: एक वैश्विक प्रार्थना इन्फोग्राफिक</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            background-color: #FFF8F0;
+        }
+        .tiro-marathi {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .flow-arrow::after {
+            content: '▼';
+            font-size: 2rem;
+            color: #FF7F50;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        @media (min-width: 768px) {
+            .flow-arrow::after {
+                content: '►';
+                margin-top: 0;
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-[#D9534F] tiro-marathi">पसायदान</h1>
+            <p class="text-xl md:text-2xl text-[#FF7F50] mt-2 tiro-marathi">संत ज्ञानेश्वरांची वैश्विक कल्याणासाठी एक कालातीत प्रार्थना</p>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                <p class="text-2xl text-[#D9534F] tiro-marathi">रचना काळ</p>
+                <p class="text-8xl font-extrabold text-[#FFA07A]">१३<span class="text-5xl">वे</span></p>
+                <p class="text-2xl text-[#D9534F] tiro-marathi">शतक</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                <p class="text-2xl text-[#D9534F] tiro-marathi">स्वरूप</p>
+                <p class="text-8xl font-extrabold text-[#FFA07A]">९</p>
+                <p class="text-2xl text-[#D9534F] tiro-marathi">ओव्या</p>
+            </div>
+        </section>
+        
+        <section id="philosophy" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#D9534F] mb-2 tiro-marathi">पसायदानाचा गाभा: विनाश नव्हे, परिवर्तन</h2>
+                <p class="text-center text-lg text-gray-600 mb-8 tiro-marathi">पसायदानाचे अद्वितीयत्व दुष्टांच्या नाशाची नव्हे, तर त्यांच्यातील दुष्ट प्रवृत्तीच्या परिवर्तनाची प्रार्थना करण्यात आहे.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="prayerFocusChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-[#D9534F] tiro-marathi">`जे खळांची व्यंकटी सांडो`</h3>
+                        <p class="mt-2 text-gray-700 tiro-marathi">ही प्रार्थना 'खळाचा' (दुष्ट व्यक्तीचा) नाश न मागता, त्याच्यातील 'व्यंकटी' (वाईट प्रवृत्ती) नाहीशी व्हावी अशी मागणी करते. हा अद्वैत वेदांतावर आधारित एक करुणामय दृष्टिकोन आहे, जिथे प्रत्येक जीवात ईश्वरी अंश पाहिला जातो. ही विनाशाची नव्हे, तर हृदय परिवर्तनाची प्रार्थना आहे.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="harmony-path" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#D9534F] mb-8 tiro-marathi">सामाजिक सलोख्याचा त्रिसूत्री मार्ग</h2>
+            <div class="flex flex-col md:flex-row justify-around items-center text-center">
+                <div class="bg-white rounded-2xl shadow-lg p-6 w-64 mb-4 md:mb-0">
+                    <p class="text-5xl mb-2">१</p>
+                    <h3 class="text-xl font-bold text-[#D9534F] tiro-marathi">आंतरिक शुद्धी</h3>
+                    <p class="text-gray-600 tiro-marathi mt-1">`व्यंकटी सांडो`</p>
+                </div>
+                <div class="flow-arrow flex items-center justify-center"></div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 w-64 mb-4 md:mb-0">
+                    <p class="text-5xl mb-2">२</p>
+                    <h3 class="text-xl font-bold text-[#D9534F] tiro-marathi">सकारात्मक कृती</h3>
+                    <p class="text-gray-600 tiro-marathi mt-1">`तया सत्कर्मी रती वाढो`</p>
+                </div>
+                <div class="flow-arrow flex items-center justify-center"></div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 w-64">
+                    <p class="text-5xl mb-2">३</p>
+                    <h3 class="text-xl font-bold text-[#D9534F] tiro-marathi">वैश्विक मैत्री</h3>
+                    <p class="text-gray-600 tiro-marathi mt-1">`मैत्र जीवांचे`</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#D9534F] mb-2 tiro-marathi">जागतिक प्रार्थनांशी तुलना</h2>
+                <p class="text-center text-lg text-gray-600 mb-8 tiro-marathi">विविध धर्मांतील वैश्विक प्रार्थनांच्या मूळ दृष्टिकोनाची ही तुलना आहे.</p>
+                <div class="chart-container" style="max-width: 800px; height: 400px;">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+                 <p class="text-center text-sm text-gray-500 mt-4 tiro-marathi">पसायदानाचा 'परिवर्तनकारी' दृष्टिकोन त्याला अद्वितीय बनवतो, जिथे वाईटाचे चांगल्यात रूपांतर करण्याची मागणी आहे.</p>
+            </div>
+        </section>
+
+        <section id="ideal-society" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#D9534F] mb-8 tiro-marathi">आदर्श समाजाची संकल्पना: 'ईश्वरनिष्ठांची मांदियाळी'</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+                <div class="bg-white rounded-2xl shadow-lg p-4">
+                    <span class="text-5xl">🌳</span>
+                    <p class="font-semibold text-[#D9534F] mt-2 tiro-marathi">कल्पतरूंचे आरव</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-4">
+                    <span class="text-5xl">💎</span>
+                    <p class="font-semibold text-[#D9534F] mt-2 tiro-marathi">चिंतामणींचे गाव</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-4">
+                    <span class="text-5xl">🌊</span>
+                    <p class="font-semibold text-[#D9534F] mt-2 tiro-marathi">अमृताचे अर्णव</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-4">
+                    <span class="text-5xl">🌙</span>
+                    <p class="font-semibold text-[#D9534F] mt-2 tiro-marathi">निष्कलंक चंद्र</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-4">
+                    <span class="text-5xl">☀️</span>
+                    <p class="font-semibold text-[#D9534F] mt-2 tiro-marathi">तापहीन सूर्य</p>
+                </div>
+            </div>
+            <p class="text-center text-lg text-gray-600 mt-6 tiro-marathi">ज्ञानेश्वरांनी सज्जनांचे वर्णन अशा रूपात केले आहे जे समाजाला केवळ देतात, प्रकाश देतात आणि शीतलता देतात.</p>
+        </section>
+
+        <footer class="text-center pt-8 border-t border-[#FFA07A]">
+            <h3 class="text-2xl font-bold text-[#D9534F] tiro-marathi">एक जिवंत परंपरा</h3>
+            <p class="text-gray-600 mt-2 tiro-marathi">पसायदान केवळ एक ऐतिहासिक काव्य नाही, तर शाळा, वारकरी संप्रदाय आणि जागतिक मंचांवर आजही गायली जाणारी एक जिवंत प्रार्थना आहे.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxWidth) => {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            });
+            lines.push(currentLine);
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const prayerFocusCtx = document.getElementById('prayerFocusChart').getContext('2d');
+        new Chart(prayerFocusCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['संपूर्ण विश्वासाठी', 'स्वतःसाठी'],
+                datasets: [{
+                    label: 'प्रार्थनेचा उद्देश',
+                    data: [95, 5],
+                    backgroundColor: ['#FF7F50', '#FFDAB9'],
+                    borderColor: ['#D9534F', '#FFA07A'],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const comparisonCtx = document.getElementById('comparisonChart').getContext('2d');
+        const comparisonLabels = ['पसायदान (हिंदू)', 'सरबत दा भला (शीख)', 'मेत्ता भावना (बौद्ध)', 'अगापे प्रेम (ख्रिस्ती)', 'रब्बिल आलमीन (इस्लाम)'];
+        new Chart(comparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: comparisonLabels.map(label => wrapLabel(label, 16)),
+                datasets: [{
+                    label: 'दृष्टिकोन',
+                    data: [100, 90, 85, 80, 75], 
+                    backgroundColor: ['#D9534F', '#FF6347', '#FF7F50', '#FFA07A', '#FFDAB9'],
+                    borderColor: '#D9534F',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                           display: false
+                        }
+                    },
+                    y: {
+                         ticks: {
+                            font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = '';
+                                if (context.parsed.x !== null) {
+                                    const value = context.dataset.data[context.dataIndex];
+                                    if(value === 100) label = 'दृष्टिकोन: परिवर्तनकारी';
+                                    else if(value === 90) label = 'दृष्टिकोन: सर्वसमावेशक';
+                                    else if(value === 85) label = 'दृष्टिकोन: करुणामय';
+                                    else if(value === 80) label = 'दृष्टिकोन: क्षमाशील';
+                                    else if(value === 75) label = 'दृष्टिकोन: संरक्षण व मार्गदर्शन';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
