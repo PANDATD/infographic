@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>स्वातंत्र्य संग्रामातील मंदिरांची भूमिका: एक माहितीपट</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #F97316; /* Orange-500 */
+            border: 4px solid #FFF7ED; /* Orange-50 */
+            top: 20px;
+            left: -10px;
+            z-index: 1;
+        }
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #FB923C; /* Orange-400 */
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+        @media (min-width: 768px) {
+            .timeline-container::before {
+                left: 50%;
+                margin-left: -2px;
+            }
+            .timeline-item {
+                padding: 1rem 3rem;
+                width: 50%;
+            }
+            .timeline-item.left {
+                left: 0;
+            }
+            .timeline-item.right {
+                left: 50%;
+            }
+            .timeline-item.right::before {
+                left: -10px;
+            }
+            .timeline-item.left::before {
+                right: -10px;
+                left: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#FFF7ED] text-gray-800">
+
+    <header class="bg-[#FB923C] text-white text-center p-8 md:p-12 shadow-lg">
+        <h1 class="text-4xl md:text-6xl font-black mb-4">भारताच्या स्वातंत्र्य संग्रामाचे अज्ञात आधारस्तंभ</h1>
+        <p class="text-xl md:text-2xl font-bold">मंदिरांची क्रांतिकारी भूमिका</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section class="text-center bg-white p-6 rounded-lg shadow-md mb-12">
+            <h2 class="text-3xl font-bold text-[#F97316] mb-4">मंदिरे केवळ प्रार्थनास्थळे नव्हती...</h2>
+            <p class="text-lg mb-6 max-w-3xl mx-auto">भारतीय स्वातंत्र्य संग्रामात मंदिरे ही केवळ धार्मिक केंद्रे नव्हती, तर ती प्रतिकाराची शक्तिशाली आणि बहुआयामी केंद्रे होती. त्यांचा वाढता प्रभाव इतका होता की, ब्रिटिश प्रशासनाला मंदिरांच्या व्यवस्थापनावर नियंत्रण मिळवण्यासाठी <span class="font-bold text-[#EA580C]">१९२५ मध्ये 'मद्रास धार्मिक आणि धर्मादाय व्यवस्थापन कायदा'</span> लागू करावा लागला. यावरूनच मंदिरांच्या योगदानाचे महत्त्व सिद्ध होते.</p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#F97316]">मंदिरांची बहुआयामी भूमिका</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">🛡️</div>
+                    <h3 class="text-xl font-bold mb-2">सामरिक केंद्रे</h3>
+                    <p>क्रांतिकारकांसाठी सुरक्षित आश्रयस्थान आणि गुप्त लष्करी योजना आखण्याची ठिकाणे.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">💡</div>
+                    <h3 class="text-xl font-bold mb-2">वैचारिक आणि प्रेरणा केंद्रे</h3>
+                    <p>राष्ट्रवादी भाषणे, नाटके आणि कीर्तनांद्वारे लोकांमध्ये स्वातंत्र्याची ज्योत पेटवणारी केंद्रे.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">✊</div>
+                    <h3 class="text-xl font-bold mb-2">प्रत्यक्ष प्रतिकार आणि रसद पुरवठा</h3>
+                    <p>शस्त्रे लपवणे, आर्थिक मदत पुरवणे आणि सशस्त्र संघर्षाला थेट पाठिंबा देणे.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">🔥</div>
+                    <h3 class="text-xl font-bold mb-2">जन-उठावाचे स्फुलिंग</h3>
+                    <p>एखाद्या घटनेतून मोठ्या क्रांतीची किंवा जन-उठावाची ठिणगी टाकणारी केंद्रे.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#F97316]">योगदानाचे वर्गीकरण</h2>
+                <p class="text-center text-gray-600 mb-4">अभ्यासलेल्या १५ मंदिरांपैकी बहुतांश मंदिरांनी क्रांतिकारकांना आश्रय देण्याची आणि सामरिक केंद्र म्हणून महत्त्वपूर्ण भूमिका बजावली.</p>
+                <div class="chart-container h-[300px] md:h-auto">
+                    <canvas id="rolesDonutChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#F97316]">क्रांतिकारी मंदिरांचे भौगोलिक वितरण</h2>
+                <p class="text-center text-gray-600 mb-4">स्वातंत्र्य संग्रामात महत्त्वाची भूमिका बजावलेली बहुतांश मंदिरे उत्तर प्रदेश आणि बिहार या क्रांतिकारी चळवळींच्या बालेकिल्ल्यात होती.</p>
+                <div class="chart-container h-[300px] md:h-auto">
+                    <canvas id="geoBarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#F97316]">प्रमुख घटनांचा कालक्रम</h2>
+            <div class="relative timeline-container mx-auto">
+                <div class="timeline-item relative mb-8 pl-8 md:pl-0">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <span class="font-bold text-lg text-[#EA580C]">१८ वे - १९ वे शतक</span>
+                        <h3 class="text-xl font-bold mt-2">सारसबाग मंदिर, पुणे</h3>
+                        <p class="text-gray-700 mt-2">मराठा योद्ध्यांसाठी गुप्त लष्करी बैठकांचे केंद्र म्हणून उदयास आले.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative mb-8 pl-8 md:pl-0 md:right">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <span class="font-bold text-lg text-[#EA580C]">१० मे १८५७</span>
+                        <h3 class="text-xl font-bold mt-2">औघड़नाथ मंदिर, मेरठ</h3>
+                        <p class="text-gray-700 mt-2">धार्मिक अपमानाच्या घटनेतून १८५७ च्या स्वातंत्र्ययुद्धाची पहिली ठिणगी पडली.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative mb-8 pl-8 md:pl-0">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <span class="font-bold text-lg text-[#EA580C]">१९२९</span>
+                        <h3 class="text-xl font-bold mt-2">आर्य समाज मंदिर, मैनपुरी</h3>
+                        <p class="text-gray-700 mt-2">महात्मा गांधींनी भेट देऊन क्रांतिकारकांची बैठक घेतली.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative mb-8 pl-8 md:pl-0 md:right">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <span class="font-bold text-lg text-[#EA580C]">१३ ऑगस्ट १९४२</span>
+                        <h3 class="text-xl font-bold mt-2">तमोली मंदिर, कन्नौज</h3>
+                        <p class="text-gray-700 mt-2">'भारत छोडो' आंदोलनाचा शंखनाद याच मंदिरातून करण्यात आला.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#F97316]">प्रमुख १५ मंदिरे आणि त्यांचे योगदान</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">औघड़नाथ शिव मंदिर</h3><p class="text-sm text-gray-500">मेरठ, उत्तर प्रदेश</p>
+                    <p class="mt-2">१८५७ च्या क्रांतीची ठिणगी. सैनिकांच्या धार्मिक भावना दुखावल्याने क्रांतीचा उद्रेक.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">सारसबाग मंदिर</h3><p class="text-sm text-gray-500">पुणे, महाराष्ट्र</p>
+                    <p class="mt-2">मराठा योद्ध्यांचे गुप्त लष्करी बैठक केंद्र. महादजी शिंदे आणि नाना फडणवीस येथे योजना आखत.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">तरकुलहा देवी मंदिर</h3><p class="text-sm text-gray-500">गोरखपूर, उत्तर प्रदेश</p>
+                    <p class="mt-2">बाबू बंधू सिंग यांचे केंद्र. ते इंग्रजांचे शिर देवीला अर्पण करत.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">तमोली मंदिर</h3><p class="text-sm text-gray-500">कन्नौज, उत्तर प्रदेश</p>
+                    <p class="mt-2">१९४२ च्या 'भारत छोडो' आंदोलनाचा प्रारंभ येथून झाला.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">नगला मंदिर</h3><p class="text-sm text-gray-500">बदायूँ, उत्तर प्रदेश</p>
+                    <p class="mt-2">कीर्तनाच्या आडून क्रांतिकारकांच्या गुप्त बैठकांचे आयोजन.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">मोदी मंदिर</h3><p class="text-sm text-gray-500">बांदा, उत्तर प्रदेश</p>
+                    <p class="mt-2">नेताजी सुभाषचंद्र बोस यांचे गुप्त आश्रयस्थान आणि बैठक केंद्र.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">फुलवारी आश्रम</h3><p class="text-sm text-gray-500">सहारनपूर, उत्तर प्रदेश</p>
+                    <p class="mt-2">भगतसिंग आणि इतर अनेक मोठ्या क्रांतिकारकांचे आश्रयस्थान.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">आर्य समाज मंदिर</h3><p class="text-sm text-gray-500">मैनपुरी, उत्तर प्रदेश</p>
+                    <p class="mt-2">गांधीजींची बैठक; बिस्मिल व अशफाक यांचे केंद्र.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">काँग्रेस मंदिर</h3><p class="text-sm text-gray-500">चंपारण, बिहार</p>
+                    <p class="mt-2">स्वातंत्र्यसैनिकांसाठी गुप्त तळघर आणि सुरक्षित आश्रयस्थान.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">बोधगया मठ</h3><p class="text-sm text-gray-500">बोधगया, बिहार</p>
+                    <p class="mt-2">१८५७ च्या क्रांतिकारकांना भोजन आणि रसद पुरवण्याचे महत्त्वाचे केंद्र.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">श्री बांके बिहारी मंदिर</h3><p class="text-sm text-gray-500">हमीरपुर, उत्तर प्रदेश</p>
+                    <p class="mt-2">भूमिगत राष्ट्रवादी वृत्तपत्र 'बुंदेलखंड केसरी'चे प्रकाशन केंद्र.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">राम जानकी मंदिर</h3><p class="text-sm text-gray-500">बुलंदशहर, उत्तर प्रदेश</p>
+                    <p class="mt-2">क्रांतिकारकांसाठी आश्रय आणि माहिती देवाणघेवाणीचे केंद्र.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">भारेश्वर मंदिर</h3><p class="text-sm text-gray-500">इटावा, उत्तर प्रदेश</p>
+                    <p class="mt-2">क्रांतिकारकांचे प्रशिक्षण केंद्र; मधमाश्यांच्या हल्ल्यामुळे दैवी संरक्षणाचे प्रतीक.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">शिव मंदिर</h3><p class="text-sm text-gray-500">छपरा, बिहार</p>
+                    <p class="mt-2">चळवळीसाठी बनावट नोटा छापण्याचे अत्यंत गुप्त केंद्र.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F97316]">
+                    <h3 class="text-xl font-bold">गोपाल मंदिर</h3><p class="text-sm text-gray-500">इंदूर, मध्य प्रदेश</p>
+                    <p class="mt-2">राष्ट्रवादी भाषणे, नाटके आणि सामाजिक कार्याचे आयोजन केंद्र.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#FB923C] text-white text-center p-6 mt-12">
+        <p>हा माहितीपट 'सवातंत्रता संग्राम में महत्वपूर्ण भूमिका निभाने वाले प्रमुख १५ मंदिर' या अहवालावर आधारित आहे.</p>
+    </footer>
+
+    <script>
+        function wrapLabel(label) {
+            const maxLength = 16;
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLength) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const rolesData = {
+            labels: [
+                'सामरिक केंद्रे',
+                'वैचारिक आणि प्रेरणा केंद्रे',
+                'प्रत्यक्ष प्रतिकार आणि रसद पुरवठा',
+                'जन-उठावाचे स्फुलिंग'
+            ].map(wrapLabel),
+            datasets: [{
+                label: 'मंदिरांची भूमिका',
+                data: [7, 3, 3, 2],
+                backgroundColor: [
+                    '#EA580C', // Orange-600
+                    '#F97316', // Orange-500
+                    '#FB923C', // Orange-400
+                    '#FDBA74'  // Orange-300
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const rolesDonutChartCtx = document.getElementById('rolesDonutChart').getContext('2d');
+        new Chart(rolesDonutChartCtx, {
+            type: 'doughnut',
+            data: rolesData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                           font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                           }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const geoData = {
+            labels: ['उत्तर प्रदेश', 'बिहार', 'महाराष्ट्र', 'मध्य प्रदेश'],
+            datasets: [{
+                label: 'मंदिरांची संख्या',
+                data: [11, 3, 1, 1],
+                backgroundColor: '#F97316', // Orange-500
+                borderColor: '#FDBA74',     // Orange-300
+                borderWidth: 1
+            }]
+        };
+
+        const geoBarChartCtx = document.getElementById('geoBarChart').getContext('2d');
+        new Chart(geoBarChartCtx, {
+            type: 'bar',
+            data: geoData,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    },
+                    y: {
+                         ticks: {
+                           font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                           }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
