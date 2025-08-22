@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मुंबईचा श्वास कोंडतोय: एक بصरी अहवाल</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans', 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #FF5F00, #F7B500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-gray-900">मुंबईचा श्वास कोंडतोय</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">ठाकरे पर्वातील प्रशासकीय अनास्था आणि भ्रष्टाचाराचा पंचनामा</p>
+        </header>
+
+        <section class="bg-white rounded-2xl shadow-xl p-6 md:p-10 mb-12 border border-red-200">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-red-700">१९ ऑगस्ट २०२५: एका आपत्तीचे मूळ भ्रष्ट कारभारात</h2>
+            <div class="text-center">
+                <p class="text-lg md:text-2xl font-semibold italic text-gray-700 border-l-4 border-red-500 pl-4 py-2 max-w-2xl mx-auto">
+                    “इतकी गर्दी होती की लोकांना आपल्या कुटुंबीयांना फोन करण्यासाठी बॅग उघडता येत नव्हती. यासाठीही पावसालाच दोष देणार का? अकार्यक्षम सरकार, निरुपयोगी पायाभूत सुविधा.”
+                </p>
+            </div>
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-red-50 p-6 rounded-lg">
+                    <p class="text-5xl font-black gradient-text">~८००</p>
+                    <p class="mt-2 text-lg font-semibold text-gray-700">प्रवासी अडकले</p>
+                </div>
+                <div class="bg-red-50 p-6 rounded-lg">
+                    <p class="text-5xl font-black gradient-text">४+</p>
+                    <p class="mt-2 text-lg font-semibold text-gray-700">तास बचावकार्य</p>
+                </div>
+                <div class="bg-red-50 p-6 rounded-lg sm:col-span-2 md:col-span-1">
+                    <p class="text-5xl font-black gradient-text">०</p>
+                    <p class="mt-2 text-lg font-semibold text-gray-700">आपत्कालीन नियोजन</p>
+                </div>
+            </div>
+            <p class="mt-8 text-center text-gray-600 max-w-3xl mx-auto">ही केवळ एक तांत्रिक अडचण नव्हती, तर अनेक वर्षांच्या नियोजनशून्य कारभाराचा आणि भ्रष्टाचाराचा हा कडेलोट होता. हा अहवाल त्याच अपयशाची तीन प्रमुख कारणे उघड करतो.</p>
+        </section>
+
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center text-purple-800">भाग १: मोनोरेल - दिखाऊपणाचे महागडे स्मारक</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">आधुनिकतेचे स्वप्न दाखवून मुंबईकरांच्या माथी मारलेला हा प्रकल्प अपयशी का ठरला? आकडेवारीच सर्व काही सांगते.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-purple-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-xl mb-4 text-center">दैनिक प्रवासी: अपेक्षा विरुद्ध वास्तव</h4>
+                        <div class="chart-container h-64 md:h-80">
+                            <canvas id="ridershipChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-center text-sm text-gray-600">अपेक्षित प्रवासीसंख्येच्या १०% पेक्षाही कमी प्रवासी प्रत्यक्षात प्रवास करतात, ज्यामुळे हा प्रकल्प आर्थिकदृष्ट्या पूर्णपणे अयशस्वी ठरला आहे.</p>
+                    </div>
+                    <div class="space-y-6">
+                         <div class="bg-purple-50 p-6 rounded-lg text-center">
+                            <p class="text-gray-700 text-lg font-semibold">वार्षिक तोटा</p>
+                            <p class="text-5xl font-black gradient-text">₹५५०+ कोटी</p>
+                            <p class="mt-2 text-sm text-gray-600">देखभाल आणि चालवण्याचा खर्च उत्पन्नापेक्षा खूप जास्त आहे.</p>
+                        </div>
+                        <div class="bg-purple-50 p-6 rounded-lg text-center">
+                            <p class="text-gray-700 text-lg font-semibold">प्रकल्पाचा वाढलेला खर्च</p>
+                            <p class="text-5xl font-black gradient-text">₹३०००+ कोटी</p>
+                             <p class="mt-2 text-sm text-gray-600">मूळ ₹२४६० कोटींवरून खर्च प्रचंड वाढला.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center text-orange-800">भाग २: BMC - भ्रष्टाचाराचे कुरण</h3>
+                 <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">ठाकरे सरकारच्या काळात मुंबई महानगरपालिका कशी भ्रष्टाचाराने पोखरली गेली, हे कॅगचा अहवाल आणि विविध चौकशांमधून समोर आले आहे.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-orange-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-xl mb-4 text-center">'बॉडी बॅग' खरेदी घोटाळा</h4>
+                        <div class="chart-container h-64 md:h-80">
+                            <canvas id="bodyBagChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-center text-sm text-gray-600">कोविड महामारीच्या काळात ₹१,५०० ची बॉडी बॅग तब्बल ₹६,७०० ला खरेदी करण्यात आली. हा भ्रष्टाचाराचा निर्लज्ज कळस होता.</p>
+                    </div>
+                     <div class="bg-orange-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-xl mb-4 text-center">कॅगचा ठपका: पारदर्शकतेचा अभाव</h4>
+                        <div class="text-center py-8">
+                            <p class="text-gray-700 text-lg font-semibold">अनियमितता आढळलेला खर्च</p>
+                            <p class="text-6xl font-black gradient-text">₹१२,०२४</p>
+                            <p class="text-3xl font-bold text-gray-600">कोटी</p>
+                        </div>
+                        <p class="mt-4 text-center text-sm text-gray-600">कॅगच्या विशेष ऑडिटमध्ये अनेक कामे निविदांशिवाय किंवा करारांशिवाय दिल्याचे उघड झाले, जे थेट भ्रष्टाचाराकडे निर्देश करतात.</p>
+                    </div>
+                </div>
+                 <div class="mt-8 bg-orange-50 p-6 rounded-lg">
+                    <h4 class="font-bold text-xl mb-4 text-center">मिठी नदी गाळ काढणे: भ्रष्टाचाराचा प्रवाह</h4>
+                    <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                        <div class="p-4 rounded-lg bg-white shadow-md w-full md:w-1/4">
+                            <p class="text-4xl">📄</p>
+                            <p class="font-bold mt-2">बनावट रेकॉर्ड</p>
+                            <p class="text-sm">गाळ वाहून नेण्यासाठी दुचाकी आणि रिक्षांचे नंबर वापरले.</p>
+                        </div>
+                        <div class="text-4xl font-bold text-orange-500 transform rotate-90 md:rotate-0">→</div>
+                        <div class="p-4 rounded-lg bg-white shadow-md w-full md:w-1/4">
+                            <p class="text-4xl">🏨</p>
+                            <p class="font-bold mt-2">अपात्र कंत्राटदार</p>
+                            <p class="text-sm">केटरिंग आणि हॉटेल व्यवसायातील कंपन्यांना कंत्राटे दिली.</p>
+                        </div>
+                        <div class="text-4xl font-bold text-orange-500 transform rotate-90 md:rotate-0">→</div>
+                         <div class="p-4 rounded-lg bg-white shadow-md w-full md:w-1/4">
+                            <p class="text-4xl">💸</p>
+                            <p class="font-bold mt-2">पैशाचा अपव्यय</p>
+                            <p class="text-sm">करोडो रुपये खर्चूनही नदीची स्थिती 'जैसे थे'.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center text-blue-800">भाग ३: तुंबलेली मुंबई - गिळलेला पैसा</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">पाणी उपसा पंपांवर हजारो कोटी खर्च करूनही मुंबई पाण्याखाली का जाते? कारण योजनांची क्षमता आणि पावसाचे वास्तव यात प्रचंड तफावत आहे.</p>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                    <div class="md:col-span-3 bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-xl mb-4 text-center">पर्जन्य जलवाहिनी क्षमता विरुद्ध पाऊस</h4>
+                        <div class="chart-container h-80">
+                            <canvas id="drainageChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="md:col-span-2 space-y-6 flex flex-col justify-center">
+                        <div class="bg-blue-50 p-6 rounded-lg text-center">
+                            <p class="text-gray-700 text-lg font-semibold">'ब्रिमस्टोवॅड' प्रकल्पावरील खर्च</p>
+                            <p class="text-5xl font-black gradient-text">₹३९००+ कोटी</p>
+                            <p class="mt-2 text-sm text-gray-600">एवढा प्रचंड खर्च करूनही मुंबईकरांना दिलासा नाही.</p>
+                        </div>
+                        <div class="bg-red-100 border border-red-300 p-6 rounded-lg text-center">
+                            <p class="text-red-800 text-lg font-semibold">नियोजनशून्य कारभार</p>
+                            <p class="mt-2 text-sm text-red-700">हवामान बदलाचा विचार न करता केवळ महागड्या योजनांवर भर दिला गेला, कारण त्यातच भ्रष्टाचाराची मोठी संधी होती.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="mt-12 text-center bg-gray-800 text-white p-8 rounded-2xl shadow-inner">
+            <h2 class="text-3xl font-bold mb-4">समारोप: जबाबदारी कोणाची?</h2>
+            <p class="max-w-3xl mx-auto text-gray-300">मोनोरेलची दुर्घटना, BMC मधील भ्रष्टाचार आणि पावसाळ्यातील शहराची दुरवस्था, या तिन्ही समस्या एकाच आजाराची लक्षणे आहेत - आणि तो आजार म्हणजे ठाकरे सरकारचा भ्रष्ट आणि अकार्यक्षम कारभार. तुटलेल्या पायाभूत सुविधा आणि तुटलेल्या विश्वासाची किंमत आजही सामान्य मुंबईकरच चुकवत आहे.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+        
+        const palette = {
+            orange: '#FF5F00',
+            yellow: '#F7B500',
+            purple: '#5D00F7',
+            black: '#0B0B0B',
+            blue: '#0077B6',
+            lightBlue: '#ADE8F4',
+            red: '#D00000',
+            lightRed: '#FFBABA'
+        };
+
+        const ridershipCtx = document.getElementById('ridershipChart').getContext('2d');
+        new Chart(ridershipCtx, {
+            type: 'bar',
+            data: {
+                labels: ['अपेक्षित प्रवासी', 'वास्तविक प्रवासी'],
+                datasets: [{
+                    label: 'दैनिक प्रवासी संख्या',
+                    data: [100000, 17250],
+                    backgroundColor: [palette.purple, palette.yellow],
+                    borderColor: [palette.purple, palette.yellow],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...tooltipCallback,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value / 1000 + 'k';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...tooltipCallback.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        const bodyBagCtx = document.getElementById('bodyBagChart').getContext('2d');
+        new Chart(bodyBagCtx, {
+            type: 'bar',
+            data: {
+                labels: ['वास्तविक किंमत (अंदाजे)', 'BMC खरेदी किंमत'],
+                datasets: [{
+                    label: 'किंमत (₹ मध्ये)',
+                    data: [1500, 6700],
+                    backgroundColor: [palette.yellow, palette.orange],
+                    borderColor: [palette.yellow, palette.orange],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...tooltipCallback,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    ...tooltipCallback.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+        
+        const drainageCtx = document.getElementById('drainageChart').getContext('2d');
+        new Chart(drainageCtx, {
+            type: 'bar',
+            data: {
+                labels: ['जुन्या वाहिन्यांची क्षमता', 'नवीन पंपांची क्षमता', wrapLabel('वास्तविक पाऊस (कधीकधी)')],
+                datasets: [{
+                    label: 'पाऊस हाताळण्याची क्षमता (मिमी/तास)',
+                    data: [25, 60, 175],
+                    backgroundColor: [palette.lightBlue, palette.blue, palette.red],
+                    borderColor: [palette.lightBlue, palette.blue, palette.red],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...tooltipCallback,
+                maintainAspectRatio: false,
+                plugins: {
+                     ...tooltipCallback.plugins,
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'मिमी प्रति तास'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
