@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गणेशोत्सवाची गाथा: क्रांतीपासून ते सांस्कृतिक पुनरुज्जीवनापर्यंत</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+Devanagari:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+            background-color: #FDF8E1; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .brand-text { color: #FF9933; }
+        .brand-bg { background-color: #FFDDC1; }
+        .brand-accent-bg { background-color: #C1E1C1; }
+        .brand-accent-text { color: #138808; }
+        .brand-secondary-bg { background-color: #FFFACD; }
+        .brand-secondary-text { color: #FFE66D; }
+        .brand-dark-text { color: #1A535C; }
+        .brand-card-bg { background-color: #FFFFFF; }
+    </style>
+</head>
+<body class="brand-dark-text">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black brand-text uppercase tracking-wider">गणेशोत्सव</h1>
+            <p class="text-xl md:text-2xl mt-2 font-bold brand-dark-text">श्रद्धा, स्वातंत्र्य आणि संस्कृतीचा एक प्रवास</p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section class="brand-card-bg rounded-lg shadow-xl p-6 md:p-8 text-center">
+                <p class="text-lg font-bold brand-accent-text">एकात्मतेचा वारसा</p>
+                <p class="text-7xl md:text-9xl font-black my-4 brand-text">१३०+ वर्षे</p>
+                <p class="text-lg font-bold brand-dark-text">भारताच्या स्वातंत्र्यासाठी प्रज्वलित झालेल्या सार्वजनिक उत्सवाची वर्षे</p>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-600">जो उत्सव एका खाजगी, घरगुती विधीपासून सुरू झाला, तो स्वातंत्र्यसैनिक लोकमान्य टिळकांनी १८९३ मध्ये ब्रिटिश राजवटीविरुद्ध लोकांना एकत्र आणण्यासाठी एका शक्तिशाली सार्वजनिक चळवळीत रूपांतरित केला. यातून धार्मिक उत्सवाच्या नावाखाली सार्वजनिक सभांवरील वसाहतवादी निर्बंधांना बगल देण्यात आली.</p>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="brand-card-bg rounded-lg shadow-xl p-6 md:p-8">
+                    <h2 class="text-2xl font-black brand-text mb-4">खाजगी पूजेपासून ते सार्वजनिक उठावापर्यंत</h2>
+                    <p class="text-gray-600 mb-6">गणेशोत्सवाची उत्क्रांती भारताच्या इतिहासातील एक महत्त्वपूर्ण क्षण दर्शवते. लोकमान्य टिळकांच्या दूरदृष्टीने एका धार्मिक कार्यक्रमाला राजकीय जागृती आणि सामाजिक एकात्मतेसाठी एका शक्तिशाली व्यासपीठात बदलले, हा वारसा आजही उत्सवाला आकार देत आहे.</p>
+                    <div class="relative pl-6 border-l-4 border-dashed border-green-700">
+                        <div class="mb-8">
+                            <div class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5 mt-1.5"></div>
+                            <h3 class="font-bold text-lg brand-dark-text">१८९२ पूर्वी: घरगुती देवता</h3>
+                            <p class="text-gray-600">गणेशोत्सव हा एक शांत, खाजगी कौटुंबिक सोहळा होता, जो घरे आणि मंदिरांपुरता मर्यादित होता.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5 mt-1.5"></div>
+                            <h3 class="font-bold text-lg brand-dark-text">१८९२: पहिली ठिणगी</h3>
+                            <p class="text-gray-600">श्रीमंत भाऊसाहेब रंगारी यांनी पुण्यात पहिल्या सार्वजनिक मूर्तीची स्थापना केली, ज्यात गणेश एका राक्षसाचा वध करत आहे - परकीय राजवटीविरुद्ध एक प्रतिकात्मक निषेध.</p>
+                        </div>
+                        <div>
+                            <div class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5 mt-1.5"></div>
+                            <h3 class="font-bold text-lg brand-dark-text">१८९३: लोकचळवळ</h3>
+                            <p class="text-gray-600">प्रेरित होऊन, लोकमान्य टिळकांनी 'सार्वजनिक गणेशोत्सवा'ला प्रोत्साहन दिले, आणि राष्ट्रवादी भाषणे, नाटके आणि जातीय सलोख्यासाठी १० दिवसांचा भव्य कार्यक्रम तयार केला.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-card-bg rounded-lg shadow-xl p-6 md:p-8">
+                    <h2 class="text-2xl font-black brand-text mb-4">आधुनिक उत्सवाचे मुख्य आधारस्तंभ</h2>
+                    <p class="text-gray-600 mb-6">आज, उत्सवाचा उद्देश विकसित झाला आहे, परंतु त्याचे मूळ आधारस्तंभ मजबूत आहेत, जे परंपरेला समकालीन सामाजिक अभिव्यक्तीसह मिश्रित करतात.</p>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="pillarsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="brand-card-bg rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-black brand-text text-center mb-2">संस्कृतीचे लयबद्ध स्पंदन</h2>
+                <p class="text-gray-600 text-center max-w-3xl mx-auto mb-8">हा उत्सव महाराष्ट्राच्या वारशाचा एक जिवंत संग्रहालय आहे. ढोल-ताशा आणि लेझीम सारख्या पारंपारिक कला, ज्या एकेकाळी लोप पावत होत्या, त्या आता प्रामुख्याने तरुणांच्या उत्कट सहभागामुळे भरभराटीला येत आहेत.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-bold text-lg brand-dark-text text-center mb-4">परंपरांमध्ये तरुणांचा सहभाग</h3>
+                        <div class="chart-container h-72 md:h-80">
+                            <canvas id="youthParticipationChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg brand-dark-text text-center mb-4">उत्सवाचा नाद</h3>
+                        <div class="space-y-4 mt-8">
+                            <div class="p-4 rounded-lg brand-secondary-bg">
+                                <h4 class="font-bold text-gray-800">🥁 ढोल-ताशा</h4>
+                                <p class="text-sm text-gray-800">शेकडो सदस्य एकसुरात वाजवत असलेले ढोलांचे गट मिरवणुकांमध्ये एक विद्युतमय वातावरण तयार करतात. हे केवळ संगीत नाही, तर समुदाय आणि ऊर्जेची एक शक्तिशाली अभिव्यक्ती आहे.</p>
+                            </div>
+                            <div class="p-4 rounded-lg brand-accent-bg">
+                                <h4 class="font-bold text-gray-800">🤸 लेझीम</h4>
+                                <p class="text-sm text-gray-800">एकाच वेळी एक उत्साही लोकनृत्य आणि शारीरिक व्यायाम प्रकार. लेझीममध्ये झांजा लावलेल्या लाकडी वाद्यासह लयबद्ध हालचाली केल्या जातात. हे उत्सवात शिस्तबद्ध, रंगीबेरंगी कलात्मकतेचा एक थर जोडते.</p>
+                            </div>
+                             <div class="p-4 rounded-lg brand-bg">
+                                <h4 class="font-bold text-gray-800">✨ पारंपारिक वेशभूषा</h4>
+                                <p class="text-sm text-gray-800">उत्सवात पुरुषांसाठी 'धोतर' आणि महिलांसाठी 'नऊवारी' साडी यांसारख्या पारंपारिक पोशाखांचे पुनरुज्जीवन दिसते, जे सांस्कृतिक मुळांशी असलेले नाते अभिमानाने परिधान केले जाते.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="brand-card-bg rounded-lg shadow-xl p-6 md:p-8">
+                    <h2 class="text-2xl font-black brand-text mb-4">श्रद्धेचा आणि वात्सल्याचा सोहळा</h2>
+                    <p class="text-gray-600 mb-6">सार्वजनिक देखाव्याच्या पलीकडे, उत्सवाचा आत्मा त्या घरांमध्ये आहे जिथे गणेशाचे स्वागत केवळ एक देवता म्हणून नव्हे, तर एक प्रिय बालक म्हणून केले जाते. 'वात्सल्य भाव' म्हणून ओळखला जाणारा हा दृढ वैयक्तिक संबंध, या उत्सवाचा आध्यात्मिक आधार आहे.</p>
+                    <div class="text-center p-6 border-2 border-dashed brand-secondary-bg rounded-lg">
+                        <p class="text-5xl mb-2">🏠</p>
+                        <h3 class="font-bold text-xl brand-dark-text">"बाप्पा घरी आले"</h3>
+                        <p class="text-gray-700">कुटुंबे मूर्तीला एक जिवंत पाहुणे मानतात, त्याला त्याचे आवडते खाद्य 'मोदक' अर्पण करतात, त्याच्यासाठी खेळतात आणि अश्रूपूर्ण निरोपापूर्वी त्याची प्रचंड प्रेम आणि आपुलकीने काळजी घेतात.</p>
+                    </div>
+                </div>
+                <div class="brand-card-bg rounded-lg shadow-xl p-6 md:p-8">
+                    <h2 class="text-2xl font-black brand-text mb-4">समकालीन आव्हाने</h2>
+                    <p class="text-gray-600 mb-6">उत्सवाच्या प्रचंड व्याप्तीमुळे आधुनिक आव्हाने निर्माण झाली आहेत, ज्यामुळे परंपरेचा जबाबदारीशी समतोल साधण्याबद्दल महत्त्वपूर्ण चर्चा सुरू झाली आहे.</p>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="challengesChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="brand-card-bg rounded-lg shadow-xl p-6 md:p-8 text-center">
+                <h2 class="text-2xl md:text-3xl font-black brand-text mb-4">पुढचा मार्ग: एक पर्यावरणपूरक उत्सव</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto mb-6">जागरूकता वाढत आहे. 'ग्रीन गणेश' चळवळ जोर धरत आहे कारण अधिक भक्त आणि आयोजक पर्यावरणाचे रक्षण करण्यासाठी जाणीवपूर्वक शाश्वततेची निवड करत आहेत, ज्यामुळे उत्सवाचा वारसा भावी पिढ्यांसाठी जपला जाईल.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 brand-dark-text">
+                    <div class="brand-accent-bg p-4 rounded-lg">
+                        <h3 class="font-bold">पर्यावरणपूरक मूर्ती</h3>
+                        <p class="text-sm">प्लॅस्टर ऑफ पॅरिसऐवजी नैसर्गिक चिकणमातीच्या (शाडू) मूर्तींचा वापर.</p>
+                    </div>
+                    <div class="brand-accent-bg p-4 rounded-lg">
+                        <h3 class="font-bold">नैसर्गिक रंग</h3>
+                        <p class="text-sm">हळद, कुंकू आणि इतर नैसर्गिक रंगद्रव्यांचा वापर करणे.</p>
+                    </div>
+                    <div class="brand-accent-bg p-4 rounded-lg">
+                        <h3 class="font-bold">कृत्रिम तलाव</h3>
+                        <p class="text-sm">जलस्रोत संरक्षित करण्यासाठी विसर्जनासाठी निश्चित जागा तयार करणे.</p>
+                    </div>
+                    <div class="brand-accent-bg p-4 rounded-lg">
+                        <h3 class="font-bold">कचरा व्यवस्थापन</h3>
+                        <p class="text-sm">फुलांच्या ('निर्माल्य') अर्पणांचे खत बनवण्यासाठी पद्धतशीर संकलन.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxWidth = 16) => {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const chartColors = {
+            saffron: '#FF9933',
+            green: '#138808',
+            yellow: '#FFE66D',
+            darkBlue: '#1A535C',
+            lightGray: '#f0f0f0'
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: chartColors.darkBlue,
+                        font: {
+                            family: "'Noto Sans Devanagari', 'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: 'rgba(26, 83, 92, 0.9)',
+                    titleFont: {
+                        family: "'Noto Sans Devanagari', 'Inter', sans-serif",
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        family: "'Noto Sans Devanagari', 'Inter', sans-serif",
+                        size: 12
+                    }
+                }
+            }
+        };
+
+        const pillarsChartCtx = document.getElementById('pillarsChart').getContext('2d');
+        new Chart(pillarsChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['सामाजिक ऐक्य', 'सांस्कृतिक जतन', 'राजकीय अभिव्यक्ती', 'खोलवर रुजलेली श्रद्धा'].map(l => wrapLabel(l)),
+                datasets: [{
+                    label: 'महत्त्व गुण',
+                    data: [95, 92, 75, 98],
+                    backgroundColor: [chartColors.green, chartColors.yellow, chartColors.saffron, chartColors.darkBlue],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: { color: chartColors.darkBlue },
+                        grid: { color: chartColors.lightGray }
+                    },
+                    y: {
+                        ticks: { color: chartColors.darkBlue, font: { size: 12 } },
+                        grid: { display: false }
+                    }
+                },
+                plugins: { ...defaultChartOptions.plugins, legend: { display: false } }
+            }
+        });
+
+        const youthParticipationChartCtx = document.getElementById('youthParticipationChart').getContext('2d');
+        new Chart(youthParticipationChartCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['ढोल-ताशा पथके', 'उत्सव व्यवस्थापन', 'लेझीम आणि नृत्य पथके', 'कलात्मक सजावट'],
+                datasets: [{
+                    data: [55, 15, 20, 10],
+                    backgroundColor: [chartColors.saffron, chartColors.darkBlue, chartColors.green, chartColors.yellow],
+                    hoverOffset: 4
+                }]
+            },
+            options: { ...defaultChartOptions }
+        });
+
+        const challengesChartCtx = document.getElementById('challengesChart').getContext('2d');
+        new Chart(challengesChartCtx, {
+            type: 'pie',
+            data: {
+                labels: ['पर्यावरणीय चिंता (POP मूर्ती, प्रदूषण)', 'व्यापारीकरण', 'ध्वनी प्रदूषण', 'सामाजिक विभाजन'].map(l => wrapLabel(l)),
+                datasets: [{
+                    label: 'आव्हानाची तीव्रता',
+                    data: [45, 30, 15, 10],
+                    backgroundColor: [chartColors.saffron, chartColors.yellow, chartColors.green, chartColors.darkBlue],
+                    hoverOffset: 4
+                }]
+            },
+            options: { ...defaultChartOptions }
+        });
+    </script>
+
+</body>
+</html>
