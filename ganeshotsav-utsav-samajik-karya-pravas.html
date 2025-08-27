@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गणेशोत्सव: उत्सव आणि सामाजिक कार्याचा प्रवास</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #118AB2;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-container.left {
+            left: 0;
+        }
+        .timeline-container.right {
+            left: 50%;
+        }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid #FF6B6B;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-container.right::after {
+            left: -13px;
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+        }
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-container.right {
+                left: 0%;
+            }
+            .timeline-container.left::after, .timeline-container.right::after {
+                left: 18px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-[#073B4C]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#118AB2] mb-4" style="font-family: 'Tiro Devanagari Marathi', serif;">गणेशोत्सव: उत्सवापलीकडचे सामाजिक पर्व</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-700">गेल्या १०० वर्षांत केवळ धार्मिक उत्सवापुरता मर्यादित न राहता, गणेशोत्सव सामाजिक, शैक्षणिक आणि लोककल्याणकारी उपक्रमांचे केंद्र बनला आहे. हा इन्फोग्राफिक या परिवर्तनाचा प्रवास दर्शवतो.</p>
+        </header>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#06D6A0]" style="font-family: 'Tiro Devanagari Marathi', serif;">उत्सवाचा ऐतिहासिक प्रवास</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-gray-600">१८९३ मध्ये लोकमान्य टिळकांनी सुरू केलेल्या सार्वजनिक गणेशोत्सवाने भारतीय स्वातंत्र्यलढ्यात जनजागृतीचे महत्त्वपूर्ण कार्य केले. स्वातंत्र्यानंतर त्याचे स्वरूप समाजप्रबोधनाकडे वळले.</p>
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content shadow-lg rounded-lg">
+                        <h3 class="font-bold text-xl text-[#FF6B6B]">१८९३ - १९०३: उत्सवाचे बालपण</h3>
+                        <p class="text-sm text-gray-600 mt-2">सुरुवातीच्या काळात मेळे, व्याख्याने, आणि कीर्तने हे उत्सवाचे मुख्य भाग होते. धार्मिक स्वरूपामुळे इंग्रज सरकारचे याकडे सुरुवातीला लक्ष गेले नाही.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content shadow-lg rounded-lg">
+                        <h3 class="font-bold text-xl text-[#FFD166]">१९०३ - १९२०: क्रांतिकारी स्वरूप</h3>
+                        <p class="text-sm text-gray-600 mt-2">'पैसा फंड', स्वदेशीचा प्रचार आणि स्वराज्याची मागणी यांमुळे उत्सवाला राजकीय स्वरूप प्राप्त झाले. टिळकांच्या अटकेनंतरही उत्सवाने अधिक जोर धरला.</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content shadow-lg rounded-lg">
+                        <h3 class="font-bold text-xl text-[#06D6A0]">स्वातंत्र्यानंतरचे पर्व</h3>
+                        <p class="text-sm text-gray-600 mt-2">स्वातंत्र्यानंतर उत्सवाचा भर समाजप्रबोधनावर आला. स्त्री-सबलीकरण, पर्यावरण, शिक्षण आणि आरोग्य यांसारख्या विषयांवर देखावे आणि चित्ररथांच्या माध्यमातून जनजागृती होऊ लागली.</p>
+                    </div>
+                </div>
+                 <div class="timeline-container right">
+                    <div class="timeline-content shadow-lg rounded-lg">
+                        <h3 class="font-bold text-xl text-[#118AB2]">कोरोना काळातील योगदान</h3>
+                        <p class="text-sm text-gray-600 mt-2">कोरोना काळात पुण्यातील मंडळांनी गरजूंना अन्न, औषधे आणि जीवनावश्यक वस्तू पुरवून सामाजिक बांधिलकीचे अभूतपूर्व दर्शन घडवले.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#FF6B6B]" style="font-family: 'Tiro Devanagari Marathi', serif;">पुण्यातील मंडळांचे सामाजिक कार्य</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-gray-600">पुण्यातील मानाच्या गणपतींपासून ते अनेक लहान-मोठ्या मंडळांपर्यंत, सर्वच जण वर्षभर विविध सामाजिक उपक्रम राबवून समाजाला आधार देत आहेत.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg md:col-span-2 lg:col-span-1">
+                    <h3 class="font-bold text-xl mb-4 text-[#118AB2]">मानाचे पाच गणपती</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li><span class="font-semibold text-[#FF6B6B]">कसबा गणपती:</span> ७५ विद्यार्थ्यांना दत्तक घेऊन शैक्षणिक खर्च उचलतो.</li>
+                        <li><span class="font-semibold text-[#FFD166]">तांबडी जोगेश्वरी:</span> महाप्रसादाचे आयोजन व स्वातंत्र्यपूर्व काळापासून सामाजिक कार्यात अग्रेसर.</li>
+                        <li><span class="font-semibold text-[#06D6A0]">गुरुजी तालीम:</span> हिंदू-मुस्लिम ऐक्याचे प्रतीक.</li>
+                        <li><span class="font-semibold text-[#118AB2]">तुळशीबाग गणपती:</span> कलात्मक सजावटीसाठी प्रसिद्ध.</li>
+                        <li><span class="font-semibold text-[#073B4C]">केसरीवाडा गणपती:</span> टिळकांच्या वैचारिक कार्याचा वारसा जपतो.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg md:col-span-2 lg:col-span-2">
+                    <h3 class="font-bold text-xl mb-4 text-center text-[#06D6A0]">श्रीमंत दगडूशेठ हलवाई गणपती ट्रस्ट: सेवेचा महामेरू</h3>
+                    <p class="text-center text-gray-600 mb-4">हा ट्रस्ट आरोग्य, शिक्षण, आणि अन्नदान यांसारख्या विविध क्षेत्रांत मोठ्या प्रमाणावर काम करतो. त्यांच्या कार्याची ही एक झलक.</p>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="dagdushethChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+             <div class="bg-white p-6 rounded-lg shadow-lg">
+                <span class="text-5xl font-extrabold text-[#FF6B6B]">३२,०००+</span>
+                <p class="mt-2 font-semibold text-gray-700">पुस्तकांचे ग्रंथालय</p>
+                <p class="text-sm text-gray-500">श्रमदान मारुती मंडळातर्फे</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <span class="text-5xl font-extrabold text-[#06D6A0]">८,०००+</span>
+                <p class="mt-2 font-semibold text-gray-700">विद्यार्थ्यांना संग्रहालय भेट</p>
+                <p class="text-sm text-gray-500">साईनाथ मित्र मंडळातर्फे</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <span class="text-5xl font-extrabold text-[#118AB2]">₹१०</span>
+                <p class="mt-2 font-semibold text-gray-700">रुपयांत जेवण</p>
+                <p class="text-sm text-gray-500">हिंद तरुण मंडळातर्फे</p>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-300">
+            <p class="text-gray-600">हा इन्फोग्राफिक गणेशोत्सवाच्या सामाजिक सामर्थ्याचे आणि सकारात्मक बदलाचे प्रतीक आहे.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabel(label, maxLength) {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const chartColors = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C'
+        };
+
+        const dagdushethCtx = document.getElementById('dagdushethChart').getContext('2d');
+        new Chart(dagdushethCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['आरोग्यसेवा (रुग्णसेवा अभियान)', 'अन्नदान व निवारा (पिताश्री वृद्धाश्रम)', 'शिक्षण व विकास (पालकत्व योजना)'],
+                datasets: [{
+                    label: 'सामाजिक कार्याचे क्षेत्र',
+                    data: [40, 35, 25],
+                    backgroundColor: [chartColors.red, chartColors.green, chartColors.yellow],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: "'Inter', sans-serif",
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
