@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आसामचा आधार उपक्रम: सुरक्षा आणि लोकसंख्याशास्त्र</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Narrative Plan: The infographic tells a story in four parts. 1) It starts with the shocking core problem: Aadhaar enrollment exceeding the population, visualized with a donut chart. 2) It then explains the government's solution, detailing the new, stricter registration process using a clear flowchart. 3) It visualizes the exceptions for specific communities with a bar chart. 4) Finally, it concludes with the policy's overarching goals for national security. -->
+    <!-- Visualization Choices: 
+        1. Aadhaar Enrollment vs. Population: Goal=Inform. Chosen Viz=Donut Chart. Justification=Effectively shows a part-to-whole relationship where the 'part' is alarmingly larger than the 'whole', immediately highlighting the issue of fake registrations. Implemented with Chart.js/Canvas (NO SVG).
+        2. New Registration Process: Goal=Organize. Chosen Viz=Flowchart. Justification=Clearly illustrates the sequential steps and strict verification points of the new policy. Implemented with structured HTML and Tailwind CSS (NO SVG, NO Mermaid JS).
+        3. Enrollment Extension for Communities: Goal=Compare. Chosen Viz=Bar Chart. Justification=Provides a simple visual comparison of the extended timeline granted to specific communities versus the general deadline. Implemented with Chart.js/Canvas (NO SVG).
+    -->
+    <!-- Color Palette: Brilliant Blues -->
+    <!-- Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in the output. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .flowchart-step {
+            border: 2px solid #94d2bd;
+            background-color: #ffffff;
+            color: #005f73;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            position: relative;
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #0a9396;
+            margin: 0.5rem 0;
+        }
+        .kpi-card {
+            background-color: #005f73;
+            color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-6">
+
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#005f73] mb-2">आसामचा आधार आदेश</h1>
+            <p class="text-lg md:text-xl text-[#0a9396]">घुसखोरीला आळा घालण्यासाठी आणि राष्ट्रीय हित सुरक्षित करण्यासाठी एक नवीन प्रशासकीय उपाय.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <section class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-4 md:p-6 mb-4 flex flex-col md:flex-row items-center">
+                <div class="md:w-2/3">
+                    <h2 class="text-2xl font-bold text-[#005f73] mb-4">विसंगती: लोकसंख्येपेक्षा नावनोंदणी जास्त</h2>
+                    <p class="mb-4 text-gray-600">आसामच्या लोकसंख्याशास्त्रीय माहितीत एक मोठा धोक्याचा इशारा म्हणजे आधार नावनोंदणीचा दर, जो राज्याच्या अंदाजित लोकसंख्येच्या १००% पेक्षा जास्त झाला आहे. ही तफावत घुसखोरांकडून संभाव्य बनावट नोंदणीकडे निर्देश करते, ज्यामुळे सरकारने निर्णायक कारवाई केली आहे.</p>
+                    <div class="kpi-card">
+                         <p class="text-5xl font-bold text-[#e9d8a6]">१०२-१०३%</p>
+                         <p class="text-lg font-semibold mt-2">आधार नावनोंदणी दर</p>
+                    </div>
+                </div>
+                <div class="md:w-1/3 mt-6 md:mt-0">
+                    <div class="chart-container">
+                        <canvas id="enrollmentChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-4 md:p-6 mb-4">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-6 text-center">नवीन धोरण: प्रौढांसाठी नवीन आधार नावनोंदणी थांबवणे</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">१ ऑक्टोबर २०२५ पासून, आसाम सरकार १८ वर्षांवरील व्यक्तींसाठी पहिल्यांदा आधार नावनोंदणी स्थगित करेल. हे कोणतेही विधानसभेचे विधेयक नसून, घुसखोरांना आधारद्वारे कायदेशीर वैधता मिळण्यापासून रोखण्यासाठी एक सुधारित प्रमाणित कार्यप्रणाली (SOP) आहे.</p>
+                
+                <div class="flex flex-col items-center">
+                    <div class="flowchart-step w-full max-w-md">
+                        <span>प्रौढांसाठी नवीन आधार नावनोंदणी (१८+)</span>
+                    </div>
+                    <div class="flowchart-arrow">↓</div>
+                    <div class="flowchart-step w-full max-w-md bg-[#e9d8a6] border-[#ca6702]">
+                        <span>१ ऑक्टोबर २०२५ पासून स्थगित</span>
+                    </div>
+                    <div class="flowchart-arrow">↓</div>
+                     <div class="flowchart-step w-full max-w-md">
+                        <span>'अत्यंत दुर्मिळ प्रकरणांमध्ये' नावनोंदणी</span>
+                    </div>
+                    <div class="flowchart-arrow">↓</div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl text-sm">
+                        <div class="flowchart-step !p-3">जिल्हा आयुक्तांकडून विशेष परवानगी आवश्यक</div>
+                        <div class="flowchart-step !p-3">अनिवार्य पोलीस पडताळणी</div>
+                        <div class="flowchart-step !p-3">विदेशी नागरिक न्यायाधिकरणाकडून मंजुरी</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-4 md:p-6">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-4">धोरणातील अपवाद</h2>
+                <p class="mb-4 text-gray-600">काही समुदायांमध्ये कमी नावनोंदणी दर लक्षात घेऊन, सरकारने एक सवलत कालावधी दिला आहे. या गटांना त्यांची आधार नोंदणी प्रक्रिया पूर्ण करण्यासाठी अतिरिक्त एक वर्ष मिळेल.</p>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="exceptionsChart"></canvas>
+                </div>
+            </section>
+
+            <section class="lg:col-span-2 bg-white rounded-lg shadow-md p-4 md:p-6">
+                 <h2 class="text-2xl font-bold text-[#005f73] mb-4">तर्क आणि राष्ट्रीय सुरक्षा</h2>
+                <p class="mb-6 text-gray-600">हे धोरण राष्ट्रीय सुरक्षेच्या चिंतेवर आधारित आहे, विशेषतः सिलीगुडी कॉरिडोरच्या ('चिकन नेक') संरक्षणासाठी. अनियंत्रित घुसखोरीमुळे लोकसंख्याशास्त्रीय बदल, सामाजिक अशांतता आणि निवडणुकीतील गैरप्रकार होऊ शकतात, ज्यामुळे अंतर्गत सुरक्षेला थेट धोका निर्माण होतो.</p>
+                <div class="space-y-4">
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-2xl mr-4 text-[#0a9396]">🛡️</span>
+                        <div>
+                            <h3 class="font-bold text-[#005f73]">घुसखोरीला आळा घालणे</h3>
+                            <p class="text-gray-600">बांगलादेश आणि इतर प्रदेशांतील घुसखोरांना पाय रोवण्यापासून रोखण्याचे उद्दिष्ट.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-2xl mr-4 text-[#0a9396]">📊</span>
+                        <div>
+                            <h3 class="font-bold text-[#005f73]">लोकसंख्याशास्त्रीय स्थिरता</h3>
+                            <p class="text-gray-600">सीमावर्ती राज्यांमधील लोकसंख्याशास्त्रीय बदलांमुळे सामाजिक सलोख्यावर होणाऱ्या परिणामांची चिंता दूर करणे.</p>
+                        </div>
+                    </div>
+                     <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-2xl mr-4 text-[#0a9396]">🗳️</span>
+                        <div>
+                            <h3 class="font-bold text-[#005f73]">निवडणुकीतील सचोटी</h3>
+                            <p class="text-gray-600">निवडणूक प्रक्रियेत बनावट ओळखीचा वापर रोखण्यास मदत करते.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script>
+        function wrapLabel(label, maxWidth) {
+            if (label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const chartOptionsTemplate = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#005f73',
+                        font: {
+                            weight: '600'
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        const enrollmentCtx = document.getElementById('enrollmentChart').getContext('2d');
+        new Chart(enrollmentCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['अंदाजित लोकसंख्या', 'अतिरिक्त नावनोंदणी'],
+                datasets: [{
+                    label: 'नावनोंदणी स्थिती',
+                    data: [100, 3],
+                    backgroundColor: ['#0a9396', '#ee9b00'],
+                    borderColor: ['#ffffff', '#ffffff'],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: { ...chartOptionsTemplate }
+        });
+
+        const exceptionsCtx = document.getElementById('exceptionsChart').getContext('2d');
+        const rawLabels = ['सर्वसाधारण लोकसंख्येची अंतिम मुदत', 'SC, ST, चहा मळ्यातील कामगार समुदाय'];
+        const wrappedLabels = rawLabels.map(label => wrapLabel(label, 16));
+
+        new Chart(exceptionsCtx, {
+            type: 'bar',
+            data: {
+                labels: wrappedLabels,
+                datasets: [{
+                    label: 'नावनोंदणी कालावधी समाप्ती',
+                    data: [1, 2],
+                    backgroundColor: ['#94d2bd', '#ca6702'],
+                    borderColor: ['#0a9396', '#bb3e03'],
+                    borderWidth: 1,
+                    barPercentage: 0.5,
+                }]
+            },
+            options: {
+                ...chartOptionsTemplate,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value, index, values) {
+                                if (value === 1) return 'सप्टेंबर २०२५';
+                                if (value === 2) return 'सप्टेंबर २०२६';
+                                return '';
+                            },
+                            color: '#005f73'
+                        },
+                        grid: {
+                            color: '#e0e0e0'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#005f73'
+                        },
+                         grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    ...chartOptionsTemplate.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
