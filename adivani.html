@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adi Vaani: Empowering Tribal Voices</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .icon-bg {
+            background-color: #e0e7ff;
+        }
+        .benefit-card::before {
+            content: '🔗';
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #2F4B7C;
+        }
+    </style>
+</head>
+<body class="text-[#003F5C]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#003F5C] mb-2">Adi Vaani</h1>
+            <p class="text-xl md:text-2xl text-[#665191]">Bridging Worlds, Empowering Tribal Voices</p>
+            <p class="max-w-3xl mx-auto mt-4 text-base text-[#2F4B7C]">
+                An innovative government initiative designed to preserve linguistic heritage and connect tribal communities with the digital world through real-time language translation and learning tools.
+            </p>
+        </header>
+
+        <section id="features" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#003F5C]">Powerful Communication Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">🔁</div>
+                    <h3 class="text-lg font-semibold text-[#665191]">Text-to-Text</h3>
+                    <p class="text-sm text-[#2F4B7C]">Instantly translate written text from one language to another.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">🔊</div>
+                    <h3 class="text-lg font-semibold text-[#A05195]">Text-to-Speech</h3>
+                    <p class="text-sm text-[#2F4B7C]">Convert written text into clear, audible speech.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">🎤</div>
+                    <h3 class="text-lg font-semibold text-[#D45087]">Speech-to-Text</h3>
+                    <p class="text-sm text-[#2F4B7C]">Transcribe spoken words accurately into written text.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">🗣️</div>
+                    <h3 class="text-lg font-semibold text-[#F95D6A]">Speech-to-Speech</h3>
+                    <p class="text-sm text-[#2F4B7C]">Enable seamless conversations with direct voice translation.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">📄</div>
+                    <h3 class="text-lg font-semibold text-[#FF7C43]">OCR Digitization</h3>
+                    <p class="text-sm text-[#2F4B7C]">Digitize manuscripts and primers with Optical Character Recognition.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#003F5C]">Expanding Language Support</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-center mb-4 text-[#665191]">Current Development Status</h3>
+                    <div class="chart-container">
+                        <canvas id="languageStatusChart"></canvas>
+                    </div>
+                     <p class="text-center mt-4 text-sm text-[#2F4B7C]">The app is launching with a strong foundation of four major tribal languages, with a clear roadmap for including more to broaden its reach and impact.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <h4 class="font-bold text-[#003F5C]">Available in Beta</h4>
+                        <ul class="list-disc list-inside text-sm text-[#2F4B7C] mt-2 space-y-1">
+                            <li><strong>Gondi:</strong> Chhattisgarh, Madhya Pradesh</li>
+                            <li><strong>Bhili:</strong> Madhya Pradesh, Gujarat, Maharashtra, Rajasthan</li>
+                            <li><strong>Mundari:</strong> Jharkhand</li>
+                            <li><strong>Santhali:</strong> Odisha</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <h4 class="font-bold text-[#A05195]">Coming Soon</h4>
+                        <ul class="list-disc list-inside text-sm text-[#2F4B7C] mt-2 space-y-1">
+                            <li><strong>Kui:</strong> Odisha</li>
+                            <li><strong>Garo:</strong> Meghalaya, Assam, Tripura</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#003F5C]">Synergy with National Initiatives</h2>
+            <p class="max-w-3xl mx-auto text-center mb-10 text-[#2F4B7C]">Adi Vaani is not a standalone app; it's a powerful tool designed to amplify the impact of key national missions, driving inclusive growth and empowerment for tribal communities.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="font-semibold text-xl text-[#665191] mb-2">Ek Bharat Shreshtha Bharat</h3>
+                    <p class="text-sm text-[#2F4B7C]">Fosters national unity by preserving and promoting India's rich linguistic diversity.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="font-semibold text-xl text-[#A05195] mb-2">Digital India</h3>
+                    <p class="text-sm text-[#2F4B7C]">Integrates tribal populations into the digital economy, ensuring access to technology and services.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="font-semibold text-xl text-[#D45087] mb-2">PM JANMAN</h3>
+                    <p class="text-sm text-[#2F4B7C]">Delivers critical education and healthcare information to Particularly Vulnerable Tribal Groups (PVTGs) in their native tongue.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="font-semibold text-xl text-[#F95D6A] mb-2">Dharti Aba Jan Jatiya...</h3>
+                    <p class="text-sm text-[#2F4B7C]">Facilitates the effective implementation of welfare schemes and social infrastructure projects in tribal villages.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="karmayogi" class="text-center bg-white p-8 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold text-[#003F5C] mb-4">Empowering Community Leaders</h2>
+            <p class="text-[#2F4B7C] max-w-2xl mx-auto mb-6">Through the <span class="font-semibold text-[#FF7C43]">Adi Karmayogi Abhiyan</span>, the Adi Vaani app will be a key tool in training village-level leaders to effectively disseminate information about government schemes.</p>
+            <div class="text-7xl md:text-8xl font-bold text-[#FFA600]">
+                20 Lakh
+            </div>
+            <p class="text-2xl font-semibold text-[#003F5C] mt-2">Gram-Level Leaders to be Trained</p>
+        </section>
+
+    </div>
+
+    <script>
+        const processLabel = (label) => {
+            if (label.length > 16) {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                }
+                lines.push(currentLine.trim());
+                return lines;
+            }
+            return label;
+        };
+
+        const ctx = document.getElementById('languageStatusChart').getContext('2d');
+        const languageStatusChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [processLabel('Available in Beta'), processLabel('Coming Soon')],
+                datasets: [{
+                    label: 'Language Support',
+                    data: [4, 2],
+                    backgroundColor: [
+                        '#665191',
+                        '#D45087'
+                    ],
+                    borderColor: [
+                        '#FFFFFF',
+                        '#FFFFFF'
+                    ],
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#003F5C',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
