@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>स्मरण वैश्विक सहचर्याच्या संदेशाचे!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Laila:wght@400;700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Laila', serif;
+            color: #1aa5de;
+            background-image: url('https://images.unsplash.com/photo-1533134486753-c833f0ed4866?q=80&w=2560&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .marathi-title {
+            font-family: 'Poppins', sans-serif;
+            color: #f5750c;
+        }
+        .marathi-text {
+            font-family: 'Laila', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            color: #1aa5de;
+        }
+        .tab-button.active {
+            background-color: #f5750c;
+            color: #000000;
+            border-bottom-width: 4px;
+            border-bottom-color: #1aa5de;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .bg-glass {
+            background-color: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .animate-hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center py-12 animate-hidden">
+            <h1 class="marathi-title text-3xl md:text-4xl font-bold leading-tight">स्मरण वैश्विक सहचर्याच्या संदेशाचे!</h1>
+            <p class="marathi-text text-xl md:text-2xl mt-4">स्वामी विवेकानंदांचे शिकागो भाषण: एक चिकित्सक विश्लेषण</p>
+        </header>
+
+        <main>
+            <section id="intro" class="mb-16 bg-glass p-8 rounded-2xl shadow-lg animate-hidden">
+                <h2 class="marathi-title text-3xl font-bold text-center mb-6">परिचयात्मक वेध</h2>
+                <p class="marathi-text text-lg text-justify leading-loose max-w-4xl mx-auto">
+                    शिकागोमधील 'वर्ल्ड कोलंबियन एक्सपोझिशन' हे अमेरिकेच्या भौतिक प्रगतीचे भव्य प्रदर्शन होते. त्याचाच एक भाग म्हणून आयोजित जागतिक धर्म परिषदेत, एका अज्ञात भारतीय संन्याशाने असे विचार मांडले, ज्याने पाश्चात्य श्रेष्ठत्वाच्या धारणेला वैचारिक आव्हान दिले. संघर्षाऐवजी सहअस्तित्वाचे तत्त्वज्ञान मांडून, स्वामी विवेकानंदांनी भारताची प्रतिमा 'सुधारणेची गरज असलेला देश' वरून 'जगाला ज्ञान देणारा महान स्रोत' अशी बदलली. अमेरिकन वृत्तपत्रांनी 'या ज्ञानी राष्ट्रात मिशनरी पाठवणे किती मूर्खपणाचे आहे' असे उद्गार काढले, जे या भाषणाने घडवलेल्या वैचारिक क्रांतीचे प्रतीक होते.
+                </p>
+            </section>
+
+            <section id="background" class="mb-16 animate-hidden">
+                <h2 class="marathi-title text-3xl font-bold text-center mb-8">विश्वधर्म परिषदेची पार्श्वभूमी</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-glass p-6 rounded-2xl shadow-lg">
+                        <h3 class="marathi-title text-2xl font-bold mb-4">उदात्त उद्देश vs. सुप्त हेतू</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="marathi-text font-bold text-lg text-[#1aa5de]">✅ घोषित उद्देश:</h4>
+                                <ul class="list-disc list-inside marathi-text text-base space-y-2 pl-2 leading-relaxed">
+                                    <li>धर्मांमधील समान सत्य शोधणे</li>
+                                    <li>धार्मिक बंधुत्वाची भावना वाढवणे</li>
+                                    <li>एकमेकांना ज्ञानाचा प्रकाश देणे</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="marathi-text font-bold text-lg text-[#1aa5de]">🤫 सुप्त हेतू:</h4>
+                                 <ul class="list-disc list-inside marathi-text text-base space-y-2 pl-2 leading-relaxed">
+                                    <li>ख्रिश्चन विचारांचा स्पष्ट प्रभाव</li>
+                                    <li>ख्रिश्चन धर्माची श्रेष्ठत्व भावना</li>
+                                    <li>वगळलेले गट (उदा. कृष्णवर्णीय)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container h-64 md:h-80">
+                         <canvas id="visionChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="the-speech" class="mb-16 text-center bg-glass p-8 rounded-2xl shadow-lg animate-hidden">
+                <h2 class="marathi-title text-3xl font-bold mb-4">तो ऐतिहासिक क्षण: ११ सप्टेंबर १८९३</h2>
+                 <p class="marathi-text max-w-3xl mx-auto mb-8 text-lg leading-loose">भगव्या वस्त्रातील तरुण स्वामी विवेकानंद बोलायला उभे राहिले आणि त्यांनी अत्यंत आत्मीयतेने श्रोत्यांना संबोधित केले...</p>
+                <blockquote class="marathi-title text-3xl md:text-5xl font-extrabold my-8 p-4 rounded-lg leading-snug md:leading-normal" style="color: #f5750c;">
+                    "अमेरिकेतील माझ्या भगिनींनो आणि बंधूंनो!"
+                </blockquote>
+                <p class="marathi-text text-lg max-w-3xl mx-auto leading-loose">हे शब्द ऐकताच सात हजार श्रोत्यांनी उभे राहून तब्बल दोन मिनिटे टाळ्यांचा कडकडाट केला. या एका संबोधनाने त्यांनी 'परदेशी' आणि 'यजमान' यांतील अंतर मिटवून वैश्विक कुटुंबाची भावना निर्माण केली.</p>
+            </section>
+
+            <section id="neo-vedanta" class="mb-16 animate-hidden">
+                <h2 class="marathi-title text-3xl font-bold text-center mb-8">नव-वेदान्ताचा उद्घोष</h2>
+                <div class="bg-glass p-6 rounded-2xl shadow-lg">
+                    <div class="border-b border-gray-700 mb-4">
+                        <nav class="flex flex-wrap -mb-px" id="tabs-nav">
+                            <button data-tab="tab1" class="tab-button active text-lg font-semibold p-4 border-b-2 border-transparent rounded-t-lg">हिंदू धर्मावरील निबंध</button>
+                            <button data-tab="tab2" class="tab-button text-lg font-semibold p-4 border-b-2 border-transparent rounded-t-lg">आपण असहमत का असतो?</button>
+                            <button data-tab="tab3" class="tab-button text-lg font-semibold p-4 border-b-2 border-transparent rounded-t-lg">भारताची गरज</button>
+                            <button data-tab="tab4" class="tab-button text-lg font-semibold p-4 border-b-2 border-transparent rounded-t-lg">समारोपाचा संदेश</button>
+                        </nav>
+                    </div>
+                    <div id="tabs-content">
+                        <div id="tab1" class="tab-content active p-4">
+                            <h3 class="marathi-title font-bold text-xl mb-3">📜 १९ सप्टेंबर: हिंदू धर्मावरील निबंध</h3>
+                            <ul class="marathi-text list-disc list-inside space-y-3 text-lg leading-loose">
+                                <li><b>🔬 वेदांची वैज्ञानिक व्याख्या:</b> 'वेद' म्हणजे पुस्तके नव्हे, तर शोधलेल्या आध्यात्मिक नियमांचा संचित खजिना.</li>
+                                <li><b>✨ मूळ पापाच्या संकल्पनेला नकार:</b> "माणसाला पापी म्हणणे हेच एक पाप आहे," कारण प्रत्येक आत्मा मुळात अमर आणि परिपूर्ण आहे.</li>
+                                <li><b>🔄 कर्म-पुनर्जन्माचे तर्कसंगत स्पष्टीकरण:</b> जगातील विषमतेचे वैज्ञानिक स्पष्टीकरण.</li>
+                                <li><b>🕉️ मूर्तिपूजेचे समर्थन:</b> ईश्वराच्या अमूर्त रूपावर लक्ष केंद्रित करण्याचे एक साधन.</li>
+                            </ul>
+                        </div>
+                        <div id="tab2" class="tab-content p-4">
+                            <h3 class="marathi-title font-bold text-xl mb-3">🐸 १५ सप्टेंबर: आपण असहमत का असतो?</h3>
+                            <p class="marathi-text text-lg mb-4 leading-loose">'विहिरीतला बेडूक' (कूपमंडूक) या गोष्टीचा वापर करून त्यांनी धार्मिक संकुचिततेवर टीका केली. प्रत्येक बेडकाला आपली विहीर हेच संपूर्ण जग वाटते, त्याचप्रमाणे प्रत्येक धर्म स्वतःला श्रेष्ठ मानतो.</p>
+                            <div class="flex justify-center items-center text-8xl h-48 bg-black/30 rounded-lg border-2 border-dashed border-[#1aa5de]">
+                                🐸
+                            </div>
+                        </div>
+                        <div id="tab3" class="tab-content p-4">
+                            <h3 class="marathi-title font-bold text-xl mb-3">🍞 २० सप्टेंबर: धर्म ही भारताची तातडीची गरज नाही</h3>
+                             <p class="marathi-text text-lg leading-loose">भारतातील गरिबीने त्रस्त जनतेला धर्मांतराचे आमिष दाखवणाऱ्या मिशनऱ्यांवर टीका करत ते म्हणाले:</p>
+                            <blockquote class="marathi-text text-2xl italic font-semibold text-center my-6 p-4 border-l-4 border-[#f5750c] bg-orange-900/20 leading-relaxed">"भुकेल्या पोटाला धर्माची नाही, तर अन्नाची गरज आहे."</blockquote>
+                        </div>
+                         <div id="tab4" class="tab-content p-4">
+                            <h3 class="marathi-title font-bold text-xl mb-3">🤝 २७ सप्टेंबर: समारोपाचा संदेश</h3>
+                             <p class="marathi-text text-lg mb-4 leading-loose">परिषदेच्या समारोपात त्यांनी वैश्विक सलोख्याच्या संदेशaचा पुनरुच्चार केला. त्यांनी जगाला एक कालातीत संदेश दिला:</p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mt-6">
+                                <div class="p-4 bg-black/30 rounded-lg"><p class="marathi-title text-xl font-bold">🤝 मदत करा, संघर्ष नको</p></div>
+                                <div class="p-4 bg-black/30 rounded-lg"><p class="marathi-title text-xl font-bold">👐 आत्मसात करा, विरोध नको</p></div>
+                                <div class="p-4 bg-black/30 rounded-lg"><p class="marathi-title text-xl font-bold">🕊️ सलोखा आणि शांती, कलह नको</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="impact" class="mb-16 animate-hidden">
+                <h2 class="marathi-title text-3xl font-bold text-center mb-8">दूरगामी परिणाम</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-glass p-6 rounded-2xl shadow-lg">
+                        <h3 class="marathi-title text-2xl font-bold mb-4">🌏 पाश्चात्य जगावर</h3>
+                        <blockquote class="marathi-text italic text-lg p-4 border-l-4 border-[#f5750c] bg-orange-900/20 mb-4 leading-relaxed">"या विद्वान राष्ट्रात मिशनरी पाठवणे किती मूर्खपणाचे आहे." <span class="block text-right font-semibold not-italic">- न्यूयॉर्क हेराल्ड</span></blockquote>
+                        <div class="chart-container h-80">
+                            <canvas id="impactChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-glass p-6 rounded-2xl shadow-lg">
+                        <h3 class="marathi-title text-2xl font-bold mb-4">राष्ट्रीय अस्मितेचे पुनरुज्जीवन</h3>
+                        <p class="marathi-text text-lg mb-4 leading-loose">या यशाने पराभूत मानसिकतेतील भारतीय समाजात राष्ट्रीय स्वाभिमान आणि आत्मविश्वासाची नवी ऊर्जा निर्माण केली. भारत आध्यात्मिक क्षेत्रात 'विश्वगुरू' बनू शकतो, हा विश्वास दृढ झाला.</p>
+                        <ul class="marathi-text space-y-4 mt-4 text-lg leading-loose">
+                            <li class="flex items-center">🔥<span class="ml-3"><b>स्वातंत्र्यलढ्याची प्रेरणा:</b> "उठा, जागे व्हा..." हा संदेश स्वातंत्र्यलढ्याचा मंत्र बनला.</span></li>
+                            <li class="flex items-center">🔥<span class="ml-3"><b>महात्मा गांधींना प्रेरणा:</b> 'जीवाच्या रूपात शिवाची सेवा' या शिकवणीचा प्रभाव.</span></li>
+                            <li class="flex items-center">🔥<span class="ml-3"><b>नेताजी बोस यांचे मत:</b> स्वामीजींना 'आधुनिक भारताचे निर्माते' मानले.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="legacy" class="mb-16 animate-hidden">
+                <h2 class="marathi-title text-3xl font-bold text-center mb-8">स्वामी विवेकानंदांचा चिरंतन वारसा</h2>
+                 <p class="marathi-text max-w-4xl mx-auto text-center text-lg mb-8 leading-loose">स्वामीजींनी दिलेला वैश्विक सहचर्याचा संदेश आजच्या काळातही तितकाच प्रासंगिक आहे. त्यांचे विचार आधुनिक भारताच्या धोरणांना आणि जगाच्या दृष्टिकोनाला दिशा देत आहेत.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-glass p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                        <p class="text-4xl mb-4">🌏</p>
+                        <h3 class="marathi-title text-xl font-bold">G20: वसुधैव कुटुंबकम्</h3>
+                        <p class="marathi-text mt-2 text-sm leading-relaxed">'One Earth, One Family, One Future' हे धोरण त्यांच्याच वैश्विक विचारांचे प्रतिध्वनी आहे.</p>
+                    </div>
+                    <div class="bg-glass p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                         <p class="text-4xl mb-4">🧘</p>
+                        <h3 class="marathi-title text-xl font-bold">आंतरराष्ट्रीय योग दिन</h3>
+                        <p class="marathi-text mt-2 text-sm leading-relaxed">त्यांनी मांडलेल्या भारताच्या Soft Power चे जग आज अनुकरण करत आहे.</p>
+                    </div>
+                    <div class="bg-glass p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                         <p class="text-4xl mb-4">🚀</p>
+                        <h3 class="marathi-title text-xl font-bold">स्टार्ट-अप इंडिया</h3>
+                        <p class="marathi-text mt-2 text-sm leading-relaxed">'स्किल इंडिया' आणि 'स्टार्ट-अप' योजना त्यांच्या उद्यमी तरुणांच्या संकल्पनेला मूर्त रूप देतात.</p>
+                    </div>
+                    <div class="bg-glass p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                         <p class="text-4xl mb-4">🕊️</p>
+                        <h3 class="marathi-title text-xl font-bold">आंतरधर्मीय सलोखा</h3>
+                        <p class="marathi-text mt-2 text-sm leading-relaxed">त्यांचा सर्वसमावेशकतेचा संदेश आजच्या विभागलेल्या जगासाठी एक चिरंतन दीपस्तंभ आहे.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center py-8 mt-8 border-t-2 border-[#f5750c] animate-hidden">
+             <blockquote class="marathi-text text-2xl italic max-w-3xl mx-auto leading-relaxed" style="color: #1aa5de;">
+                "सहिष्णुतेच्या पुढे वैश्विक सहचर्याचा स्वामीजींनी दिलेला संदेश मानवजातीच्या कल्याणासाठी आजही सर्वंकष, समग्र दर्शन आहे."
+            </blockquote>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const animatedElements = document.querySelectorAll('.animate-hidden');
+            animatedElements.forEach(el => observer.observe(el));
+            
+            function processLabel(label) {
+                const maxLength = 16;
+                if (label.length <= maxLength) return label;
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) lines.push(currentLine.trim());
+                return lines;
+            }
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) return label.join(' ');
+                return label;
+            };
+            
+            const chartTextColor = '#DDDDDD';
+
+            const visionCtx = document.getElementById('visionChart').getContext('2d');
+            new Chart(visionCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['आयोजकांची दृष्टी (ख्रिश्चन चौकटीत)', 'विवेकानंदांची दृष्टी (खऱ्या अर्थाने वैश्विक)'].map(processLabel),
+                    datasets: [{
+                        label: 'वैश्विकतेची कल्पना',
+                        data: [65, 95],
+                        backgroundColor: ['#f5750c', '#1aa5de'],
+                        borderColor: ['#f5750c', '#1aa5de'],
+                        borderWidth: 1,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeOutBounce'
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { display: false },
+                            grid: { display: false }
+                        },
+                        y: {
+                            ticks: {
+                                font: { family: "'Laila', serif", size: 14 },
+                                color: chartTextColor
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            bodyFont: { family: "'Laila', serif" },
+                            titleFont: { family: "'Laila', serif" }
+                        }
+                    }
+                }
+            });
+
+            const impactCtx = document.getElementById('impactChart').getContext('2d');
+            new Chart(impactCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['गैरसमज', 'योग/वेदांत ओळख', 'तात्त्विक स्वीकार', 'वैज्ञानिक सुसंगतता', 'संस्थात्मक पाया'].map(processLabel),
+                    datasets: [{
+                        label: 'भाषणानंतर',
+                        data: [15, 90, 85, 80, 75],
+                        fill: true,
+                        backgroundColor: 'rgba(26, 165, 222, 0.2)',
+                        borderColor: '#1aa5de',
+                        pointBackgroundColor: '#1aa5de',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#1aa5de'
+                    }, {
+                        label: 'भाषणापूर्वी',
+                        data: [80, 10, 20, 15, 5],
+                        fill: true,
+                        backgroundColor: 'rgba(245, 117, 12, 0.2)',
+                        borderColor: '#f5750c',
+                        pointBackgroundColor: '#f5750c',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#f5750c'
+                    }]
+                },
+                options: {
+                    animation: {
+                        duration: 1500
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            bodyFont: { family: "'Laila', serif" },
+                            titleFont: { family: "'Laila', serif" }
+                        },
+                        legend: {
+                            labels: {
+                                 font: { family: "'Laila', serif", size: 14 },
+                                 color: chartTextColor
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                            pointLabels: {
+                                font: { family: "'Laila', serif", size: 12 },
+                                color: chartTextColor
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                color: chartTextColor
+                            }
+                        }
+                    }
+                }
+            });
+            
+            const tabsNav = document.getElementById('tabs-nav');
+            const tabsContent = document.getElementById('tabs-content');
+            
+            tabsNav.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') {
+                    const tabId = e.target.dataset.tab;
+                    
+                    tabsNav.querySelectorAll('.tab-button').forEach(button => {
+                        button.classList.remove('active');
+                    });
+                    
+                    tabsContent.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    e.target.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
