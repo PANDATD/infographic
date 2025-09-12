@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>डिजिटल इंडिया ते स्मार्ट व्हिलेज: ग्रामीण परिवर्तनाची दिशा</title>
+    <meta name="description" content="मुख्यमंत्री देवेंद्र फडणवीस यांच्या नेतृत्वाखाली महाराष्ट्राच्या ग्रामीण परिवर्तनाची यशोगाथा. नागपूर जिल्ह्यातील सातनवरी, देशातील पहिले AI-चालित स्मार्ट व्हिलेज.">
+    <meta name="keywords" content="देवेंद्र फडणवीस, स्मार्ट व्हिलेज, डिजिटल इंडिया, सातनवरी, महाराष्ट्र, ग्रामीण विकास, AI in Agriculture">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Hind', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom colors matching the theme */
+        .bg-saffron { background-color: #FF9933; }
+        .text-saffron { color: #FF9933; }
+        .border-saffron { border-color: #FF9933; }
+        
+        .bg-green { background-color: #138808; }
+        .text-green { color: #138808; }
+        .border-green { border-color: #138808; }
+        
+        .bg-navy { background-color: #000080; } /* For contrast */
+        .text-navy { color: #000080; }
+
+        /* Animation for stats bars on scroll */
+        @keyframes fill-bar {
+            from { width: 0%; }
+        }
+        .stat-bar-fill {
+            animation: fill-bar 2s ease-out forwards;
+        }
+        
+        /* Figurine trend for the main image */
+        .fadnavis-image {
+            filter: grayscale(20%) contrast(110%);
+            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%);
+            mask-image: linear-gradient(to top, transparent 0%, black 20%);
+             
+
+        }
+
+        .section-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        /* Circular progress bar styles */
+        .progress-ring__circle {
+            transition: stroke-dashoffset 2s ease-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+        <!-- Header Section -->
+    <header class="relative overflow-hidden bg-gradient-to-b from-orange-600 via-orange-400 to-white text-white">
+        <div class="container mx-auto px-6 pt-16 pb-24 relative z-10 text-center">
+            <h1 class="text-5xl md:text-6xl font-extrabold font-poppins mb-4 drop-shadow-lg animate-fadeInUp">
+                एका ‘स्मार्ट आणि इंटेलिजेंट’ गावाची यशोगाथा
+            </h1>
+            <p class="text-2xl md:text-3xl font-semibold tracking-wide animate-fadeInUp delay-200">
+                ग्रामीण परिवर्तनाची एक नवी दिशा
+            </p>
+            <p class="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-orange-100 leading-relaxed animate-fadeInUp delay-400">
+                “देशातील पहिलं ‘स्मार्ट आणि इंटेलिजेंट व्हिलेज’ म्हणून नावाजलेलं सातनवरी हे गाव नागपूर शहरापासून अवघ्या ३१ किलोमीटर अंतरावर वसलं आहे. सुमारे १,८०० लोकसंख्येचं हे गाव तंत्रज्ञानाच्या मदतीने ग्रामीण जीवनात नवा बदल घडवत आहे. आधुनिक सुविधा, स्मार्ट शेती, डिजिटल शिक्षण आणि आरोग्यसेवा यामुळे सातनवरी आज महाराष्ट्राच्याच नव्हे तर संपूर्ण देशाच्या प्रगतीचा आदर्श ठरत आहे
+            </p>
+        </div>
+        <!-- Slightly smaller image below text -->
+        <div class="relative w-full max-w-5xl mx-auto px-6 pb-6 animate-fadeIn delay-600">
+            <img src="https://i.cdn.newsbytesapp.com/images/l84920241204121312.jpeg" 
+                 alt="देवेंद्र फडणवीस" 
+                 class="w-full h-auto rounded-2xl shadow-lg fadnavis-image">
+        </div>
+    </header>
+
+    <!-- Animations -->
+    <style>
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        .animate-fadeIn {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+    </style>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6 -mt-16 relative z-20">
+
+        <!-- Introduction Card -->
+        <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-12 ring-1 ring-gray-200">
+            <h2 class="text-3xl font-bold text-center mb-4 text-saffron">एक क्रांतिकारी पाऊल</h2>
+            <p class="text-center text-lg text-gray-600 max-w-4xl mx-auto">
+                पंतप्रधान नरेंद्र मोदी यांच्या ‘आत्मनिर्भर भारत’ आणि ‘डिजिटल इंडिया’ संकल्पनांना प्रत्यक्षात आणत, मुख्यमंत्री देवेंद्र फडणवीस यांच्या नेतृत्वाखाली महाराष्ट्राने ‘स्मार्ट आणि इंटेलिजेंट व्हिलेज’ ही अभिनव योजना सुरू केली आहे. ही केवळ एक योजना नसून, ग्रामीण महाराष्ट्राच्या समृद्ध, सक्षम आणि आत्मनिर्भर भविष्याची पायाभरणी आहे.
+            </p>
+        </section>
+
+        <!-- Core Pillars Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-green">ग्राम-परिवर्तनाचे तीन आधारस्तंभ</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Smart Agriculture Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 section-card">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-green/10 rounded-full mr-4">
+  <img src="https://cdn-icons-png.flaticon.com/512/4095/4095680.png" alt="Smart Farming" class="w-8 h-8">
+</div>
+                        <h3 class="text-2xl font-bold text-green">स्मार्ट शेती</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">ड्रोन, IoT सेन्सर्स आणि मोबाईल ॲप्सच्या मदतीने अचूक शेती. यामुळे उत्पादन वाढले, खर्च कमी झाला आणि शेतकऱ्यांच्या उत्पन्नात थेट वाढ झाली.</p>
+                    <div class="space-y-4">
+                        <div class="stat-item" data-value="25">
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-gray-700">पीक उत्पादनात वाढ</span><span class="text-sm font-medium text-green">~२५%</span></div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green h-2.5 rounded-full stat-bar" style="width: 25%;"></div></div>
+                        </div>
+                         <div class="stat-item" data-value="30">
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-gray-700">खतांवरील खर्चात घट</span><span class="text-sm font-medium text-green">~३०%</span></div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green h-2.5 rounded-full stat-bar" style="width: 30%;"></div></div>
+                        </div>
+                        <div class="stat-item" data-value="40">
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-gray-700">पाण्याची बचत</span><span class="text-sm font-medium text-green">~४०%</span></div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green h-2.5 rounded-full stat-bar" style="width: 40%;"></div></div>
+                        </div>
+                         <div class="stat-item" data-value="30">
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-gray-700">मत्स्य उत्पादनात वाढ</span><span class="text-sm font-medium text-green">~३०%</span></div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green h-2.5 rounded-full stat-bar" style="width: 30%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart Healthcare Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 section-card">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-saffron/10 rounded-full mr-4"><svg class="w-8 h-8 text-saffron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg></div>
+                        <h3 class="text-2xl font-bold text-saffron">सुलभ आरोग्यसेवा</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">टेलिमेडिसिनद्वारे शहरातील तज्ञ डॉक्टरांचा सल्ला, ई-हेल्थ कार्ड आणि फिरत्या आरोग्य पथकामुळे गावातच मिळतात जागतिक दर्जाच्या आरोग्य सुविधा.</p>
+                    <div class="flex flex-col items-center justify-center text-center p-4 bg-gray-50 rounded-lg">
+                        <div class="text-5xl font-bold text-saffron">120+</div>
+                        <p class="mt-2 text-gray-700">आरोग्य चाचण्या गावातच शक्य</p>
+                    </div>
+                     <ul class="mt-4 space-y-2 text-gray-600 list-inside">
+                        <li class="flex items-start"><span class="text-saffron mr-2">✔</span> नागपूरच्या GMC शी थेट संपर्क</li>
+                        <li class="flex items-start"><span class="text-saffron mr-2">✔</span> प्रत्येक नागरिकासाठी डिजिटल आरोग्य नोंदी</li>
+                        <li class="flex items-start"><span class="text-saffron mr-2">✔</span> वेळेची आणि पैशाची मोठी बचत</li>
+                    </ul>
+                </div>
+
+                <!-- Smart Education Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 section-card">
+                    <div class="flex items-center mb-4">
+                         <div class="p-3 bg-navy/10 rounded-full mr-4"><svg class="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg></div>
+                        <h3 class="text-2xl font-bold text-navy">गुणवत्तापूर्ण शिक्षण</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">AI-आधारित वर्ग, स्मार्ट बोर्ड आणि डिजिटल शैक्षणिक साहित्यामुळे ग्रामीण आणि शहरी शिक्षणातील तफावत दूर झाली आहे.</p>
+                    <div class="flex flex-col items-center justify-center text-center p-4 bg-gray-50 rounded-lg">
+                         <div class="text-4xl font-bold text-navy">AI</div>
+                        <p class="mt-2 text-gray-700">तंत्रज्ञानावर आधारित स्मार्ट वर्ग</p>
+                    </div>
+                    <ul class="mt-4 space-y-2 text-gray-600 list-inside">
+                        <li class="flex items-start"><span class="text-navy mr-2">✔</span> शिक्षण अधिक रंजक आणि प्रभावी</li>
+                        <li class="flex items-start"><span class="text-navy mr-2">✔</span> देशातील उत्कृष्ट शैक्षणिक साहित्याची उपलब्धता</li>
+                        <li class="flex items-start"><span class="text-navy mr-2">✔</span> प्रत्येक विद्यार्थ्याला समान संधी</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Satnavari Model Section -->
+        <section class="bg-gradient-to-r from-green-600 to-green-800 text-white rounded-xl shadow-lg p-8 my-12">
+            <h2 class="text-3xl font-bold text-center mb-2">सातनवरी: एक यशस्वी मॉडेल</h2>
+            <p class="text-center text-green-200 mb-6 max-w-3xl mx-auto">हा प्रकल्प 'व्हॉईस ऑफ इंडियन कम्युनिकेशन टेक्नॉलॉजी एंटरप्रायझेस' (VoICE) या २४ भारतीय कंपन्यांच्या महासंघाने 'मेक इन इंडिया' अंतर्गत साकारला आहे. फडणवीसांनी मंजुरी दिल्यानंतर केवळ दोन महिन्यांत या प्रकल्पाचे उद्घाटन झाले, जो सार्वजनिक-खाजगी भागीदारीचा (PPP) एक उत्कृष्ट नमुना आहे.</p>
+            <div class="flex justify-center items-center space-x-6 text-center">
+                <div>
+                    <div class="text-4xl font-bold">2</div>
+                    <div class="text-sm text-green-200">महिन्यात<br>उद्घाटन</div>
+                </div>
+                 <div class="h-12 w-px bg-green-400"></div>
+                <div>
+                    <div class="text-4xl font-bold">24+</div>
+                    <div class="text-sm text-green-200">भारतीय<br>कंपन्यांचा सहभाग</div>
+                </div>
+                 <div class="h-12 w-px bg-green-400"></div>
+                 <div>
+                    <div class="text-4xl font-bold">18</div>
+                    <div class="text-sm text-green-200">एकात्मिक<br>स्मार्ट सेवा</div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-8">
+        <p class="font-semibold text-lg">विकसित आणि आत्मनिर्भर महाराष्ट्राच्या दिशेने एक निर्णायक वाटचाल!</p>
+        <p class="text-gray-400 mt-2"> मुख्यमंत्री देवेंद्र फडणवीस यांच्या नेतृत्वाखाली, प्रत्येक गाव बनेल प्रगतीचे केंद्र.</p>
+    </footer>
+    
+    <script>
+        // Intersection Observer to trigger animations on scroll
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statBar = entry.target.querySelector('.stat-bar');
+                        if (statBar) {
+                            statBar.classList.add('stat-bar-fill');
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.stat-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+
+</body>
+</html>
