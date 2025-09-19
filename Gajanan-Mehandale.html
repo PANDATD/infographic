@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गजानन मेहेंदळे: पुराव्यांचे इतिहासकार</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+Devanagari:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+            background-color: #FFF7ED; /* फिकट केशरी पार्श्वभूमी */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-step {
+            border: 2px solid #FB923C; /* केशरी */
+            background-color: #ffffff;
+            color: #7C2D12; /* गडद केशरी/तपकिरी */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #EA580C; /* गडद केशरी */
+            align-self: center;
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-3xl font-black text-center" style="color: #C2410C;">गजानन मेहेंदळे: पुराव्यांचे इतिहासकार</h1>
+            <p class="text-center text-lg mt-1" style="color: #7C2D12;">प्राथमिक साधनांच्या आधारे दंतकथांचे खंडन</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        
+        <section id="introduction" class="text-center mb-12">
+            <p class="text-xl max-w-4xl mx-auto" style="color: #7C2D12;">
+                भारतीय हवाई दलातील प्रतिष्ठित कारकिर्दीनंतर, गजानन भास्कर मेहेंदळे यांनी मराठ्यांचा इतिहास शुद्ध करण्यासाठी आपले जीवन समर्पित केले. त्यांची निःसंदिग्ध पद्धत: **केवळ** मूळ, समकालीन कागदपत्रांवर अवलंबून राहणे आणि दशकांच्या विचारसरणी-प्रेरित कथानकांना आव्हान देणे. हे इन्फोग्राफिक त्यांचे मुख्य निष्कर्ष आणि तथ्य-आधारित दृष्टिकोन दर्शवते.
+            </p>
+        </section>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-4 text-center" style="color: #EA580C;">मेहेंदळे पद्धत: तथ्यांचा प्रवाह-तक्ता</h2>
+                <div class="flex flex-col md:flex-row justify-center items-center">
+                    <div class="flowchart-step">१. प्राथमिक साधन ओळखा</div>
+                    <div class="flowchart-arrow hidden md:block">&rarr;</div>
+                    <div class="flowchart-arrow md:hidden">&darr;</div>
+                    <div class="flowchart-step">२. सत्यता तपासा</div>
+                    <div class="flowchart-arrow hidden md:block">&rarr;</div>
+                    <div class="flowchart-arrow md:hidden">&darr;</div>
+                    <div class="flowchart-step">३. इतर साधनांशी पडताळा</div>
+                    <div class="flowchart-arrow hidden md:block">&rarr;</div>
+                     <div class="flowchart-arrow md:hidden">&darr;</div>
+                    <div class="flowchart-step">४. वास्तववादी निष्कर्ष काढा</div>
+                </div>
+                <p class="text-center mt-4" style="color: #7C2D12;">ही कठोर प्रक्रिया, कोणत्याही वैचारिक पूर्वग्रहापासून मुक्त, त्यांच्या सर्व कार्याचा पाया आहे, जी सोयीस्कर कथानकांपेक्षा ऐतिहासिक अचूकतेची खात्री देते.</p>
+            </div>
+            
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-4" style="color: #C2410C;">दंतकथेचे खंडन: शिवाजी महाराजांच्या सैन्यातील मुस्लिम सैनिक</h2>
+                <p class="mb-4" style="color: #7C2D12;">एका मोठ्या प्रमाणावर प्रसारित झालेल्या कथानकात दावा केला जातो की, शिवाजी महाराजांना आधुनिक अर्थाने 'धर्मनिरपेक्ष' शासक म्हणून चित्रित करण्यासाठी त्यांच्या सैन्यात ३०-४०% मुस्लिम होते. मेहेंदळे यांचे हजेरी पत्रके आणि समकालीन नोंदींमधील संशोधन एक पूर्णपणे वेगळे, पुराव्यावर आधारित चित्र सादर करते.</p>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="armyCompositionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-center">
+                 <h2 class="text-2xl font-bold mb-4" style="color: #C2410C;">आकडेवारी खोटी बोलत नाही</h2>
+                 <div class="text-center">
+                    <p class="text-lg font-bold" style="color: #7C2D12;">सर्वसाधारणपणे सांगितली जाणारी टक्केवारी</p>
+                    <p class="text-6xl font-black" style="color: #F97316;">३०-४०%</p>
+                    <p class="text-sm">(प्राथमिक पुरावा नाही)</p>
+                 </div>
+                 <hr class="my-6 border-t-2 border-gray-200">
+                 <div class="text-center">
+                    <p class="text-lg font-bold" style="color: #7C2D12;">मेहेंदळेंचा वास्तववादी शोध</p>
+                    <p class="text-6xl font-black" style="color: #9A3412;">&lt; १.५%</p>
+                    <p class="text-sm">(प्राथमिक साधनांवर आधारित)</p>
+                 </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-4" style="color: #C2410C;">दंतकथेचे खंडन: महाराज 'रयतेचे राजे' होते का?</h2>
+                <p class="mb-4" style="color: #7C2D12;">शिवाजी महाराजांनी वर्गहीन समाज निर्माण करण्यासाठी 'वतनदारी' पद्धत मोडून काढली, हे कथानक एक आधुनिक अर्थ आहे. मेहेंदळे स्पष्ट करतात की ते एक व्यवहारवादी शासक होते, साम्यवादी विचारांचे प्रणेते नव्हते.</p>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-lg border-l-4" style="background-color: #FFECEB; border-color: #F97316;">
+                        <h3 class="font-bold" style="color: #C2410C;">दंतकथा</h3>
+                        <p style="color: #7C2D12;">त्यांनी वतनदारी पद्धत मोडून काढली आणि ते जमीनदारांचे शत्रू होते.</p>
+                    </div>
+                    <div class="p-4 rounded-lg border-l-4" style="background-color: #FEF3C7; border-color: #D97706;">
+                        <h3 class="font-bold" style="color: #92400E;">वास्तव (पुराव्यावर आधारित)</h3>
+                        <p style="color: #7C2D12;">त्यांनी वतनदारांवर **नियंत्रण** ठेवले, अन्यायी लोकांना शिक्षा केली, रयतेचे संरक्षण केले, पण पद्धतच मोडून काढली नाही.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-4" style="color: #C2410C;">दंतकथेचे खंडन: दादोजी कोंडदेव यांची भूमिका</h2>
+                 <p class="mb-4" style="color: #7C2D12;">काही ऐतिहासिक प्रभाव कमी करण्यासाठी, एक कथानक उदयास आले की दादोजी कोंडदेव केवळ एक प्रशासक होते, शिवाजी महाराजांचे गुरू नव्हते. मेहेंदळे यांचे समकालीन पत्रे आणि नोंदींचे विश्लेषण त्यांची मूलभूत भूमिका स्पष्ट करते.</p>
+                 <div class="chart-container h-80 md:h-96">
+                    <canvas id="dadojiRoleChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-around text-center">
+                <h2 class="text-2xl font-bold" style="color: #EA580C;">आयुष्यभराचे संशोधन</h2>
+                <div>
+                    <p class="text-6xl font-black" style="color: #F97316;">४०+</p>
+                    <p class="text-xl font-bold" style="color: #7C2D12;">वर्षांचा समर्पित अभ्यास</p>
+                </div>
+                <div>
+                    <p class="text-6xl font-black" style="color: #F97316;">२०००+</p>
+                    <p class="text-xl font-bold" style="color: #7C2D12;">महत्वपूर्ण ग्रंथात प्रकाशित पाने</p>
+                </div>
+                 <div>
+                    <p class="text-6xl font-black" style="color: #F97316;">७+</p>
+                    <p class="text-xl font-bold" style="color: #7C2D12;">भाषा/लिपींचा अभ्यास</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-white mt-12 py-6">
+        <div class="container mx-auto px-6 text-center text-gray-600">
+            <p>इन्फोग्राफिक 'कॅनव्हास इन्फोग्राफिक्स' द्वारा. माहिती ग. भा. मेहेंदळे यांच्या संशोधन आणि कार्यातून घेतली आहे.</p>
+        </div>
+    </footer>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    if (currentLine.length === 0) {
+                        currentLine = word;
+                    } else {
+                        currentLine += ' ' + word;
+                    }
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+    
+        const commonTooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    position: 'top',
+                },
+            }
+        };
+
+        const armyCompositionCtx = document.getElementById('armyCompositionChart').getContext('2d');
+        new Chart(armyCompositionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['मुस्लिम सैनिक (वास्तव)', 'इतर सैनिक (वास्तव)', 'मुस्लिम सैनिक (दंतकथा)'],
+                datasets: [{
+                    label: 'वास्तववादी रचना',
+                    data: [1.5, 98.5],
+                    backgroundColor: ['#9A3412', '#FDBA74'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    circumference: 180,
+                    rotation: 270,
+                }, {
+                    label: 'काल्पनिक रचना',
+                    data: [35, 65],
+                    backgroundColor: ['#C2410C', '#FB923C'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    circumference: 180,
+                    rotation: 270,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                     title: {
+                        display: true,
+                        text: 'वास्तववादी शोध विरुद्ध प्रचलित दंतकथा',
+                        font: { size: 16 }
+                    },
+                    ...commonTooltipCallback.plugins
+                }
+            }
+        });
+
+        const dadojiRoleCtx = document.getElementById('dadojiRoleChart').getContext('2d');
+        new Chart(dadojiRoleCtx, {
+            type: 'bar',
+            data: {
+                labels: [wrapLabel('जहागिरीचे प्रशासक'), wrapLabel('राजनीतीचे शिक्षक')],
+                datasets: [{
+                    label: 'काल्पनिक कथानक',
+                    data: [100, 10],
+                    backgroundColor: '#F97316',
+                    borderColor: '#F97316',
+                    borderWidth: 1
+                }, {
+                    label: 'पुराव्यावर आधारित सत्य',
+                    data: [100, 95],
+                    backgroundColor: '#9A3412',
+                    borderColor: '#9A3412',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {return value + "%"}
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'दादोजी कोंडदेव यांच्या भूमिकेचे महत्त्व',
+                        font: { size: 16 }
+                    },
+                    ...commonTooltipCallback.plugins,
+                    tooltip: {
+                         callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.raw + '% महत्त्व';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>
