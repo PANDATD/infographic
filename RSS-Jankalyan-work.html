@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>जनकल्याण समिती (महाराष्ट्र प्रांत) - सेवाकार्यांची संख्यात्मक स्थिती</title>
+    <meta name="description" content="रा. स्व. संघ जनकल्याण समिती, महाराष्ट्र प्रांत यांच्या सेवाकार्यांची संख्यात्मक स्थिती दर्शवणारे माहितीपत्रक. एकूण सेवाकार्य, प्रकल्प, आणि कार्यकर्त्यांची तपशीलवार माहिती.">
+    <meta name="keywords" content="जनकल्याण समिती, महाराष्ट्र, सेवाकार्य, सामाजिक कार्य, RSS, Janakalyan Samiti, Social Work, Maharashtra">
+    <meta name="author" content="जनकल्याण समिती">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind gray-50 */
+        }
+        .data-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .data-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .stat-bar-bg {
+            background-color: #e5e7eb; /* gray-200 */
+        }
+        .stat-bar {
+            transition: width 1.5s ease-in-out;
+        }
+        /* Custom gradient for header */
+        .header-gradient {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+        }
+        .stat-number {
+            font-weight: 800; /* Extra bold for numbers */
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header Section -->
+    <header class="header-gradient text-white p-6 sm:p-8 text-center rounded-b-3xl shadow-lg">
+        <h1 class="text-3xl sm:text-4xl font-bold">रा. स्व. संघ जनकल्याण समिती (महाराष्ट्र प्रांत)</h1>
+        <p class="text-xl sm:text-2xl mt-2 opacity-90">सेवाकार्यांची संख्यात्मक स्थिती</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Top Statistics Grid -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center mb-8">
+            <div class="data-card p-6 bg-blue-500 text-white">
+                <h3 class="text-lg font-bold opacity-80">एकूण सेवाकार्यें</h3>
+                <p class="stat-number text-5xl mt-2" data-target="1424">0</p>
+            </div>
+            <div class="data-card p-6 bg-green-500 text-white">
+                <h3 class="text-lg font-bold opacity-80">एकूण कार्यकर्ते</h3>
+                <p class="stat-number text-5xl mt-2" data-target="2950">0</p>
+            </div>
+            <div class="data-card p-6 bg-yellow-500 text-white">
+                <h3 class="text-lg font-bold opacity-80">मोठे प्रकल्प</h3>
+                <p class="stat-number text-5xl mt-2" data-target="6">0</p>
+            </div>
+            <div class="data-card p-6 bg-red-500 text-white">
+                <h3 class="text-lg font-bold opacity-80">पूर्णवेळ कार्यकर्ते</h3>
+                <p class="stat-number text-5xl mt-2" data-target="13">0</p>
+            </div>
+        </section>
+
+        <!-- Detailed Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            
+            <!-- Health Projects Card -->
+            <article class="data-card p-6">
+                <h2 class="text-2xl font-bold mb-4 text-blue-700 border-b-2 border-blue-200 pb-2">आरोग्य प्रकल्प (एकूण: ९०४)</h2>
+                <ul class="space-y-4 text-lg">
+                    <li data-value="729" data-max="904">
+                        <div class="flex justify-between mb-1"><span>ग्राम आरोग्य रक्षक प्रकल्प</span><span class="font-semibold">७२९</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-blue-600 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="134" data-max="904">
+                        <div class="flex justify-between mb-1"><span>रुग्णोपयोगी साहित्य केंद्र</span><span class="font-semibold">१३४</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-blue-500 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="11" data-max="904">
+                         <div class="flex justify-between mb-1"><span>योग केंद्र</span><span class="font-semibold">११</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-blue-400 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="10" data-max="904">
+                        <div class="flex justify-between mb-1"><span>दैनिक आरोग्य केंद्र</span><span class="font-semibold">१०</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-blue-400 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="10" data-max="904">
+                        <div class="flex justify-between mb-1"><span>अन्नपूर्णा योजना</span><span class="font-semibold">१०</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-blue-400 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                     <li data-value="6" data-max="904">
+                        <div class="flex justify-between mb-1"><span>साप्ताहिक आरोग्य केंद्र</span><span class="font-semibold">६</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-blue-300 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="2" data-max="904">
+                        <div class="flex justify-between mb-1"><span>नेत्ररोग तपासणी केंद्र</span><span class="font-semibold">२</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-blue-300 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="1" data-max="904">
+                         <div class="flex justify-between mb-1"><span>मळगांव प्रशिक्षण केंद्र</span><span class="font-semibold">१</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-blue-200 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="1" data-max="904">
+                         <div class="flex justify-between mb-1"><span>व्यायामशाळा</span><span class="font-semibold">१</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-blue-200 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                </ul>
+            </article>
+
+            <!-- Educational Projects Card -->
+            <article class="data-card p-6">
+                <h2 class="text-2xl font-bold mb-4 text-green-700 border-b-2 border-green-200 pb-2">शैक्षणिक प्रकल्प (एकूण: ७४)</h2>
+                <ul class="space-y-4 text-lg">
+                    <li data-value="26" data-max="74">
+                        <div class="flex justify-between mb-1"><span>झोळी वाचनालय</span><span class="font-semibold">२६</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-green-600 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="22" data-max="74">
+                        <div class="flex justify-between mb-1"><span>अभ्यासिका</span><span class="font-semibold">२२</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-green-500 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                     <li data-value="16" data-max="74">
+                        <div class="flex justify-between mb-1"><span>फिरस्ती विज्ञान प्रयोगशाळा</span><span class="font-semibold">१६</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-green-400 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="4" data-max="74">
+                        <div class="flex justify-between mb-1"><span>स्थिर वाचनालय</span><span class="font-semibold">४</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-green-300 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="3" data-max="74">
+                        <div class="flex justify-between mb-1"><span>बालवाडी</span><span class="font-semibold">३</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-green-300 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                     <li data-value="2" data-max="74">
+                        <div class="flex justify-between mb-1"><span>शिवण वर्ग</span><span class="font-semibold">२</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-green-200 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                     <li data-value="1" data-max="74">
+                        <div class="flex justify-between mb-1"><span>स्पर्धा परीक्षा मार्गदर्शनकेंद्र</span><span class="font-semibold">१</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-green-200 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                </ul>
+            </article>
+
+            <!-- Social Projects Card -->
+            <article class="data-card p-6">
+                 <h2 class="text-2xl font-bold mb-4 text-purple-700 border-b-2 border-purple-200 pb-2">सामाजिक प्रकल्प (एकूण: ९६)</h2>
+                <ul class="space-y-4 text-lg">
+                    <li data-value="57" data-max="96">
+                        <div class="flex justify-between mb-1"><span>संस्कार वर्ग</span><span class="font-semibold">५७</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-purple-600 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="37" data-max="96">
+                        <div class="flex justify-between mb-1"><span>किशोरी विकास प्रकल्प</span><span class="font-semibold">३७</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-purple-500 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                    <li data-value="2" data-max="96">
+                        <div class="flex justify-between mb-1"><span>कौटुंबिक समुपदेशन केंद्र</span><span class="font-semibold">२</span></div>
+                        <div class="w-full stat-bar-bg rounded-full h-2.5"><div class="bg-purple-400 h-2.5 rounded-full stat-bar" style="width: 0%"></div></div>
+                    </li>
+                </ul>
+            </article>
+
+             <!-- Other Projects Card -->
+            <article class="data-card p-6 md:col-span-2 xl:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- पूर्वांचल छात्रावास -->
+                <div>
+                     <h2 class="text-xl font-bold mb-4 text-indigo-700 border-b-2 border-indigo-200 pb-2">पूर्वांचल छात्रावास</h2>
+                     <div class="text-center">
+                        <p class="text-6xl font-extrabold text-indigo-600" data-target="118">0</p>
+                        <p class="text-lg font-semibold">एकूण विद्यार्थी</p>
+                        <div class="flex justify-around mt-4 text-lg">
+                            <div>
+                                <p class="text-3xl font-bold">५५</p>
+                                <p>विद्यार्थी</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-bold">६३</p>
+                                <p>विद्यार्थीनी</p>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+                 <!-- स्वावलंबन -->
+                <div>
+                     <h2 class="text-xl font-bold mb-4 text-teal-700 border-b-2 border-teal-200 pb-2">स्वावलंबन (एकूण: ५)</h2>
+                     <ul class="space-y-4 text-lg mt-6">
+                         <li><span class="font-semibold">स्वावलंबन केंद्र:</span> ४</li>
+                         <li><span class="font-semibold">बचत गट:</span> १</li>
+                     </ul>
+                </div>
+                 <!-- कृषी -->
+                <div>
+                     <h2 class="text-xl font-bold mb-4 text-lime-700 border-b-2 border-lime-200 pb-2">कृषी (एकूण: ११)</h2>
+                     <ul class="space-y-4 text-lg mt-6">
+                         <li><span class="font-semibold">कृषी मार्गदर्शन केंद्र:</span> १</li>
+                         <li><span class="font-semibold">सेंद्रिय शेती:</span> १०</li>
+                     </ul>
+                </div>
+
+            </article>
+
+
+            <!-- Major Projects Card -->
+            <article class="data-card p-6 md:col-span-2 xl:col-span-3">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800 border-b-2 border-gray-200 pb-2">मोठे प्रकल्प</h2>
+                <ol class="list-decimal list-inside space-y-3 text-lg grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+                    <li>जनकल्याण निवासी विद्यालय, हरंगुळ, जि. लातूर</li>
+                    <li>संवेदना सेरेब्रल पाल्सी विकास केंद्र, हरंगुळ, जि. लातूर</li>
+                    <li>कै. डॉ. प्रभाकर पटवर्धन स्मृती रुग्णालय, पनवेल</li>
+                    <li>जनकल्याण रक्तपेढी, नाशिक</li>
+                    <li>कै. वामनराव ओक रक्तपेढी, ठाणे</li>
+                    <li>जनकल्याण रक्तपेढी, नगर</li>
+                </ol>
+            </article>
+
+            <!-- Scope of Work -->
+             <article class="data-card p-6 md:col-span-2 xl:col-span-3 bg-gray-700 text-white">
+                <h2 class="text-2xl font-bold mb-4 border-b-2 border-gray-500 pb-2">कार्यक्षेत्र: महाराष्ट्र प्रांत</h2>
+                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-xl mt-4">
+                    <div>
+                        <p class="stat-number text-4xl">३</p>
+                        <p class="opacity-80">संभाग</p>
+                    </div>
+                     <div>
+                        <p class="stat-number text-4xl">१६</p>
+                        <p class="opacity-80">विभाग</p>
+                    </div>
+                     <div>
+                        <p class="stat-number text-4xl">४८</p>
+                        <p class="opacity-80">जिल्हे</p>
+                    </div>
+                 </div>
+            </article>
+        </div>
+
+    </main>
+
+    <footer class="text-center p-6 mt-8 text-gray-500">
+        <p>&copy; २०२४ जनकल्याण समिती, महाराष्ट्र प्रांत. सर्व हक्क राखीव.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to animate numbers counting up
+            const animateCounters = (entry, observer) => {
+                const target = entry.target;
+                const finalValue = parseInt(target.dataset.target, 10);
+                let startValue = 0;
+                const duration = 2000; // 2 seconds
+                const increment = finalValue / (duration / 16); // 60fps
+
+                const updateCount = () => {
+                    startValue += increment;
+                    if (startValue < finalValue) {
+                        target.innerText = Math.ceil(startValue).toLocaleString('en-IN');
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        target.innerText = finalValue.toLocaleString('en-IN');
+                    }
+                };
+                
+                requestAnimationFrame(updateCount);
+                observer.unobserve(target); // Animate only once
+            };
+
+            // Function to animate progress bars
+            const animateBars = (entry, observer) => {
+                const barContainer = entry.target;
+                const value = parseFloat(barContainer.dataset.value);
+                const max = parseFloat(barContainer.dataset.max);
+                const bar = barContainer.querySelector('.stat-bar');
+                if(bar && value && max) {
+                    const percentage = (value / max) * 100;
+                    setTimeout(() => {
+                        bar.style.width = percentage + '%';
+                    }, 100); // Small delay to ensure visibility
+                }
+                observer.unobserve(barContainer); // Animate only once
+            };
+
+            // Intersection Observer setup
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters(entry, observer);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+             const barObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateBars(entry, observer);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            // Observe all elements with 'data-target' for counting
+            document.querySelectorAll('[data-target]').forEach(counter => {
+                counterObserver.observe(counter);
+            });
+
+             // Observe all elements with 'data-value' for bars
+            document.querySelectorAll('[data-value]').forEach(barContainer => {
+                barObserver.observe(barContainer);
+            });
+        });
+    </script>
+
+</body>
+</html>
