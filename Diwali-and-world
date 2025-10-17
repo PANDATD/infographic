@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>दिवाळी: एक जागतिक उत्सव | प्रकाशाचा, आशेचा आणि धर्माचा सण</title>
+    <meta name="description" content="दिवाळी हा सण जगभर कसा साजरा केला जातो, त्याचा इतिहास, संस्कृती आणि जागतिक महत्त्व यावर आधारित एक सुंदर इन्फोग्राफिक. बाली, नेपाळ, मॉरिशस आणि त्रिनिदाद यांसारख्या देशांतील दिवाळीच्या अनोख्या परंपरांबद्दल जाणून घ्या.">
+    <meta name="keywords" content="Diwali, Diwali Infographic, Global Diwali, Diwali in Marathi, Tihar Nepal, Galungan Bali, Diwali Mauritius, Diwali Trinidad, Hindu Festival, Deepavali, दिवाळी, जागतिक दिवाळी, तिहार, गालुंगन, गिरमिट्या, भारतीय सण">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for Marathi and English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom styles to apply the fonts */
+        body {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            background-color: #1a1a1a; /* Dark background for Diwali night theme */
+            color: #f0f0f0;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Custom gradient text for headings */
+        .gradient-text {
+            background: linear-gradient(90deg, #ffc837, #ff8008);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Styling for the diya lamps */
+        .diya {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background-color: #FFC107;
+            border-radius: 50% / 100% 100% 0 0;
+            margin: 0 auto;
+        }
+
+        .diya::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 20px;
+            background-color: #FF9800;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 5px #FF9800, 0 0 20px 10px #FF5722;
+            animation: flicker 1.5s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                opacity: 1;
+                transform: translateX(-50%) scaleY(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateX(-50%) scaleY(0.95);
+            }
+        }
+        
+        .card {
+            background-color: rgba(40, 40, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid #ffc837;
+            border-radius: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(255, 152, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-gray-200">
+
+    <!-- Header Section -->
+    <header class="text-center p-8 md:p-12 border-b-2 border-amber-500" style="background: url('https://www.transparenttextures.com/patterns/traditional-damask.png'), linear-gradient(to bottom, #2d2d2d, #1a1a1a);">
+        <div class="diya mx-auto mb-4"></div>
+        <h1 class="text-4xl md:text-6xl font-bold gradient-text">दिवाळी: एक जागतिक उत्सव</h1>
+        <p class="mt-4 text-lg md:text-xl text-amber-200 font-poppins">The Hindu festival of light, hope and dharma across the world</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <!-- Introduction -->
+        <section class="text-center mb-12">
+            <p class="max-w-4xl mx-auto text-lg leading-relaxed">
+                दिवाळी हा आता केवळ भारतीय सण राहिला नाही; तो आज जगभर साजरा होणारा एक उत्सव बनला आहे. बालीच्या किनाऱ्यांवर झगमगणारे दिवे, नेपाळच्या पर्वतरांगांत गुंजणारे भजन, आणि लंडनमधील लक्ष्मीपूजन या सर्व ठिकाणी भारतीय संस्कृतीचा सुवास पसरलेला दिसतो. हा सण श्रद्धा, कुटुंबमूल्ये आणि नीतिमूल्यांच्या एकतेचा उत्सव आहे.
+            </p>
+        </section>
+
+        <!-- Table of Contents -->
+        <nav class="sticky top-0 z-10 bg-slate-800/80 backdrop-blur-sm shadow-lg shadow-amber-900/20 rounded-lg p-4 mb-12">
+            <h3 class="font-bold text-center text-xl mb-3 gradient-text">अनुक्रमणिका</h3>
+            <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
+                <a href="#analytical-view" class="font-poppins hover:text-amber-400 transition-colors duration-300"><i class="fas fa-chart-bar mr-2"></i>Analytical View</a>
+                <a href="#diwali-in-india" class="font-poppins hover:text-amber-400 transition-colors duration-300"><i class="fas fa-om mr-2"></i>भारतातील दिवाळी</a>
+                <a href="#global-diwali" class="font-poppins hover:text-amber-400 transition-colors duration-300"><i class="fas fa-globe-asia mr-2"></i>Global Celebrations</a>
+                <a href="#girmitiya-history" class="font-poppins hover:text-amber-400 transition-colors duration-300"><i class="fas fa-history mr-2"></i>Girmitiya History</a>
+            </div>
+        </nav>
+
+        <!-- By The Numbers -->
+        <section class="mb-16" id="by-the-numbers">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">By The Numbers</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="card p-6">
+                    <i class="fas fa-users text-4xl text-amber-400 mb-3"></i>
+                    <p class="text-3xl font-bold font-poppins">1 Billion+</p>
+                    <p>लोक जगभरात साजरा करतात</p>
+                </div>
+                <div class="card p-6">
+                    <i class="fas fa-calendar-days text-4xl text-amber-400 mb-3"></i>
+                    <p class="text-3xl font-bold font-poppins">5</p>
+                    <p>दिवसांचा मुख्य उत्सव</p>
+                </div>
+                <div class="card p-6">
+                    <i class="fas fa-flag text-4xl text-amber-400 mb-3"></i>
+                    <p class="text-3xl font-bold font-poppins">10+ Countries</p>
+                    <p>देशांमध्ये सार्वजनिक सुट्टी</p>
+                </div>
+                <div class="card p-6">
+                    <i class="fas fa-landmark text-4xl text-amber-400 mb-3"></i>
+                    <p class="text-3xl font-bold font-poppins">2000+ Years</p>
+                    <p>वर्षांहून अधिक जुनी परंपरा</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytical View Section -->
+        <section id="analytical-view" class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">Analytical View</h2>
+            <article class="card p-6 md:p-8 text-lg leading-relaxed">
+                <i class="fas fa-lightbulb text-3xl text-amber-400 float-left mr-4"></i>
+                <p>दिवाळी, दिव्यांचा सण, भारताच्या संस्कृतीचा, अध्यात्माचा आणि मानवी एकतेचा उत्सव आहे. तिचा हा जागतिक प्रसार भारताच्या कालातीत सॉफ्ट पॉवरचे जिवंत उदाहरण आहे. सणाची लवचिकता आणि आशा व नीतिमत्तेच्या सार्वत्रिक संकल्पनांवर आधारित पाया यामुळे तो विविध देशांमध्ये रुजला. भारतीय संस्कृती इतकी सुंदर आणि प्रभावशाली आहे की दूरवरच्या देशांनीही तिला आपले मानले आहे. या सणाचा प्रसार दाखवतो की भारतीय संस्कृती आपल्या मूळ मूल्यांना जपत, जगाशी संवाद साधताना आपल्या भूमीतील प्रकाश चहूकडे पसरवत पुढे जाते.</p>
+                <br>
+                <div class="border-l-4 border-amber-500 pl-4 mt-4 italic">
+                    <p>रामायणाची कथा तिचा सर्वात प्रभावी आणि जागतिक स्तरावर ओळखला जाणारा आधार बनली आहे. रामाने साकारलेला धर्म आणि रावणाने साकारलेला अधर्म यांच्यातली ही स्पष्ट लढाई नैतिकतेची एक शक्तिशाली आणि सार्वत्रिक शिकवण देते, जी संस्कृतींमध्ये प्रतिध्वनित होते.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Diwali in India Section -->
+        <section id="diwali-in-india" class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">भारतातील दिवाळी: विविधतेतील एकता</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- North India -->
+                <div class="card p-6 flex flex-col items-center text-center">
+                    <i class="fas fa-archway text-4xl text-amber-400 mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2">उत्तर भारत</h3>
+                    <p>भगवान रामाच्या अयोध्येत परतण्याचा आनंद. अंधारावर प्रकाशाचा विजय साजरा केला जातो.</p>
+                </div>
+                <!-- South India -->
+                <div class="card p-6 flex flex-col items-center text-center">
+                    <i class="fas fa-gopuram text-4xl text-amber-400 mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2">दक्षिण भारत</h3>
+                    <p>भगवान कृष्णाने नरकासुरावर मिळवलेल्या विजयाचा दिवस. वाईटावर चांगल्याचा विजय.</p>
+                </div>
+                <!-- West India -->
+                <div class="card p-6 flex flex-col items-center text-center">
+                    <i class="fas fa-hand-holding-usd text-4xl text-amber-400 mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2">पश्चिम भारत</h3>
+                    <p>देवी लक्ष्मीची पूजा आणि नवीन आर्थिक वर्षाची सुरुवात. समृद्धी आणि भरभराटीचा उत्सव.</p>
+                </div>
+                <!-- East India -->
+                <div class="card p-6 flex flex-col items-center text-center">
+                    <i class="fas fa-khanda text-4xl text-amber-400 mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2">पूर्व भारत</h3>
+                    <p>काली मातेची आराधना. शक्ती आणि राक्षसांपासून संरक्षणाचा उत्सव.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Global Celebrations Section -->
+        <section id="global-diwali" class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">भारताच्या सीमांपलीकडील दिवाळी</h2>
+            <div class="space-y-8">
+                <!-- Nepal -->
+                <article class="card md:flex items-center overflow-hidden">
+                    <div class="md:w-1/3 text-center p-6 bg-amber-900/20">
+                        <i class="fas fa-mountain-sun text-6xl text-amber-400"></i>
+                        <h3 class="text-3xl font-bold mt-4">नेपाळ</h3>
+                        <p class="text-2xl gradient-text font-bold">तिहार</p>
+                    </div>
+                    <div class="p-6 md:p-8 md:w-2/3">
+                        <p>नेपाळमध्ये दिवाळी 'तिहार' किंवा 'यमपंचक' म्हणून ओळखली जाते. हा पाच दिवसांचा सण मानव, निसर्ग आणि प्राणी यांच्यातील नात्याचा सन्मान करतो. कावळा, कुत्रा, गाय आणि बैल यांची पूजा केली जाते, जी निसर्ग-केंद्रित वैदिक विचारसरणीचे सुंदर उदाहरण आहे. शेवटचा दिवस 'भाई टिका' भाऊ-बहिणींच्या प्रेमाचे प्रतीक आहे.</p>
+                    </div>
+                </article>
+                <!-- Bali -->
+                <article class="card md:flex flex-row-reverse items-center overflow-hidden">
+                    <div class="md:w-1/3 text-center p-6 bg-amber-900/20">
+                        <i class="fas fa-om text-6xl text-amber-400"></i>
+                        <h3 class="text-3xl font-bold mt-4">बाली</h3>
+                        <p class="text-2xl gradient-text font-bold">गालुंगन</p>
+                    </div>
+                    <div class="p-6 md:p-8 md:w-2/3">
+                        <p>बालीतील 'गालुंगन' सण आणि दिवाळी यांच्यात आश्चर्यकारक साम्य आहे. हा सण 'धर्माचा' 'अधर्मावर' विजय साजरा करतो, जे दिवाळीच्या मूळ तत्त्वज्ञानाशी जुळते. येथे रामायण लोकांच्या जीवनशैलीचा आणि कलेचा भाग आहे. 'केचक नृत्य' आणि 'रामायण बॅले' यांसारख्या कलांमधून दिवाळीचा आत्मा बालीच्या संस्कृतीत सहज मिसळलेला दिसतो.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Girmitiya History Section -->
+        <section id="girmitiya-history" class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">गिरमिट्यांचा इतिहास आणि दिवाळी</h2>
+            <p class="max-w-4xl mx-auto text-center text-lg leading-relaxed mb-8">
+                भारतीय करारबद्ध मजुरांच्या ('गिरमिट्या') वंशजांनी वसवलेल्या देशांतील दिवाळीची कहाणी ही संस्कृतीच्या सामर्थ्याची आणि जिद्दीची आहे. उसाच्या शेतांपासून ते सत्तेच्या हॉलपर्यंत, हा सण त्यांच्या संघर्ष, मेहनत आणि आशेच्या प्रवासाचे प्रतिबिंब बनला आहे.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Mauritius -->
+                <article class="card overflow-hidden">
+                    <div class="p-6 text-center bg-amber-900/20">
+                        <i class="fas fa-water text-5xl text-amber-400"></i>
+                        <h3 class="text-2xl font-bold mt-3">मॉरिशियस</h3>
+                    </div>
+                    <div class="p-6">
+                        <p>मॉरिशियसमध्ये हिंदू नागरिक मोठ्या संख्येने असल्याने दिवाळी एक मोठा सार्वजनिक सण आहे. पारंपरिक मिठाईंसोबत 'गेटाऊ पॅटेट्स' (गोड बटाटा आणि नारळाचे केक) बनवले जातात, जे भारतीय वारसा आणि स्थानिक साहित्याचे सुंदर मिश्रण दाखवते.</p>
+                    </div>
+                </article>
+                <!-- Trinidad and Tobago -->
+                <article class="card overflow-hidden">
+                    <div class="p-6 text-center bg-amber-900/20">
+                        <i class="fas fa-drum text-5xl text-amber-400"></i>
+                        <h3 class="text-2xl font-bold mt-3">त्रिनिदाद आणि टोबॅगो</h3>
+                    </div>
+                    <div class="p-6">
+                        <p>येथे भारताबाहेरील सर्वात मोठा आणि संघटित दिवाळी उत्सव साजरा होतो. 'दिवाळी नगर' हे जगातील पहिले हिंदू थीम पार्क, या उत्सवाचे केंद्र आहे. हा सण आता सर्व वंश आणि धर्माच्या लोकांनी एकत्र साजरा केलेला एक राष्ट्रीय एकतेचा उत्सव बनला आहे.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <!-- Conclusion -->
+        <section class="text-center bg-slate-800/50 rounded-lg p-8">
+             <div class="diya mx-auto mb-4"></div>
+             <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">भारताच्या आत्म्याचा विस्तार</h2>
+             <p class="max-w-4xl mx-auto text-lg leading-relaxed">
+                 दिवाळीचा हा जागतिक प्रवास केवळ एका सणाचा नसून, भारताच्या आत्म्याचा विस्तार आहे. हीच भारताची खरी 'सॉफ्ट पॉवर' आहे, जी कुठल्याही प्रचाराशिवाय संस्कृतींना जोडते आणि जगाला “वसुधैव कुटुंबकम्” या वैदिक विचाराचा अर्थ प्रत्यक्ष दाखवते. हा अंध:कारात प्रकाश फुलवणारा आणि जगाला धर्म, सत्य आणि प्रेमाच्या मार्गावर नेणारा सण आहे.
+             </p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center p-6 mt-12 border-t-2 border-amber-500 bg-slate-900">
+        <p class="font-poppins">&copy; 2025 Diwali Global Infographic. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
