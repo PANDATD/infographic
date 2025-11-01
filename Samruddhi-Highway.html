@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>समृद्धी महामार्ग: विकासाचा सूर्यपथ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Tiro+Devanagari+Marathi:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow {
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+        .flow-arrow-right {
+            border-left: 20px solid #6A994E;
+        }
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F7F2] text-gray-800">
+
+    <header class="bg-[#3A6B35] text-white text-center p-8 shadow-lg">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">समृद्धी महामार्ग: विकासाचा सूर्यपथ</h1>
+        <p class="text-xl text-[#E9F5DB]" style="font-family: 'Tiro Devanagari Marathi', serif;">भारताच्या पायाभूत सुविधांमध्ये क्रांती घडवणारा एक हरित ऊर्जा प्रकल्प</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="overview" class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-md border-b-4 border-[#6A994E]">
+                <p class="text-5xl font-bold text-[#3A6B35]" style="font-family: 'Poppins', sans-serif;">७०१</p>
+                <p class="text-lg font-semibold">किलोमीटर लांबी</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border-b-4 border-[#A9C5A0]">
+                <p class="text-5xl font-bold text-[#3A6B35]" style="font-family: 'Poppins', sans-serif;">८</p>
+                <p class="text-lg font-semibold">जलद प्रवासाचे तास (मुंबई-नागपूर)</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border-b-4 border-[#C9DBBF]">
+                <p class="text-5xl font-bold text-[#3A6B35]" style="font-family: 'Poppins', sans-serif;">१०</p>
+                <p class="text-lg font-semibold">जिल्ह्यांना जोडणारा मार्ग</p>
+            </div>
+        </section>
+
+        <section id="solar-revolution" class="mb-12">
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#3A6B35]">महामार्गावर सौरऊर्जा क्रांती</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                    समृद्धी महामार्ग हा केवळ वाहतुकीचा मार्ग नाही, तर तो देशातील पहिला 'ग्रीन एनर्जी कॉरिडॉर' बनत आहे. महामार्गालगतच्या जागेत सौर पॅनेल्स बसवून निर्माण होणारी वीज याला ऊर्जेच्या बाबतीत स्वयंपूर्ण बनवेल.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center">
+                        <p class="text-7xl font-bold text-[#6A994E]" style="font-family: 'Poppins', sans-serif;">१५०</p>
+                        <p class="text-2xl font-semibold text-[#3A6B35] mb-4">मेगावॅट सौरऊर्जा क्षमता</p>
+                        <p class="text-gray-600">
+                            ही वीज महामार्गावरील दिवे, सुविधा केंद्रे, आणि इलेक्ट्रिक वाहन चार्जिंग स्टेशन्ससाठी वापरली जाईल, ज्यामुळे तो स्वयंपूर्ण बनेल.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-center mb-4 text-[#3A6B35]">उत्पादित ऊर्जेचा वापर</h3>
+                        <div class="chart-container">
+                            <canvas id="powerUsageChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="energy-flow" class="mb-12">
+             <h2 class="text-3xl font-bold text-center mb-8 text-[#3A6B35]">ऊर्जा निर्मिती आणि वितरण प्रक्रिया</h2>
+             <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="text-4xl mb-2">☀️</div>
+                        <div class="bg-[#C9DBBF] text-[#1E3A1D] font-bold p-4 rounded-lg shadow-md w-48 h-24 flex items-center justify-center">सौर पॅनेल्स</div>
+                    </div>
+                    <div class="flow-arrow flow-arrow-right hidden md:block"></div>
+                    <div class="text-2xl md:hidden">⬇️</div>
+                    <div class="flex flex-col items-center">
+                        <div class="text-4xl mb-2">🔄</div>
+                        <div class="bg-[#E9F5DB] text-[#1E3A1D] font-bold p-4 rounded-lg shadow-md w-48 h-24 flex items-center justify-center">इन्व्हर्टर/ग्रीड</div>
+                    </div>
+                    <div class="flow-arrow flow-arrow-right hidden md:block"></div>
+                     <div class="text-2xl md:hidden">⬇️</div>
+                    <div class="flex flex-col items-center">
+                        <div class="text-4xl mb-2">💡</div>
+                        <div class="bg-[#A9C5A0] text-white font-bold p-4 rounded-lg shadow-md w-48 h-24 flex items-center justify-center">महामार्ग वापर</div>
+                        <p class="text-sm mt-1 text-gray-600">(दिवे, चार्जिंग स्टेशन्स)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="impact" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#3A6B35]">विकासावर होणारा परिणाम</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-5xl mb-4">📈</div>
+                    <h3 class="text-2xl font-bold mb-3 text-[#3A6B35]">आर्थिक वाढ</h3>
+                    <p class="text-gray-600">ऊर्जा खर्चात बचत, नवीन उद्योगांना चालना, आणि कृषी मालाच्या जलद वाहतुकीमुळे ग्रामीण अर्थव्यवस्थेला बळकटी मिळेल.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-5xl mb-4">🌿</div>
+                    <h3 class="text-2xl font-bold mb-3 text-[#3A6B35]">पर्यावरणीय शाश्वतता</h3>
+                    <p class="text-gray-600">स्वच्छ ऊर्जेमुळे कार्बन उत्सर्जन कमी होईल. इलेक्ट्रिक वाहनांना प्रोत्साहन मिळाल्याने प्रदूषण नियंत्रणात येईल.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-5xl mb-4">🔌</div>
+                    <h3 class="text-2xl font-bold mb-3 text-[#3A6B35]">भविष्यवेधी सुविधा</h3>
+                    <p class="text-gray-600">संपूर्ण मार्गावर ईव्ही चार्जिंग स्टेशन्सचे जाळे निर्माण झाल्यामुळे ई-मोबिलिटीसाठी भारत सज्ज होईल.</p>
+                </div>
+            </div>
+        </section>
+
+         <section id="vision" class="mb-12 bg-white p-6 md:p-8 rounded-lg shadow-xl text-center">
+            <h2 class="text-3xl font-bold mb-4 text-[#3A6B35]">नेतृत्वाची दूरदृष्टी</h2>
+            <p class="max-w-4xl mx-auto text-gray-600">
+                हा प्रकल्प उपमुख्यमंत्री <span class="font-bold">देवेंद्र फडणवीस</span> यांच्या 'ड्रीम प्रोजेक्ट'ची पूर्तता आहे, ज्याला पंतप्रधान <span class="font-bold">नरेंद्र मोदी</span> यांच्या 'पीएम गति शक्ती' आणि 'आत्मनिर्भर भारत' यांसारख्या राष्ट्रीय ध्येयांचे पाठबळ मिळाले आहे. हे विकासाचे एक उत्कृष्ट मॉडेल आहे.
+            </p>
+        </section>
+
+        <section id="district-development">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#3A6B35]">महामार्गालगतच्या जिल्ह्यांचा विकास</h3>
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                 <p class="text-center text-gray-600 mb-6">
+                    हा महामार्ग १० जिल्ह्यांमधून जातो, ज्यामुळे या प्रदेशातील औद्योगिक आणि कृषी विकासाला प्रचंड चालना मिळण्याची अपेक्षा आहे.
+                </p>
+                <div class="chart-container h-96 max-h-[500px] mx-auto">
+                    <canvas id="districtGrowthChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 bg-[#3A6B35] text-white mt-12">
+        <p>&copy; २०२४. समृद्धी महामार्ग विकास अहवाल. सर्व हक्क राखीव.</p>
+    </footer>
+
+    <script>
+        const marathiNumerals = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+        function toMarathiNumber(num) {
+            const numStr = String(num);
+            let marathiStr = '';
+            for (let i = 0; i < numStr.length; i++) {
+                marathiStr += marathiNumerals[parseInt(numStr[i])];
+            }
+            return marathiStr;
+        }
+
+        function wrapLabels(label, maxLength) {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+        
+        Chart.defaults.font.family = "'Tiro Devanagari Marathi', serif";
+
+        const powerUsageCtx = document.getElementById('powerUsageChart').getContext('2d');
+        new Chart(powerUsageCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['महामार्ग दिवे', 'ईव्ही चार्जिंग स्टेशन्स', 'सुविधा केंद्रे', 'ग्रीडला पुरवठा'],
+                datasets: [{
+                    label: 'ऊर्जा वापर',
+                    data: [40, 30, 20, 10],
+                    backgroundColor: ['#3A6B35', '#6A994E', '#A9C5A0', '#E9F5DB'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) { return label.join(' '); }
+                                else { return label; }
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed !== null) {
+                                    label += toMarathiNumber(context.parsed) + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                     legend: { labels: { font: { family: "'Tiro Devanagari Marathi', serif" } } }
+                }
+            }
+        });
+
+        const districtGrowthCtx = document.getElementById('districtGrowthChart').getContext('2d');
+        const districtLabels = ['ठाणे', 'नाशिक', 'अहमदनगर', 'छत्रपती संभाजीनगर', 'जालना', 'बुलढाणा', 'वाशिम', 'अमरावती', 'वर्धा', 'नागपूर'].map(label => wrapLabels(label, 16));
+        new Chart(districtGrowthCtx, {
+            type: 'bar',
+            data: {
+                labels: districtLabels,
+                datasets: [{
+                    label: 'अपेक्षित गुंतवणूक',
+                    data: [1200, 1500, 1100, 2500, 1800, 900, 850, 1300, 1000, 3000],
+                    backgroundColor: '#6A994E',
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'गुंतवणूक (कोटी रु.)'
+                        },
+                        ticks: {
+                            callback: function(value, index, ticks) {
+                                return toMarathiNumber(value);
+                            }
+                        }
+                    }
+                },
+                 plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) { return label.join(' '); }
+                                else { return label; }
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed.y !== null) {
+                                    label += toMarathiNumber(context.parsed.y) + ' कोटी रु.';
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    legend: { labels: { font: { family: "'Tiro Devanagari Marathi', serif" } } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
