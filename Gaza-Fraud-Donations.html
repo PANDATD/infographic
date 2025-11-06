@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भिवंडी दहशतवादी निधी पुरवठा: एक दृश्यात्मक विश्लेषण</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .marathi-font {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            color: #005f73;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-[#e9d8a6] text-[#005f73]">
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#9b2226] marathi-font">दहशतवादी निधी पुरवठा</h1>
+            <h2 class="text-2xl md:text-4xl font-bold text-[#ae2012] mt-2 marathi-font">भिवंडी कनेक्शन: राष्ट्रीय सुरक्षेला गंभीर धोका</h2>
+            <p class="max-w-3xl mx-auto mt-4 text-lg text-[#005f73] marathi-font">उत्तर प्रदेश ATS ने मुंबईजवळील भिवंडीतून एका मोठ्या आंतरराष्ट्रीय दहशतवादी निधी पुरवठा रॅकेटचा पर्दाफाश केला आहे. या दृश्यात्मक विश्लेषणातून आपण या घटनेचे गांभीर्य, त्याची कार्यपद्धत आणि राष्ट्रीय सुरक्षेवरील त्याचे परिणाम समजून घेऊया.</p>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-[#94d2bd] p-8 rounded-2xl shadow-xl text-center flex flex-col justify-center">
+                <div class="text-7xl font-black text-[#005f73] marathi-font">₹५ कोटी</div>
+                <div class="text-2xl mt-2 font-bold text-[#005f73] marathi-font">जप्त केलेली रक्कम</div>
+            </div>
+            <div class="bg-[#94d2bd] p-8 rounded-2xl shadow-xl text-center flex flex-col justify-center">
+                <div class="text-7xl font-black text-[#005f73] marathi-font">३</div>
+                <div class="text-2xl mt-2 font-bold text-[#005f73] marathi-font">व्यक्तींना अटक</div>
+            </div>
+        </section>
+
+        <section class="bg-white/70 rounded-2xl shadow-2xl p-6 md:p-8 mb-12">
+            <h3 class="text-3xl font-bold text-center text-[#9b2226] mb-8 marathi-font">निधीचा प्रवाह: पैसा कसा फिरवला गेला?</h3>
+            <p class="text-center max-w-2xl mx-auto text-[#005f73] mb-10 marathi-font">हे रॅकेट अत्यंत संघटित पद्धतीने काम करत होते. परदेशातून आलेला पैसा अनेक मार्गांनी फिरवून तो दहशतवादी कारवायांसाठी उपलब्ध करून दिला जात होता. या प्रक्रियेतील मुख्य टप्पे खालीलप्रमाणे आहेत.</p>
+            <div class="flex flex-col md:flex-row justify-around items-center space-y-8 md:space-y-0 md:space-x-4">
+                <div class="text-center flex flex-col items-center">
+                    <div class="bg-[#ee9b00] text-white rounded-full w-32 h-32 flex items-center justify-center text-xl font-bold p-4 marathi-font">विदेशी हँडलर्स</div>
+                </div>
+                <div class="flow-arrow transform md:-rotate-0">➔</div>
+                <div class="text-center flex flex-col items-center">
+                     <div class="bg-[#ca6702] text-white rounded-full w-32 h-32 flex items-center justify-center text-xl font-bold p-4 marathi-font">क्रिप्टो आणि हवाला</div>
+                </div>
+                <div class="flow-arrow transform md:-rotate-0">➔</div>
+                <div class="text-center flex flex-col items-center">
+                     <div class="bg-[#bb3e03] text-white rounded-full w-32 h-32 flex items-center justify-center text-xl font-bold p-4 marathi-font">भारतीय बँक खाती</div>
+                </div>
+                <div class="flow-arrow transform md:-rotate-0">➔</div>
+                <div class="text-center flex flex-col items-center">
+                     <div class="bg-[#ae2012] text-white rounded-full w-32 h-32 flex items-center justify-center text-xl font-bold p-4 marathi-font">स्थानिक एजंट्सना वितरण</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white/70 rounded-2xl shadow-2xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold text-center text-[#9b2226] mb-4 marathi-font">रॅकेटच्या कार्यपद्धतीचे विश्लेषण</h3>
+                 <p class="text-center text-[#005f73] mb-6 marathi-font">या रॅकेटची कार्यपद्धत अनेक घटकांवर अवलंबून होती. यामध्ये आधुनिक तंत्रज्ञान आणि पारंपारिक पद्धतींचा धोकादायक मिलाफ दिसून येतो, ज्यामुळे ते शोधणे अधिक कठीण होते.</p>
+                <div class="chart-container">
+                    <canvas id="methodsChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white/70 rounded-2xl shadow-2xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold text-center text-[#9b2226] mb-4 marathi-font">राष्ट्रीय सुरक्षेला असलेला धोका</h3>
+                <p class="text-center text-[#005f73] mb-6 marathi-font">अशा प्रकारच्या निधी पुरवठ्यामुळे देशाच्या सुरक्षेला अनेक पातळ्यांवर गंभीर धोका निर्माण होतो. हे केवळ सीमेवरील नाही, तर देशांतर्गत शांतता आणि स्थिरतेसाठीही एक मोठे आव्हान आहे.</p>
+                <ul class="space-y-4">
+                    <li class="flex items-start p-4 bg-[#94d2bd]/50 rounded-lg">
+                        <span class="text-2xl mr-4 text-[#ae2012]">⚠️</span>
+                        <span class="text-[#005f73] font-medium marathi-font"><strong>दहशतवादी हल्ल्यांना आर्थिक पाठबळ:</strong> या पैशाचा उपयोग शस्त्रे खरेदी करणे, स्फोटके मिळवणे आणि हल्ल्यांचे नियोजन करण्यासाठी होऊ शकतो.</span>
+                    </li>
+                    <li class="flex items-start p-4 bg-[#94d2bd]/50 rounded-lg">
+                        <span class="text-2xl mr-4 text-[#ae2012]">⚠️</span>
+                        <span class="text-[#005f73] font-medium marathi-font"><strong>युवकांची दिशाभूल आणि भरती:</strong> पैशाचे आमिष दाखवून तरुणांना दहशतवादी संघटनांमध्ये सामील होण्यासाठी प्रवृत्त केले जाऊ शकते.</span>
+                    </li>
+                    <li class="flex items-start p-4 bg-[#94d2bd]/50 rounded-lg">
+                        <span class="text-2xl mr-4 text-[#ae2012]">⚠️</span>
+                        <span class="text-[#005f73] font-medium marathi-font"><strong>देशांतर्गत अशांतता निर्माण करणे:</strong> सामाजिक आणि धार्मिक सलोखा बिघडवून देशात अस्थिरता निर्माण करण्याचे प्रयत्न होऊ शकतात.</span>
+                    </li>
+                     <li class="flex items-start p-4 bg-[#94d2bd]/50 rounded-lg">
+                        <span class="text-2xl mr-4 text-[#ae2012]">⚠️</span>
+                        <span class="text-[#005f73] font-medium marathi-font"><strong>आर्थिक प्रणालीला धोका:</strong> हवाला आणि क्रिप्टोच्या माध्यमातून देशाच्या अधिकृत आर्थिक प्रणालीला बगल देऊन समांतर अर्थव्यवस्था उभी राहते.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="bg-white/70 rounded-2xl shadow-2xl p-6 md:p-8 mb-12 md:col-span-2">
+            <h3 class="text-3xl font-bold text-center text-[#9b2226] mb-4 marathi-font">दहशतवादी निधी पुरवठा: अलीकडील काही प्रकरणे</h3>
+            <p class="text-center max-w-3xl mx-auto text-[#005f73] mb-8 marathi-font">भिवंडी प्रकरण हे एकमेव नाही. भारतीय तपास यंत्रणांनी गेल्या काही वर्षांत अनेक मोठे दहशतवादी निधी पुरवठा मॉड्यूल्स उद्ध्वस्त केले आहेत. हा तक्ता या धोक्याची व्यापकता आणि सातत्य दर्शवतो. (ही आकडेवारी केवळ उदाहरणादाखल आहे.)</p>
+            <div class="chart-container h-[400px] md:h-[450px] max-h-[500px]">
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 pt-8 border-t border-[#005f73]/30">
+            <p class="text-[#005f73] marathi-font">हे विश्लेषण सार्वजनिकरित्या उपलब्ध माहितीवर आधारित आहे. तपास यंत्रणांकडून अधिकृत माहिती जसजशी उपलब्ध होईल, तसतसे यातील तपशील बदलू शकतात.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const methodsChartCtx = document.getElementById('methodsChart').getContext('2d');
+        new Chart(methodsChartCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['विदेशी संबंध आणि हँडलर्स', 'क्रिप्टोकरन्सीचा वापर', 'हवाला नेटवर्क', 'स्थानिक बँक खाती'],
+                datasets: [{
+                    label: 'कार्यपद्धतीचे घटक',
+                    data: [35, 25, 25, 15],
+                    backgroundColor: [
+                        '#ae2012',
+                        '#bb3e03',
+                        '#ca6702',
+                        '#ee9b00'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14
+                            },
+                            color: '#005f73'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        },
+                        bodyFont: {
+                            family: "'Tiro Devanagari Marathi', serif",
+                        },
+                        titleFont: {
+                            family: "'Tiro Devanagari Marathi', serif",
+                        }
+                    }
+                }
+            }
+        });
+        
+        const comparisonChartLabels = [
+            'केरळ हवाला केस (२०२३)',
+            'जम्मू-काश्मीर मॉड्यूल (२०२४)',
+            'भिवंडी रॅकेट (सप्टेंबर २०२५)'
+        ].map(wrapLabel);
+        
+        const comparisonChartCtx = document.getElementById('comparisonChart').getContext('2d');
+        new Chart(comparisonChartCtx, {
+            type: 'bar',
+            data: {
+                labels: comparisonChartLabels,
+                datasets: [{
+                    label: 'जप्त रक्कम (कोटी रु)',
+                    data: [3.5, 4.2, 5.0],
+                    backgroundColor: '#0a9396',
+                    borderColor: '#005f73',
+                    borderWidth: 2,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'रक्कम (कोटी रुपयांमध्ये)',
+                            font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 14,
+                                weight: 'bold'
+                            },
+                             color: '#005f73'
+                        },
+                        ticks: {
+                            color: '#005f73'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                           font: {
+                                family: "'Tiro Devanagari Marathi', serif",
+                                size: 12
+                            },
+                            color: '#005f73'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        },
+                        bodyFont: {
+                            family: "'Tiro Devanagari Marathi', serif",
+                        },
+                        titleFont: {
+                            family: "'Tiro Devanagari Marathi', serif",
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
