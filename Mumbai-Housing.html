@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मुंबई भोगवटा प्रमाणपत्र धोरण: एक दूरदृष्टीचा गृहनिर्माण उपाय</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Tiro Devanagari Marathi', sans-serif;
+            background-color: #F5EEDC; /* Warm beige background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #A25B5B, #D89216);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .step-line {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 40px;
+            bottom: -20px;
+            width: 3px;
+            background-color: #D89216;
+            transform: translateX(-50%);
+        }
+        .step-circle {
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-[#F5EEDC] text-gray-800">
+
+    <header class="bg-[#A25B5B] text-white p-6 shadow-lg">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-bold font-['Tiro_Devanagari_Marathi']">मुंबई भोगवटा प्रमाणपत्र धोरण</h1>
+            <p class="mt-2 text-lg md:text-xl text-[#F5EEDC]">एक दूरदृष्टीचा गृहनिर्माण उपाय: हजारो कुटुंबांना आधार</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="introduction" class="text-center mb-12">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#A25B5B] font-['Tiro_Devanagari_Marathi']">एका ऐतिहासिक निर्णयाचा उदय</h2>
+                <p class="mt-4 text-base md:text-lg max-w-3xl mx-auto text-gray-600">मुंबईच्या वेगवान शहरीकरणामुळे घरांची मागणी प्रचंड वाढली, पण नियोजनाच्या अभावामुळे हजारो कुटुंबे कायदेशीररित्या अपूर्ण घरांमध्ये अडकली. भोगवटा प्रमाणपत्राशिवाय (OC) त्यांचे 'स्वतःचे घर' असूनही ते कायदेशीररित्या त्यांचे नव्हते. यावर तोडगा म्हणून, भाजप-प्रणित सरकारने एक क्रांतिकारी धोरण आणले आहे.</p>
+                <div class="mt-8 bg-gradient-to-r from-[#A25B5B] to-[#D89216] text-white rounded-lg p-6 max-w-md mx-auto shadow-xl">
+                    <p class="text-xl font-semibold">या धोरणाचा थेट फायदा</p>
+                    <p class="text-5xl md:text-6xl font-extrabold my-2">२५,०००+</p>
+                    <p class="text-xl font-semibold">इमारतींना होणार आहे</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="before-after" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 font-['Tiro_Devanagari_Marathi'] text-[#A25B5B]">OC विना जीवन: एक न संपणारी समस्या</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white border-l-4 border-[#A25B5B] rounded-lg p-6 shadow-md">
+                    <h3 class="text-2xl font-bold text-[#A25B5B] mb-4">धोरणापूर्वीची परिस्थिती</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start"><span class="text-2xl mr-3">⚖️</span> <div><strong class="text-[#A25B5B]">कायदेशीर धोका:</strong> मालमत्ता 'अवैध' ठरण्याची किंवा पाडण्याची सतत भीती.</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-3">📉</span> <div><strong class="text-[#A25B5B]">आर्थिक नुकसान:</strong> कमी बाजारमूल्य आणि बँक कर्ज मिळण्यास अडथळे.</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-3">💧</span> <div><strong class="text-[#A25B5B]">सुविधांचा अभाव:</strong> पाणी, वीज, गॅसच्या कायमस्वरूपी जोडणीसाठी संघर्ष.</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-3">🏗️</span> <div><strong class="text-[#A25B5B]">पुनर्विकास ठप्प:</strong> जुन्या इमारतींची दुरुस्ती किंवा पुनर्बांधणी अशक्य.</div></li>
+                    </ul>
+                </div>
+                <div class="bg-white border-l-4 border-[#5E8B7E] rounded-lg p-6 shadow-md">
+                    <h3 class="text-2xl font-bold text-[#5E8B7E] mb-4">धोरणानंतर होणारे फायदे</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start"><span class="text-2xl mr-3">🛡️</span> <div><strong class="text-[#5E8B7E]">कायदेशीर सुरक्षा:</strong> मालमत्तेला कायदेशीर संरक्षण आणि मालकी हक्क.</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-3">📈</span> <div><strong class="text-[#5E8B7E]">आर्थिक स्थैर्य:</strong> वाढलेले बाजारमूल्य आणि सुलभ कर्ज उपलब्धता.</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-3">💡</span> <div><strong class="text-[#5E8B7E]">सुविधांची हमी:</strong> मूलभूत नागरी सुविधांचा कायदेशीर अधिकार.</div></li>
+                        <li class="flex items-start"><span class="text-2xl mr-3">🏢</span> <div><strong class="text-[#5E8B7E]">पुनर्विकासाचा मार्ग मोकळा:</strong> सुरक्षित आणि आधुनिक घरांचे स्वप्न साकार.</div></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="process-change" class="mb-12 bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-center mb-8 font-['Tiro_Devanagari_Marathi'] text-[#A25B5B]">जुनी विरुद्ध नवी प्रक्रिया: सुशासनाचा अनुभव</h2>
+            <div class="relative max-w-2xl mx-auto">
+                <div class="step-line hidden md:block"></div>
+                <div class="md:grid md:grid-cols-2 gap-x-12">
+                    <div class="relative mb-8 md:mb-0">
+                        <div class="md:text-right">
+                            <div class="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:right-[-30px] top-4 w-6 h-6 bg-[#A25B5B] rounded-full step-circle border-4 border-white"></div>
+                            <h4 class="text-xl font-bold text-[#A25B5B] mb-2">जुनी किचकट प्रक्रिया</h4>
+                            <p class="text-gray-600">ऑफलाइन, वेळखाऊ आणि भ्रष्टाचाराला वाव देणारी पद्धत. कार्यालयाचे हेलपाटे आणि विकासकाच्या चुकीचा फटका नागरिकांना सहन करावा लागत होता.</p>
+                        </div>
+                    </div>
+                    <div class="md:opacity-0"></div>
+                    <div class="md:opacity-0"></div>
+                    <div class="relative mb-8 md:mb-0">
+                        <div class="md:text-left">
+                             <div class="absolute left-1/2 -translate-x-1/2 md:left-[-30px] top-4 w-6 h-6 bg-[#5E8B7E] rounded-full step-circle border-4 border-white"></div>
+                             <h4 class="text-xl font-bold text-[#5E8B7E] mb-2">नवी सुलभ प्रक्रिया</h4>
+                             <p class="text-gray-600">संपूर्ण प्रक्रिया ऑनलाइन आणि पारदर्शक. नागरिकांना घरबसल्या अर्ज करण्याची सोय. दंडात्मक कारवाईतून दिलासा आणि निश्चित वेळेत OC मिळण्याची हमी.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-center mb-4 font-['Tiro_Devanagari_Marathi'] text-[#A25B5B]">धोरणाचे नागरिकांना होणारे फायदे</h3>
+                <p class="text-center text-gray-600 mb-4">हे धोरण हजारो कुटुंबांना कायदेशीर सुरक्षा, आर्थिक स्थैर्य आणि उत्तम जीवनमानाची हमी देते. यामुळे मुंबईकरांच्या जीवनात सकारात्मक बदल घडेल.</p>
+                <div class="chart-container">
+                    <canvas id="benefitsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-center mb-4 font-['Tiro_Devanagari_Marathi'] text-[#A25B5B]">धोरणाची स्पष्टता: पात्र आणि अपात्र</h3>
+                <p class="text-center text-gray-600 mb-4">ही योजना केवळ प्रशासकीय किंवा किरकोळ तांत्रिक त्रुटी असलेल्या इमारतींसाठी आहे. अवैध बांधकामांना नियमित केले जाणार नाही.</p>
+                <div class="chart-container">
+                    <canvas id="eligibilityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-3xl font-bold gradient-text font-['Tiro_Devanagari_Marathi']">सुरक्षित आणि सुयोग्य शहराकडे वाटचाल</h2>
+            <p class="mt-4 text-base md:text-lg max-w-3xl mx-auto text-gray-600">पालकमंत्री ॲड. आशिष शेलार यांनी जाहीर केलेली ही योजना मुंबईच्या गृहनिर्माण इतिहासातील एक मैलाचा दगड आहे. भाजप सरकारच्या ‘सबका साथ, सबका विकास’ आणि ‘इज ऑफ लिव्हिंग’ या तत्त्वांचे हे एक उत्तम उदाहरण आहे.</p>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#A25B5B] text-white text-center p-4 mt-8">
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            function wrapLabels(label) {
+                const maxLength = 16;
+                if (typeof label === 'string' && label.length > maxLength) {
+                    const words = label.split(' ');
+                    const lines = [];
+                    let currentLine = '';
+                    words.forEach(word => {
+                        if ((currentLine + word).length > maxLength) {
+                            lines.push(currentLine.trim());
+                            currentLine = '';
+                        }
+                        currentLine += word + ' ';
+                    });
+                    lines.push(currentLine.trim());
+                    return lines;
+                }
+                return label;
+            }
+
+            function convertToMarathiNumber(num) {
+                const marathiDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+                const numStr = String(num);
+                let marathiStr = '';
+                for (let i = 0; i < numStr.length; i++) {
+                    if (!isNaN(parseInt(numStr[i]))) {
+                        marathiStr += marathiDigits[parseInt(numStr[i])];
+                    } else {
+                        marathiStr += numStr[i];
+                    }
+                }
+                return marathiStr;
+            }
+
+            const commonTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    }
+                }
+            };
+
+            const benefitsCtx = document.getElementById('benefitsChart').getContext('2d');
+            const benefitsChart = new Chart(benefitsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['कायदेशीर सुरक्षा', 'आर्थिक स्थैर्य', 'उत्तम जीवनमान', 'पुनर्विकासाची संधी'],
+                    datasets: [{
+                        label: 'फायदे',
+                        data: [40, 25, 20, 15],
+                        backgroundColor: [
+                            '#A25B5B', // Dark Terracotta
+                            '#D89216', // Lighter Brown/Orange
+                            '#5E8B7E', // Muted Green
+                            '#BFA05A'  // Gold accent
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    ...commonTooltipOptions
+                }
+            });
+
+            const eligibilityCtx = document.getElementById('eligibilityChart').getContext('2d');
+            const eligibilityChart = new Chart(eligibilityCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['पात्र इमारती (किरकोळ त्रुटी)', 'अपात्र इमारती (गंभीर अवैध बांधकाम)'].map(wrapLabels),
+                    datasets: [{
+                        label: 'इमारतींची संख्या',
+                        data: [25000, 500],
+                        backgroundColor: [
+                            'rgba(94, 139, 126, 0.7)', // Muted Green
+                            'rgba(162, 91, 91, 0.7)'     // Dark Terracotta
+                        ],
+                        borderColor: [
+                            '#5E8B7E',
+                            '#A25B5B'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'इमारतींची संख्या'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return convertToMarathiNumber(value);
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                        return label.join(' ');
+                                    }
+                                    return label;
+                                },
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += convertToMarathiNumber(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        },
+                        legend: {
+                             labels: {
+                                font: {
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
