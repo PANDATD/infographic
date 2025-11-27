@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>संत रोहिदास: एक परस्परसंवादी अन्वेषण</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm & Neutral (Custom: #FBF9F3 bg, #9A3412 text, #EA580C primary accent, #7C2D12 secondary accent) -->
+    <!-- Application Structure Plan: Designed a tab-based, single-page application structure. This moves away from the report's linear format to a user-driven, thematic exploration. The tabs (Introduction, Teachings/Literature, Equality, 'Begumpura' Concept, Legacy) group related content logically, making it easier for users to navigate and synthesize information. The 'Begumpura' concept is highlighted in its own interactive section due to its importance. This structure prioritizes user engagement and interactive discovery over passive reading. -->
+    <!-- Visualization & Content Choices: Report Info: Key Themes (Nirgun Bhakti, Equality, etc.) -> Goal: Inform/Organize -> Viz/Presentation Method: Doughnut Chart (Chart.js/Canvas) -> Interaction: Clickable segments update a text panel with details for each theme -> Justification: Transforms a static text list into an interactive visual element, fulfilling the Chart.js requirement despite the lack of quantitative data. | Report Info: 'Begumpura' Concept -> Goal: Inform/Organize -> Viz/Presentation Method: Grid of styled info cards (HTML/Tailwind) -> Interaction: Visual grouping -> Justification: More engaging and visually appealing than a simple bullet list. | Report Info: Social Reform Actions (Langar, Meera Bai) -> Goal: Inform -> Viz/Presentation Method: Styled list with Unicode icons (HTML/Tailwind) -> Justification: Breaks up text and adds visual cues. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-tab.active-tab {
+            background-color: #EA580C;
+            color: #FFFFFF;
+        }
+        .nav-tab:not(.active-tab) {
+            background-color: #FFFFFF;
+            color: #EA580C;
+        }
+        .nav-tab:not(.active-tab):hover {
+            background-color: #FFF7ED;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active-content {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'page-bg': '#FBF9F3',
+                        'main-text': tailwind.colors.orange[800],
+                        'card-bg': '#FFFFFF',
+                        'primary-accent': tailwind.colors.orange[600],
+                        'primary-accent-light': tailwind.colors.orange[100],
+                        'secondary-accent': tailwind.colors.orange[900],
+                        'theme-1': tailwind.colors.orange[600],
+                        'theme-2': tailwind.colors.orange[500],
+                        'theme-3': tailwind.colors.orange[400],
+                        'theme-4': tailwind.colors.orange[300],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-page-bg text-main-text min-h-screen antialiased">
+
+    <div class="max-w-6xl mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-bold text-primary-accent mb-4">संत रोहिदास: एक परस्परसंवादी अन्वेषण</h1>
+            <p class="text-lg md:text-xl text-main-text">त्यांचे जीवन, शिकवण आणि सामाजिक क्रांतीचा सखोल अभ्यास</p>
+        </header>
+
+        <nav class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 sticky top-4 z-10 bg-page-bg py-2">
+            <button class="nav-tab active-tab py-2 px-5 font-semibold rounded-full transition-all duration-300 shadow-sm" data-tab="parichay">परिचय</button>
+            <button class="nav-tab py-2 px-5 font-semibold rounded-full transition-all duration-300 shadow-sm" data-tab="shikavan">शिकवण आणि साहित्य</button>
+            <button class="nav-tab py-2 px-5 font-semibold rounded-full transition-all duration-300 shadow-sm" data-tab="samata">समानतेसाठी कार्य</button>
+            <button class="nav-tab py-2 px-5 font-semibold rounded-full transition-all duration-300 shadow-sm" data-tab="begumpura">'बेगमपुरा' संकल्पना</button>
+            <button class="nav-tab py-2 px-5 font-semibold rounded-full transition-all duration-300 shadow-sm" data-tab="yogdan">योगदान आणि वारसा</button>
+        </nav>
+
+        <main id="content-container">
+
+            <section id="parichay-content" class="tab-content active-content bg-card-bg p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-secondary-accent mb-6">प्रस्तावना (Introduction)</h2>
+                <p class="text-base md:text-lg leading-relaxed mb-4">
+                    हा विभाग संत रोहिदास यांच्या जीवनाची आणि ज्या काळात त्यांनी क्रांती केली त्या काळाची ओळख करून देतो. त्यांचा जन्म, कुटुंब आणि त्यांच्या विचारांचा पाया समजून घेण्यासाठी हा विभाग महत्त्वाचा आहे.
+                </p>
+                <div class="space-y-4">
+                    <p class="leading-relaxed">
+                        भारतीय इतिहासाच्या मध्ययुगीन कालखंडात, जेव्हा समाज जातीभेदाच्या आणि कर्मकांडाच्या विळख्यात अडकला होता, तेव्हा १४ व्या ते १५ व्या शतकात संत रोहिदासांचा उदय झाला. त्यांचा जन्म वाराणसी (काशी) येथे एका चर्मकार कुटुंबात झाला, ज्यांना तत्कालीन समाजरचनेनुसार 'अस्पृश्य' मानले जात होते.
+                    </p>
+                    <p class="leading-relaxed">
+                        अशा परिस्थितीत, संत रोहिदासांनी केवळ अध्यात्माची उंची गाठली नाही, तर सामाजिक क्रांतीची एक तेजस्वी मशाल पेटवली. त्यांनी निर्गुण ब्रह्माची उपासना केली आणि बाह्य कर्मकांडांऐवजी आंतरिक शुद्धतेलाच खरी भक्ती मानले.
+                    </p>
+                    <blockquote class="border-l-4 border-primary-accent pl-4 py-2 bg-primary-accent-light rounded-r-lg">
+                        <p class="text-lg md:text-xl font-semibold italic text-primary-accent">"मन चंगा, तो कठौती में गंगा"</p>
+                        <p class="text-main-text mt-1">(मन शुद्ध असेल तर घरातील पात्रातही गंगा आहे) - हा त्यांचा संदेश भारतीय अध्यात्मिक विचारांचा एक मैलाचा दगड मानला जातो.</p>
+                    </blockquote>
+                </div>
+            </section>
+
+            <section id="shikavan-content" class="tab-content bg-card-bg p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-secondary-accent mb-6">शिकवण आणि साहित्य (Teachings & Literature)</h2>
+                <p class="text-base md:text-lg leading-relaxed mb-6">
+                    संत रोहिदासांचे साहित्य हे त्यांच्या क्रांतीकारी विचारांचे माध्यम होते. हा विभाग त्यांच्या साहित्याची प्रमुख वैशिष्ट्ये आणि त्यांची मुख्य शिकवण परस्परसंवादी पद्धतीने दाखवतो. त्यांच्या प्रमुख विचारांबद्दल जाणून घेण्यासाठी आलेखाच्या (chart) भागांवर क्लिक करा.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-xl font-semibold text-center mb-4">संत रोहिदासांचे प्रमुख विचार</h3>
+                        <div class="chart-container">
+                            <canvas id="themesChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">विचारांचे स्पष्टीकरण</h3>
+                        <div id="theme-details" class="p-4 bg-page-bg rounded-lg min-h-[200px] border border-gray-200">
+                            <p class="text-lg text-orange-700 flex items-center justify-center h-full">
+                                अधिक माहितीसाठी आलेखातील एका भागावर क्लिक करा.
+                            </p>
+                        </div>
+                        <h3 class="text-xl font-semibold mt-8 mb-4">साहित्यिक योगदान</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>त्यांनी आपल्या रचना 'ब्रज' आणि 'अवधी' या लोकभाषांमध्ये केल्या, जेणेकरून त्यांचा संदेश सर्वसामान्यांपर्यंत पोहोचेल.</li>
+                            <li>त्यांच्या रचना 'बानी' किंवा 'सबद' (शब्द) म्हणून ओळखल्या जातात.</li>
+                            <li>शीख धर्माचा पवित्र ग्रंथ 'गुरु ग्रंथ साहिब'मध्ये त्यांच्या ४० हून अधिक पदांचा समावेश करण्यात आला आहे, ही त्यांच्या विचारांच्या उंचीची साक्ष आहे.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="samata-content" class="tab-content bg-card-bg p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-secondary-accent mb-6">समानतेसाठी कार्य (Work for Equality)</h2>
+                <p class="text-base md:text-lg leading-relaxed mb-6">
+                    संत रोहिदासांचे सर्वात मोठे योगदान म्हणजे त्यांनी हिंदू समाजात रुजलेल्या जातिव्यवस्थेविरुद्ध दिलेला लढा. हा विभाग त्यांनी सामाजिक समता प्रस्थापित करण्यासाठी वापरलेल्या विविध मार्गांवर प्रकाश टाकतो.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <span class="text-3xl mt-1">💡</span>
+                        <div>
+                            <h3 class="text-xl font-semibold">स्वतःच्या उदाहरणातून प्रबोधन</h3>
+                            <p class="leading-relaxed">जन्माने चर्मकार असूनही, त्यांनी आपल्या ज्ञानाने आणि आचरणाने हे सिद्ध केले की, श्रेष्ठत्व हे जन्मावर नव्हे, तर कर्मावर अवलंबून असते.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="text-3xl mt-1">⚖️</span>
+                        <div>
+                            <h3 class="text-xl font-semibold">शास्त्रार्थात विजय</h3>
+                            <p class="leading-relaxed">अनेक दंतकथांनुसार, त्यांनी काशीतील अनेक उच्चवर्णीय पंडितांना धार्मिक वादविवादात पराभूत केले आणि ज्ञानावर सर्वांचा अधिकार सिद्ध केला.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="text-3xl mt-1">👥</span>
+                        <div>
+                            <h3 class="text-xl font-semibold">सर्व वर्णांचे शिष्य</h3>
+                            <p class="leading-relaxed">त्यांच्या विचारांनी प्रभावित होऊन, केवळ निम्न जातीतीलच नव्हे, तर चित्तोडची राणी मीराबాయి सारख्या उच्चवर्णीयांनीही त्यांना गुरू मानले.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="text-3xl mt-1">🍽️</span>
+                        <div>
+                            <h3 class="text-xl font-semibold">जाती तोडण्यासाठी 'लंगर'</h3>
+                            <p class="leading-relaxed">त्यांनी 'लंगर' (सामुदायिक भोजन) पद्धतीला प्रोत्साहन दिले, जिथे सर्व जाती-धर्माचे लोक एकत्र बसून भोजन करत. हा अस्पृश्यता नष्ट करण्याचा प्रभावी मार्ग होता.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="text-3xl mt-1">💪</span>
+                        <div>
+                            <h3 class="text-xl font-semibold">आत्मसन्मानाची शिकवण</h3>
+                            <p class="leading-relaxed">त्यांनी दलित आणि शोषित समाजाला त्यांच्या जन्माची लाज न बाळगता, प्रामाणिक श्रम आणि शुद्ध आचरणाने आत्मसन्मानाने जगण्याची शिकवण दिली.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="begumpura-content" class="tab-content bg-card-bg p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-secondary-accent mb-6">'बेगमपुरा' संकल्पना (The 'Begumpura' Concept)</h2>
+                <p class="text-base md:text-lg leading-relaxed mb-6">
+                    'बेगमपुरा' (दुःख नसलेले शहर) ही संत रोहिदासांनी मांडलेली आदर्श, समतावादी समाजाची संकल्पना आहे. हा विभाग त्यांच्या या अद्वितीय दूरदृष्टीची ओळख करून देतो. हे एक असे शहर आहे जिथे कोणताही भेदभाव, दुःख किंवा चिंता नाही.
+                </p>
+                <blockquote class="border-l-4 border-secondary-accent pl-4 py-2 bg-primary-accent-light rounded-r-lg mb-8">
+                    <p class="text-lg md:text-xl font-semibold italic text-secondary-accent">"बेगमपुरा सहर को नाउ, दुखु अंदोहु नहिं तिहि ठाउ॥"</p>
+                </blockquote>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-primary-accent-light p-6 rounded-lg shadow-md text-center">
+                        <span class="text-4xl">😌</span>
+                        <h3 class="text-xl font-semibold text-primary-accent mt-3">दुःख आणि चिंता नाही</h3>
+                        <p class="mt-2">हे असे शहर आहे जिथे कोणतेही शारीरिक किंवा मानसिक दुःख, चिंता किंवा भय नाही.</p>
+                    </div>
+                    <div class="bg-primary-accent-light p-6 rounded-lg shadow-md text-center">
+                        <span class="text-4xl">🤝</span>
+                        <h3 class="text-xl font-semibold text-primary-accent mt-3">भेदभाव नाही</h3>
+                        <p class="mt-2">तिथे कोणी उच्च-नीच नाही, गरीब-श्रीमंत नाही. सर्वजण समान आहेत.</p>
+                    </div>
+                    <div class="bg-primary-accent-light p-6 rounded-lg shadow-md text-center">
+                        <span class="text-4xl">🏠</span>
+                        <h3 class="text-xl font-semibold text-primary-accent mt-3">सर्वांसाठी स्वातंत्र्य</h3>
+                        <p class="mt-2">सर्वांना मुक्तपणे फिरण्याचे, राहण्याचे आणि आपले मत मांडण्याचे स्वातंत्र्य आहे.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="yogdan-content" class="tab-content bg-card-bg p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-secondary-accent mb-6">योगदान आणि वारसा (Contribution & Legacy)</h2>
+                <p class="text-base md:text-lg leading-relaxed mb-6">
+                    संत रोहिदासांचे कार्य हे केवळ त्यांच्या काळापुरते मर्यादित नव्हते, तर त्यांचा वारसा आजही प्रेरणादायी आहे. हा विभाग हिंदू समाजातील त्यांच्या एकूण योगदानाचा आणि चिरंतन वारशाचा आढावा घेतो.
+                </p>
+                <ul class="list-disc list-inside space-y-4 leading-relaxed">
+                    <li>
+                        <strong>भक्ती चळवळीचे लोकशाहीकरण:</strong> त्यांनी भक्तीचा मार्ग सर्वांसाठी खुला केला आणि ती केवळ उच्चवर्णीयांची मक्तेदारी न राहू देता, सर्वसामान्य शोषित लोकांपर्यंत पोहोचवली.
+                    </li>
+                    <li>
+                        <strong>सामाजिक सुधारणेचा पाया:</strong> त्यांनी हिंदू धर्मातील विकृतींवर (जातिभेद, अस्पृश्यता) कठोर टीका करून, अंतर्गत सुधारणेची गरज प्रतिपादन केली, ज्यामुळे भविष्यातील समाजसुधारकांना प्रेरणा मिळाली.
+                    </li>
+                    <li>
+                        <strong>श्रमाची प्रतिष्ठा (Dignity of Labour):</strong> स्वतः चर्मकार व्यवसाय करून, त्यांनी 'कामा'लाच पूजा मानले. हा विचार समाजासाठी अत्यंत क्रांतिकारी होता.
+                    </li>
+                    <li>
+                        <strong>मानवतावादी धर्माची स्थापना:</strong> त्यांनी 'मानवता' हाच सर्वात मोठा धर्म मानला. त्यांची शिकवण ही कोणत्याही एका धर्मापुरती मर्यादित नसून ती संपूर्ण मानवजातीसाठी आहे.
+                    </li>
+                </ul>
+                <p class="mt-6 text-lg font-semibold text-primary-accent">
+                    आजही भारतीय समाज जेव्हा जातीभेदाच्या किंवा द्वेषाच्या समस्यांशी झुंजतो, तेव्हा संत रोहिदासांचे समतावादी विचार तितकेच समर्पक आणि मार्गदर्शक ठरतात.
+                </p>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const themeInfo = {
+                'निर्गुण भक्ती': '<strong>निर्गुण भक्ती:</strong> त्यांनी ईश्वर-निराकार, निर्गुण आणि सर्वव्यापी असल्याचे मानले. मूर्तीपूजा आणि बाह्य कर्मकांडांवर त्यांनी टीका केली. खरी भक्ती ही मनात असते, दिखाव्यात नाही, हे त्यांनी ठामपणे सांगितले.',
+                'सामाजिक समता': '<strong>सामाजिक समता:</strong> "रैदास जनम कै कारनै, होत न कोउ नीच।" (माणूस जन्मामुळे नीच होत नाही, तर त्याच्या वाईट कर्मांमुळे नीच होतो). त्यांनी जन्म-आधारित विषमतेवर कठोर प्रहार केला.',
+                'श्रमाची प्रतिष्ठा': '<strong>श्रमाची प्रतिष्ठा:</strong> ते स्वतः चर्मकार व्यवसाय करत असत आणि त्यांनी श्रमालाच ईश्वरसेवा मानले. प्रामाणिकपणे केलेले काम हेच खरे \'कर्म\' आहे, हा विचार त्यांनी समाजाला दिला.',
+                'मानवी एकता': '<strong>मानवी एकता:</strong> "सब महं एकु रामु है, दुजा को नहिं होइ।" (सर्वांमध्ये एकच राम आहे, दुसरा कोणी नाही). त्यांनी सर्व माणसांना समान मानले आणि मानवता हाच खरा धर्म मानला.'
+            };
+
+            const ctx = document.getElementById('themesChart').getContext('2d');
+            const themesChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['निर्गुण भक्ती', 'सामाजिक समता', 'श्रमाची प्रतिष्ठा', 'मानवी एकता'],
+                    datasets: [{
+                        label: 'प्रमुख विचार',
+                        data: [25, 25, 25, 25],
+                        backgroundColor: [
+                            '#EA580C',
+                            '#F97316',
+                            '#FB923C',
+                            '#FDBA74',
+                        ],
+                        borderColor: '#FBF9F3',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#9A3412',
+                                font: {
+                                    family: "'Noto Sans Devanagari', sans-serif",
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                        return label.join(' ');
+                                    } else {
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+            });
+
+            themesChart.canvas.onclick = (e) => {
+                const elements = themesChart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+                if (elements.length) {
+                    const firstEl = elements[0];
+                    const label = themesChart.data.labels[firstEl.index];
+                    const detailsDiv = document.getElementById('theme-details');
+                    detailsDiv.innerHTML = themeInfo[label] || '<p>माहिती उपलब्ध नाही.</p>';
+                }
+            };
+            
+            const themeDetailsDiv = document.getElementById('theme-details');
+            themeDetailsDiv.innerHTML = themeInfo['निर्गुण भक्ती'];
+
+
+            const tabs = document.querySelectorAll('.nav-tab');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
+
+                    tabs.forEach(t => t.classList.remove('active-tab'));
+                    tab.classList.add('active-tab');
+
+                    contents.forEach(content => {
+                        content.classList.remove('active-content');
+                        content.style.display = 'none';
+                    });
+
+                    const activeContent = document.getElementById(target + '-content');
+                    activeContent.style.display = 'block';
+                    setTimeout(() => {
+                        activeContent.classList.add('active-content');
+                    }, 10);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
