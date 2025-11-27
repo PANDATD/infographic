@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारताची हरित ऊर्जा क्रांती</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            background-color: #f4f7f6;
+            color: #212121;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 280px;
+            max-height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 320px;
+                max-height: 350px;
+            }
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #1E88E5;
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            background-color: #E3F2FD;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: #1E88E5;
+        }
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #90A4AE;
+            margin: 0 12px;
+            display: none;
+        }
+        @media (min-width: 640px) {
+            .flow-step {
+                flex-basis: 22%;
+                justify-content: center;
+                text-align: center;
+                margin-bottom: 0;
+            }
+            .flow-arrow {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <header class="bg-white shadow-md py-6">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold" style="color: #1E88E5;">भारताची हरित ऊर्जा क्रांती</h1>
+            <p class="text-lg md:text-xl text-gray-700 mt-2">रेल्वे आणि महामार्गांचे भविष्य: सौर ऊर्जेवर आधारित</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="md:col-span-2 lg:col-span-3 card text-center">
+                <h2 class="text-2xl font-bold mb-4">प्रस्तावना: एक नवीन दिशा</h2>
+                <p class="text-gray-700 leading-relaxed max-w-4xl mx-auto">
+                    भारत वेगाने ऊर्जेच्या बाबतीत आत्मनिर्भर होण्याच्या दिशेने वाटचाल करत आहे. जीवाश्म इंधनावरील अवलंबित्व कमी करणे, कार्बन फूटप्रिंट घटवणे, आणि पर्यावरणाचे रक्षण करणे, ही सरकारची प्रमुख उद्दिष्ट्ये आहेत. या दूरदृष्टीचा भाग म्हणून, देशातील वाहतुकीच्या मुख्य धमण्या - रेल्वे आणि महामार्ग - यांना सौर ऊर्जेने सुसज्ज करण्याचे महत्त्वाकांक्षी प्रकल्प हाती घेण्यात आले आहेत. 'नमो भारत' ट्रेन आणि 'समृद्धी महामार्ग' ही याची उत्तम उदाहरणे आहेत, जी भाजप सरकारच्या पर्यावरणपूरक विकासाच्या व्हिजनचे प्रतीक आहेत.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-4 text-center">ऊर्जेची गरज आणि आयात</h3>
+                <p class="text-gray-600 mb-4 text-sm">
+                    भारताची ऊर्जेची मोठी गरज सध्या आयातीवर अवलंबून आहे, विशेषतः आखाती देशांकडून येणाऱ्या तेलावर. हे अवलंबित्व कमी करणे हे एक मोठे आव्हान आणि राष्ट्रीय प्राधान्य आहे.
+                </p>
+                <div class="chart-container">
+                    <canvas id="dependencyChart"></canvas>
+                </div>
+                <p class="text-center text-gray-700 mt-4">भारताचे तेलाच्या आयातीवरील अवलंबित्व हे आर्थिक आणि सामरिकदृष्ट्या संवेदनशील आहे.</p>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-4 text-center">कार्बन उत्सर्जन: प्रमुख क्षेत्रे</h3>
+                <p class="text-gray-600 mb-4 text-sm">
+                    वाहतूक क्षेत्र हे कार्बन डायऑक्साइड उत्सर्जनाच्या प्रमुख स्त्रोतांपैकी एक आहे. या क्षेत्राला हरित करणे पर्यावरणाच्या दृष्टीने अत्यंत आवश्यक आहे.
+                </p>
+                <div class="chart-container">
+                    <canvas id="emissionsChart"></canvas>
+                </div>
+                <p class="text-center text-gray-700 mt-4">हरित ऊर्जेचा वापर करून वाहतूक क्षेत्रातील उत्सर्जन लक्षणीयरीत्या कमी करता येईल.</p>
+            </div>
+
+            <div class="card lg:col-span-1">
+                <h3 class="text-xl font-bold mb-4 text-center">सरकारचे EV धोरण</h3>
+                <p class="text-gray-600 mb-4 text-sm">
+                    इलेक्ट्रिक वाहनांना (EV) प्रोत्साहन देण्यासाठी सरकारने एक व्यापक धोरण आखले आहे. याचा उद्देश केवळ प्रदूषण कमी करणे हा नाही, तर भारताला EV उत्पादनाचे जागतिक केंद्र बनवणे हा देखील आहे.
+                </p>
+                <div class="text-center">
+                    <div class="stat-number text-green-600">३०%</div>
+                    <p class="text-lg font-semibold text-gray-800 mt-2">२०३० पर्यंत नवीन वाहन विक्रीत EV चे लक्ष्य</p>
+                </div>
+                <p class="text-gray-600 mt-4 text-sm">या धोरणात चार्जिंग स्टेशन्सचे जाळे उभारणे, बॅटरी उत्पादनाला प्रोत्साहन देणे आणि ग्राहकांना सबसिडी देणे यांचा समावेश आहे.</p>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3 card">
+                <h2 class="text-2xl font-bold mb-6 text-center">प्रमुख प्रकल्प: व्हिजन प्रत्यक्षात</h2>
+                <p class="text-gray-700 leading-relaxed max-w-4xl mx-auto mb-6 text-center">
+                    केवळ धोरणे न आखता, ती वेगाने प्रत्यक्षात आणण्यावर सरकारचा भर आहे. रेल्वे आणि रस्ते वाहतुकीतील दोन भव्य प्रकल्प याचे साक्षीदार आहेत.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-xl font-bold mb-3 text-blue-600">नमो भारत (RRTS) प्रकल्प</h3>
+                        <p class="text-gray-600 mb-4">दिल्ली-मेरठ दरम्यान धावणारी 'नमो भारत' ट्रेन ही केवळ हाय-स्पीड कनेक्टिव्हिटी नाही, तर ती ऊर्जेच्या बाबतीतही एक मॉडेल आहे. रेल्वे ट्रॅकच्या वर आणि स्टेशनवर सोलर पॅनेल बसवून ही ट्रेन चालवली जात आहे.</p>
+                        <div class="stat-number">१० MW</div>
+                        <p class="text-lg font-semibold text-gray-800 mt-2">सुरुवातीची सौर ऊर्जा क्षमता</p>
+                        <p class="text-gray-600 mt-2 text-sm">यामुळे ट्रेनच्या संचलनाचा मोठा खर्च वाचेल आणि ती खऱ्या अर्थाने 'ग्रीन' बनेल.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <h3 class="text-xl font-bold mb-3 text-green-600">समृद्धी महामार्ग (महाराष्ट्र)</h3>
+                        <p class="text-gray-600 mb-4">महाराष्ट्राची भाग्यरेषा ठरणारा मुंबई-नागपूर 'समृद्धी महामार्ग' हा देखील सौर ऊर्जेचा एक मोठा स्रोत बनत आहे. महामार्गाच्या कडेला आणि इंटरचेंजवर सोलर पॅनेल्स बसवण्याचे काम सुरू झाले आहे.</p>
+                        <div class="stat-number text-green-600">१५० MW</div>
+                        <p class="text-lg font-semibold text-gray-800 mt-2">नियोजित सौर ऊर्जा क्षमता</p>
+                        <p class="text-gray-600 mt-2 text-sm">यामुळे महामार्गावरील दिवे, टोलनाके आणि चार्जिंग स्टेशन्ससाठी लागणारी वीज तिथेच निर्माण होईल.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-4 text-center">कार्बन फूटप्रिंट घट</h3>
+                <p class="text-gray-600 mb-4 text-sm">
+                    अशा प्रकल्पांमुळे भारताच्या एकूण कार्बन उत्सर्जनात मोठी घट अपेक्षित आहे. हा आलेख येत्या वर्षांतील अंदाजित घट दर्शवतो (दशलक्ष टन CO2e मध्ये).
+                </p>
+                <div class="chart-container">
+                    <canvas id="carbonChart"></canvas>
+                </div>
+                <p class="text-center text-gray-700 mt-4">हे पॅरिस करारातील भारताची उद्दिष्ट्ये पूर्ण करण्याच्या दिशेने एक मोठे पाऊल आहे.</p>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-4 text-center">ऊर्जा: निर्मिती विरुद्ध वापर</h3>
+                <p class="text-gray-600 mb-4 text-sm">
+                    हे प्रकल्प केवळ स्वतःसाठी लागणारी ऊर्जाच निर्माण करत नाहीत, तर काही प्रकरणांमध्ये अतिरिक्त वीज ग्रीडला पुरवून आत्मनिर्भरतेला हातभार लावतात.
+                </p>
+                <div class="chart-container">
+                    <canvas id="genUseChart"></canvas>
+                </div>
+                <p class="text-center text-gray-700 mt-4">प्रकल्पांना ऊर्जेच्या बाबतीत स्वयंपूर्ण बनवणे हे मुख्य ध्येय आहे.</p>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3 card">
+                <h2 class="text-2xl font-bold mb-4 text-center">निष्कर्ष: आत्मनिर्भर आणि हरित भारत</h2>
+                <p class="text-gray-700 leading-relaxed max-w-4xl mx-auto mb-6">
+                    रेल्वे ट्रॅकवर आणि महामार्गांवर सौरऊर्जा निर्मिती करणे, हे भारताच्या इंजिनिअरिंग कौशल्याचे आणि राजकीय इच्छाशक्तीचे प्रतीक आहे. हे प्रकल्प केवळ वाहतूक सुलभ करत नाहीत, तर ते भारताला 'ऊर्जा स्वातंत्र्य' मिळवून देतील. आखाती तेलावरील अवलंबित्व कमी होईल, पर्यावरण सुधारेल आणि लाखो टन कार्बन उत्सर्जन वाचेल. नमो भारत आणि समृद्धी महामार्ग हे केवळ रस्ते किंवा ट्रॅक नाहीत, तर ते 'आत्मनिर्भर भारता'च्या हरित भविष्याकडे नेणारे मार्ग आहेत.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="bg-blue-100 text-blue-800 font-semibold px-6 py-3 rounded-full">#ऊर्जास्वातंत्र्य</div>
+                    <div class="bg-green-100 text-green-800 font-semibold px-6 py-3 rounded-full">#हरितभारत</div>
+                    <div class="bg-purple-100 text-purple-800 font-semibold px-6 py-3 rounded-full">#आत्मनिर्भरभारत</div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center p-6 mt-8 bg-white shadow-inner">
+        <p class="text-gray-600">हा इन्फोग्राफिक अहवाल उपलब्ध माहितीच्या आधारे तयार केला आहे. सर्व आकडे प्रातिनिधिक आहेत.</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            const chartColors = ['#1E88E5', '#43A047', '#6A1B9A', '#FDD835', '#E53935'];
+            const tooltipCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            var dependencyCtx = document.getElementById('dependencyChart').getContext('2d');
+            new Chart(dependencyCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['आयात केलेले तेल', 'इतर/देशांतर्गत'],
+                    datasets: [{
+                        data: [85, 15],
+                        backgroundColor: [chartColors[4], chartColors[1]],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        ...tooltipCallback.plugins,
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+
+            var emissionsCtx = document.getElementById('emissionsChart').getContext('2d');
+            new Chart(emissionsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['वाहतूक', 'उद्योग', 'ऊर्जा निर्मिती', 'इतर'],
+                    datasets: [{
+                        label: 'कार्बन उत्सर्जन (%)',
+                        data: [24, 40, 30, 6],
+                        backgroundColor: [chartColors[0], chartColors[1], chartColors[2], chartColors[3]],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        ...tooltipCallback.plugins,
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'टक्केवारी (%)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            var carbonCtx = document.getElementById('carbonChart').getContext('2d');
+            new Chart(carbonCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2025', '2027', '2030', '2035'],
+                    datasets: [{
+                        label: 'अपेक्षित घट (दशलक्ष टन CO2e)',
+                        data: [5, 12, 25, 40],
+                        backgroundColor: 'rgba(67, 160, 71, 0.2)',
+                        borderColor: chartColors[1],
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        ...tooltipCallback.plugins,
+                        legend: {
+                            position: 'bottom'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'दशलक्ष टन CO2e'
+                            }
+                        }
+                    }
+                }
+            });
+
+            var genUseCtx = document.getElementById('genUseChart').getContext('2d');
+            new Chart(genUseCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['नमो भारत प्रकल्प', 'समृद्धी महामार्ग'],
+                    datasets: [{
+                        label: 'ऊर्जा निर्मिती (MW)',
+                        data: [10, 150],
+                        backgroundColor: chartColors[1],
+                        borderRadius: 4
+                    }, {
+                        label: 'ऊर्जा वापर (MW)',
+                        data: [8, 30],
+                        backgroundColor: chartColors[0],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        ...tooltipCallback.plugins,
+                        legend: {
+                            position: 'bottom'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'मेगावॅट (MW)'
+                            }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
