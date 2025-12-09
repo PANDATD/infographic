@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मुंबईकरांसाठी विशेष भेट: नेरूळ-उरण रेल्वे प्रकल्प</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Updated Font: Tiro Devanagari Marathi -->
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Dark Terracotta/Deep Brick (#8A3324) & Faint Pink/Gray (Sober, Stable, High Contrast) -->
+    <!-- Primary Colors: Deep Terracotta (#8A3324), Muted Red (#A55745)
+         Background Colors: FBEFEF, White -->
+
+    <style>
+        /* Custom Variables for Dark Terracotta Palette */
+        :root {
+            --color-terracotta-dark: #8A3324; /* Deep Brick Red */
+            --color-terracotta-muted: #A55745; 
+            --color-terracotta-light: #FBEFEF; /* Very Faint Background */
+        }
+
+        body {
+            /* Applied Tiro Devanagari Marathi Font */
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: #F9FAFB; /* Very faint background - Gray 50 */
+            scroll-behavior: smooth;
+        }
+        
+        /* Chart Container Strict Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%; 
+            height: 300px;
+            max-height: 350px;
+            margin: 0 auto;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-terracotta-muted);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--color-terracotta-dark); }
+
+        /* Timeline Styles */
+        .station-node {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .station-node:hover {
+            background-color: var(--color-terracotta-light);
+            border-radius: 8px;
+            padding-left: 5px;
+        }
+        .station-node.active .node-circle {
+            background-color: var(--color-terracotta-dark);
+            border-color: var(--color-terracotta-muted);
+            transform: scale(1.2);
+        }
+        .station-node.active .node-text {
+            color: var(--color-terracotta-dark);
+            font-weight: 700; /* Tiro Devanagari Marathi has 400 and 700 weights */
+        }
+        .node-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #FCE1E1; /* Light Pink Red */
+            border: 3px solid #F8FAFC;
+            transition: all 0.3s ease;
+        }
+        .connector-line {
+            width: 4px;
+            background-color: var(--color-terracotta-light);
+            flex-grow: 1;
+            margin-left: 8px; /* Center with circle */
+        }
+
+        /* Hero Section Custom Styling */
+        .hero-stats {
+            background-color: #FFF;
+            box-shadow: 0 10px 15px -3px rgba(138, 51, 36, 0.1), 0 4px 6px -2px rgba(138, 51, 36, 0.05);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Navigation / Header -->
+    <nav class="bg-white text-gray-700 shadow-md sticky top-0 z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-[var(--color-terracotta-dark)] mr-2">महा</span>
+                    <span class="text-xl font-semibold tracking-wide text-gray-900">रेल विकास</span>
+                </div>
+                <!-- Desktop Navigation Links/Tabs -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-2">
+                        <a href="#overview" class="hover:bg-[var(--color-terracotta-light)] px-3 py-2 rounded-lg text-sm font-medium transition active:text-[var(--color-terracotta-dark)]">प्रकल्प आढावा</a>
+                        <a href="#route" class="hover:bg-[var(--color-terracotta-light)] px-3 py-2 rounded-lg text-sm font-medium transition">मार्ग व फायदे</a>
+                        <a href="#analysis" class="hover:bg-[var(--color-terracotta-light)] px-3 py-2 rounded-lg text-sm font-medium transition">विश्लेषण</a>
+                        <a href="#vision" class="hover:bg-[var(--color-terracotta-light)] px-3 py-2 rounded-lg text-sm font-medium transition">भविष्यवेधी दृष्टीकोन</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (प्रकल्प आढावा) -->
+    <header id="overview" class="bg-[var(--color-terracotta-light)] text-gray-800 pt-12 pb-16 md:py-24 border-b-8 border-[var(--color-terracotta-muted)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-gray-900">
+                मुंबईकरांसाठी 'विशेष भेट'
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                नेरूळ-बेलापूर-उरण मार्गावर १० नवीन लोकल ट्रेन सेवा: दळणवळण क्रांतीची सुरुवात
+            </p>
+            
+            <!-- Key Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12">
+                <div class="hero-stats rounded-xl p-6 shadow-md border-b-4 border-[var(--color-terracotta-dark)] hover:shadow-xl transition">
+                    <div class="text-4xl font-bold text-[var(--color-terracotta-dark)] mb-1">₹१,७८२</div>
+                    <div class="text-sm uppercase tracking-wider text-gray-500">कोटी अंदाजित खर्च</div>
+                </div>
+                <div class="hero-stats rounded-xl p-6 shadow-md border-b-4 border-[var(--color-terracotta-dark)] hover:shadow-xl transition">
+                    <div class="text-4xl font-bold text-[var(--color-terracotta-dark)] mb-1">२७</div>
+                    <div class="text-sm uppercase tracking-wider text-gray-500">किमी लांबीचा मार्ग</div>
+                </div>
+                <div class="hero-stats rounded-xl p-6 shadow-md border-b-4 border-[var(--color-terracotta-dark)] hover:shadow-xl transition">
+                    <div class="text-4xl font-bold text-[var(--color-terracotta-dark)] mb-1">१०</div>
+                    <div class="text-sm uppercase tracking-wider text-gray-500">नवीन दैनिक फेऱ्या</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+        <!-- Section 1: Introduction & Context -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center p-8 bg-white rounded-2xl shadow-lg border-t-8 border-gray-100">
+            <div>
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-6 border-l-4 border-[var(--color-terracotta-dark)] pl-4">प्रकल्प परिचय</h2>
+                <p class="text-lg text-gray-600 leading-relaxed mb-4">
+                    महाराष्ट्र राज्याचे माजी मुख्यमंत्री देवेंद्र फडणवीस यांच्या नेतृत्वाखालील सरकारने 'विकसित महाराष्ट्र' या संकल्पनेला गती दिली. नेरूळ/बेलापूर ते उरण हा रेल्वे प्रकल्प केवळ वाहतुकीचे साधन नसून, तो मुंबई महानगर प्रदेशाच्या (MMR) दक्षिणेकडील विकासाचा कणा आहे.
+                </p>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    हा प्रकल्प नवी मुंबईला वेगाने विकसित होणाऱ्या द्रोणागिरी आणि उरण क्षेत्रांशी जोडतो, ज्यामुळे हजारो प्रवाशांचा वेळ वाचणार आहे आणि नवीन आर्थिक संधी निर्माण होणार आहेत.
+                </p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-xl shadow-inner border-l-4 border-[var(--color-terracotta-muted)]">
+                <h3 class="text-xl font-semibold mb-4 text-gray-800">प्रमुख फायदे (Key Benefits)</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-[var(--color-terracotta-dark)] mr-2 text-xl">★</span>
+                        <span class="text-gray-600">प्रवासाच्या वेळेत १ तासाची कपात.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-[var(--color-terracotta-dark)] mr-2 text-xl">★</span>
+                        <span class="text-gray-600">रस्त्यावरील वाहतूक कोंडीतून मुक्ती.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-[var(--color-terracotta-dark)] mr-2 text-xl">★</span>
+                        <span class="text-gray-600">द्रोणागिरी-उल्वे भागात परवडणारी घरे.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-[var(--color-terracotta-dark)] mr-2 text-xl">★</span>
+                        <span class="text-gray-600">JNPT व विमानतळाशी थेट कनेक्टिव्हिटी.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 2: Interactive Route Map & Details (मार्ग व फायदे) -->
+        <section id="route" class="bg-white rounded-2xl shadow-xl overflow-hidden border border-[var(--color-terracotta-light)]">
+            <div class="bg-[var(--color-terracotta-light)] px-8 py-6 border-b border-gray-200">
+                <h2 class="text-2xl font-extrabold text-gray-800">मार्ग आणि कनेक्टिव्हिटी (Interactive Route)</h2>
+                <p class="text-gray-500">स्थानकावर क्लिक करून त्या भागातील फायदे जाणून घ्या.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3">
+                <!-- Interactive List -->
+                <div class="p-8 bg-gray-50 border-r border-gray-200">
+                    <div class="flex flex-col h-full space-y-0" id="stationList">
+                        <!-- Stations generated by JS -->
+                    </div>
+                </div>
+
+                <!-- Detail View -->
+                <div class="col-span-1 lg:col-span-2 p-8 flex flex-col justify-center items-start bg-white" id="stationDetailPanel">
+                    <div class="animate-pulse w-full">
+                        <div class="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
+                        <div class="h-32 bg-gray-100 rounded mb-4"></div>
+                        <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Data Analytics Dashboard (विश्लेषण) -->
+        <section id="analysis">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 border-l-4 border-[var(--color-terracotta-dark)] pl-4">प्रकल्प विश्लेषण (Project Analysis)</h2>
+            <p class="mb-8 text-gray-600 text-lg">या विभागामध्ये आपण प्रकल्पाचा आर्थिक भार, वेळेची बचत आणि भविष्यातील प्रवासी संख्येचा अंदाज यांचे डेटा-आधारित विश्लेषण पाहणार आहोत.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Chart 1: Budget -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[var(--color-terracotta-muted)] flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-700 mb-2">खर्च वाटप (Cost Sharing)</h3>
+                    <p class="text-sm text-gray-500 mb-4">सिडको आणि भारतीय रेल्वे यांच्यातील भागीदारी.</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                    <div class="mt-4 p-3 bg-[var(--color-terracotta-light)] rounded text-sm text-[var(--color-terracotta-dark)] border-l-4 border-[var(--color-terracotta-dark)]">
+                        <strong>निष्कर्ष:</strong> सिडकोने प्रकल्पाचा ६७% भार उचलला, ज्यामुळे राज्याच्या पुढाकाराचे महत्त्व अधोरेखित होते.
+                    </div>
+                </div>
+
+                <!-- Chart 2: Travel Time -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[var(--color-terracotta-muted)] flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-700 mb-2">वेळेची बचत (Time Savings)</h3>
+                    <p class="text-sm text-gray-500 mb-4">CSMT ते उरण प्रवासाची तुलना (मिनिटांत).</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="timeChart"></canvas>
+                    </div>
+                    <div class="mt-4 p-3 bg-gray-50 rounded text-sm text-gray-800 border-l-4 border-gray-400">
+                        <strong>निष्कर्ष:</strong> नवीन रेल्वे मार्गामुळे रस्ते प्रवासाच्या तुलनेत सुमारे ५०% वेळ वाचतो.
+                    </div>
+                </div>
+
+                <!-- Chart 3: Ridership -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[var(--color-terracotta-muted)] flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-700 mb-2">प्रवासी वाढ (Ridership Growth)</h3>
+                    <p class="text-sm text-gray-500 mb-4">पुढील १० वर्षांतील अंदाजित दैनिक प्रवासी.</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="ridershipChart"></canvas>
+                    </div>
+                    <div class="mt-4 p-3 bg-[var(--color-terracotta-light)] rounded text-sm text-[var(--color-terracotta-dark)] border-l-4 border-[var(--color-terracotta-dark)]">
+                        <strong>निष्कर्ष:</strong> कनेक्टिव्हिटी वाढल्याने प्रवासी संख्येत १० पटीने वाढ अपेक्षित आहे.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 4: Vision & Governance (भविष्यवेधी दृष्टीकोन - LIGHT BACKGROUND APPLIED) -->
+        <section id="vision" class="bg-gray-100 text-gray-800 rounded-2xl p-8 md:p-12 shadow-xl relative overflow-hidden border border-gray-200">
+            <!-- Decorative circle - Muted Terracotta/White - adjusted for light background -->
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-[#A55745] opacity-5 blur-3xl"></div>
+            
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-2">
+                    <h2 class="text-3xl font-extrabold text-[var(--color-terracotta-dark)] mb-6">विकसित महाराष्ट्राची दृष्टी आणि पुढील पाऊले</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        मुख्यमंत्री देवेंद्र फडणवीस यांच्या कार्यकाळात पायाभूत सुविधांच्या प्रकल्पांना अभूतपूर्व गती मिळाली. 'मेक इन महाराष्ट्र' आणि 'मॅग्नेटिक महाराष्ट्र' यांसारख्या धोरणांना प्रत्यक्षात आणण्यासाठी नेरूळ-उरण रेल्वे मार्ग हा एक महत्त्वाचा दुवा ठरला आहे.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        हा प्रकल्प एकात्मिक वाहतूक व्यवस्थेचा (Integrated Transport System) भाग आहे, जो आगामी MTHL (शिवडी-न्हावा शेवा सी-लिंक) आणि कोस्टल रोडला पूरक ठरेल. यामुळे मुंबई, नवी मुंबई आणि रायगड हे एकसंध आर्थिक क्षेत्र म्हणून उदयास येईल. 
+                        या विकासकामांसाठी सिडको (CIDCO) आणि रेल्वे विकास महामंडळ (RVNL) यांच्या अहवालानुसार दीर्घकालीन नियोजन केले जात आहे.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold border border-gray-300 text-gray-700 shadow-sm">गतीमान प्रशासन</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold border border-gray-300 text-gray-700 shadow-sm">पारदर्शक निर्णय</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold border border-gray-300 text-gray-700 shadow-sm">दीर्घकालीन नियोजन</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-gray-300 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 border-b border-gray-200 pb-2">संबंधित प्रकल्प आणि धोरणे</h3>
+                    <ul class="space-y-4">
+                        <li class="group cursor-default">
+                            <span class="block text-sm text-[var(--color-terracotta-dark)] font-bold group-hover:text-gray-900 transition">नवी मुंबई आंतरराष्ट्रीय विमानतळ</span>
+                            <span class="text-xs text-gray-500">जागतिक कनेक्टिव्हिटी आणि हवाई दळणवळण केंद्र.</span>
+                        </li>
+                        <li class="group cursor-default">
+                            <span class="block text-sm text-[var(--color-terracotta-dark)] font-bold group-hover:text-gray-900 transition">मुंबई ट्रान्स हार्बर लिंक (MTHL)</span>
+                            <span class="text-xs text-gray-500">दक्षिण मुंबई ते नवी मुंबई २० मिनिटात जलद कनेक्टिव्हिटी.</span>
+                        </li>
+                        <li class="group cursor-default">
+                            <span class="block text-sm text-[var(--color-terracotta-dark)] font-bold group-hover:text-gray-900 transition">मेट्रो नेटवर्क विस्तार</span>
+                            <span class="text-xs text-gray-500">MMR मध्ये ३०० किमी मेट्रो जाळे उभारण्याचा आराखडा.</span>
+                        </li>
+                        <li class="group cursor-default">
+                            <span class="block text-sm text-[var(--color-terracotta-dark)] font-bold group-hover:text-gray-900 transition">पायाभूत सुविधांसाठी शासकीय धोरणे</span>
+                            <span class="text-xs text-gray-500">राज्याच्या विकासासाठी तयार केलेला सर्वसमावेशक आराखडा.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center mt-16">
+        <p class="text-sm">© २०२५ महाराष्ट्र पायाभूत सुविधा विश्लेषण. शैक्षणिक उद्देशासाठी तयार केलेले.</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- DATA STORAGE ---
+        const stations = [
+            {
+                id: 'nerul',
+                name: 'नेरूळ / बेलापूर',
+                type: 'जंक्शन',
+                desc: 'हा मार्गाचा प्रारंभ बिंदू आहे. ही दोन्ही स्थानके हार्बर लाईनवरील प्रमुख जंक्शन्स आहेत, जिथून प्रवाशांना मुंबई आणि पनवेलकडे जाण्यासाठी गाड्या बदलता येतात.',
+                benefit: 'कनेक्टिव्हिटी केंद्र (Connectivity Hub)'
+            },
+            {
+                id: 'seawoods',
+                name: 'सीवुड्स-दारावे',
+                type: 'व्यावसायिक केंद्र',
+                desc: 'येथे मोठे व्यावसायिक कॉम्प्लेक्स आणि मॉल्स आहेत. हे एक आधुनिक ट्रान्झिट ओरिएंटेड डेव्हलपमेंट (TOD) चे उदाहरण आहे.',
+                benefit: 'रोजगार आणि खरेदी (Commercial Hub)'
+            },
+            {
+                id: 'bamandongri',
+                name: 'बामनडोंगरी & खारकोपर',
+                type: 'निवासी क्षेत्र',
+                desc: 'हा टप्पा १ चा भाग आहे. येथे मोठ्या प्रमाणात नवीन गृहनिर्माण प्रकल्प (Housing Projects) उभे राहत आहेत. उल्वे नोडमधील नागरिकांसाठी ही जीवनवाहिनी आहे.',
+                benefit: 'परवडणारी घरे (Affordable Housing)'
+            },
+            {
+                id: 'nhavasheva',
+                name: 'न्हावा शेवा & द्रोणागिरी',
+                type: 'औद्योगिक केंद्र',
+                desc: 'हे क्षेत्र JNPT पोर्ट आणि लॉजिस्टिक पार्कसाठी प्रसिद्ध आहे. येथे हजारो कामगार दररोज प्रवास करतात. रेल्वेमुळे मालवाहतूक आणि कर्मचारी वाहतूक सुलभ होईल.',
+                benefit: 'लॉजिस्टिक आणि रोजगार (Industrial Zone)'
+            },
+            {
+                id: 'uran',
+                name: 'उरण',
+                type: 'टर्मिनस',
+                desc: 'मार्गाचे अंतिम स्थानक. समुद्रकिनारा आणि ONGC प्रकल्प येथे आहेत. भविष्यात हे पर्यटनासाठी आणि स्थानिक व्यापारासाठी महत्त्वाचे केंद्र बनणार आहे.',
+                benefit: 'किनारी विकास (Coastal Development)'
+            }
+        ];
+
+        // --- RENDER ROUTE MAP ---
+        const stationListEl = document.getElementById('stationList');
+        const detailPanelEl = document.getElementById('stationDetailPanel');
+        const terracottaDark = '#8A3324'; 
+        const terracottaLight = '#FBEFEF';
+
+        function renderStations() {
+            stationListEl.innerHTML = '';
+            stations.forEach((station, index) => {
+                const isLast = index === stations.length - 1;
+                
+                // Create Node HTML structure
+                const nodeDiv = document.createElement('div');
+                nodeDiv.className = `station-node flex flex-col items-start p-2 -ml-2 ${index === 0 ? 'active' : ''}`; // Default first active
+                nodeDiv.setAttribute('data-index', index);
+                nodeDiv.onclick = () => selectStation(index);
+
+                nodeDiv.innerHTML = `
+                    <div class="flex items-center w-full">
+                        <div class="node-circle flex-shrink-0"></div>
+                        <div class="ml-4 flex-grow">
+                            <h4 class="node-text font-semibold text-lg text-gray-600 transition-colors">${station.name}</h4>
+                            <p class="text-xs text-gray-400 uppercase tracking-wide">${station.type}</p>
+                        </div>
+                    </div>
+                    ${!isLast ? '<div class="connector-line h-12"></div>' : ''}
+                `;
+                stationListEl.appendChild(nodeDiv);
+            });
+            // Initial selection
+            selectStation(0);
+        }
+
+        function selectStation(index) {
+            // Update UI classes
+            document.querySelectorAll('.station-node').forEach((el, i) => {
+                if (i === index) {
+                    el.classList.add('active');
+                } else {
+                    el.classList.remove('active');
+                }
+            });
+
+            // Update Details Panel with Transition
+            const station = stations[index];
+            detailPanelEl.innerHTML = `
+                <div class="animate-fade-in-up">
+                    <span class="inline-block px-3 py-1 bg-red-100 text-[var(--color-terracotta-dark)] rounded-full text-xs font-bold mb-4">
+                        ${station.benefit}
+                    </span>
+                    <h3 class="text-3xl font-extrabold text-gray-800 mb-4">${station.name}</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        ${station.desc}
+                    </p>
+                    <div class="p-4 bg-[var(--color-terracotta-light)] border-l-4 border-[var(--color-terracotta-dark)] rounded text-gray-700 italic">
+                        "हे स्थानक ${station.name.split(' ')[0]} परिसराच्या विकासासाठी महत्त्वपूर्ण ठरेल."
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize Map
+        renderStations();
+
+
+        // --- CHARTS CONFIGURATION (Using Chart.js) ---
+        
+        // 1. Budget Chart (Donut)
+        const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+        new Chart(ctxBudget, {
+            type: 'doughnut',
+            data: {
+                labels: ['सिडको (राज्य शासन) - ६७%', 'भारतीय रेल्वे (केंद्र शासन) - ३३%'],
+                datasets: [{
+                    data: [67, 33],
+                    backgroundColor: [terracottaDark, terracottaLight],
+                    borderColor: '#FFF',
+                    borderWidth: 2,
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { family: "'Tiro Devanagari Marathi', serif" } } },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ' ' + context.label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 2. Time Savings Chart (Bar)
+        const ctxTime = document.getElementById('timeChart').getContext('2d');
+        new Chart(ctxTime, {
+            type: 'bar',
+            data: {
+                labels: [['रस्ते प्रवास', '(Road)'], ['जुना रेल्वे मार्ग', '(Old Rail)'], ['नवीन रेल्वे मार्ग', '(New Rail)']],
+                datasets: [{
+                    label: 'प्रवासाची वेळ (मिनिटे)',
+                    data: [210, 135, 105], // Values based on report logic
+                    backgroundColor: ['#D1D5DB', '#9CA3AF', '#4B5563'], // Gray shades for comparison
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: (items) => items[0].label.replaceAll(',', ' ')
+                        }
+                    }
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true, 
+                        title: { display: true, text: 'मिनिटे' },
+                        grid: { display: false }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // 3. Ridership Chart (Line)
+        const ctxRidership = document.getElementById('ridershipChart').getContext('2d');
+        new Chart(ctxRidership, {
+            type: 'line',
+            data: {
+                labels: ['वर्ष १', 'वर्ष ३', 'वर्ष ५', 'वर्ष १०'],
+                datasets: [{
+                    label: 'दैनिक प्रवासी (हजारामध्ये)',
+                    data: [25, 60, 120, 250],
+                    borderColor: terracottaDark, 
+                    backgroundColor: 'rgba(138, 51, 36, 0.1)', // Dark Terracotta fill
+                    borderWidth: 3,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: terracottaDark,
+                    pointRadius: 6,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: true, position: 'top' }
+                },
+                scales: {
+                    y: { beginAtZero: true, grid: { borderDash: [5, 5] } }
+                }
+            }
+        });
+
+    </script>
+
+    <!-- Custom Animation Styles -->
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 20px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+    </style>
+</body>
+</html>
