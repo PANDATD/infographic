@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शोध अहवाल: सनबर्न फेस्टिव्हल | Research Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Import Tiro Devanagari Marathi Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* COLOR PALETTE - 10% ORANGE TINT */
+        :root {
+            /* 10% Orange Tint: #FFF6E5 */
+            --bg-main: #FFF6E5;       
+            --bg-card: #ffffff;       
+            
+            --text-main: #334155;     /* Slate 700 */
+            --text-heading: #1e293b;  /* Slate 800 */
+            --text-muted: #64748b;    /* Slate 500 */
+            
+            /* Accents */
+            --accent-orange: #ea580c; 
+            --accent-red: #dc2626; 
+            
+            /* Custom Brick Red (Vitkari) */
+            --text-brick: #A52A2A; 
+        }
+
+        body {
+            /* Applied Tiro Devanagari Marathi */
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.8;
+            scroll-behavior: smooth;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--text-heading);
+            /* Letter spacing adjusted for serif font */
+            letter-spacing: 0.01em; 
+        }
+
+        /* Card Styling */
+        .report-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(234, 88, 12, 0.1);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(234, 88, 12, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .report-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(234, 88, 12, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Flowchart Nodes */
+        .flow-node {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #fed7aa; /* Orange 200 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        
+        /* Chart Container */
+        .chart-box {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        /* Print Styles */
+        @media print {
+            .no-print { display: none; }
+            body { background: white; }
+            .report-card { border: 1px solid #ddd; box-shadow: none; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-orange-200 selection:text-orange-900">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-[#FFF6E5]/90 backdrop-blur-md border-b border-orange-200 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center justify-center w-8 h-8 rounded-full bg-orange-100 text-orange-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-800">जनहित <span class="text-orange-600">अहवाल</span></span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#intro" class="text-sm font-medium text-slate-600 hover:text-orange-700 transition">प्रस्तावना</a>
+                    <a href="#drugs" class="text-sm font-medium text-slate-600 hover:text-red-600 transition">ड्रग संस्कृती</a>
+                    <a href="#security" class="text-sm font-medium text-slate-600 hover:text-red-600 transition">सुरक्षा धोका</a>
+                    <a href="#solutions" class="text-sm font-medium text-slate-600 hover:text-green-700 transition">उपाययोजना</a>
+                </div>
+                <button onclick="window.print()" class="bg-white hover:bg-orange-50 text-orange-700 px-4 py-2 rounded-md text-sm font-medium transition border border-orange-200 shadow-sm">
+                    🖨️ प्रिंट करा
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER / HERO -->
+    <header class="relative pt-20 pb-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            
+            <!-- TITLE: Single Line, Brick Red Color, Tiro Devanagari Font -->
+            <h1 class="text-2xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 leading-tight md:whitespace-nowrap">
+                सनबर्न फेस्टिव्हल: <span class="text-[#A52A2A]">उत्सव की व्यसनाचा विळखा?</span>
+            </h1>
+
+            <!-- SUBTITLE UPDATED: Single Line on larger screens -->
+            <p class="text-lg md:text-xl text-slate-600 mb-8 w-full mx-auto font-light md:whitespace-nowrap">
+                सनबर्न फेस्टिव्हल, त्यामागील ड्रग्सचे जाळे, राष्ट्रीय सुरक्षेला धोका आणि सरकारची संदिग्ध भूमिका.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 text-sm text-slate-500 font-mono">
+                <span class="bg-white px-2 py-1 rounded border border-orange-100">📍 मुंबई, महाराष्ट्र</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-8 space-y-20">
+
+        <!-- 1. INTRODUCTION -->
+        <section id="intro" class="border-l-4 border-orange-500 pl-6 md:pl-10 py-4 bg-white rounded-r-xl shadow-sm">
+            <h2 class="text-3xl font-bold text-slate-800 mb-6">१. प्रस्तावना: महाराष्ट्राची अस्मिता</h2>
+            <div class="prose prose-lg text-slate-600 max-w-none">
+                <p class="mb-4">
+                    महाराष्ट्र ही संतांची भूमी आहे, छत्रपती शिवाजी महाराजांची कर्मभूमी आहे. "मराठा तितुका मेळवावा, महाराष्ट्र धर्म वाढवावा" असे म्हणणाऱ्या समर्थांची ही भूमी आहे. आजवर या भूमीने परकीय आक्रमणांचा नेटाने सामना केला. पण आजचे आक्रमण हे तलवारीचे नाही, तर <strong>'सांस्कृतिक'</strong> आहे. हे आक्रमण आहे 'सनबर्न' सारख्या इव्हेंट्सचे.
+                </p>
+                <p>
+                    मुंबई आणि पुण्यात 'पर्यटन विकासाच्या' नावाखाली आपण पाश्चिमात्य संस्कृतीचे अंधानुकरण करत आहोत. या झगमगाटाच्या पडद्यामागे एक भयानक अंधार दडलेला आहे—अमली पदार्थांचा, काळ्या पैशाचा आणि राष्ट्रीय सुरक्षेला नख लावणाऱ्या षड्यंत्राचा. आम्ही सरकारला "कुटुंबप्रमुख" या नात्याने विचारत आहोत: <em>"महसुलाच्या लोभापायी आपण आपल्याच मुलांच्या भविष्याचा बळी का देत आहोत?"</em>
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. HISTORY & GOA -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center report-card p-8">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 mb-4">२. गोव्याचा धडा आणि इतिहास</h2>
+                <p class="text-slate-500 mb-6">
+                    २००७ मध्ये गोव्यात सुरू झालेला हा उत्सव वादाच्या भोवऱ्यात सापडला. गोव्याने जे नाकारले, ते महाराष्ट्र का स्वीकारत आहे?
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-4 p-3 bg-red-50 rounded-lg border border-red-100">
+                        <span class="text-red-500 font-bold">✖</span>
+                        <span class="text-slate-700 text-sm"><strong>ड्रग्सचा सुळसुळाट:</strong> गोव्यात फेस्टिव्हल दरम्यान अमली पदार्थांची विक्री प्रचंड वाढली.</span>
+                    </li>
+                    <li class="flex items-start gap-4 p-3 bg-red-50 rounded-lg border border-red-100">
+                        <span class="text-red-500 font-bold">✖</span>
+                        <span class="text-slate-700 text-sm"><strong>करचुकवेगिरी:</strong> आयोजकांवर कोट्यवधींच्या करचुकवेगिरीचे आरोप झाले.</span>
+                    </li>
+                    <li class="flex items-start gap-4 p-3 bg-red-50 rounded-lg border border-red-100">
+                        <span class="text-red-500 font-bold">✖</span>
+                        <span class="text-slate-700 text-sm"><strong>मृत्यू:</strong> ओव्हरडोजमुळे तरुणांचे संशयास्पद मृत्यू.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-orange-50 p-6 rounded-xl border border-orange-100">
+                <h3 class="text-sm font-bold text-slate-500 uppercase mb-4 text-center tracking-wider">जनतेचा विरोध (Trend Analysis)</h3>
+                <div class="chart-box">
+                    <canvas id="protestChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. DRUG CULTURE -->
+        <section id="drugs">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-px flex-grow bg-orange-300"></div>
+                <h2 class="text-3xl font-bold text-slate-800 uppercase tracking-wide">३. ड्रग संस्कृतीचे वास्तव</h2>
+                <div class="h-px flex-grow bg-orange-300"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+                <div class="report-card p-6 border-t-4 border-t-red-500">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4 text-2xl shadow-sm">💊</div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">सिन्थेटिक ड्रग्स</h3>
+                    <p class="text-slate-500 text-sm mb-3">MDMA, LSD, Meow Meow यांचा वापर तरुणांना 'ट्रान्स' (Trance) मध्ये नेण्यासाठी केला जातो.</p>
+                </div>
+                <div class="report-card p-6 border-t-4 border-t-orange-500">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4 text-2xl shadow-sm">💧</div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">पाण्याचा सापळा</h3>
+                    <p class="text-slate-500 text-sm mb-3">ड्रग्समुळे डिहायड्रेशन होते. आतमध्ये पाणी ₹३०० ला विकले जाते. हे एक नफेखोर रॅकेट आहे.</p>
+                </div>
+                <div class="report-card p-6 border-t-4 border-t-purple-500">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4 text-2xl shadow-sm">🕵️</div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">तस्करीच्या पद्धती</h3>
+                    <p class="text-slate-500 text-sm mb-3">सॅनिटरी पॅड्स, शूजचे सोल्स, आणि पाण्याच्या बाटल्यांमधून पोलिसांची नजर चुकवून ड्रग्स आत नेले जातात.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-8 border border-orange-200 shadow-sm">
+                <h3 class="text-lg font-bold text-slate-700 mb-6 text-center">पार्टी ड्रग्सचे प्रमाण (जप्त साठ्यावरून अंदाजित)</h3>
+                <div class="chart-box max-w-2xl mx-auto">
+                    <canvas id="drugsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SECURITY THREAT -->
+        <section id="security" class="bg-red-50 p-8 md:p-12 rounded-3xl border border-red-200 shadow-inner">
+            <h2 class="text-3xl font-bold text-red-700 mb-6 flex items-center gap-3">
+                <span class="text-4xl">⚠️</span> ४. राष्ट्रीय सुरक्षेला धोका: नार्को-टेररिझम
+            </h2>
+            <p class="text-slate-700 text-lg mb-10 leading-relaxed">
+                ड्रग्स विकून मिळणारा पैसा हा 'काळा पैसा' असतो. हा पैसा <strong>हवाला (Hawala)</strong> मार्फत शत्रू राष्ट्रांकडे जातो आणि तिथून तो गोळ्या व बॉम्बच्या स्वरूपात भारतात परत येतो. यालाच 'नार्को-टेररिझम' म्हणतात.
+            </p>
+
+            <!-- Flowchart -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center text-center">
+                <div class="flow-node bg-white border-orange-300">
+                    <div class="text-3xl mb-2">🎉</div>
+                    <div class="font-bold text-slate-800">फेस्टिव्हल / पार्टी</div>
+                    <div class="text-xs text-slate-500 mt-1">रोखीत ड्रग विक्री</div>
+                </div>
+                <div class="hidden md:block text-slate-400 text-2xl">➔</div>
+                <div class="block md:hidden text-slate-400 text-2xl">⬇</div>
+                
+                <div class="flow-node bg-white border-slate-300">
+                    <div class="text-3xl mb-2">💸</div>
+                    <div class="font-bold text-slate-800">हवाला रॅकेट</div>
+                    <div class="text-xs text-slate-500 mt-1">परदेशात पैसा ट्रान्सफर</div>
+                </div>
+                <div class="hidden md:block text-slate-400 text-2xl">➔</div>
+                <div class="block md:hidden text-slate-400 text-2xl">⬇</div>
+
+                <div class="flow-node bg-red-50 border-red-300">
+                    <div class="text-3xl mb-2">💣</div>
+                    <div class="font-bold text-red-700">दहशतवादी संघटना</div>
+                    <div class="text-xs text-red-500 mt-1">शस्त्रास्त्र खरेदी</div>
+                </div>
+            </div>
+            <p class="text-center text-xs text-red-500 mt-6 font-medium">The Terror Funding Cycle (Narcotics → Hawala → Terror)</p>
+        </section>
+
+        <!-- 5. GOVT ROLE -->
+        <section class="py-10">
+            <h2 class="text-3xl font-bold text-blue-700 mb-8">५. सरकारला थेट सवाल</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-blue-50 p-8 rounded-xl border border-blue-100 shadow-sm">
+                    <h3 class="text-xl font-bold text-blue-900 mb-4">विरोधाभास (The Paradox)</h3>
+                    <p class="text-slate-700 leading-relaxed">
+                        एकीकडे मुंबई पोलीस <strong>'ड्रग्स फ्री मुंबई'</strong> मोहीम राबवतात, आणि दुसरीकडे पर्यटन खाते अशा इव्हेंट्सला <strong>'Co-Partner'</strong> म्हणून पाठिंबा देते. हा दुतोंडीपणा कशासाठी? जेव्हा सरकार भागीदार असते, तेव्हा प्रशासनावर कारवाई करण्यासाठी दबाव येतो.
+                    </p>
+                </div>
+                <div class="report-card p-8">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">महसूल की पिढी?</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        मिळणारा कर महसूल वि. समाजावर होणारा दीर्घकालीन परिणाम (आरोग्य, गुन्हेगारी, व्यसन). 
+                        <br><br>
+                        <span class="inline-block mt-2 bg-orange-100 text-orange-800 font-semibold px-3 py-1 rounded border border-orange-200">"कमी पैशासाठी जास्त नुकसान करणे हे कोणते शहाणपण?"</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. SOLUTIONS -->
+        <section id="solutions" class="bg-white p-8 rounded-2xl border border-green-200 shadow-sm">
+            <h2 class="text-3xl font-bold text-green-700 mb-8">६. उपाययोजना आणि मागण्या (Solutions)</h2>
+            <ul class="space-y-6">
+                <li class="flex items-start gap-6">
+                    <div class="bg-green-100 text-green-700 font-bold px-4 py-2 rounded-lg text-lg shadow-sm">01</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-800">झिरो टॉलरन्स (Zero Tolerance)</h4>
+                        <p class="text-slate-600 text-sm mt-1">एक ग्रॅम जरी ड्रग्स सापडले, तर आयोजकांवर अजामीनपात्र गुन्हा दाखल करावा.</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-6">
+                    <div class="bg-green-100 text-green-700 font-bold px-4 py-2 rounded-lg text-lg shadow-sm">02</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-800">प्री-इव्हेंट स्क्रिनिंग</h4>
+                        <p class="text-slate-600 text-sm mt-1">NCB चे पथक आणि स्निफर डॉग्ज २४ तास तैनात असावेत.</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-6">
+                    <div class="bg-green-100 text-green-700 font-bold px-4 py-2 rounded-lg text-lg shadow-sm">03</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-800">आर्थिक उत्तरदायित्व</h4>
+                        <p class="text-slate-600 text-sm mt-1">५० कोटी रुपयांची अनामत रक्कम (Deposit) घ्यावी.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 7. CONCLUSION -->
+        <section class="text-center py-16 bg-white rounded-3xl mt-10 border border-orange-100 shadow-md">
+            <h2 class="text-3xl font-bold text-slate-800 mb-6">७. निष्कर्ष</h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed">
+                राज्याची तिजोरी भरण्यासाठी इतर अनेक मार्ग आहेत. 'सनबर्न' मधून मिळणारा पैसा शापित आहे. सरकारने "आधी सुरक्षा, मग पैसा" हे धोरण ठेवावे. जर हमी मिळत नसेल, तर सरळ परवानगी नाकारण्याची हिंमत दाखवावी.
+            </p>
+            <div class="inline-block bg-gradient-to-r from-orange-500 to-red-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:from-orange-600 hover:to-red-700 transition transform hover:-translate-y-1">
+                #SaveMaharashtraYouth
+            </div>
+        </section>
+
+        <footer class="text-center text-slate-400 text-sm mt-20 pb-10">
+            <p>&copy; २०२५ जनहित अहवाल | महाराष्ट्र राज्य | <span class="text-slate-500">जनजागृतीसाठी प्रसारित</span></p>
+        </footer>
+
+    </main>
+
+    <!-- CHART CONFIGURATION -->
+    <script>
+        // Global defaults
+        Chart.defaults.font.family = "'Tiro Devanagari Marathi', serif";
+        Chart.defaults.color = '#64748b'; // Slate 500
+        Chart.defaults.borderColor = '#e2e8f0'; // Slate 200
+
+        // 1. Protest & Controversy Chart (Line)
+        const ctxProtest = document.getElementById('protestChart').getContext('2d');
+        new Chart(ctxProtest, {
+            type: 'line',
+            data: {
+                labels: ['२०१६ (पुणे)', '२०१८', '२०२०', '२०२२', '२०२४ (मुंबई)'],
+                datasets: [{
+                    label: 'जनतेचा विरोध / तक्रारी',
+                    data: [40, 30, 20, 65, 90],
+                    borderColor: '#ea580c', // Orange 600
+                    backgroundColor: 'rgba(234, 88, 12, 0.1)', // Faint orange fill
+                    tension: 0.4,
+                    fill: true,
+                    borderWidth: 2,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#ea580c',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true, 
+                        grid: { color: '#fee2e2' } // Very faint red grid
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // 2. Drugs Chart (Doughnut)
+        const ctxDrugs = document.getElementById('drugsChart').getContext('2d');
+        new Chart(ctxDrugs, {
+            type: 'doughnut',
+            data: {
+                labels: ['MDMA / Ecstasy (हाय रिस्क)', 'गांजा / चरस', 'कोकेन', 'इतर (केटामाइन इ.)'],
+                datasets: [{
+                    data: [45, 30, 15, 10],
+                    backgroundColor: [
+                        '#fca5a5', // Red 300
+                        '#fdba74', // Orange 300
+                        '#fcd34d', // Amber 300
+                        '#cbd5e1'  // Slate 300
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { 
+                        position: 'right', 
+                        labels: { 
+                            color: '#475569', 
+                            padding: 20, 
+                            font: { size: 12 },
+                            usePointStyle: true
+                        } 
+                    }
+                },
+                layout: {
+                    padding: 20
+                }
+            }
+        });
+    </script>
+</body>
+</html>
