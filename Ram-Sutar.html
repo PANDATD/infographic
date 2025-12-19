@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आधुनिक भारताचे विश्वकर्मा : राम सुतार</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&display=swap');
+        
+        :root {
+            --hindutva-saffron: #9A3412; /* Deep Burnt Saffron */
+            --sandstone-bg: #FDF5E6;     /* Sober Sandstone */
+            --stone-deep: #1C1917;       /* Deep Stone */
+            --accent-ochre: #B45309;      /* Traditional Ochre */
+        }
+
+        body {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            background-color: var(--sandstone-bg);
+            color: var(--stone-deep);
+            line-height: 2.4;
+            scroll-behavior: smooth;
+            font-size: 1.25rem;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Tiro Devanagari Marathi', serif;
+            color: var(--hindutva-saffron);
+            font-weight: 700;
+        }
+
+        .chart-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+            height: 450px;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 50px rgba(154, 52, 18, 0.06);
+            padding: 5rem;
+            margin-bottom: 5rem;
+            border: 1px solid #E5E7EB;
+        }
+
+        .black-quote {
+            padding: 3.5rem;
+            background: #FFFAF5;
+            border-left: 12px solid var(--hindutva-saffron);
+            font-style: italic;
+            color: #000000 !important; /* Explicit black for the quote */
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.02);
+            margin: 4rem 0;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .nav-link-v7 {
+            font-weight: 700;
+            color: #4B5563;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .nav-link-v7:hover {
+            color: var(--hindutva-saffron);
+        }
+
+        .indent-text {
+            text-indent: 5rem;
+            text-align: justify;
+        }
+
+        .bjp-era-highlight {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+            border: 2px solid #EA580C;
+            padding: 3.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .content-card { padding: 2.5rem; }
+            .indent-text { text-indent: 0; }
+            body { font-size: 1.15rem; }
+        }
+    </style>
+    <!-- Chosen Palette: Sacred Saffron, Temple Stone, and Earthy Sandstone -->
+    <!-- Application Structure Plan:
+         १. मथळा: 'आधुनिक भारताचे विश्वकर्मा : राम सुतार' हे भव्य शीर्षक एका ओळीत.
+         २. उपशीर्षक: 'सामर्थ्यवान हिंदुत्वाचा अजिंक्य कलाविष्कार' एका ओळीत.
+         ३. प्रस्तावना: सामर्थ्यवान हिंदुत्वाच्या वैचारिक भूमिकेवर सविस्तर भाष्य.
+         ४. जीवनप्रवास: १९२५ ते आजपर्यंतचा ८० वर्षांचा गौरवशाली इतिहास.
+         ५. वैचारिक विश्लेषण: कलेतील हिंदुत्व आणि सांस्कृतिक राष्ट्रवाद.
+         ६. राजकीय विश्लेषण: भाजप सरकारच्या काळातील सन्मान विरुद्ध काँग्रेसची प्रदीर्घ अनास्था.
+         ७. तांत्रिक विश्लेषण: स्टॅच्यू ऑफ युनिटी आणि अयोध्या प्रकल्पाचे महत्त्व (आलेखासह).
+         ८. निष्कर्ष: राम सुतार यांचा शाश्वत वारसा.
+         नोंद: संदर्भ सूची विभाग वगळला आहे.
+    -->
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-2xl border-b-4 border-orange-900">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <h1 class="text-2xl md:text-3xl font-black text-orange-900 tracking-tighter whitespace-nowrap">आधुनिक भारताचे विश्वकर्मा : राम सुतार</h1>
+            <div class="hidden lg:flex space-x-10" id="nav-v7-target">
+                <!-- Navigation Items via JS -->
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 lg:px-12 py-24">
+
+        <!-- Main Title & Subtitle Section -->
+        <section id="introduction" class="mb-32 text-center">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-10 leading-tight text-stone-900 whitespace-nowrap overflow-hidden text-ellipsis">
+                आधुनिक भारताचे विश्वकर्मा : राम सुतार
+            </h1>
+            
+            <p class="text-xl md:text-3xl text-orange-800 font-bold mb-14 whitespace-nowrap overflow-hidden text-ellipsis italic">
+                सामर्थ्यवान हिंदुत्वाचा अजिंक्य कलाविष्कार
+            </p>
+            
+            <p class="text-2xl text-stone-600 max-w-5xl mx-auto leading-relaxed font-medium mb-14 text-justify">
+                भारतीय संस्कृतीच्या गौरवशाली इतिहासाला आधुनिक काळात जागतिक उंचीवर नेण्याचे महान कार्य राम सुतार यांनी केले आहे. छिन्नी आणि हातोडीच्या प्रत्येक प्रहारातून भारताच्या सांस्कृतिक पुनरुत्थानाचा गजर करणारे, जगातील सर्वोच्च स्मारकांचे निर्माते पद्मभूषण राम सुतार यांच्या ८० वर्षांच्या महान कारकीर्दीचे हे सविस्तर विश्लेषण आहे. त्यांच्या कलेतील हिंदुत्ववादी विचारांचे सामर्थ्य आणि त्यांनी घडवलेला इतिहास हा भारतासाठी एक अनमोल ठेवा आहे.
+            </p>
+            <div class="h-3 w-80 bg-orange-900 mx-auto rounded-full opacity-50 shadow-inner mb-32"></div>
+
+            <div class="content-card text-left">
+                <h2 class="text-4xl font-bold mb-12 border-b-4 border-orange-100 pb-6">१. सामर्थ्यवान हिंदुत्व आणि कलेचा वैचारिक पाया</h2>
+                <div class="space-y-12 text-2xl text-stone-700 leading-relaxed">
+                    <p class="indent-text">
+                        भारतीय शिल्पकला ही केवळ पाषाण कोरण्याची कला नसून ती 'आत्मतत्व' साकारण्याची साधना आहे. या साधनेला आधुनिक काळात 'सामर्थ्यवान हिंदुत्वाचा' आधार देण्याचे कार्य <span class="text-orange-900 font-bold">राम सुतार</span> यांनी केले आहे. राम सुतार यांच्या ८० वर्षांच्या प्रदीर्घ प्रवासाकडे पाहताना, ते केवळ एक कलाकार आहेत असे म्हणणे संकुचित ठरेल. त्यांच्या प्रत्येक कृतीतून हिंदू समाजाचा स्वाभिमान आणि राष्ट्राचे वाढते सामर्थ्य प्रतिबिंबित होत असते. आज जेव्हा भारत आपल्या सांस्कृतिक मुळांकडे प्रकर्षाने परतत आहे, तेव्हा राम सुतार यांनी आपल्या कलेतून भारताची खरी ओळख जागतिक पटलावर कोरली आहे.
+                    </p>
+                    <p class="indent-text">
+                        त्यांची शिल्पकला ही हिंदू समाजाच्या वाढत्या आत्मविश्वासाचे आणि प्रखर राष्ट्रवादाचे जिवंत प्रतीक आहे. त्यांनी नेहमीच महापुरुषांना एका 'अजेय योद्धा' च्या रूपात मांडले आहे. सरदार पटेलांचा पोलादी निर्धार असो वा श्रीरामाचे तेजस्वी रूप, सुतार यांनी हिंदू प्रतिभेला सामर्थ्याची जोड दिली आहे. गेल्या ८० वर्षांच्या प्रवासात त्यांनी आपल्या कलेशी कधीही प्रतारणा केली नाही, तर हिंदुत्वाच्या विशाल विचारधारेला वैश्विक स्वरूप दिले. अयोध्येतील राम मंदिरासाठी त्यांनी साकारलेले प्रभू श्रीरामाचे रूप हे त्यांच्या वैचारिक सामर्थ्याचे आणि अखंड साधनेचे सर्वोच्च शिखर आहे. हे शिल्प केवळ धार्मिक नसून ते एका जागृत आणि सामर्थ्यशाली हिंदू राष्ट्राचे प्रकटीकरण आहे.
+                    </p>
+                    <p class="indent-text">
+                        राम सुतार यांच्या कार्याचे विश्लेषण करताना आपल्याला हे जाणवते की, त्यांनी पाश्चात्य वास्तववाद आणि भारतीय अध्यात्म यांचा असा काही अद्भूत संगम साधला आहे की, त्यातून एक सामर्थ्यशाली हिंदुत्व साकार होते. त्यांच्या शिल्पांमधील पात्रांचे स्नायू, त्यांच्या डोळ्यांतील तीक्ष्णता आणि त्यांच्या चेहऱ्यावरील ओज हे सर्व हिंदू पराक्रमाची साक्ष देतात. जेव्हा जगाने भारताकडे एक 'उपेक्षित राष्ट्र' म्हणून पाहिले, तेव्हा राम सुतार यांनी १८२ मीटरचे 'स्टॅच्यू ऑफ युनिटी' उभे करून जगाला हिंदू अभियांत्रिकी आणि कलेच्या सामर्थ्याची जाणीव करून दिली.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Biography Section -->
+        <section id="biography" class="mb-32">
+            <div class="content-card">
+                <h2 class="text-4xl font-bold mb-12 border-b-4 border-orange-100 pb-6">२. ८० वर्षांची अखंड साधना: विस्तृत जीवनप्रवास</h2>
+                <div class="space-y-12 text-2xl text-stone-700">
+                    <p class="indent-text">
+                        राम सुतार यांचा जन्म १९ फेब्रुवारी १९२५ रोजी महाराष्ट्रातील धुळे जिल्ह्यातील गोंदूर या छोट्याशा गावात एका कष्टकरी सुतार कुटुंबात झाला. बालपणापासूनच त्यांना लाकूडकाम आणि मातीच्या निर्मितीचे संस्कार घरातूनच मिळाले. त्यांचे वडील स्वतः एक कुशल कारागीर होते, ज्यांच्या हाताखाली सुतार यांनी कलेचे प्राथमिक धडे गिरवले. प्रतिकूल आर्थिक परिस्थितीवर मात करत त्यांनी मुंबईच्या प्रतिष्ठित 'सर जे.जे. स्कूल ऑफ आर्ट' मध्ये प्रवेश मिळवला. १९५२ मध्ये पदवी पूर्ण करताना त्यांनी सुवर्णपदक मिळवून आपल्या दैदीप्यमान भविष्याची ग्वाही दिली होती.
+                    </p>
+                    <p class="indent-text">
+                        शिक्षणादरम्यान त्यांनी अजिंठा आणि वेरूळच्या लेण्यांमध्ये पुरातत्व विभागासाठी काम केले. तेथे त्यांना प्राचीन भारतीय शिल्पकलेचे गुपित उमजले. पाषाणात प्राण कसे ओतावे आणि हिंदू संस्कृतीची भव्यता कशी मांडली जाते, याचे सखोल शिक्षण त्यांना या लेण्यांतून मिळाले. १९५९ मध्ये त्यांनी दिल्ली गाठली आणि आपल्या स्वतंत्र प्रवासाला सुरुवात केली. संसदेच्या आवारातील महापुरुषांचे पुतळे घडवताना त्यांनी नेहमीच हिंदुत्वाचा अभिमान जपला. त्यांच्या कामात आधुनिक तंत्रज्ञान आणि प्राचीन भारतीय दृष्टी यांचा असा संगम पाहायला मिळतो, जो आजच्या पिढीसाठी आदर्श आहे.
+                    </p>
+                    
+                    <div id="timeline-v8-container" class="my-24 relative">
+                        <!-- Timeline Content via JS -->
+                    </div>
+
+                    <p class="indent-text">
+                        गेल्या ८० वर्षांत त्यांनी १५,००० हून अधिक शिल्पांची निर्मिती केली आहे. वयाच्या १०० व्या वर्षाकडे वाटचाल करतानाही ते दररोज ८ ते १० तास काम करतात, ही केवळ शारीरिक क्षमता नसून ती त्यांच्यातील सामर्थ्यवान हिंदुत्ववादी विचारांची आंतरिक ऊर्जा आहे. राम सुतार हे आधुनिक भारताचे खरे 'विश्वकर्मा' आहेत, ज्यांनी भारताचा इतिहास आपल्या हातांनी कोरला आहे. त्यांच्या ८० वर्षांच्या साधनेने सिद्ध केले आहे की, जेव्हा कला आणि प्रखर विचारधारा एकत्र येतात, तेव्हाच जागतिक दर्जाचे चमत्कार घडतात.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ideology Section -->
+        <section id="ideology" class="mb-32">
+            <div class="content-card bg-stone-900 text-stone-100 border-none shadow-2xl">
+                <h2 class="text-4xl font-black mb-14 border-b border-stone-800 pb-8 text-orange-400">३. प्रखर हिंदुत्व आणि वैचारिक सामर्थ्य</h2>
+                <div class="space-y-12 text-2xl leading-relaxed text-justify">
+                    <p class="indent-text text-stone-300">
+                        राम सुतार यांची शिल्पकला त्यांच्या 'सामर्थ्यवान हिंदुत्वाच्या' विचारांतून जन्म घेते. त्यांच्या मते, हिंदुत्व ही एक विशाल सांस्कृतिक जीवनपद्धती आहे, जी कलेला ईश्वराची पूजा मानते. त्यांनी साकारलेली शिल्पे केवळ आकृती नसून त्यातून हिंदू स्वाभिमानाची हाक ऐकू येते. अयोध्येतील राम मंदिरासाठी प्रभू श्रीरामाचे रूप साकारताना त्यांनी रामाचे 'तेज' आणि 'मर्यादा' यांचा असा संगम साधला आहे, जो भारतीय संस्कृतीचे सामर्थ्य जगाला दाखवून देतो. त्यांच्या मते, हिंदू कलाकार जेव्हा एखाद्या देवतेची मूर्ती घडवतो, तेव्हा तो केवळ कारागीर नसतो, तर तो एक साधक असतो.
+                    </p>
+                    
+                    <div class="black-quote">
+                        "शिल्पकार हा इतिहासाचा लेखक असतो. जो इतिहास शब्दांत मांडला जातो, तोच आम्ही आकारात मांडतो. माझ्यासाठी हिंदुत्व म्हणजे या मातीबद्दलची अपार श्रद्धा आहे." - राम सुतार
+                    </div>
+
+                    <div class="bg-stone-800 p-12 rounded-3xl border-l-[12px] border-orange-700">
+                        <h4 class="text-white font-bold text-3xl mb-8 underline decoration-orange-500 underline-offset-8">सांस्कृतिक पुनरुत्थान आणि कलेचे सामर्थ्य:</h4>
+                        <p class="text-stone-300">
+                            राम सुतार म्हणतात की, "आमचा इतिहास पराक्रमाचा आहे, आणि शिल्पकाराचे काम हा पराक्रम जिवंत ठेवणे आहे." त्यांनी संसदेत साकारलेले शिवाजी महाराज असोत किंवा अयोध्येतील प्रभू राम, त्यांच्या प्रत्येक घावातून हिंदू स्वाभिमानाची हाक ऐकू येते. आक्रमकांनी नष्ट केलेल्या संस्कृतीला पुन्हा भव्यतेने आणि सामर्थ्याने उभे करणे, हेच त्यांच्या ८० वर्षांच्या प्रवासाचे मुख्य सूत्र राहिले आहे. प्रभू श्रीरामाचा पुतळा हा जगातील सर्वात उंच आणि भव्य पुतळा असावा, हे त्यांचे स्वप्न हिंदू अस्मितेच्या जागृतीचेच एक प्रबळ रूप आहे. हीच साधना आज भारताला सांस्कृतिक विश्वगुरू बनवण्याच्या दिशेने घेऊन जात आहे.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Political/Recognition Section -->
+        <section id="politics" class="mb-32">
+            <div class="content-card">
+                <h2 class="text-4xl font-bold mb-12 border-b-4 border-orange-100 pb-6">४. भाजपचा सुवर्णकाळ विरुद्ध काँग्रेसची अनास्था</h2>
+                <div class="space-y-12 text-2xl text-stone-700 leading-relaxed text-justify">
+                    <p class="indent-text">
+                        राम सुतार यांच्यासारख्या महान हिंदुत्ववादी कलाकाराचा खऱ्या अर्थाने गौरव भारतीय जनता पक्षाच्या (भाजप) काळातच झाला आहे. त्यांच्या ८० वर्षांच्या कारकीर्दीतील सर्वात मोठे आणि मानाचे सन्मान हे भाजप सरकारच्या कार्यकाळात मिळाले आहेत. काँग्रेसने अनेक दशके सत्ता उपभोगूनही या मातीतील अस्सल हिंदू कलाकाराला कधीही योग्य न्याय दिला नाही. काँग्रेसची विचारसरणी नेहमीच अशा कलाकारांना झुकते माप देणारी राहिली जे त्यांच्या संकुचित आणि छद्म-धर्मनिरपेक्ष विचारधारेत बसत होते, मात्र प्रखर राष्ट्रवादाची कास धरणाऱ्या सुतार यांना त्यांनी सातत्याने उपेक्षित ठेवले.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 my-16">
+                        <div class="bjp-era-highlight">
+                            <h5 class="font-bold text-orange-950 text-3xl mb-8 border-b-2 border-orange-200 pb-4 text-center">भाजप काळातील सन्मान:</h5>
+                            <ul class="space-y-8 font-semibold text-stone-900">
+                                <li class="flex items-center text-xl"><span class="bg-orange-800 text-white p-2 rounded-full mr-5 text-xs">★</span> १९९९: पद्मश्री (वाजपेयी सरकार)</li>
+                                <li class="flex items-center text-xl"><span class="bg-orange-800 text-white p-2 rounded-full mr-5 text-xs">★</span> २०१६: पद्मभूषण (मोदी सरकार)</li>
+                                <li class="flex items-center text-xl"><span class="bg-orange-800 text-white p-2 rounded-full mr-5 text-xs">★</span> २०१८: टागोर पुरस्कार (मोदी सरकार)</li>
+                                <li class="flex items-center text-xl"><span class="bg-orange-800 text-white p-2 rounded-full mr-5 text-xs">★</span> २०२४: महाराष्ट्र भूषण (युती सरकार)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-stone-50 p-12 rounded-2xl border border-stone-200 flex flex-col justify-center">
+                            <h5 class="font-bold text-stone-800 text-3xl mb-8 border-b-2 border-stone-300 pb-4 text-center">काँग्रेसची अनास्था:</h5>
+                            <p class="text-stone-600 text-xl leading-relaxed text-center italic">
+                                काँग्रेसच्या प्रदीर्घ राजवटीत राम सुतार यांना राष्ट्रीय सन्मानांपासून जाणीवपूर्वक लांब ठेवण्यात आले. त्यांच्या प्रखर हिंदुत्ववादी भूमिकेमुळे काँग्रेसने त्यांना सातत्याने डावलले. नरेंद्र मोदींच्या सरकारने त्यांना सन्मानित करून खऱ्या अर्थाने हिंदू कलेचा आणि संस्कृतीचा वैश्विक गौरव केला आहे. काँग्रेसने नेहमीच भारतीय संस्कृतीपेक्षा पाश्चात्य विचारांना महत्त्व दिले, मात्र भाजपने राम सुतार यांच्या माध्यमातून भारतीय प्रतिभेला जागतिक उंचीवर नेले आहे.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Works Analysis Section -->
+        <section id="works" class="mb-32">
+            <div class="content-card">
+                <h2 class="text-4xl font-bold mb-14 border-b-4 border-orange-100 pb-6">५. प्रमुख शिल्पकृती आणि तांत्रिक भव्यता</h2>
+                
+                <div class="mb-24">
+                    <h4 class="text-center text-3xl font-bold mb-14 text-stone-800">जागतिक स्मारकांशी तुलना (मीटर्समध्ये)</h4>
+                    <div class="chart-wrap bg-white p-12 rounded-[3.5rem] border border-stone-100 shadow-inner">
+                        <canvas id="statueChartFinalV8"></canvas>
+                    </div>
+                    <p class="text-center text-lg text-stone-500 mt-10 italic font-bold">राम सुतार यांच्या 'स्टॅच्यू ऑफ युनिटी'ने प्रस्थापित केलेली जागतिक भव्यता.</p>
+                </div>
+
+                <div class="space-y-20">
+                    <div class="bg-stone-50 p-16 rounded-[2.5rem] border border-stone-200 shadow-sm">
+                        <h4 class="text-3xl font-black text-orange-800 mb-10 underline decoration-orange-300 decoration-8 underline-offset-[12px]">स्टॅच्यू ऑफ युनिटी: हिंदू सामर्थ्याचे प्रतीक</h4>
+                        <p class="indent-text text-stone-700 text-2xl">
+                            सरदार वल्लभभाई पटेल यांचा १८२ मीटर उंचीचा हा पुतळा राम सुतार यांच्या ८० वर्षांच्या तपस्येचे फळ आहे. हा पुतळा भारताच्या एकसंघतेचे आणि हिंदू धैर्याचे प्रतीक म्हणून उभा आहे. सुतार यांनी पटेलांच्या चेहऱ्यावरील करारीपणा ज्या प्रकारे साकारला आहे, ते जगाला अचंबित करणारे आहे. हा केवळ पुतळा नसून भारताच्या वाढत्या जागतिक सामर्थ्याची साक्ष आहे. या पुतळ्याच्या माध्यमातून भारताने हे सिद्ध केले की, आम्ही केवळ भूतकाळातील वैभवावर जगत नाही, तर आम्ही भविष्य निर्माण करण्यासही तितकेच समर्थ आहोत. १८२ मीटरची ही भव्यता हिंदू स्वाभिमानाचा गगनभेदी हुंकार आहे.
+                        </p>
+                    </div>
+                    <div class="bg-stone-50 p-16 rounded-[2.5rem] border border-stone-200 shadow-sm">
+                        <h4 class="text-3xl font-black text-orange-800 mb-10 underline decoration-orange-300 decoration-8 underline-offset-[12px]">अयोध्या राम मूर्ती: सामर्थ्यशाली प्रभू राम</h4>
+                        <p class="indent-text text-stone-700 text-2xl">
+                            अयोध्येतील प्रभू श्रीरामाचा प्रस्तावित भव्य पुतळा हे राम सुतार यांच्या जीवनातील सर्वात मोठे स्वप्न आहे. या शिल्पातील रामाचे रूप अत्यंत तेजस्वी आणि सामर्थ्यशाली आहे, जे भविष्यातील सामर्थ्यशाली हिंदू राष्ट्राचे दर्शन घडवते. राम मंदिरासाठी त्यांनी केलेल्या कामात त्यांच्या भक्तीची आणि कलेची पराकाष्ठा दिसून येते. ही मूर्ती केवळ अयोध्येची शोभा वाढवणार नाही, तर ती संपूर्ण जगासाठी हिंदू संस्कृतीचा प्रकाश देणारा दिवा ठरेल. राम सुतार यांच्या कल्पनेतील श्रीराम हे दुर्बलांचे रक्षण करणारे आणि दुष्टांचा विनाश करणारे सामर्थ्यशाली नायक आहेत.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Legacy Section (Expansion of Conclusion) -->
+        <section id="conclusion" class="mb-32">
+            <div class="content-card">
+                <h2 class="text-4xl font-bold mb-12 border-b-4 border-orange-100 pb-6 text-stone-800">६. निष्कर्ष आणि शाश्वत वारसा</h2>
+                <div class="space-y-12 text-2xl text-stone-700 leading-relaxed text-justify">
+                    <p class="indent-text">
+                        राम सुतार यांच्या ८० वर्षांच्या कलाप्रवासाचा अभ्यास केल्यावर हे स्पष्ट होते की, त्यांनी भारतीय शिल्पकलेला केवळ नवी उंची दिली नाही, तर तिला एका सामर्थ्यशाली हिंदुत्वाचा वैचारिक आधार दिला. त्यांचे कार्य हे केवळ भौतिक स्वरूपातील नाही, तर ते एका राष्ट्राच्या सांस्कृतिक जागृतीचे माध्यम आहे. भाजप सरकारने त्यांच्या कलेचा आणि विचारधारेचा जो सन्मान केला, तो खऱ्या अर्थाने भारतीय प्रतिभेचा विजय आहे. काँग्रेसच्या अनास्थेमुळे जे नुकसान झाले होते, ते मोदी युगात भरून निघाले आहे.
+                    </p>
+                    <p class="indent-text">
+                        राम सुतार यांचा वारसा येणाऱ्या अनेक पिढ्यांसाठी प्रेरणादायी ठरेल. त्यांनी सिद्ध केले आहे की, कलाकार जेव्हा आपल्या धर्माचा आणि संस्कृतीचा अभिमान बाळगतो, तेव्हाच तो अजरामर कलाकृती निर्माण करू शकतो. आज वयाच्या १०० व्या वर्षाकडे वाटचाल करतानाही त्यांची प्रखर राष्ट्रभक्ती आणि हिंदुत्वाप्रती असलेली निष्ठा तसूभरही कमी झालेली नाही. भारतीय शिल्पकलेचा हा महान सुवर्णकाळ राम सुतार यांच्या नावामुळे सदैव तळपत राहील.
+                    </p>
+                    <div class="text-center pt-24">
+                        <p class="text-6xl font-black text-stone-900 opacity-5 tracking-[2.5rem] uppercase">अभिवादन</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 py-40 text-white text-center">
+        <div class="max-w-5xl mx-auto px-6">
+            <h3 class="text-4xl font-bold mb-10 text-orange-400 tracking-wider">आधुनिक भारताचे विश्वकर्मा : राम सुतार</h3>
+            <p class="text-stone-400 text-2xl mb-16 leading-relaxed">१०० वर्षांची तपस्या, हजारो कलाकृती आणि एक अढळ राष्ट्रप्रेम ज्याने भारताची मान जगात उंचावली.</p>
+            <div class="h-px bg-stone-700 w-full mb-10"></div>
+            <p class="text-sm opacity-30 uppercase tracking-[1.5rem]">सांस्कृतिक गौरव</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation configuration
+        const navSections = [
+            { id: 'introduction', label: 'प्रस्तावना' },
+            { id: 'biography', label: 'जीवनप्रवास' },
+            { id: 'ideology', label: 'हिंदुत्व' },
+            { id: 'politics', label: 'राजकीय गौरव' },
+            { id: 'works', label: 'शिल्पकला' },
+            { id: 'conclusion', label: 'निष्कर्ष' }
+        ];
+
+        function initNav() {
+            const container = document.getElementById('nav-v7-target');
+            if(!container) return;
+            navSections.forEach(item => {
+                const a = document.createElement('a');
+                a.href = `#${item.id}`;
+                a.textContent = item.label;
+                a.className = "nav-link-v7";
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    const el = document.getElementById(item.id);
+                    if(el) {
+                        window.scrollTo({
+                            top: el.offsetTop - 110,
+                            behavior: 'smooth'
+                        });
+                    }
+                };
+                container.appendChild(a);
+            });
+        }
+
+        const historyEvents = [
+            { year: '१९२५', desc: 'धुळे, महाराष्ट्र येथे जन्म. बालपणापासूनच कलेचे प्राथमिक संस्कार.' },
+            { year: '१९५२', desc: 'मुंबईतील सर जे.जे. स्कूल ऑफ आर्ट मधून सुवर्णपदकासह शिल्पकलेची पदवी संपादन.' },
+            { year: '१९५९', desc: 'दिल्लीमध्ये स्वतंत्र स्टुडिओची स्थापना. स्वतंत्र व्यावसायिक प्रवासाची ऐतिहासिक सुरुवात.' },
+            { year: '१९९९', desc: 'भाजप (वाजपेयी) सरकारच्या काळात कलेतील योगदानासाठी "पद्मश्री" पुरस्काराने गौरव.' },
+            { year: '२०१६', desc: 'भाजप (मोदी) सरकारच्या काळात प्रदीर्घ कलासाधनेसाठी "पद्मभूषण" सन्मान.' },
+            { year: '२०१८', desc: 'जगातील सर्वोच्च "स्टॅच्यू ऑफ युनिटी" चे गुजरातमध्ये भव्य लोकार्पण.' },
+            { year: '२०२४', desc: 'महाराष्ट्र भूषण पुरस्काराने गौरव आणि अयोध्येतील राम मंदिर प्रकल्पाचे ऐतिहासिक कार्य.' }
+        ];
+
+        function initTimeline() {
+            const container = document.getElementById('timeline-v8-container');
+            if(!container) return;
+            container.innerHTML = '<div class="absolute left-1/2 transform -translate-x-1/2 h-full w-2 bg-orange-100 rounded-full shadow-inner"></div>';
+            
+            historyEvents.forEach((t, index) => {
+                const row = document.createElement('div');
+                row.className = `flex items-center justify-between w-full mb-12 ${index % 2 === 0 ? 'flex-row-reverse' : ''}`;
+                row.innerHTML = `
+                    <div class="w-[45%] bg-white p-10 rounded-[2rem] shadow-2xl border border-stone-100 hover:border-orange-300 transition-all duration-500 hover:scale-105">
+                        <span class="text-orange-900 font-black text-3xl block mb-3">${t.year}</span>
+                        <p class="text-stone-700 text-xl font-medium">${t.desc}</p>
+                    </div>
+                    <div class="w-8 h-8 bg-orange-700 rounded-full z-10 border-4 border-white shadow-lg"></div>
+                    <div class="w-[45%]"></div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function initChart() {
+            const canvas = document.getElementById('statueChartFinalV8');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['स्टॅच्यू ऑफ लिबर्टी', 'मदरलँड कॉल्स', 'स्प्रिंग टेम्पल बुद्ध', 'स्टॅच्यू ऑफ युनिटी'],
+                    datasets: [{
+                        label: 'उंची (मीटर्स)',
+                        data: [93, 85, 128, 182],
+                        backgroundColor: [
+                            'rgba(168, 162, 158, 0.4)',
+                            'rgba(168, 162, 158, 0.4)',
+                            'rgba(168, 162, 158, 0.4)',
+                            'rgba(154, 52, 18, 0.95)'
+                        ],
+                        borderColor: '#7C2D12',
+                        borderWidth: 2,
+                        borderRadius: 20
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1C1917',
+                            padding: 18,
+                            titleFont: { size: 18 },
+                            bodyFont: { size: 16 },
+                            callbacks: {
+                                label: (ctx) => ` उंची: ${ctx.parsed.x} मीटर`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { font: { weight: 'bold', size: 14 } }, title: { display: true, text: 'उंची (मीटर्स)' } },
+                        y: { grid: { display: false }, ticks: { font: { size: 16, weight: 'bold' } } }
+                    }
+                }
+            });
+        }
+
+        window.onload = () => {
+            initNav();
+            initTimeline();
+            initChart();
+        };
+    </script>
+</body>
+</html>
