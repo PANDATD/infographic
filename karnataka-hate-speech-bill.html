@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कर्नाटक हेट स्पीच विधेयक २०२५: हिंदू अस्मितेवरील संकट</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Chosen Palette: 'Dharmic Esthetics' -->
+    <!-- Primary: Bhagwa (Saffron) #ea580c (orange-600) -->
+    <!-- Secondary: Kumkum (Deep Red) #991b1b (red-800) -->
+    <!-- Background: Chandan (Sandalwood/Cream) #fff7ed (orange-50) -->
+    <!-- Text: Charcoal with warm undertones #431407 (brown-950) -->
+
+    <!-- Application Structure Plan: 
+         The app uses a 'Research Dossier' layout. 
+         - Sidebar: Acts as the Table of Contents for the report.
+         - Main View: Mimics a physical report with 'Paper' aesthetic cards.
+         - Interactions: Users can toggle between 'Government Claims' vs 'Hindu Reality' in the analysis section.
+         - Visuals: Data is presented using saffron-themed charts to reinforce the narrative.
+    -->
+    
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Noto Serif Devanagari', serif; /* More academic/literary font */
+            background-color: #fff7ed; /* Orange-50 */
+            color: #431407; /* Brown-950 */
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+        .saffron-gradient {
+            background: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);
+        }
+        .nav-item.active {
+            background-color: #ffedd5;
+            color: #9a3412;
+            border-right: 4px solid #c2410c;
+            font-weight: bold;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-top: 4px solid #ea580c;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .quote-box {
+            background-color: #fff1f2; /* Rose-50 */
+            border-left: 4px solid #991b1b; /* Red-800 */
+            font-style: italic;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            height: 400px;
+            max-height: 450px;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff7ed;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fdba74;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ea580c;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col md:flex-row overflow-hidden">
+
+    <!-- Mobile Header -->
+    <header class="md:hidden saffron-gradient text-white p-4 flex justify-between items-center shadow-lg z-30">
+        <div>
+            <h1 class="text-lg font-bold">कर्नाटक हेट स्पीच विधेयक २०२५</h1>
+            <p class="text-xs text-orange-100">हिंदू अस्मितेवरील संकट</p>
+        </div>
+        <button id="mobile-menu-btn" class="focus:outline-none text-2xl">☰</button>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="transform -translate-x-full md:translate-x-0 fixed md:relative z-20 w-72 h-full bg-white border-r border-orange-200 shadow-xl transition-transform duration-300 flex flex-col">
+        <div class="p-6 bg-orange-50 border-b border-orange-200">
+            <h1 class="text-xl font-bold text-orange-900 leading-tight">कर्नाटक हेट स्पीच विधेयक २०२५</h1>
+            <p class="text-sm text-red-700 mt-2 font-bold italic">"हिंदू अस्मितेवरील संकट"</p>
+            <div class="mt-2 w-12 h-1 bg-orange-600"></div>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1">
+                <li><button onclick="navigateTo('intro')" class="nav-item w-full text-left px-6 py-4 hover:bg-orange-50 transition-colors active text-lg" id="nav-intro">१. प्रस्तावना व उद्देश</button></li>
+                <li><button onclick="navigateTo('analysis')" class="nav-item w-full text-left px-6 py-4 hover:bg-orange-50 transition-colors text-lg" id="nav-analysis">२. विधेयकाचे विश्लेषण</button></li>
+                <li><button onclick="navigateTo('impact')" class="nav-item w-full text-left px-6 py-4 hover:bg-orange-50 transition-colors text-lg" id="nav-impact">३. हिंदू अस्मितेवर आघात</button></li>
+                <li><button onclick="navigateTo('critique')" class="nav-item w-full text-left px-6 py-4 hover:bg-orange-50 transition-colors text-lg" id="nav-critique">४. राजकीय तुष्टीकरण</button></li>
+                <li><button onclick="navigateTo('conclusion')" class="nav-item w-full text-left px-6 py-4 hover:bg-orange-50 transition-colors text-lg" id="nav-conclusion">५. निष्कर्ष</button></li>
+            </ul>
+        </nav>
+
+        <div class="p-4 bg-orange-900 text-orange-100 text-center text-xs">
+            <p>सत्यमेव जयते</p>
+            <p class="mt-1 opacity-75">© २०२५ हिंदू जागृती संशोधन कक्ष</p>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 h-full overflow-hidden relative bg-orange-50">
+        <!-- Overlay -->
+        <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden md:hidden z-10"></div>
+
+        <div id="content-area" class="h-full overflow-y-auto p-4 md:p-10 pb-20 scroll-behavior-smooth">
+            <!-- Content Injected Here -->
+        </div>
+    </main>
+
+    <script>
+        // Data Store with Enhanced Marathi Tone and Content
+        const reportData = {
+            intro: {
+                title: "प्रस्तावना: सामाजिक सलोख्याचा मुखवटा आणि हिंदू दडपशाहीचे वास्तव",
+                content: `
+                    <div class="max-w-5xl mx-auto space-y-8 animate-fade-in">
+                        <div class="content-card p-8 rounded-lg">
+                            <h3 class="text-2xl font-bold text-orange-900 mb-4">अहवालाचा सारांश (Executive Summary)</h3>
+                            <p class="text-lg leading-relaxed text-gray-800 mb-4">
+                                कर्नाटक सरकारने नुकतेच विधानसभेत मांडलेले <strong>'कर्नाटक द्वेषपूर्ण भाषण आणि द्वेषपूर्ण गुन्हे (प्रतिबंध आणि नियंत्रण) विधेयक, २०२५'</strong> (The Karnataka Hate Speech and Hate Crimes Bill, 2025) हे वरकरणी कायद्याचे राज्य प्रस्थापित करणारे वाटत असले, तरी त्याच्या अंतरंगात बहुसंख्याक हिंदू समाजाचा आवाज दाबण्याचे एक सुनियोजित षड्यंत्र दडलेले आहे.
+                            </p>
+                            <p class="text-lg leading-relaxed text-gray-800">
+                                या अहवालाचा मुख्य उद्देश या विधेयकाचे 'हिंदू विरोधी' स्वरूप उघडे करणे हा आहे. ज्या प्रकारे या कायद्यातील तरतुदींची रचना केली गेली आहे, त्यावरून हे स्पष्ट होते की याचा वापर केवळ हिंदू कार्यकर्ते, संत-महंत आणि हिंदू सणांच्या विरोधात केला जाईल. कर्नाटकातील सध्याच्या काँग्रेस सरकारचे 'तुष्टीकरणाचे राजकारण' (Appeasement Politics) पाहता, हे विधेयक म्हणजे हिंदूंना त्यांच्याच राज्यात द्वितीय दर्जाचे नागरिक बनवण्याचा प्रयत्न आहे.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="content-card p-6 rounded-lg">
+                                <h4 class="text-xl font-bold text-red-800 mb-3 border-b border-red-200 pb-2">तात्काळ चिंतेचे विषय</h4>
+                                <ul class="space-y-3 text-gray-700 list-disc pl-5">
+                                    <li><strong>अस्पष्ट व्याख्या:</strong> 'द्वेष' कशाला म्हणायचे याचे कोणतेही स्पष्ट निकष नाहीत.</li>
+                                    <li><strong>पोलिसांचे अमर्याद अधिकार:</strong> हिंदू मिरवणुका रोखण्यासाठी याचा वापर होऊ शकतो.</li>
+                                    <li><strong>एकतर्फी कारवाई:</strong> केवळ हिंदूंच्या घोषणांना 'प्रक्षोभक' ठरवले जाण्याची भीती.</li>
+                                    <li><strong>अभिव्यक्ती स्वातंत्र्याची गळचेपी:</strong> ऐतिहासिक सत्य मांडणेही गुन्हा ठरू शकतो.</li>
+                                </ul>
+                            </div>
+                            <div class="chart-container bg-white p-4 rounded-lg shadow-sm border border-orange-100">
+                                <canvas id="chart-intro"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="quote-box p-6 rounded-r-lg">
+                            <p class="text-xl font-serif text-red-900">
+                                "जेव्हा कायदा राजकीय स्वार्थासाठी बनवला जातो, तेव्हा तो न्यायाचे रक्षण करत नाही, तर अन्यायाचे हत्यार बनतो. हे विधेयक त्याचेच जिवंत उदाहरण आहे."
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            analysis: {
+                title: "विधेयकाचे कायदेशीर विश्लेषण: शब्दांच्या जाळ्यात अडकलेला हिंदू समाज",
+                content: `
+                    <div class="max-w-5xl mx-auto space-y-8">
+                        <p class="text-lg text-gray-800">
+                            या विधेयकातील कलमांचे बारकाईने वाचन केल्यास, त्यातील 'हिंदू-विरोधी' अजेंडा स्पष्ट होतो. आम्ही येथे पीडीएफ मधील मुख्य कलमांचे विश्लेषण करत आहोत.
+                        </p>
+
+                        <!-- Clause 2(a) Analysis -->
+                        <div class="content-card p-6 rounded-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-orange-600 text-white font-bold px-3 py-1 rounded mr-3">कलम २ (a)</div>
+                                <h3 class="text-xl font-bold text-orange-900">'संवाद' (Communication) ची संदिग्ध व्याख्या</h3>
+                            </div>
+                            <p class="mb-4 text-gray-700">
+                                विधेयकात 'Communication' (संवाद) या शब्दाची व्याप्ती अत्यंत वाढवली आहे. यात <em>Display (प्रदर्शन), Written (लिखित), Visual (दृश्य)</em> आणि <em>Electronic Communication</em> यांचा समावेश आहे.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                                <div class="bg-green-50 p-4 rounded border border-green-200">
+                                    <h4 class="font-bold text-green-800 mb-2">सरकारचा दावा</h4>
+                                    <p class="text-sm">हे कलम सोशल मीडियावरील खोट्या बातम्या आणि अफवा रोखण्यासाठी आहे.</p>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded border border-red-200">
+                                    <h4 class="font-bold text-red-800 mb-2">हिंदू दृष्टीकोनातून वास्तव</h4>
+                                    <p class="text-sm">
+                                        'प्रदर्शन' (Display) या शब्दामुळे घरावरील <strong>भगवा ध्वज</strong>, दुकानांवरील 'हिंदू राष्ट्र' स्टिकर्स किंवा वाहनांवरील धार्मिक चिन्हे यांना 'आक्रमक' ठरवून गुन्हे दाखल केले जाऊ शकतात. हिंदू सणांमधील देखाव्यांवर सेन्सॉरशिप लादण्यासाठी याचा वापर होईल.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Competent Authority -->
+                        <div class="content-card p-6 rounded-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-orange-600 text-white font-bold px-3 py-1 rounded mr-3">कलम २ (b)</div>
+                                <h3 class="text-xl font-bold text-orange-900">'सक्षम प्राधिकारी' (Competent Authority)</h3>
+                            </div>
+                            <p class="text-gray-700 mb-4">
+                                हे विधेयक सरकारला 'सक्षम प्राधिकारी' नेमण्याचे अधिकार देते. कर्नाटकातील काँग्रेस सरकारचा इतिहास पाहता, हे अधिकारी राजकीय हेतूने प्रेरित असण्याची दाट शक्यता आहे. 
+                            </p>
+                            <div class="chart-container">
+                                <canvas id="chart-clauses"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Clause 12 Analysis -->
+                        <div class="content-card p-6 rounded-lg bg-orange-50 border-none">
+                            <h3 class="text-xl font-bold text-orange-800 mb-2">कलम १२: कायद्याची अरेरावी</h3>
+                            <p class="text-gray-800">
+                                "Act not in derogation of any other law" - हे विधेयक इतर कायद्यांच्या बरोबरीने असेल, पण जिथे विसंगती असेल तिथे या कायद्याचे वर्चस्व असेल. याचा अर्थ, भारतीय दंड विधानातील (BNS) संरक्षणात्मक तरतुदी डावलून, या नवीन कायद्याद्वारे हिंदू कार्यकर्त्यांवर कठोर कारवाई (जसे की अजामीनपात्र अटक) केली जाऊ शकते.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            impact: {
+                title: "हिंदूंवर होणारा परिणाम आणि सामाजिक विलगीकरण (Isolation)",
+                content: `
+                    <div class="max-w-5xl mx-auto space-y-8">
+                        <div class="bg-white p-8 rounded-lg shadow-lg border-l-8 border-red-700">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4">हिंदूंना 'आयसोलेट' (Isolate) करण्याचे तंत्र</h2>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                'आयसोलेशन' किंवा विलगीकरण म्हणजे एखाद्या समाजाला अशी भीती दाखवणे की ते स्वतःहून आपले धार्मिक आणि सांस्कृतिक हक्क सोडतील. हे विधेयक नेमके हेच साध्य करेल.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- Impact 1 -->
+                            <div class="content-card p-6 rounded-lg hover:shadow-xl transition-shadow">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-2xl mb-4">🚩</div>
+                                <h3 class="text-xl font-bold text-orange-900 mb-3">१. हिंदू सण आणि उत्सव</h3>
+                                <p class="text-gray-600">
+                                    गणेशोत्सव, राम नवमी आणि हनुमान जयंतीच्या मिरवणुकांमध्ये वापरले जाणारे ध्वज, घोषणा आणि संगीत यांना 'इतर समुदायाला त्रासदायक' ठरवून बंदी घातली जाईल. परिणामी, आयोजक भीतीपोटी सण साजरे करणे बंद करतील किंवा अत्यंत साध्या पद्धतीने करतील.
+                                </p>
+                            </div>
+                            
+                            <!-- Impact 2 -->
+                            <div class="content-card p-6 rounded-lg hover:shadow-xl transition-shadow">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-2xl mb-4">🔇</div>
+                                <h3 class="text-xl font-bold text-orange-900 mb-3">२. वैचारिक दडपशाही</h3>
+                                <p class="text-gray-600">
+                                    'लव्ह जिहाद', 'लँड जिहाद' किंवा 'गौहत्या' यांसारख्या वास्तविक समस्यांवर बोलणे म्हणजे 'द्वेषपूर्ण भाषण' मानले जाईल. यामुळे हिंदू समाजातील जागृती थांबेल आणि समस्या तशाच राहतील.
+                                </p>
+                            </div>
+
+                            <!-- Impact 3 -->
+                            <div class="content-card p-6 rounded-lg hover:shadow-xl transition-shadow">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-2xl mb-4">⚖️</div>
+                                <h3 class="text-xl font-bold text-orange-900 mb-3">३. कायद्याचा बडगा</h3>
+                                <p class="text-gray-600">
+                                    सामान्य हिंदू तरुणाला 'तुम्ही द्वेष पसरवत आहात' अशी नोटीस पाठवून पोलीस ठाण्याचे खेटे मारायला लावले जाईल. यामुळे तरुण पिढी धर्माच्या कामापासून दूर जाईल (Alienation).
+                                </p>
+                            </div>
+
+                            <!-- Impact 4 -->
+                            <div class="content-card p-6 rounded-lg hover:shadow-xl transition-shadow">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-2xl mb-4">🗳️</div>
+                                <h3 class="text-xl font-bold text-orange-900 mb-3">४. राजकीय असंतुलन</h3>
+                                <p class="text-gray-600">
+                                    अल्पसंख्याक समुदायाचे नेते प्रक्षोभक भाषणे देऊनही 'पीडित' (Victim) म्हणून संरक्षण मिळवतील, तर हिंदू नेत्यांना 'आक्रमक' (Aggressor) ठरवून राजकारणातून हद्दपार केले जाईल.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="chart-container bg-white p-6 rounded-lg shadow mt-8">
+                            <canvas id="chart-impact"></canvas>
+                        </div>
+                    </div>
+                `
+            },
+            critique: {
+                title: "काँग्रेस सरकार आणि तुष्टीकरणाचे राजकारण (Politics of Appeasement)",
+                content: `
+                    <div class="max-w-5xl mx-auto space-y-6">
+                        <div class="content-card p-8 rounded-lg">
+                            <h2 class="text-2xl font-bold text-red-900 mb-4">कर्नाटक सरकारचे 'दुहेरी मापदंड' (Double Standards)</h2>
+                            <p class="text-lg text-gray-700 mb-6">
+                                कर्नाटक काँग्रेस सरकारने नेहमीच मुस्लीम समुदायाच्या तुष्टीकरणासाठी हिंदू हिताचा बळी दिला आहे. हे विधेयक त्याचेच पुढचे पाऊल आहे.
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="min-w-[40px] text-2xl">❌</div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900">सनातन धर्माचा अपमान:</h4>
+                                        <p class="text-gray-700">जेव्हा सत्ताधारी पक्षाचे मंत्री सनातन धर्माला 'रोगाची उपमा' देतात, तेव्हा त्याला 'अभिव्यक्ती स्वातंत्र्य' म्हटले जाते. मग हिंदू संतांच्या प्रवचनांना 'हेट स्पीच' का म्हटले जाते?</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="min-w-[40px] text-2xl">❌</div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900">PFI वरील मवाळ भूमिका:</h4>
+                                        <p class="text-gray-700">ज्या संघटनांवर देशात बंदी आहे, त्यांच्या कार्यकर्त्यांवरील गुन्हे मागे घेण्याची चर्चा होते, पण हिंदू कार्यकर्त्यांवर मात्र नवीन कायदे लादले जातात.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="min-w-[40px] text-2xl">❌</div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900">मुस्लिम आरक्षणाचा मुद्दा:</h4>
+                                        <p class="text-gray-700">ओबीसी कोट्यातून मुस्लिमांना आरक्षण देण्याचा प्रयत्न असो किंवा वक्फ बोर्डाला अमर्याद अधिकार देणे असो, सरकारची दिशा स्पष्ट आहे - 'हिंदू हित दुय्यम, व्होटबँक प्रथम'.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chart-container bg-white p-4 rounded-lg shadow">
+                            <canvas id="chart-politics"></canvas>
+                        </div>
+
+                        <div class="bg-red-900 text-white p-6 rounded-lg text-center mt-6">
+                            <h3 class="text-xl font-bold">निष्कर्ष: सरकारला सवाल</h3>
+                            <p class="mt-2">"जर उद्देश खरंच शांतता असेल, तर कायद्याचा बडगा फक्त एकाच समाजावर का? इतर राज्यांत शांतता असताना कर्नाटकातच अशा जाचक कायद्याची गरज का भासली?"</p>
+                        </div>
+                    </div>
+                `
+            },
+            conclusion: {
+                title: "निष्कर्ष आणि पुढील दिशा",
+                content: `
+                    <div class="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
+                        <div class="text-6xl text-orange-600 mb-2">🕉️</div>
+                        <h2 class="text-3xl font-bold text-gray-900 font-serif">अंतिम निष्कर्ष</h2>
+                        
+                        <div class="bg-white p-8 rounded-lg shadow-lg text-left border-t-4 border-orange-600">
+                            <p class="text-lg text-gray-800 leading-relaxed mb-4">
+                                कर्नाटक द्वेषपूर्ण भाषण विधेयक २०२५ हे केवळ एक प्रशासकीय पाऊल नसून, ते <strong>हिंदू अस्मितेवरील पद्धतशीर आक्रमण</strong> आहे. आमचा अभ्यास हे स्पष्टपणे दर्शवतो की, या विधेयकाचा वापर करून हिंदू समाजाला भीती, संभ्रम आणि अपराधीपणाच्या (Guilt) जाळ्यात अडकवले जाईल.
+                            </p>
+                            <p class="text-lg text-gray-800 leading-relaxed">
+                                'द्वेष' रोखण्याच्या नावाखाली हिंदूंचा 'आवाज' बंद करणे हेच याचे अंतिम उद्दिष्ट आहे. हे विधेयक संविधानाच्या कलम १४ (समानता) आणि कलम १९ (अभिव्यक्ती स्वातंत्र्य) यांच्या विरोधात आहे.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                            <div class="bg-orange-100 p-4 rounded border border-orange-200">
+                                <h4 class="font-bold text-orange-900">जागृती</h4>
+                                <p class="text-sm text-orange-800">समाजमाध्यमांद्वारे या विधेयकाचे सत्य प्रत्येक हिंदू घरापर्यंत पोहोचवणे.</p>
+                            </div>
+                            <div class="bg-orange-100 p-4 rounded border border-orange-200">
+                                <h4 class="font-bold text-orange-900">संघटन</h4>
+                                <p class="text-sm text-orange-800">राजकीय मतभेद बाजूला ठेवून हिंदू म्हणून या विधेयकाचा विरोध करणे.</p>
+                            </div>
+                            <div class="bg-orange-100 p-4 rounded border border-orange-200">
+                                <h4 class="font-bold text-orange-900">कायदेशीर लढा</h4>
+                                <p class="text-sm text-orange-800">उच्च आणि सर्वोच्च न्यायालयात या विधेयकाच्या घटनात्मकतेला आव्हान देणे.</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Router & Renderer
+        function navigateTo(section) {
+            const contentArea = document.getElementById('content-area');
+            const navItems = document.querySelectorAll('.nav-item');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+
+            // 1. Update Navigation UI
+            navItems.forEach(item => item.classList.remove('active'));
+            const activeNav = document.getElementById(`nav-${section}`);
+            if (activeNav) activeNav.classList.add('active');
+
+            // 2. Mobile Menu Handling
+            if (window.innerWidth < 768) {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+
+            // 3. Render Content with Fade Effect
+            contentArea.style.opacity = '0';
+            setTimeout(() => {
+                const data = reportData[section];
+                contentArea.innerHTML = `
+                    <div class="animate-fade-in pb-10">
+                        <h2 class="text-3xl md:text-4xl font-bold text-orange-900 mb-6 pb-4 border-b-2 border-orange-200 font-serif">${data.title}</h2>
+                        ${data.content}
+                    </div>
+                `;
+                contentArea.style.opacity = '1';
+                contentArea.scrollTop = 0;
+                
+                // 4. Initialize Charts
+                initCharts(section);
+            }, 200);
+        }
+
+        // Event Listeners for Mobile Menu
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.remove('-translate-x-full');
+            document.getElementById('overlay').classList.remove('hidden');
+        });
+        document.getElementById('overlay').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('overlay').classList.add('hidden');
+        });
+
+        // Chart Logic (Chart.js)
+        function initCharts(section) {
+            Chart.defaults.font.family = "'Noto Serif Devanagari', serif";
+            Chart.defaults.font.size = 14;
+            Chart.defaults.color = '#431407';
+
+            if (section === 'intro') {
+                const ctx = document.getElementById('chart-intro');
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['हिंदू (संभावित लक्ष्य)', 'इतर समुदाय', 'राजकीय विरोधक'],
+                            datasets: [{
+                                data: [75, 10, 15],
+                                backgroundColor: ['#ea580c', '#facc15', '#78350f'], // Saffron, Yellow, Dark Brown
+                                borderWidth: 0
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: { display: true, text: 'कायद्याचा संभाव्य गैरवापर: कोणाला लक्ष्य केले जाईल?', font: { size: 16, weight: 'bold' } },
+                                legend: { position: 'bottom' }
+                            }
+                        }
+                    });
+                }
+            }
+
+            if (section === 'analysis') {
+                const ctx = document.getElementById('chart-clauses');
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['हिंदू सण', 'सोशल मीडिया पोस्ट', 'भगवा ध्वज/बॅनर', 'धार्मिक प्रवचने'],
+                            datasets: [{
+                                label: 'कारवाई होण्याची शक्यता (Risk Level)',
+                                data: [85, 95, 80, 70],
+                                backgroundColor: '#c2410c',
+                                barThickness: 40
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: { beginAtZero: true, max: 100, title: { display: true, text: 'जोखीम (%)' } }
+                            },
+                            plugins: {
+                                title: { display: true, text: 'कलम २(a) अन्वये हिंदू क्रियाकलापांवरील धोका', font: { size: 16 } }
+                            }
+                        }
+                    });
+                }
+            }
+
+            if (section === 'impact') {
+                const ctx = document.getElementById('chart-impact');
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: ['धार्मिक स्वातंत्र्य', 'अभिव्यक्ती', 'सामाजिक संघटन', 'उत्सव', 'राजकीय अधिकार'],
+                            datasets: [{
+                                label: 'विधेयकामुळे होणारा संकोच',
+                                data: [90, 85, 80, 95, 75],
+                                borderColor: '#991b1b',
+                                backgroundColor: 'rgba(153, 27, 27, 0.2)',
+                                borderWidth: 2,
+                                pointBackgroundColor: '#ea580c'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: { r: { suggestMin: 0, suggestMax: 100 } },
+                            plugins: {
+                                title: { display: true, text: 'हिंदू समाजाच्या विविध क्षेत्रांवरील नकारात्मक प्रभाव', font: { size: 16 } }
+                            }
+                        }
+                    });
+                }
+            }
+
+            if (section === 'critique') {
+                const ctx = document.getElementById('chart-politics');
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['२०२०', '२०२१', '२०२२', '२०२३', '२०२४', '२०२५'],
+                            datasets: [{
+                                label: 'तुष्टीकरण नीती (Appeasement Trend)',
+                                data: [30, 40, 50, 75, 85, 95],
+                                borderColor: '#ea580c',
+                                tension: 0.3,
+                                fill: true,
+                                backgroundColor: 'rgba(234, 88, 12, 0.1)'
+                            }, {
+                                label: 'हिंदू हितरक्षण (Hindu Interest)',
+                                data: [60, 55, 50, 40, 30, 15],
+                                borderColor: '#78350f',
+                                tension: 0.3,
+                                borderDash: [5, 5],
+                                fill: false
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: { display: true, text: 'काँग्रेस सरकारच्या काळातील धोरणांचा तुलनात्मक आलेख', font: { size: 16 } }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+        // Initialize First View
+        navigateTo('intro');
+
+        // Add tailwind animation config
+        document.head.insertAdjacentHTML("beforeend", `<style>
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fade-in {
+                animation: fadeInUp 0.5s ease-out forwards;
+            }
+        </style>`)
+
+    </script>
+</body>
+</html>
