@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+            min-height: 100vh;
+            background-color: #f3f4f6;
+            background-image: url('https://bank3.mediavidya.in/images/WebSiteImg_background_3.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay {
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .digit {
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+            display: inline-block;
+        }
+
+        @keyframes digitFlash {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+                color: #f59e0b;
+                text-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
+            }
+            100% { transform: scale(1); opacity: 1; color: #1f2937; text-shadow: none; }
+        }
+
+        .digit-change {
+            animation: digitFlash 0.3s ease-in-out;
+        }
+
+        .countdown-block:hover {
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+        .countdown-block {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="overlay flex items-center justify-center p-4">
+        <div class="max-w-4xl w-full text-center">
+           
+            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 uppercase text-white">
+                Coming Soon
+            </h1>
+
+            <div class="text-xl md:text-2xl font-semibold mb-4 text-amber-600 border-l-4 border-amber-600 pl-4 inline-block">
+                Rajpath Infracon
+            </div>
+           
+            <p class="text-lg text-white mb-10 max-w-2xl mx-auto">
+                Paving the Way to a Connected Future!!
+            </p>
+
+            <div id="countdown-timer" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-12 max-w-4xl mx-auto">
+               
+                <div class="countdown-block bg-white/60 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-lg">
+                    <div id="days" class="text-5xl md:text-7xl font-bold mb-1 text-gray-900 digit">00</div>
+                    <div class="text-sm font-light uppercase tracking-widest text-gray-600">Days</div>
+                </div>
+
+                <div class="countdown-block bg-white/60 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-lg">
+                    <div id="hours" class="text-5xl md:text-7xl font-bold mb-1 text-gray-900 digit">00</div>
+                    <div class="text-sm font-light uppercase tracking-widest text-gray-600">Hours</div>
+                </div>
+               
+                <div class="countdown-block bg-white/60 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-lg">
+                    <div id="minutes" class="text-5xl md:text-7xl font-bold mb-1 text-gray-900 digit">00</div>
+                    <div class="text-sm font-light uppercase tracking-widest text-gray-600">Minutes</div>
+                </div>
+               
+                <div class="countdown-block bg-white/60 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-lg">
+                    <div id="seconds" class="text-5xl md:text-7xl font-bold mb-1 text-gray-900 digit">00</div>
+                    <div class="text-sm font-light uppercase tracking-widest text-gray-600">Seconds</div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <a href="BOD.html" class="inline-block px-8 py-3 bg-amber-500 text-white text-lg font-semibold rounded-full shadow-xl hover:bg-amber-600 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-amber-500 focus:ring-opacity-50" role="button">
+                    Live Updates
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * SETTINGS: Change the date below to your actual launch date
+         * Format: "Month Day, Year Hours:Minutes:Seconds"
+         */
+        const launchDateString = "January 30, 2026 00:00:00";
+       
+        // This line converts the string above into a timestamp
+        const targetTime = new Date(launchDateString).getTime();
+
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const timerContainer = document.getElementById('countdown-timer');
+
+        const formatTime = (time) => String(time).padStart(2, '0');
+
+        function updateDigit(element, newValue) {
+            const formattedValue = formatTime(newValue);
+            if (element.textContent !== formattedValue) {
+                const defaultTextColor = '#1f2937';
+                element.textContent = formattedValue;
+                element.classList.remove('digit-change');
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        element.classList.add('digit-change');
+                        setTimeout(() => {
+                            element.classList.remove('digit-change');
+                            element.style.color = defaultTextColor;
+                        }, 300);
+                    });
+                });
+            }
+        }
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetTime - now;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                timerContainer.innerHTML = '<div class="col-span-4 text-3xl font-bold text-amber-600">WE ARE LIVE!</div>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            updateDigit(daysEl, days);
+            updateDigit(hoursEl, hours);
+            updateDigit(minutesEl, minutes);
+            updateDigit(secondsEl, seconds);
+        }
+
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
