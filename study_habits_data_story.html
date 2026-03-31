@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Societal Concerns</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-1: #06101a;
+        --bg-2: #091726;
+        --bg-3: #06111d;
+        --panel: #0f1b2e;
+        --panel-2: #14233b;
+        --text: #e6edf7;
+        --muted: #9fb3cc;
+        --line: #2a3b55;
+        --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        --c-neutral: #4dabf7;
+        --c-health: #51cf66;
+        --c-family: #ffd43b;
+        --c-ideology: #ff6b6b;
+        --c-mental: #845ef7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        color: var(--text);
+        background: linear-gradient(180deg, var(--bg-1), var(--bg-2) 60%, var(--bg-3));
+      }
+
+      .container {
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 18px;
+      }
+
+      .header {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+
+      .brand-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .brand-card {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 52px;
+        padding: 10px 14px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 14px;
+      }
+
+      .brand-card img {
+        display: block;
+        max-height: 30px;
+        width: auto;
+        object-fit: contain;
+      }
+
+      .brand-text {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .brand-link {
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      .sub {
+        color: var(--muted);
+        max-width: 88ch;
+        line-height: 1.75;
+        font-size: 0.98rem;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .summary-card,
+      .panel {
+        background: var(--panel);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: var(--shadow);
+      }
+
+      .summary-card {
+        padding: 14px;
+      }
+
+      .summary-label {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+      }
+
+      .summary-value {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+      }
+
+      .summary-note {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+        gap: 16px;
+      }
+
+      .panel {
+        padding: 16px;
+      }
+
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .tab {
+        appearance: none;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: transparent;
+        color: var(--text);
+        padding: 9px 13px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 13px;
+        line-height: 1;
+        transition:
+          transform 0.18s ease,
+          background 0.18s ease,
+          border-color 0.18s ease;
+      }
+
+      .tab:hover,
+      .tab:focus-visible {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.18);
+        outline: none;
+      }
+
+      .tab.active {
+        background: var(--panel-2);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .chart-wrap {
+        position: relative;
+        width: 100%;
+        min-height: 390px;
+      }
+
+      svg {
+        width: 100%;
+        height: 390px;
+        display: block;
+      }
+
+      .axis text {
+        fill: #aabed6;
+        font-size: 11px;
+      }
+
+      .axis line,
+      .axis path {
+        stroke: var(--line);
+      }
+
+      .grid line {
+        stroke: rgba(255, 255, 255, 0.06);
+      }
+
+      .grid path {
+        stroke: none;
+      }
+
+      .value-label,
+      .slice-label,
+      .chart-title,
+      .chart-note {
+        fill: var(--text);
+      }
+
+      .value-label,
+      .slice-label {
+        font-size: 11px;
+        font-weight: 700;
+        text-anchor: middle;
+      }
+
+      .chart-title {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .chart-note {
+        font-size: 12px;
+        fill: var(--muted);
+      }
+
+      .legend {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex: 0 0 10px;
+      }
+
+      .tooltip {
+        position: fixed;
+        z-index: 30;
+        background: rgba(9, 18, 31, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 12px;
+        padding: 9px 11px;
+        font-size: 12px;
+        line-height: 1.5;
+        color: var(--text);
+        opacity: 0;
+        transform: translateY(8px);
+        pointer-events: none;
+        transition:
+          opacity 0.16s ease,
+          transform 0.16s ease;
+        box-shadow: var(--shadow);
+        max-width: 220px;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        margin-bottom: 10px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #08121f;
+      }
+
+      .insight h3 {
+        margin: 0 0 10px 0;
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.15rem;
+      }
+
+      .insight p {
+        margin: 0 0 12px 0;
+        color: var(--muted);
+        line-height: 1.75;
+        font-size: 0.96rem;
+      }
+
+      .insight ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .insight li + li {
+        margin-top: 7px;
+      }
+
+      .footnote {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 980px) {
+        .summary-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .legend {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          padding: 14px;
+        }
+        .brand-row {
+          align-items: stretch;
+        }
+        .brand-card {
+          width: 100%;
+          justify-content: center;
+        }
+        .summary-grid {
+          grid-template-columns: 1fr;
+        }
+        .panel {
+          padding: 14px;
+        }
+        .tabs {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .tab {
+          text-align: center;
+        }
+        .chart-wrap {
+          min-height: 320px;
+        }
+        svg {
+          height: 320px;
+        }
+        .legend {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="brand-row">
+          <div class="brand-card">
+            <img src="https://www.vayuveg.com/images/logo.png" alt="Vayuveg Research logo" />
+            <div class="brand-text">
+              Research presentation by<br />
+              <span class="brand-link">Vayuveg</span>
+            </div>
+          </div>
+          <div class="brand-card">
+            <div class="brand-text" style="text-align: center">
+              In collaboration with<br />
+              <a
+                class="brand-link"
+                href="https://www.streeadhyayan.org//Encyc/2019/7/20/logo.jpg"
+                target="_blank"
+                rel="noreferrer"
+                >Stree Adhyayan</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="title">Societal Concerns — Governance-Oriented Public Perception Analysis</div>
+        <div class="sub">
+          This interface interprets 52 high-salience responses drawn from a broader 83-response
+          classification exercise. The visible layer focuses on five dominant clusters: neutral
+          evaluation, health risk, family structure, ideological concern, and mental maturity. The
+          goal is to present the data with clarity, precision, and a governance-facing narrative
+          grounded in social stability, public reasoning, and policy relevance.
+        </div>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="summary-label">Visible response base</div>
+          <div class="summary-value">52</div>
+          <div class="summary-note">
+            Five dominant categories selected for focused storytelling.
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Top category</div>
+          <div class="summary-value">14</div>
+          <div class="summary-note">
+            Neutral / Alternative Views leads the visible distribution.
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Structural core</div>
+          <div class="summary-value">20</div>
+          <div class="summary-note">
+            Health + Family together form the strongest stability block.
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Ideological share</div>
+          <div class="summary-value">19.2%</div>
+          <div class="summary-note">A concentrated cluster with high narrative sensitivity.</div>
+        </div>
+      </div>
+
+      <div class="layout">
+        <div class="panel">
+          <div class="tabs" role="tablist" aria-label="Narrative views">
+            <button class="tab active" data-mode="bar" role="tab" aria-selected="true">
+              Distribution
+            </button>
+            <button class="tab" data-mode="pie" role="tab" aria-selected="false">Proportion</button>
+            <button class="tab" data-mode="ideology" role="tab" aria-selected="false">
+              Ideological Lens
+            </button>
+            <button class="tab" data-mode="structure" role="tab" aria-selected="false">
+              Structural Core
+            </button>
+            <button class="tab" data-mode="security" role="tab" aria-selected="false">
+              Security Concern Layer
+            </button>
+          </div>
+
+          <div id="chart" class="chart-wrap" aria-live="polite"></div>
+
+          <div class="legend" aria-label="Color legend">
+            <div class="legend-item">
+              <span class="dot" style="background: var(--c-neutral)"></span
+              ><span>Neutral / Alternative</span>
+            </div>
+            <div class="legend-item">
+              <span class="dot" style="background: var(--c-health)"></span
+              ><span>Health &amp; Biological</span>
+            </div>
+            <div class="legend-item">
+              <span class="dot" style="background: var(--c-family)"></span
+              ><span>Family &amp; Social Structure</span>
+            </div>
+            <div class="legend-item">
+              <span class="dot" style="background: var(--c-ideology)"></span
+              ><span>Ideological / Social Narrative</span>
+            </div>
+            <div class="legend-item">
+              <span class="dot" style="background: var(--c-mental)"></span
+              ><span>Mental &amp; Emotional Maturity</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div id="insightBox" class="insight"></div>
+          <div class="footnote">
+            Note: this dashboard presents a narrative summary of the dominant visible clusters only.
+            It should be read as an interpretive research aid, not as a substitute for full-category
+            statistical analysis of all 83 classified responses.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+      const data = [
+        {
+          name: "Neutral",
+          full: "Neutral / Alternative Views",
+          value: 14,
+          color: getCssVar("--c-neutral"),
+        },
+        {
+          name: "Health",
+          full: "Health & Biological Risks",
+          value: 10,
+          color: getCssVar("--c-health"),
+        },
+        {
+          name: "Family",
+          full: "Family & Social Structure",
+          value: 10,
+          color: getCssVar("--c-family"),
+        },
+        {
+          name: "Ideology",
+          full: "Ideological / Social Narratives",
+          value: 10,
+          color: getCssVar("--c-ideology"),
+        },
+        {
+          name: "Mental",
+          full: "Mental & Emotional Maturity",
+          value: 8,
+          color: getCssVar("--c-mental"),
+        },
+      ];
+
+      const total = d3.sum(data, (d) => d.value);
+      const chart = d3.select("#chart");
+      const tooltip = d3.select("#tooltip");
+      let mode = "bar";
+
+      function getCssVar(name) {
+        return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      }
+
+      function showTooltip(event, html) {
+        tooltip
+          .html(html)
+          .style("left", event.clientX + 14 + "px")
+          .style("top", event.clientY - 10 + "px")
+          .style("opacity", 1)
+          .style("transform", "translateY(0)");
+      }
+
+      function hideTooltip() {
+        tooltip.style("opacity", 0).style("transform", "translateY(8px)");
+      }
+
+      function clearChart() {
+        chart.selectAll("*").remove();
+      }
+
+      function appendSvg() {
+        return chart
+          .append("svg")
+          .attr("viewBox", "0 0 600 390")
+          .attr("preserveAspectRatio", "xMidYMid meet");
+      }
+
+      function addChartHeader(svg, title, note) {
+        svg.append("text").attr("class", "chart-title").attr("x", 28).attr("y", 28).text(title);
+
+        svg.append("text").attr("class", "chart-note").attr("x", 28).attr("y", 48).text(note);
+      }
+
+      function draw() {
+        clearChart();
+        if (mode === "bar") drawBar();
+        if (mode === "pie") drawPie();
+        if (mode === "ideology") drawPie("ideology");
+        if (mode === "structure") drawBar("structure");
+        if (mode === "security") drawSecurity();
+        updateInsight();
+      }
+
+      function drawBar(type) {
+        const svg = appendSvg();
+        addChartHeader(
+          svg,
+          type === "structure" ? "Structural Core" : "Dominant Concern Distribution",
+          type === "structure"
+            ? "Health and family are isolated as the stability base."
+            : "Visible counts across the five dominant narrative clusters.",
+        );
+
+        const margin = { top: 70, right: 24, bottom: 62, left: 58 };
+        const width = 600 - margin.left - margin.right;
+        const height = 390 - margin.top - margin.bottom;
+        const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const x = d3
+          .scaleBand()
+          .domain(data.map((d) => d.name))
+          .range([0, width])
+          .padding(0.28);
+        const y = d3.scaleLinear().domain([0, 15]).nice().range([height, 0]);
+
+        g.append("g")
+          .attr("class", "grid")
+          .call(d3.axisLeft(y).ticks(5).tickSize(-width).tickFormat(""));
+
+        const bars = g
+          .selectAll("rect.bar")
+          .data(data)
+          .join("rect")
+          .attr("class", "bar")
+          .attr("x", (d) => x(d.name))
+          .attr("y", height)
+          .attr("width", x.bandwidth())
+          .attr("height", 0)
+          .attr("rx", 10)
+          .attr("fill", (d) => {
+            if (type === "structure") {
+              return ["Health", "Family"].includes(d.name) ? d.color : "#2a3b55";
+            }
+            return d.color;
+          })
+          .on("mousemove", (event, d) => {
+            const pct = ((d.value / total) * 100).toFixed(1);
+            showTooltip(event, `<strong>${d.full}</strong><br>Count: ${d.value}<br>Share: ${pct}%`);
+          })
+          .on("mouseleave", hideTooltip);
+
+        bars
+          .transition()
+          .duration(700)
+          .attr("y", (d) => y(d.value))
+          .attr("height", (d) => height - y(d.value));
+
+        g.selectAll("text.value-label")
+          .data(data)
+          .join("text")
+          .attr("class", "value-label")
+          .attr("x", (d) => x(d.name) + x.bandwidth() / 2)
+          .attr("y", (d) => y(d.value) - 8)
+          .text((d) => d.value);
+
+        g.append("g")
+          .attr("class", "axis")
+          .attr("transform", `translate(0,${height})`)
+          .call(d3.axisBottom(x));
+
+        g.append("g").attr("class", "axis").call(d3.axisLeft(y).ticks(5));
+      }
+
+      function drawPie(focus) {
+        const svg = appendSvg();
+        addChartHeader(
+          svg,
+          focus === "ideology" ? "Ideological Lens" : "Proportional Weight",
+          focus === "ideology"
+            ? "Ideological concern is highlighted against the full visible field."
+            : "The same data viewed as proportional distribution.",
+        );
+
+        const cx = 300;
+        const cy = 220;
+        const radius = 132;
+        const pie = d3
+          .pie()
+          .sort(null)
+          .value((d) => d.value)(data);
+        const arc = d3.arc().innerRadius(0).outerRadius(radius);
+        const labelArc = d3.arc().innerRadius(76).outerRadius(106);
+        const g = svg.append("g").attr("transform", `translate(${cx},${cy})`);
+
+        g.selectAll("path.slice")
+          .data(pie)
+          .join("path")
+          .attr("class", "slice")
+          .attr("d", arc)
+          .attr("fill", (d) =>
+            focus === "ideology" && d.data.name !== "Ideology" ? "#2a3b55" : d.data.color,
+          )
+          .attr("stroke", "#0f1b2e")
+          .attr("stroke-width", 2)
+          .on("mousemove", (event, d) => {
+            const pct = ((d.data.value / total) * 100).toFixed(1);
+            showTooltip(
+              event,
+              `<strong>${d.data.full}</strong><br>Count: ${d.data.value}<br>Share: ${pct}%`,
+            );
+          })
+          .on("mouseleave", hideTooltip);
+
+        g.selectAll("text.slice-label")
+          .data(pie)
+          .join("text")
+          .attr("class", "slice-label")
+          .attr("transform", (d) => `translate(${labelArc.centroid(d)})`)
+          .text((d) => `${Math.round((d.data.value / total) * 100)}%`);
+
+        g.append("text")
+          .attr("class", "value-label")
+          .attr("y", -2)
+          .style("font-size", "22px")
+          .text(total);
+
+        g.append("text")
+          .attr("class", "chart-note")
+          .attr("text-anchor", "middle")
+          .attr("y", 18)
+          .text("Visible total");
+      }
+
+      function drawSecurity() {
+        const svg = appendSvg();
+        addChartHeader(
+          svg,
+          "Security Concern Layer",
+          "A focused reading of the ideological cluster relative to the visible response base.",
+        );
+
+        const ideology = data.find((d) => d.name === "Ideology").value;
+        const percent = ((ideology / total) * 100).toFixed(1);
+
+        svg
+          .append("rect")
+          .attr("x", 70)
+          .attr("y", 140)
+          .attr("width", 460)
+          .attr("height", 34)
+          .attr("rx", 10)
+          .attr("fill", "#2a3b55");
+
+        svg
+          .append("rect")
+          .attr("x", 70)
+          .attr("y", 140)
+          .attr("width", 0)
+          .attr("height", 34)
+          .attr("rx", 10)
+          .attr("fill", getCssVar("--c-ideology"))
+          .transition()
+          .duration(850)
+          .attr("width", 460 * (ideology / total));
+
+        svg
+          .append("text")
+          .attr("x", 300)
+          .attr("y", 125)
+          .attr("text-anchor", "middle")
+          .attr("class", "chart-title")
+          .style("font-size", "20px")
+          .text(`Ideological concern share: ${percent}%`);
+
+        svg
+          .append("text")
+          .attr("x", 300)
+          .attr("y", 202)
+          .attr("text-anchor", "middle")
+          .attr("class", "chart-note")
+          .style("font-size", "13px")
+          .text("A concentrated concern cluster with high narrative sensitivity.");
+
+        const callouts = [
+          {
+            x: 70,
+            y: 252,
+            title: "Count basis",
+            text: `${ideology} of ${total} visible responses`,
+          },
+          {
+            x: 300,
+            y: 252,
+            title: "Interpretation",
+            text: "Not a majority block, but a high-intensity discourse node",
+          },
+          {
+            x: 70,
+            y: 314,
+            title: "Governance implication",
+            text: "Requires clarity, legal framing, and evidence-based communication",
+          },
+        ];
+
+        callouts.forEach((item, index) => {
+          const group = svg.append("g").attr("transform", `translate(${item.x},${item.y})`);
+          if (index === 1) group.attr("transform", `translate(300,${item.y})`);
+
+          group
+            .append("text")
+            .attr("class", "value-label")
+            .attr("text-anchor", index === 1 ? "middle" : "start")
+            .attr("x", 0)
+            .attr("y", 0)
+            .style("font-size", "12px")
+            .text(item.title);
+
+          group
+            .append("text")
+            .attr("class", "chart-note")
+            .attr("text-anchor", index === 1 ? "middle" : "start")
+            .attr("x", 0)
+            .attr("y", 20)
+            .text(item.text);
+        });
+      }
+
+      function updateInsight() {
+        let html = "";
+
+        if (mode === "bar") {
+          html = `
+          <span class="badge" style="background:var(--c-neutral);">Observation</span>
+          <h3>What the visible field shows</h3>
+          <p>Neutral / Alternative Views leads with 14 responses, which suggests that a significant share of respondents preferred caution, conditional judgment, or non-binary evaluation rather than immediate alignment.</p>
+          <p>Health, Family, and Ideology each stand at 10. This creates a stable middle band: bodily risk, social order, and narrative concern are competing at nearly equal strength.</p>
+          <p>Mental maturity, at 8, is smaller in count but still substantial. It signals that psychological readiness remains a serious part of the debate, even when not dominant.</p>
+        `;
+        }
+
+        if (mode === "pie") {
+          html = `
+          <span class="badge" style="background:var(--c-health);">Balance</span>
+          <h3>What proportion reveals</h3>
+          <p>The proportional view softens the impression of dominance. Neutral responses account for 26.9% of the visible base, while Health, Family, and Ideology each contribute 19.2%. Mental maturity contributes 15.4%.</p>
+          <p>This means the field is not monopolized by a single concern. It is layered, competitive, and structurally balanced.</p>
+        `;
+        }
+
+        if (mode === "ideology") {
+          html = `
+          <span class="badge" style="background:var(--c-ideology);">Ideological Lens</span>
+          <h3>How ideological concern sits in the distribution</h3>
+          <p>The ideological cluster accounts for 10 of the 52 visible responses, or 19.2%. That is not a majority, but it is too large to be treated as incidental.</p>
+          <p>Its importance comes not only from count, but from narrative intensity. Such responses often shape discourse more strongly than their numeric share might suggest.</p>
+          <ul>
+            <li>It signals sensitivity around identity and inter-community perception.</li>
+            <li>It points to a discourse field where interpretation can outrun evidence.</li>
+            <li>It requires careful distinction between reported concern and verified fact.</li>
+          </ul>
+        `;
+        }
+
+        if (mode === "structure") {
+          html = `
+          <span class="badge" style="background:var(--c-family);">Structure</span>
+          <h3>The stability block</h3>
+          <p>Health and Family together account for 20 of the 52 visible responses, or 38.5%. This is the strongest combined block in the dashboard.</p>
+          <p>That matters because it anchors the discourse in lived consequences rather than abstract argument alone. Physical risk and family stability remain the central practical frame.</p>
+          <p>In governance terms, this block supports interventions based on public health, counseling, protection, and long-horizon social stability.</p>
+        `;
+        }
+
+        if (mode === "security") {
+          html = `
+          <span class="badge" style="background:var(--c-ideology);">Perceived Security Concern</span>
+          <h3>Why this layer matters</h3>
+          <p>The ideological block represents a concentrated concern segment. At 19.2% of the visible base, it is not numerically dominant, but it carries strong discourse energy.</p>
+          <p>In public reasoning, such clusters can influence demand for policy response, media framing, and the language through which social risk is discussed.</p>
+          <ul>
+            <li>Count matters: 10 of 52 visible responses belong to this layer.</li>
+            <li>Intensity matters: the theme can exceed its numeric size in public debate.</li>
+            <li>Governance implication: response should remain lawful, evidence-led, and precise.</li>
+          </ul>
+        `;
+        }
+
+        d3.select("#insightBox").html(html);
+      }
+
+      function setMode(nextMode) {
+        mode = nextMode;
+        document.querySelectorAll(".tab").forEach((tab) => {
+          const active = tab.dataset.mode === nextMode;
+          tab.classList.toggle("active", active);
+          tab.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        draw();
+      }
+
+      document.querySelectorAll(".tab").forEach((tab) => {
+        tab.addEventListener("click", () => setMode(tab.dataset.mode));
+      });
+
+      // Runtime sanity checks
+      console.assert(Array.isArray(data), "Data should be an array");
+      console.assert(data.length === 5, "Expected five visible categories");
+      console.assert(total === 52, "Visible category total should equal 52");
+      console.assert(
+        data.find((d) => d.name === "Ideology")?.value === 10,
+        "Ideology count should be 10",
+      );
+
+      draw();
+    </script>
+  </body>
+</html>
