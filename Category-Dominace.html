@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Landscape Analysis: Category Dominance, Geographic Clustering, and Data Gaps</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --accent: #0ea5e9;
+      --success: #16a34a;
+      --warning: #f59e0b;
+      --danger: #dc2626;
+      --navy: #0f172a;
+      --navy-2: #1e3a8a;
+      --teal: #0ea5e9;
+      --background: #f1f5f9;
+      --panel: #ffffff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #dbe4ee;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --shadow-strong: 0 18px 36px rgba(15, 23, 42, 0.14);
+      --radius-xl: 20px;
+      --radius-lg: 16px;
+      --transition: 0.3s ease;
+      --gradient-header: linear-gradient(90deg, #0f172a, #1e3a8a, #0ea5e9);
+      --gradient-primary: linear-gradient(135deg, rgba(37,99,235,.18), rgba(14,165,233,.08));
+      --gradient-success: linear-gradient(135deg, rgba(22,163,74,.18), rgba(134,239,172,.06));
+      --gradient-warning: linear-gradient(135deg, rgba(245,158,11,.18), rgba(253,224,71,.06));
+      --gradient-danger: linear-gradient(135deg, rgba(220,38,38,.18), rgba(252,165,165,.06));
+      --gradient-surface: linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,252,.98));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.10), transparent 22%),
+        radial-gradient(circle at bottom left, rgba(37, 99, 235, 0.08), transparent 22%),
+        linear-gradient(180deg, #f8fbff 0%, var(--background) 100%);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    .page-shell { padding: 28px 0 48px; }
+
+    .hero,
+    .section-card,
+    .kpi-card,
+    .chart-card,
+    .note,
+    .insight-item {
+      background: var(--gradient-surface);
+      border: 1px solid rgba(219, 228, 238, 0.95);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 30px;
+      border-radius: var(--radius-xl);
+      background: var(--gradient-header);
+      color: #ffffff;
+      box-shadow: 0 18px 38px rgba(15, 23, 42, 0.22);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      right: -120px;
+      top: -120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.18), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.35), rgba(255,255,255,0));
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      max-width: 920px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 900px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.86);
+    }
+
+    .brand-wrap {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .logo-card {
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.20);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+    .logo-card img {
+      height: 48px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .section-card {
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      margin-top: 18px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+
+    .section-desc {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .kpi-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 174px;
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), opacity var(--transition);
+    }
+
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 1;
+    }
+
+    .kpi-card::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+      transition: box-shadow var(--transition);
+      pointer-events: none;
+    }
+
+    .kpi-card:hover,
+    .kpi-card:focus-within {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      border-color: rgba(37, 99, 235, 0.24);
+    }
+
+    .kpi-card:hover::after,
+    .kpi-card:focus-within::after {
+      box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.22);
+    }
+
+    .kpi-primary::before { background: var(--gradient-primary); }
+    .kpi-success::before { background: var(--gradient-success); }
+    .kpi-warning::before { background: var(--gradient-warning); }
+    .kpi-danger::before  { background: var(--gradient-danger); }
+
+    .kpi-label {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .kpi-value {
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .kpi-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .chart-card {
+      padding: 16px;
+      border-radius: var(--radius-lg);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), opacity var(--transition);
+    }
+
+    .chart-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-strong);
+      border-color: rgba(14,165,233,0.18);
+    }
+
+    .chart-wrap {
+      position: relative;
+      height: 340px;
+    }
+
+    .chart-wrap canvas {
+      width: 100% !important;
+      height: 100% !important;
+      cursor: pointer;
+    }
+
+    .stacked .chart-wrap { height: 390px; }
+
+    .note,
+    .insight-item {
+      padding: 16px;
+      border-radius: var(--radius-lg);
+      color: #334155;
+      font-size: 14px;
+      transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+      cursor: pointer;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+    }
+
+    .insight-item { font-size: 15px; }
+
+    .note:hover,
+    .insight-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 22px rgba(15,23,42,0.10);
+    }
+
+    .body-copy {
+      font-size: 16px;
+      color: #1e293b;
+      margin: 0;
+    }
+
+    .footer-note {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .interactive {
+      cursor: pointer;
+      transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .interactive.is-dimmed { opacity: 0.5; }
+    .interactive.is-active { opacity: 1; }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+
+    .scroll-reveal.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .scroll-reveal,
+      .scroll-reveal.animate,
+      .kpi-card,
+      .chart-card,
+      .note,
+      .insight-item,
+      .interactive {
+        transition: none !important;
+        transform: none !important;
+        animation: none !important;
+      }
+    }
+
+    @media (max-width: 991.98px) {
+      .hero, .section-card { padding: 20px; }
+      .chart-wrap { height: 300px; }
+      .stacked .chart-wrap { height: 330px; }
+      .brand-wrap { justify-content: flex-start; }
+    }
+
+    @media (max-width: 575.98px) {
+      .page-shell { padding-top: 18px; }
+      .hero, .section-card { padding: 18px; }
+      .logo-card img { height: 42px; }
+      .chart-wrap { height: 270px; }
+      .stacked .chart-wrap { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <div class="container-xl">
+      <section class="hero scroll-reveal">
+        <div class="row g-4 align-items-start align-items-lg-center">
+          <div class="col-lg-9">
+            <div class="eyebrow">Data Storytelling Dashboard</div>
+            <h1>Media Landscape Analysis: Category Dominance, Geographic Clustering, and Data Gaps</h1>
+            <p>
+              This dashboard presents a structured analysis of the media dataset, focusing on category concentration,
+              district-level clustering, and the completeness of key analytical fields. It highlights where the dataset is dense,
+              where representation is limited, and where missing values constrain interpretation. All findings are derived strictly
+              from the provided file, with absent fields shown transparently rather than inferred.
+            </p>
+          </div>
+          <div class="col-lg-3 brand-wrap">
+            <div class="logo-card" aria-label="Vayuveg brand logo">
+              <img src="https://www.vayuveg.com/images/logo.png" alt="Vayuveg Logo">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-3 scroll-reveal">
+        <div class="row g-3">
+          <div class="col-12 col-sm-6 col-xl-3">
+            <article class="kpi-card kpi-primary interactive">
+              <div class="kpi-label">Total Records</div>
+              <div class="kpi-value">83</div>
+              <p class="kpi-sub">All rows retained from the provided file.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-xl-3">
+            <article class="kpi-card kpi-success interactive">
+              <div class="kpi-label">Top Category</div>
+              <div class="kpi-value">68</div>
+              <p class="kpi-sub">Authors/ Jour-lists</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-xl-3">
+            <article class="kpi-card kpi-warning interactive">
+              <div class="kpi-label">Dominant Segment</div>
+              <div class="kpi-value fs-4">Latur</div>
+              <p class="kpi-sub">44 records</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-xl-3">
+            <article class="kpi-card kpi-danger interactive">
+              <div class="kpi-label">Key Structural Insight</div>
+              <div class="kpi-value fs-4">Authors/ Jour-lists leads the dataset with 81.9% of all records.</div>
+              <p class="kpi-sub">Concentration defines the dataset.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card scroll-reveal">
+        <div class="row g-3 align-items-end mb-3">
+          <div class="col-lg-8">
+            <h2 class="section-title">Category Distribution</h2>
+            <p class="section-desc">Counts by category reveal where the dataset is dense and where representation becomes thin.</p>
+          </div>
+        </div>
+        <div class="chart-card interactive" id="categoryPanel">
+          <div class="chart-wrap">
+            <canvas id="categoryChart" aria-label="Category distribution bar chart"></canvas>
+          </div>
+        </div>
+        <div class="row g-3 mt-1">
+          <div class="col-md-4">
+            <div class="note interactive"><strong>Purpose:</strong> This chart establishes the category structure of the file.</div>
+          </div>
+          <div class="col-md-4">
+            <div class="note interactive"><strong>Reading:</strong> One category carries most of the record volume, while the remainder form a long, thin tail.</div>
+          </div>
+          <div class="col-md-4">
+            <div class="note interactive"><strong>Implication:</strong> Comparative interpretation across smaller groups must be done cautiously because they are lightly represented.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card scroll-reveal">
+        <div class="row g-3 align-items-end mb-3">
+          <div class="col-lg-8">
+            <h2 class="section-title">Geographic Share</h2>
+            <p class="section-desc">The proportional chart uses district share because sentiment is not available as a usable analytical field.</p>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col-lg-7">
+            <div class="chart-card interactive" id="donutPanel">
+              <div class="chart-wrap">
+                <canvas id="donutChart" aria-label="Geographic share donut chart"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="d-grid gap-3">
+              <div class="note interactive"><strong>Purpose:</strong> The donut chart shows how records are concentrated across leading districts.</div>
+              <div class="note interactive"><strong>Why this field:</strong> District is valid and populated. Sentiment is present as a column but not as usable recorded values.</div>
+              <div class="note interactive"><strong>What to learn:</strong> A small set of districts carries the majority of the dataset.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card stacked scroll-reveal">
+        <div class="row g-3 align-items-end mb-3">
+          <div class="col-lg-8">
+            <h2 class="section-title">Segment Comparison by District</h2>
+            <p class="section-desc">The stacked bar compares category composition across the most represented districts.</p>
+          </div>
+        </div>
+        <div class="chart-card interactive" id="stackedPanel">
+          <div class="chart-wrap">
+            <canvas id="stackedChart" aria-label="Stacked bar chart for district comparison"></canvas>
+          </div>
+        </div>
+        <div class="row g-3 mt-1">
+          <div class="col-md-4">
+            <div class="note interactive"><strong>Purpose:</strong> This view shows whether district strength comes from one dominant category or a broader mix.</div>
+          </div>
+          <div class="col-md-4">
+            <div class="note interactive"><strong>Available segment:</strong> District is usable. Gender and age-group are not present in the file.</div>
+          </div>
+          <div class="col-md-4">
+            <div class="note interactive"><strong>Analytical value:</strong> It helps identify geographic concentration within category structure.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card scroll-reveal">
+        <div class="row g-3 align-items-end mb-3">
+          <div class="col-lg-8">
+            <h2 class="section-title">Key Insights</h2>
+            <p class="section-desc">Concise, data-backed observations drawn only from the provided dataset.</p>
+          </div>
+        </div>
+        <div class="d-grid gap-3">
+          <div class="insight-item interactive">Authors/ Jour-lists is the dominant category, accounting for 81.9% of the full dataset.</div>
+          <div class="insight-item interactive">Latur is the strongest geographic segment with 44 records, while the top two districts together contribute 84.3%.</div>
+          <div class="insight-item interactive">Sentiment is not analytically usable because the designated sentiment field does not contain recorded values.</div>
+          <div class="insight-item interactive">Category diversity exists but remains thin at the edges: Academics/ शैक्षणिक, Think Tanks, Orator (वक्ता) are the smallest groups in the file.</div>
+          <div class="insight-item interactive">The dataset is stronger for structural mapping than behavioural analysis because most digital presence fields are sparsely populated.</div>
+        </div>
+      </section>
+
+      <section class="section-card scroll-reveal">
+        <div class="row g-3 align-items-end mb-3">
+          <div class="col-lg-8">
+            <h2 class="section-title">Narrative</h2>
+            <p class="section-desc">A short analytical reading of the overall pattern.</p>
+          </div>
+        </div>
+        <p class="body-copy">
+          The dataset reflects a sharply concentrated media structure rather than a balanced field of actors. Category strength is overwhelmingly led by Authors/ Jour-lists, and geographic clustering is strongest in Latur and a small set of leading districts. This concentration makes the file useful for identifying where media presence is dense and where it falls away quickly. At the same time, missing sentiment and sparse digital presence fields limit behavioural interpretation, so the most defensible reading remains structural rather than attitudinal.
+        </p>
+      </section>
+
+      <section class="section-card scroll-reveal">
+        <div class="row g-3 align-items-end mb-3">
+          <div class="col-lg-8">
+            <h2 class="section-title">Conclusion</h2>
+            <p class="section-desc">Final takeaway focused on implication.</p>
+          </div>
+        </div>
+        <p class="body-copy">
+          The central signal in this dataset is concentration: a few categories and districts carry most of the record volume. Future enrichment should focus on sentiment and engagement fields so the analysis can move from mapping presence to measuring influence.
+        </p>
+        <div class="footer-note">Built from the provided dataset only. Missing values were not inferred.</div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    Chart.defaults.color = '#334155';
+    Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+    Chart.defaults.animation = {
+      duration: 1200,
+      easing: 'easeOutQuart'
+    };
+
+    const categoryLabels = ["Authors/ Jour-lists", "Web Portal", "Academics/ शैक्षणिक", "Think Tanks", "Orator (वक्ता)"];
+    const categoryValues = [68, 9, 2, 2, 2];
+
+    const donutLabels = ["Latur", "Kolhapur", "Not in Maharashtra", "Other districts"];
+    const donutValues = [44, 26, 3, 9];
+
+    const stackedLabels = ["Latur", "Kolhapur", "Not in Maharashtra", "Satara", "Bhandara", "Jal-"];
+    const stackedDatasets = [
+      { label: "Academics/ शैक्षणिक", data: [0, 0, 1, 0, 0, 1], backgroundColor: "#2563eb", borderRadius: 4, borderWidth: 0 },
+      { label: "Authors/ Jour-lists", data: [41, 20, 0, 1, 2, 0], backgroundColor: "#16a34a", borderRadius: 4, borderWidth: 0 },
+      { label: "Orator (वक्ता)", data: [0, 0, 0, 1, 0, 0], backgroundColor: "#f59e0b", borderRadius: 4, borderWidth: 0 },
+      { label: "Think Tanks", data: [0, 0, 2, 0, 0, 0], backgroundColor: "#dc2626", borderRadius: 4, borderWidth: 0 },
+      { label: "Web Portal", data: [3, 6, 0, 0, 0, 0], backgroundColor: "#0ea5e9", borderRadius: 4, borderWidth: 0 }
+    ];
+
+    const tooltipTheme = {
+      backgroundColor: 'rgba(15, 23, 42, 0.95)',
+      titleColor: '#f8fafc',
+      bodyColor: '#e2e8f0',
+      borderColor: 'rgba(148, 163, 184, 0.28)',
+      borderWidth: 1,
+      padding: 12,
+      cornerRadius: 12,
+      displayColors: true,
+      boxPadding: 4
+    };
+
+    function toRgba(hex, alpha) {
+      const clean = hex.replace('#', '');
+      const normalized = clean.length === 3 ? clean.split('').map(ch => ch + ch).join('') : clean;
+      const num = parseInt(normalized, 16);
+      const r = (num >> 16) & 255;
+      const g = (num >> 8) & 255;
+      const b = num & 255;
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    function percent(value, values) {
+      const total = values.reduce((a, b) => a + b, 0);
+      return total ? ((value / total) * 100).toFixed(1) : '0.0';
+    }
+
+    function attachFocusGroup(selector) {
+      const items = Array.from(document.querySelectorAll(selector));
+      items.forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+          items.forEach((el) => {
+            if (el !== item) el.classList.add('is-dimmed');
+            else el.classList.add('is-active');
+          });
+        });
+        item.addEventListener('mouseleave', () => {
+          items.forEach((el) => el.classList.remove('is-dimmed', 'is-active'));
+        });
+      });
+    }
+
+    function initScrollReveal() {
+      const nodes = document.querySelectorAll('.scroll-reveal');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('animate');
+          obs.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      nodes.forEach(node => observer.observe(node));
+    }
+
+    const cursorPlugin = {
+      id: 'cursorPlugin',
+      afterEvent(chart, args) {
+        const pts = chart.getElementsAtEventForMode(
+          args.event,
+          'nearest',
+          { intersect: true },
+          false
+        );
+        chart.canvas.style.cursor = pts.length ? 'pointer' : 'default';
+      }
+    };
+
+    const focusPlugin = {
+      id: 'focusPlugin',
+      afterEvent(chart, args) {
+        const active = chart.getElementsAtEventForMode(
+          args.event,
+          'nearest',
+          { intersect: true },
+          false
+        );
+
+        chart.data.datasets.forEach((dataset) => {
+          if (!dataset._originalBackgroundColor) {
+            dataset._originalBackgroundColor = Array.isArray(dataset.backgroundColor)
+              ? [...dataset.backgroundColor]
+              : dataset.backgroundColor;
+          }
+        });
+
+        if (!active.length) {
+          chart.data.datasets.forEach((dataset) => {
+            if (Array.isArray(dataset._originalBackgroundColor)) {
+              dataset.backgroundColor = [...dataset._originalBackgroundColor];
+            } else {
+              dataset.backgroundColor = dataset._originalBackgroundColor;
+            }
+            if (Array.isArray(dataset.offset)) dataset.offset = dataset.offset.map(() => 0);
+          });
+          chart.update('none');
+          return;
+        }
+
+        const activeIndex = active[0].index;
+        const activeDatasetIndex = active[0].datasetIndex;
+        const chartType = chart.config.type;
+
+        chart.data.datasets.forEach((dataset, datasetIndex) => {
+          const original = dataset._originalBackgroundColor;
+
+          if (chartType === 'doughnut') {
+            dataset.backgroundColor = original.map((color, i) =>
+              i === activeIndex ? color : toRgba(color, 0.45)
+            );
+            dataset.offset = original.map((_, i) => i === activeIndex ? 16 : 0);
+          } else if (Array.isArray(original)) {
+            dataset.backgroundColor = original.map((color, i) =>
+              (datasetIndex === activeDatasetIndex && i === activeIndex) ? color : toRgba(color, 0.45)
+            );
+          } else {
+            dataset.backgroundColor = datasetIndex === activeDatasetIndex
+              ? original
+              : toRgba(original, 0.45);
+          }
+        });
+
+        chart.update('none');
+      }
+    };
+
+    const hoverScaleBarPlugin = {
+      id: 'hoverScaleBarPlugin',
+      afterDatasetsDraw(chart) {
+        if (chart.config.type !== 'bar') return;
+        if (chart.canvas.id !== 'categoryChart') return;
+
+        const active = chart.getActiveElements();
+        if (!active.length) return;
+
+        const activeEl = active[0];
+        const meta = chart.getDatasetMeta(activeEl.datasetIndex);
+        const bar = meta.data[activeEl.index];
+        if (!bar) return;
+
+        const dataset = chart.data.datasets[activeEl.datasetIndex];
+        const original = dataset._originalBackgroundColor || dataset.backgroundColor;
+        const color = Array.isArray(original) ? original[activeEl.index] : original;
+
+        const props = bar.getProps(['x', 'y', 'base', 'width'], true);
+        const x = props.x;
+        const y = props.y;
+        const base = props.base;
+        const width = props.width;
+        const height = base - y;
+        const radius = 10;
+        const ctx = chart.ctx;
+
+        ctx.save();
+        ctx.translate(x, y + height / 2);
+        ctx.scale(1.06, 1.03);
+        ctx.translate(-x, -(y + height / 2));
+        ctx.fillStyle = color;
+        drawRoundedRect(ctx, x - width / 2, y, width, height, radius);
+        ctx.restore();
+      }
+    };
+
+    function drawRoundedRect(ctx, x, y, w, h, r) {
+      const radius = Math.min(r, w / 2, h / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + w - radius, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
+      ctx.lineTo(x + w, y + h - radius);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
+      ctx.lineTo(x + radius, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    Chart.register(cursorPlugin, focusPlugin, hoverScaleBarPlugin);
+
+    function buildCategoryChart() {
+      const colors = ['#2563eb', '#0ea5e9', '#16a34a', '#f59e0b', '#dc2626'];
+
+      return new Chart(document.getElementById('categoryChart'), {
+        type: 'bar',
+        data: {
+          labels: categoryLabels,
+          datasets: [{
+            label: 'Record count',
+            data: categoryValues,
+            backgroundColor: colors,
+            hoverBackgroundColor: colors,
+            borderRadius: 8,
+            borderSkipped: false,
+            maxBarThickness: 58
+          }]
+        },
+        options: {
+          maintainAspectRatio: false,
+          interaction: { mode: 'nearest', intersect: true },
+          animation: { duration: 1200, easing: 'easeOutQuart' },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              ...tooltipTheme,
+              callbacks: {
+                title(items) { return items[0].label; },
+                label(context) {
+                  return `Count: ${context.raw} (${percent(context.raw, categoryValues)}%)`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#475569', maxRotation: 0, minRotation: 0 }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: { precision: 0 },
+              grid: { color: 'rgba(226, 232, 240, 0.9)' }
+            }
+          }
+        }
+      });
+    }
+
+    function buildDonutChart() {
+      const colors = ['#2563eb', '#0ea5e9', '#16a34a', '#94a3b8'];
+
+      return new Chart(document.getElementById('donutChart'), {
+        type: 'doughnut',
+        data: {
+          labels: donutLabels,
+          datasets: [{
+            data: donutValues,
+            backgroundColor: colors,
+            hoverBackgroundColor: colors,
+            borderWidth: 0,
+            hoverOffset: 14,
+            offset: [0, 0, 0, 0]
+          }]
+        },
+        options: {
+          maintainAspectRatio: false,
+          cutout: '64%',
+          interaction: { mode: 'nearest', intersect: true },
+          animation: { duration: 1200, easing: 'easeOutQuart' },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { usePointStyle: true, padding: 16 }
+            },
+            tooltip: {
+              ...tooltipTheme,
+              callbacks: {
+                title(items) { return items[0].label; },
+                label(context) {
+                  return `Share: ${context.raw} (${percent(context.raw, donutValues)}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function buildStackedChart() {
+      const datasets = stackedDatasets.map((d) => ({ ...d, hoverBackgroundColor: d.backgroundColor }));
+
+      return new Chart(document.getElementById('stackedChart'), {
+        type: 'bar',
+        data: {
+          labels: stackedLabels,
+          datasets
+        },
+        options: {
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          animation: { duration: 1200, easing: 'easeOutQuart' },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { usePointStyle: true, padding: 16 }
+            },
+            tooltip: {
+              ...tooltipTheme,
+              callbacks: {
+                title(items) { return items[0].label; },
+                label(context) {
+                  const total = context.chart.data.datasets.reduce((sum, ds) => sum + ds.data[context.dataIndex], 0);
+                  const pct = total ? ((context.raw / total) * 100).toFixed(1) : '0.0';
+                  return `${context.dataset.label}: ${context.raw} (${pct}%)`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false }
+            },
+            y: {
+              stacked: true,
+              beginAtZero: true,
+              ticks: { precision: 0 },
+              grid: { color: 'rgba(226, 232, 240, 0.9)' }
+            }
+          }
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => {
+        buildCategoryChart();
+        buildDonutChart();
+        buildStackedChart();
+        attachFocusGroup('.kpi-card');
+        attachFocusGroup('.note');
+        attachFocusGroup('.insight-item');
+        initScrollReveal();
+      });
+    });
+  </script>
+</body>
+</html>
