@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)file:///C:/Users/Hp/Downloads/preview%20(2).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forest Cover Analytics Dashboard</title>
+  <script src="./Forest Cover Analytics Dashboard.html 14april2026_files/chart.js.download"></script>
+  <script src="./Forest Cover Analytics Dashboard.html 14april2026_files/papaparse.min.js.download"></script>
+  <style>
+    :root {
+      --bg: #07170d;
+      --panel: rgba(14, 43, 24, 0.72);
+      --text: #eff7ef;
+      --muted: #b8cbb8;
+      --green-1: #2ECC71;
+      --green-2: #1F6F3D;
+      --green-3: #A3C585;
+      --brown: #8B5E3C;
+      --warn: #f4b860;
+      --danger: #ee7c73;
+      --shadow: 0 20px 60px rgba(0,0,0,.28);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(46,204,113,.14), transparent 24%),
+        radial-gradient(circle at right, rgba(163,197,133,.12), transparent 20%),
+        linear-gradient(135deg, #07170d 0%, #0b2e13 36%, #123524 100%);
+      min-height: 100vh;
+    }
+    .dashboard {
+      width: min(1440px, calc(100% - 32px));
+      margin: 20px auto 28px;
+      display: grid;
+      grid-template-columns: 1.4fr .8fr;
+      gap: 20px;
+    }
+    .hero {
+      grid-column: 1 / -1;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -120px auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46,204,113,.18), transparent 70%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #d8ead8;
+      background: rgba(163,197,133,.14);
+      border: 1px solid rgba(163,197,133,.16);
+    }
+    h1 { margin: 16px 0 10px; font-size: clamp(28px, 4vw, 44px); line-height: 1.08; }
+    .subtext { max-width: 980px; color: var(--muted); line-height: 1.65; font-size: 15px; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px; }
+    .card {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+    .kpi { padding: 18px 18px 16px; transition: transform .28s ease; }
+    .kpi:hover, .toolbar:hover, .chart-card:hover, .insight-panel:hover { transform: translateY(-2px); }
+    .kpi .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    .kpi .value { font-size: 28px; font-weight: 800; margin-top: 8px; }
+    .kpi .note { color: #d4e4d4; font-size: 13px; margin-top: 6px; }
+    .main-col { display: grid; gap: 20px; }
+    .toolbar { padding: 18px; }
+    .toolbar-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 16px; }
+    .field label { display:block; font-size: 12px; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .08em; }
+    select, input[type="file"] {
+      width: 100%;
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px;
+      padding: 12px 14px;
+      outline: none;
+      font-size: 14px;
+    }
+    .year-chips { display:flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+    .chip {
+      border: 1px solid rgba(163,197,133,.18);
+      background: rgba(255,255,255,.05);
+      color: #e8f4e8;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: .25s ease;
+      user-select:none;
+    }
+    .chip.active { background: linear-gradient(135deg, var(--green-1), var(--green-2)); border-color: transparent; }
+    .meta-line { margin-top: 14px; display:flex; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 13px; }
+    .status-pill { padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); }
+    .chart-card { padding: 18px; }
+    .section-head { display:flex; justify-content:space-between; align-items:flex-start; gap: 12px; margin-bottom: 14px; }
+    .section-head h2 { margin: 0; font-size: 22px; }
+    .section-head p { margin: 6px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .chart-wrap { position: relative; height: 520px; }
+    .insight-panel { padding: 20px; display:grid; gap:16px; align-content:start; }
+    .insight-block { padding: 16px; border-radius: 16px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.06); }
+    .insight-title { font-size: 12px; color: var(--green-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+    .insight-big { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+    .insight-text { color: #d9e7d9; font-size: 14px; line-height: 1.6; }
+    .list { display:grid; gap: 10px; margin-top: 8px; }
+    .list-item { display:flex; justify-content:space-between; gap:12px; padding-bottom:10px; border-bottom: 1px dashed rgba(255,255,255,.09); font-size: 14px; }
+    .list-item:last-child { border-bottom: 0; padding-bottom: 0; }
+    .mini-note { color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .warning { color: var(--warn); }
+    .danger { color: var(--danger); }
+    .success { color: var(--green-1); }
+    .footer-note { grid-column: 1 / -1; color: var(--muted); font-size: 13px; line-height: 1.7; padding: 0 4px 8px; }
+    @media (max-width: 1100px) {
+      .dashboard { grid-template-columns: 1fr; }
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+      .toolbar-grid { grid-template-columns: 1fr; }
+      .chart-wrap { height: 440px; }
+    }
+    @media (max-width: 640px) {
+      .dashboard { width: min(100% - 20px, 1440px); margin: 10px auto 20px; gap: 14px; }
+      .hero, .toolbar, .chart-card, .insight-panel { padding: 16px; }
+      .kpis { grid-template-columns: 1fr; }
+      .chart-wrap { height: 360px; }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <section class="hero card">
+      <div class="eyebrow">Forest Cover Intelligence • India • 2001–2023</div>
+      <h1>Interactive Forest Cover Analytics Dashboard</h1>
+      <div class="subtext">
+        A production-grade environmental dashboard driven directly by the uploaded CSV. It cleans percentage values, detects invalid entries, updates the clustered bar chart instantly, and pairs state-level comparison with research-style insights. The broad national narrative used in the side panel follows the supporting Word analysis: long stability through 2021, then a visible 2023 contraction across several indicators.
+      </div>
+      <div class="kpis" id="kpiGrid">
+        <div class="kpi card">
+          <div class="label">States / UTs</div>
+          <div class="value">35</div>
+          <div class="note">Detected from the CSV percentage block</div>
+        </div>
+        <div class="kpi card">
+          <div class="label">Highest 2023</div>
+          <div class="value">Mizoram</div>
+          <div class="note">84.00% forest cover</div>
+        </div>
+        <div class="kpi card">
+          <div class="label">Lowest 2023</div>
+          <div class="value">Lakshadweep</div>
+          <div class="note">0.00% forest cover</div>
+        </div>
+        <div class="kpi card">
+          <div class="label">Average 2023</div>
+          <div class="value">24.60%</div>
+          <div class="note">8 states / UTs at or above 33%</div>
+        </div></div>
+    </section>
+
+    <main class="main-col">
+      <section class="toolbar card">
+        <div class="section-head">
+          <div>
+            <h2>Controls &amp; Data Input</h2>
+            <p>Upload a revised CSV anytime. The parser auto-detects the state-wise percentage block, validates entries, and refreshes all components without any backend.</p>
+          </div>
+        </div>
+        <div class="toolbar-grid">
+          <div class="field">
+            <label for="csvFile">Upload CSV file</label>
+            <input id="csvFile" type="file" accept=".csv">
+          </div>
+          <div class="field">
+            <label for="stateFilter">State / UT filter</label>
+            <select id="stateFilter"><option value="All States / UTs">All States / UTs</option><option value="A &amp; N Islands">A &amp; N Islands</option><option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chandigarh">Chandigarh</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Dadra &amp; Nagar Haveli and Daman &amp; Diu">Dadra &amp; Nagar Haveli and Daman &amp; Diu</option><option value="Delhi">Delhi</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jammu &amp; Kashmir + Ladakh">Jammu &amp; Kashmir + Ladakh</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Lakshadweep">Lakshadweep</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Odisha">Odisha</option><option value="Puducherry">Puducherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="Uttarakhand">Uttarakhand</option><option value="West Bengal">West Bengal</option></select>
+          </div>
+        </div>
+        <div class="field" style="margin-top:16px;">
+          <label>Year selection for clustered comparison</label>
+          <div class="year-chips" id="yearChips"><button class="chip " data-year="2001">2001</button><button class="chip active" data-year="2003">2003</button><button class="chip " data-year="2005">2005</button><button class="chip " data-year="2009">2009</button><button class="chip " data-year="2011">2011</button><button class="chip " data-year="2013">2013</button><button class="chip " data-year="2015">2015</button><button class="chip " data-year="2017">2017</button><button class="chip " data-year="2019">2019</button><button class="chip " data-year="2021">2021</button><button class="chip " data-year="2023">2023</button></div>
+        </div>
+        <div class="meta-line">
+          <span class="status-pill" id="recordCount">Records: 35</span>
+          <span class="status-pill" id="missingCount">Missing handled: 6</span>
+          <span class="status-pill" id="invalidCount">Invalid normalized: 0</span>
+          <span class="status-pill" id="dataStatus">Dataset ready</span>
+        </div>
+      </section>
+
+      <section class="chart-card card">
+        <div class="section-head">
+          <div>
+            <h2>Clustered State Comparison</h2>
+            <p id="chartDescription">Showing selected years across all states and Union Territories. Bars are sorted by the most recently selected year: 2003.</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="forestChart" style="box-sizing: border-box; display: block; height: 520px; width: 865.6px;" width="865" height="520"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <aside class="insight-panel card" id="insightPanel">
+        <div>
+          <div class="section-head" style="margin-bottom:0;">
+            <div>
+              <h2>Insight Panel</h2>
+              <p>State-level findings from the CSV, framed alongside the supplied national analysis note.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">Trend Summary</div>
+          <div class="insight-big">24.60%</div>
+          <div class="insight-text">Average forest cover in 2023 across detected states and Union Territories. The uploaded note describes the national arc as broadly stable until 2021, then sharply weaker in 2023.</div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">Highest vs Lowest</div>
+          <div class="list">
+            <div class="list-item"><span>Mizoram</span><strong>84.00%</strong></div>
+            <div class="list-item"><span>Lakshadweep</span><strong>0.00%</strong></div>
+          </div>
+          <div class="mini-note">This contrast captures India’s ecological unevenness: dense, rainfall-rich or mountainous regions stand apart from heavily urbanized and agricultural plains.</div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">State-Level Change</div>
+          <div class="list">
+            <div class="list-item"><span>Largest gain since 2001</span><strong class="success">Mizoram (1.00 pp)</strong></div>
+            <div class="list-item"><span>Largest decline since 2001</span><strong class="danger">Lakshadweep (-84.00 pp)</strong></div>
+          </div>
+          <div class="mini-note">Percentage-point change is kept faithful to the CSV values. No synthetic adjustments are introduced.</div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">National Research Highlights</div>
+          <div class="list">
+            <div class="list-item"><span>2001 → 2021</span><strong>+5.66% total forest area</strong></div>
+            <div class="list-item"><span>2021 → 2023</span><strong class="warning">−27% sharp decline</strong></div>
+            <div class="list-item"><span>Largest component fall</span><strong class="danger">Open Forest −40%</strong></div>
+          </div>
+          <div class="mini-note">These summary lines are drawn from the uploaded Word analysis and are intended as contextual storytelling, not as recalculated values from the state-percentage CSV alone.</div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">Environmental Observation</div>
+          <div class="insight-text">The forest map of India still reads like an old epic: the Northeast as the emerald crown, central India as the green heart, and the plains as the uneasy frontier between growth and ecological restraint. The dashboard makes that contrast visible, measurable, and immediately explorable.</div>
+        </div>
+      </aside>
+
+    <div class="footer-note">
+      Dashboard logic is bound to the uploaded forest CSV. Insight wording also reflects the uploaded analysis note, especially the observed stability up to 2021 and the sharper 2023 fall in national totals and open forest measures.
+    </div>
+  </div>
+
+  <script>
+    const embeddedCsv = '\ufeffState/UT 2023,Percent 2001,Percent 2003,Percent 2005,Percent 2009,Percent 2011,Percent 2013,Percent 2015,Percent 2017,Percent 2019,Percent 2021,Percent 2023,,State/UT 2023,Total Forest Yers 2001,Total Forest Yers 2003,Total Forest Year2005,Total Forest Year2009,Total Forest Year2011,Total Forest Year2013,Total Forest Year2015,Total Forest Year2017,Total Forest Year2019,Total Forest Year2021,Total 2023\nA & N Islands,84%,84%,80%,81%,82%,81%,82%,82%,82%,82%,75%,,Sikkim,45%,46%,46%,47%,47%,47%,47%,47%,47%,47%,29%\nAndhra Pradesh,16%,16%,16%,16%,16%,17%,15%,17%,18%,18%,15%,,-,100%,100%,100%,100%,100%,100%,100%,100%,100%,100%,100%\nArunachal Pradesh,81%,81%,81%,80%,80%,80%,80%,80%,80%,79%,69%,,,,,,,,,,,,,\nAssam,35%,35%,35%,35%,35%,35%,35%,36%,36%,36%,25%,,,,,,,,,,,,,\nBihar,6%,6%,6%,7%,7%,8%,8%,8%,8%,8%,5%,,,,,,,,,,,,,\nChandigarh,8%,13%,13%,15%,15%,15%,19%,19%,26%,20%,8%,,,,,,,,,,,,,\nChhattisgarh,42%,41%,41%,41%,41%,41%,41%,41%,41%,41%,31%,,,,,,,,,,,,,\nDadra & Nagar Haveli and Daman & Diu,37%,39%,38%,36%,36%,44%,37%,38%,38%,38%,26%,,,,,,,,,,,,,\nDelhi,7%,11%,12%,12%,12%,12%,13%,13%,13%,13%,5%,,,,,,,,,,,,,\nGoa,57%,58%,58%,58%,60%,60%,60%,60%,60%,61%,33%,,,,,,,,,,,,,\nGujarat,8%,8%,8%,7%,7%,7%,7%,8%,8%,8%,5%,,,,,,,,,,,,,\nHaryana,4%,3%,4%,4%,4%,4%,4%,4%,4%,4%,2%,,,,,,,,,,,,,\nHimachal Pradesh,26%,26%,26%,26%,26%,26%,26%,27%,28%,28%,19%,,,,,,,,,,,,,\nJammu & Kashmir + Ladakh,10%,10%,10%,10%,10%,10%,10%,10%,11%,11%,6%,,,,,,,,,,,,,\nJharkhand,28%,28%,28%,29%,29%,29%,29%,30%,30%,30%,16%,,,,,,,,,,,,,\nKarnataka,19%,19%,18%,19%,19%,19%,19%,20%,20%,20%,12%,,,,,,,,,,,,,\nKerala,40%,40%,40%,45%,45%,46%,50%,52%,54%,55%,26%,,,,,,,,,,,,,\nLakshadweep,84%,72%,78%,81%,85%,85%,85%,90%,90%,90%,0%,,,,,,,,,,,,,\nMadhya Pradesh,25%,25%,25%,25%,25%,25%,25%,25%,25%,25%,22%,,,,,,,,,,,,,\nMaharashtra,15%,15%,15%,16%,16%,16%,16%,16%,17%,17%,12%,,,,,,,,,,,,,\nManipur,76%,77%,77%,77%,77%,76%,76%,78%,75%,74%,66%,,,,,,,,,,,,,\nMeghalaya,69%,75%,76%,77%,77%,77%,77%,76%,76%,76%,65%,,,,,,,,,,,,,\nMizoram,83%,87%,89%,91%,91%,90%,89%,86%,85%,85%,84%,,,,,,,,,,,,,\nNagaland,80%,82%,83%,81%,80%,79%,78%,75%,75%,74%,51%,,,,,,,,,,,,,\nOdisha,31%,31%,31%,31%,31%,32%,32%,33%,33%,33%,21%,,,,,,,,,,,,,\nPuducherry,8%,8%,9%,9%,10%,10%,12%,11%,11%,11%,1%,,,,,,,,,,,,,\nPunjab,5%,3%,3%,3%,4%,4%,4%,4%,4%,4%,2%,,,,,,,,,,,,,\nRajasthan,5%,5%,5%,5%,5%,5%,5%,5%,5%,5%,4%,,,,,,,,,,,,,\nSikkim,45%,46%,46%,47%,47%,47%,47%,47%,47%,47%,29%,,,,,,,,,,,,,\nTamil Nadu,17%,17%,18%,18%,18%,18%,20%,20%,20%,20%,14%,,,,,,,,,,,,,\nTelangana,-,-,-,-,-,-,19%,18%,18%,19%,16%,,,,,,,,,,,,,\nTripura,67%,77%,78%,77%,76%,75%,74%,74%,74%,74%,51%,,,,,,,,,,,,,\nUttar Pradesh,6%,6%,6%,6%,6%,6%,6%,6%,6%,6%,4%,,,,,,,,,,,,,\nUttarakhand,45%,46%,46%,46%,46%,46%,45%,45%,45%,45%,32%,,,,,,,,,,,,,\nWest Bengal,12%,14%,14%,15%,15%,19%,19%,19%,19%,19%,9%,,,,,,,,,,,,,\nGrand Total,,,,,,,,,,,,,,,,,,,,,,,,\n';
+
+    const state = {
+      cleanedRows: [],
+      years: [],
+      selectedYears: [],
+      selectedState: 'All States / UTs',
+      chart: null,
+      missingCount: 0,
+      invalidCount: 0,
+    };
+
+    const COLORS = ['#2ECC71', '#A3C585', '#8B5E3C', '#59d98e', '#84b96b', '#d1e5b2', '#4fa56f', '#c08b61'];
+
+    function extractPercent(value) {
+      if (value === null || value === undefined || value === '') return { value: null, type: 'missing' };
+      const text = String(value).trim();
+      if (!text || text.toLowerCase() === 'nan' || text === '-') return { value: null, type: 'missing' };
+      const numeric = parseFloat(text.replace(/%/g, '').replace(/,/g, ''));
+      if (Number.isNaN(numeric)) return { value: null, type: 'invalid' };
+      return { value: numeric, type: 'valid' };
+    }
+
+    function parseForestCsv(csvText) {
+      const result = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+      const percentColumns = (result.meta.fields || []).filter(col => /^Percent\s+\d{4}$/i.test(col));
+      const stateColumn = (result.meta.fields || []).find(col => /^State\/UT\s+2023$/i.test(col)) || 'State/UT 2023';
+      const years = percentColumns.map(col => col.match(/(\d{4})/)[1]);
+
+      let missingCount = 0;
+      let invalidCount = 0;
+
+      const cleanedRows = result.data
+        .filter(row => row[stateColumn] && !/grand total/i.test(String(row[stateColumn]).trim()))
+        .map(row => {
+          const item = { state: String(row[stateColumn]).trim() };
+          years.forEach(year => {
+            const source = row[`Percent ${year}`];
+            const parsed = extractPercent(source);
+            if (parsed.type === 'missing') missingCount += 1;
+            if (parsed.type === 'invalid') invalidCount += 1;
+            item[year] = parsed.value;
+          });
+          return item;
+        })
+        .filter(row => row.state && Object.values(row).some(v => typeof v === 'number'));
+
+      return { cleanedRows, years, missingCount, invalidCount };
+    }
+
+    function buildStateOptions(rows) {
+      const select = document.getElementById('stateFilter');
+      const states = rows.map(r => r.state).sort((a, b) => a.localeCompare(b));
+      select.innerHTML = ['All States / UTs', ...states].map(name => `<option value="${name}">${name}</option>`).join('');
+      select.value = state.selectedState;
+    }
+
+    function buildYearChips(years) {
+      const wrap = document.getElementById('yearChips');
+      wrap.innerHTML = years.map(year => `<button class="chip ${state.selectedYears.includes(year) ? 'active' : ''}" data-year="${year}">${year}</button>`).join('');
+      wrap.querySelectorAll('.chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const year = btn.dataset.year;
+          const exists = state.selectedYears.includes(year);
+          if (exists && state.selectedYears.length > 1) {
+            state.selectedYears = state.selectedYears.filter(y => y !== year);
+          } else if (!exists) {
+            state.selectedYears.push(year);
+            state.selectedYears.sort();
+          }
+          buildYearChips(state.years);
+          renderAll();
+        });
+      });
+    }
+
+    function computeInsights(rows, years) {
+      const latestYear = years[years.length - 1];
+      const firstYear = years[0];
+      const validLatest = rows.filter(r => typeof r[latestYear] === 'number');
+      const sortedLatest = [...validLatest].sort((a, b) => b[latestYear] - a[latestYear]);
+      const highest = sortedLatest[0];
+      const lowest = sortedLatest[sortedLatest.length - 1];
+      const avgLatest = validLatest.reduce((sum, r) => sum + r[latestYear], 0) / (validLatest.length || 1);
+
+      const changes = rows
+        .filter(r => typeof r[firstYear] === 'number' && typeof r[latestYear] === 'number')
+        .map(r => ({ state: r.state, change: +(r[latestYear] - r[firstYear]).toFixed(2), latest: r[latestYear] }));
+
+      const biggestGain = [...changes].sort((a, b) => b.change - a.change)[0];
+      const biggestLoss = [...changes].sort((a, b) => a.change - b.change)[0];
+      const above33 = validLatest.filter(r => r[latestYear] >= 33).length;
+      return { latestYear, firstYear, highest, lowest, avgLatest, biggestGain, biggestLoss, above33 };
+    }
+
+    function renderKpis(insights, rows) {
+      const html = [
+        { label: 'States / UTs', value: rows.length, note: 'Detected from the CSV percentage block' },
+        { label: `Highest ${insights.latestYear}`, value: `${insights.highest?.state || '—'}`, note: `${insights.highest?.[insights.latestYear]?.toFixed(2) || '0'}% forest cover` },
+        { label: `Lowest ${insights.latestYear}`, value: `${insights.lowest?.state || '—'}`, note: `${insights.lowest?.[insights.latestYear]?.toFixed(2) || '0'}% forest cover` },
+        { label: `Average ${insights.latestYear}`, value: `${insights.avgLatest.toFixed(2)}%`, note: `${insights.above33} states / UTs at or above 33%` },
+      ];
+      document.getElementById('kpiGrid').innerHTML = html.map(k => `
+        <div class="kpi card">
+          <div class="label">${k.label}</div>
+          <div class="value">${k.value}</div>
+          <div class="note">${k.note}</div>
+        </div>`).join('');
+    }
+
+    function getVisibleRows() {
+      if (state.selectedState === 'All States / UTs') return [...state.cleanedRows];
+      return state.cleanedRows.filter(r => r.state === state.selectedState);
+    }
+
+    function buildDatasets(visibleRows) {
+      const yearsToShow = state.selectedState === 'All States / UTs' ? state.selectedYears : state.years;
+      const labels = visibleRows.map(r => r.state);
+      const datasets = yearsToShow.map((year, idx) => ({
+        label: year,
+        data: visibleRows.map(r => r[year]),
+        backgroundColor: COLORS[idx % COLORS.length],
+        borderRadius: 8,
+        borderSkipped: false,
+        maxBarThickness: 26,
+      }));
+      return { labels, datasets, yearsToShow };
+    }
+
+    function renderChart() {
+      const visibleRowsRaw = getVisibleRows();
+      const recentYear = state.selectedYears[state.selectedYears.length - 1] || state.years[state.years.length - 1];
+      const visibleRows = state.selectedState === 'All States / UTs'
+        ? visibleRowsRaw.sort((a, b) => (b[recentYear] ?? -Infinity) - (a[recentYear] ?? -Infinity))
+        : visibleRowsRaw;
+
+      const { labels, datasets, yearsToShow } = buildDatasets(visibleRows);
+      const ctx = document.getElementById('forestChart');
+      const desc = state.selectedState === 'All States / UTs'
+        ? `Showing selected years across all states and Union Territories. Bars are sorted by the most recently selected year: ${yearsToShow[yearsToShow.length - 1]}.`
+        : `Showing the full year-wise path for ${state.selectedState}. This isolates a single state so the temporal profile becomes clearer.`;
+      document.getElementById('chartDescription').textContent = desc;
+
+      if (state.chart) state.chart.destroy();
+      state.chart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels, datasets },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { labels: { color: '#eff7ef', boxWidth: 14, usePointStyle: true, pointStyle: 'rectRounded' } },
+            tooltip: {
+              backgroundColor: 'rgba(10, 24, 15, 0.96)',
+              borderColor: 'rgba(163,197,133,.3)',
+              borderWidth: 1,
+              titleColor: '#fff',
+              bodyColor: '#d6e7d6',
+              callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y ?? ctx.parsed}%` }
+            }
+          },
+          scales: {
+            x: { ticks: { color: '#dbe9db', maxRotation: 50, minRotation: 0 }, grid: { display: false } },
+            y: {
+              beginAtZero: true,
+              suggestedMax: 100,
+              ticks: { color: '#dbe9db', callback: (value) => value + '%' },
+              grid: { color: 'rgba(255,255,255,.08)' }
+            }
+          }
+        }
+      });
+    }
+
+    function renderInsightPanel(insights) {
+      const panel = document.getElementById('insightPanel');
+      const latestYear = insights.latestYear;
+      panel.innerHTML = `
+        <div>
+          <div class="section-head" style="margin-bottom:0;">
+            <div>
+              <h2>Insight Panel</h2>
+              <p>State-level findings from the CSV, framed alongside the supplied national analysis note.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">Trend Summary</div>
+          <div class="insight-big">${insights.avgLatest.toFixed(2)}%</div>
+          <div class="insight-text">Average forest cover in ${latestYear} across detected states and Union Territories. The uploaded note describes the national arc as broadly stable until 2021, then sharply weaker in 2023.</div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">Highest vs Lowest</div>
+          <div class="list">
+            <div class="list-item"><span>${insights.highest.state}</span><strong>${insights.highest[latestYear].toFixed(2)}%</strong></div>
+            <div class="list-item"><span>${insights.lowest.state}</span><strong>${insights.lowest[latestYear].toFixed(2)}%</strong></div>
+          </div>
+          <div class="mini-note">This contrast captures India’s ecological unevenness: dense, rainfall-rich or mountainous regions stand apart from heavily urbanized and agricultural plains.</div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">State-Level Change</div>
+          <div class="list">
+            <div class="list-item"><span>Largest gain since ${insights.firstYear}</span><strong class="success">${insights.biggestGain.state} (${insights.biggestGain.change.toFixed(2)} pp)</strong></div>
+            <div class="list-item"><span>Largest decline since ${insights.firstYear}</span><strong class="danger">${insights.biggestLoss.state} (${insights.biggestLoss.change.toFixed(2)} pp)</strong></div>
+          </div>
+          <div class="mini-note">Percentage-point change is kept faithful to the CSV values. No synthetic adjustments are introduced.</div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">National Research Highlights</div>
+          <div class="list">
+            <div class="list-item"><span>2001 → 2021</span><strong>+5.66% total forest area</strong></div>
+            <div class="list-item"><span>2021 → 2023</span><strong class="warning">−27% sharp decline</strong></div>
+            <div class="list-item"><span>Largest component fall</span><strong class="danger">Open Forest −40%</strong></div>
+          </div>
+          <div class="mini-note">These summary lines are drawn from the uploaded Word analysis and are intended as contextual storytelling, not as recalculated values from the state-percentage CSV alone.</div>
+        </div>
+
+        <div class="insight-block">
+          <div class="insight-title">Environmental Observation</div>
+          <div class="insight-text">The forest map of India still reads like an old epic: the Northeast as the emerald crown, central India as the green heart, and the plains as the uneasy frontier between growth and ecological restraint. The dashboard makes that contrast visible, measurable, and immediately explorable.</div>
+        </div>
+      `;
+    }
+
+    function updateMeta() {
+      document.getElementById('recordCount').textContent = `Records: ${state.cleanedRows.length}`;
+      document.getElementById('missingCount').textContent = `Missing handled: ${state.missingCount}`;
+      document.getElementById('invalidCount').textContent = `Invalid normalized: ${state.invalidCount}`;
+      document.getElementById('dataStatus').textContent = state.cleanedRows.length ? 'Dataset ready' : 'No valid data found';
+    }
+
+    function renderAll() {
+      if (!state.cleanedRows.length) return;
+      const insights = computeInsights(state.cleanedRows, state.years);
+      renderKpis(insights, state.cleanedRows);
+      renderChart();
+      renderInsightPanel(insights);
+      updateMeta();
+    }
+
+    function loadCsvText(csvText) {
+      const parsed = parseForestCsv(csvText);
+      state.cleanedRows = parsed.cleanedRows;
+      state.years = parsed.years;
+      state.missingCount = parsed.missingCount;
+      state.invalidCount = parsed.invalidCount;
+      if (!state.selectedYears.length) state.selectedYears = [state.years[0], state.years[state.years.length - 1]].filter(Boolean);
+      state.selectedYears = state.selectedYears.filter(y => state.years.includes(y));
+      if (state.selectedYears.length === 0 && state.years.length) state.selectedYears = [state.years[0]];
+      buildStateOptions(state.cleanedRows);
+      buildYearChips(state.years);
+      renderAll();
+    }
+
+    document.getElementById('stateFilter').addEventListener('change', (e) => {
+      state.selectedState = e.target.value;
+      renderAll();
+    });
+
+    document.getElementById('csvFile').addEventListener('change', async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const text = await file.text();
+      loadCsvText(text);
+    });
+
+    loadCsvText(embeddedCsv);
+  </script>
+
+</body></html>
